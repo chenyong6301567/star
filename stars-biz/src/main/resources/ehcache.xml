@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ehcache xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://ehcache.org/ehcache.xsd"
+	updateCheck="false">
+	<diskStore path="java.io.tmpdir/cache" />
+    <!-- 设定缓存的默认数据过期策略 LRU（最近最少使用，默认策略）、FIFO（先进先出）、LFU（最少访问次数） -->
+	<defaultCache eternal="false" maxElementsInMemory="1000"
+		overflowToDisk="false" diskPersistent="false" timeToIdleSeconds="0"
+		timeToLiveSeconds="600" memoryStoreEvictionPolicy="LRU" />
+	<!-- 商品的缓存策略 当2个小时没有访问时，则对象会被释放出缓存,如果一直有访问，则对象不会被释放 -->
+    <cache name="item"
+        eternal="false"
+        maxElementsInMemory="10000"
+        maxElementsOnDisk="200000"
+        overflowToDisk="true"
+        timeToIdleSeconds="7200"
+        timeToLiveSeconds="0"
+        diskSpoolBufferSizeMB="1200"
+        diskPersistent="false"
+        diskExpiryThreadIntervalSeconds="1800"
+        memoryStoreEvictionPolicy="LFU"/>
+
+</ehcache>
