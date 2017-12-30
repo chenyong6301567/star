@@ -1,0 +1,95 @@
+<!-- Logback configuration. See http://logback.qos.ch/manual/index.html -->
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+    <include resource="org/springframework/boot/logging/logback/base.xml" />
+<!--定义日志文件的存储地址 勿在 LogBack 的配置中使用相对路径-->  
+    <property name="LOG_HOME" value="${LOG_PATH}" />
+    <property name="PATTERN" value="%-12(%d{yyyy-MM-dd HH:mm:ss.SSS}) |-%-5level [%thread] %c [%L] -| %msg%n" /> 
+    <property name="APP_NAME" value="${app.name}" />
+    <springProfile name="test,dev">
+    	<property name="LOG_LEVEL" value="DEBUG" />
+    </springProfile>
+    <springProfile name="prod">
+    	<property name="LOG_LEVEL" value="INFO" />
+    </springProfile>
+    <contextName>${APP_NAME}</contextName>
+    <!-- 控制台输出 -->   
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder> 
+             <!--格式化输出：%d表示日期，%thread表示线程名，%-5level：级别从左显示5个字符宽度%msg：日志消息，%n是换行符--> 
+            <pattern>${PATTERN}</pattern>   
+        </encoder> 
+    </appender>
+    <appender name="BIZ" class="ch.qos.logback.core.FileAppender">
+        <file>${LOG_HOME}/biz.log</file>
+        <encoder>
+            <Pattern>${PATTERN}</Pattern>
+        </encoder>
+    </appender>
+
+    <appender name="UTILS" class="ch.qos.logback.core.FileAppender">
+        <file>${LOG_HOME}/utils.log</file>
+        <encoder>
+            <Pattern>${PATTERN}</Pattern>
+        </encoder>
+    </appender>
+    
+    <appender name="DAL" class="ch.qos.logback.core.FileAppender">
+        <file>${LOG_HOME}/dal.log</file>
+        <encoder>
+            <Pattern>${PATTERN}</Pattern>
+        </encoder>
+    </appender>
+    
+    <appender name="EXTERNAL" class="ch.qos.logback.core.FileAppender">
+        <file>${LOG_HOME}/external.log</file>
+        <encoder>
+            <Pattern>${PATTERN}</Pattern>
+        </encoder>
+    </appender>
+    
+    <appender name="FACADE" class="ch.qos.logback.core.FileAppender">
+        <file>${LOG_HOME}/facade.log</file>
+        <encoder>
+            <Pattern>${PATTERN}</Pattern>
+        </encoder>
+    </appender>
+    
+    <appender name="WEB" class="ch.qos.logback.core.FileAppender">
+        <file>${LOG_HOME}/web.log</file>
+        <encoder>
+            <Pattern>${PATTERN}</Pattern>
+        </encoder>
+    </appender>
+    
+    <appender name="ALL" class="ch.qos.logback.core.FileAppender">
+        <file>${LOG_HOME}/all.log</file>
+        <encoder>
+            <Pattern>${PATTERN}</Pattern>
+        </encoder>
+    </appender>
+        <logger name="com.hotyum.demo.dal" level="${LOG_LEVEL}" additivity="false">
+            <appender-ref ref="DAL" />
+        </logger>
+        <logger name="org.mybatis" level="${LOG_LEVEL}" additivity="false">
+            <appender-ref ref="DAL" />
+        </logger>
+        <logger name="com.hotyum.demo.biz" level="${LOG_LEVEL}" additivity="false">
+            <appender-ref ref="BIZ" />
+        </logger>
+        <logger name="com.hotyum.demo.utils" level="${LOG_LEVEL}" additivity="false">
+            <appender-ref ref="UTILS" />
+        </logger>
+        <logger name="com.hotyum.demo.external" level="${LOG_LEVEL}" additivity="false">
+            <appender-ref ref="EXTERNAL" />
+        </logger>
+        <logger name="com.hotyum.demo.facade" level="${LOG_LEVEL}" additivity="false">
+            <appender-ref ref="FACADE" />
+        </logger>
+        <logger name="com.hotyum.demo.web" level="${LOG_LEVEL}" additivity="false">
+            <appender-ref ref="WEB" />
+        </logger>
+    <root level="${LOG_LEVEL}">
+        <appender-ref ref="ALL" />
+        <appender-ref ref="STDOUT" />
+    </root>
+</configuration>
