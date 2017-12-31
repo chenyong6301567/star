@@ -2,13 +2,6 @@ package com.hotyum.stars.utils;
 
 import java.math.BigDecimal;
 
-/**
- * @author ybm
- * @version V1.0
- * @Title
- * @Description
- * @date 2017/8/30
- */
 public class DecimalUtil {
 	public static double multiply(double v1, double v2) {
 		BigDecimal b1 = new BigDecimal(Double.toString(v1));
