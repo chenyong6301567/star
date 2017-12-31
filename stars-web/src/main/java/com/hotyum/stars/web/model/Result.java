@@ -30,7 +30,6 @@ public class Result {
 	 */
 	protected Object data = null;
 
-	@Deprecated
 	public static Result errorReponse(int code, String message) {
 		Result model = new Result(code, message);
 		return model;
