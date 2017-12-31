@@ -52,6 +52,10 @@ public class SmsSqlProvider {
             sql.VALUES("content", "#{content,jdbcType=VARCHAR}");
         }
         
+        if (record.getType() != null) {
+            sql.VALUES("type", "#{type,jdbcType=TINYINT}");
+        }
+        
         return sql.toString();
     }
 
@@ -68,6 +72,7 @@ public class SmsSqlProvider {
         sql.SELECT("gmt_modify");
         sql.SELECT("status");
         sql.SELECT("content");
+        sql.SELECT("type");
         sql.FROM("sms");
         applyWhere(sql, example, false);
         
@@ -113,6 +118,10 @@ public class SmsSqlProvider {
             sql.SET("content = #{record.content,jdbcType=VARCHAR}");
         }
         
+        if (record.getType() != null) {
+            sql.SET("type = #{record.type,jdbcType=TINYINT}");
+        }
+        
         applyWhere(sql, example, true);
         return sql.toString();
     }
@@ -128,6 +137,7 @@ public class SmsSqlProvider {
         sql.SET("gmt_modify = #{record.gmtModify,jdbcType=TIMESTAMP}");
         sql.SET("status = #{record.status,jdbcType=TINYINT}");
         sql.SET("content = #{record.content,jdbcType=VARCHAR}");
+        sql.SET("type = #{record.type,jdbcType=TINYINT}");
         
         SmsExample example = (SmsExample) parameter.get("example");
         applyWhere(sql, example, true);
@@ -160,6 +170,10 @@ public class SmsSqlProvider {
         
         if (record.getContent() != null) {
             sql.SET("content = #{content,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getType() != null) {
+            sql.SET("type = #{type,jdbcType=TINYINT}");
         }
         
         sql.WHERE("id = #{id,jdbcType=INTEGER}");

@@ -33,7 +33,7 @@ public class TokenAccessSqlProvider {
         }
         
         if (record.getUserId() != null) {
-            sql.VALUES("user_id", "#{userId,jdbcType=BIGINT}");
+            sql.VALUES("user_id", "#{userId,jdbcType=INTEGER}");
         }
         
         if (record.getTokenCreate() != null) {
@@ -70,10 +70,11 @@ public class TokenAccessSqlProvider {
     public String selectByExample(TokenAccessExample example) {
         SQL sql = new SQL();
         if (example != null && example.isDistinct()) {
-            sql.SELECT_DISTINCT("token");
+            sql.SELECT_DISTINCT("id");
         } else {
-            sql.SELECT("token");
+            sql.SELECT("id");
         }
+        sql.SELECT("token");
         sql.SELECT("user_id");
         sql.SELECT("token_create");
         sql.SELECT("token_expired");
@@ -99,12 +100,16 @@ public class TokenAccessSqlProvider {
         SQL sql = new SQL();
         sql.UPDATE("token_access");
         
+        if (record.getId() != null) {
+            sql.SET("id = #{record.id,jdbcType=INTEGER}");
+        }
+        
         if (record.getToken() != null) {
             sql.SET("token = #{record.token,jdbcType=VARCHAR}");
         }
         
         if (record.getUserId() != null) {
-            sql.SET("user_id = #{record.userId,jdbcType=BIGINT}");
+            sql.SET("user_id = #{record.userId,jdbcType=INTEGER}");
         }
         
         if (record.getTokenCreate() != null) {
@@ -143,8 +148,9 @@ public class TokenAccessSqlProvider {
         SQL sql = new SQL();
         sql.UPDATE("token_access");
         
+        sql.SET("id = #{record.id,jdbcType=INTEGER}");
         sql.SET("token = #{record.token,jdbcType=VARCHAR}");
-        sql.SET("user_id = #{record.userId,jdbcType=BIGINT}");
+        sql.SET("user_id = #{record.userId,jdbcType=INTEGER}");
         sql.SET("token_create = #{record.tokenCreate,jdbcType=TIMESTAMP}");
         sql.SET("token_expired = #{record.tokenExpired,jdbcType=TIMESTAMP}");
         sql.SET("active_time = #{record.activeTime,jdbcType=TIMESTAMP}");
@@ -163,7 +169,7 @@ public class TokenAccessSqlProvider {
         sql.UPDATE("token_access");
         
         if (record.getUserId() != null) {
-            sql.SET("user_id = #{userId,jdbcType=BIGINT}");
+            sql.SET("user_id = #{userId,jdbcType=INTEGER}");
         }
         
         if (record.getTokenCreate() != null) {
@@ -194,6 +200,7 @@ public class TokenAccessSqlProvider {
             sql.SET("status = #{status,jdbcType=TINYINT}");
         }
         
+        sql.WHERE("id = #{id,jdbcType=INTEGER}");
         sql.WHERE("token = #{token,jdbcType=VARCHAR}");
         
         return sql.toString();

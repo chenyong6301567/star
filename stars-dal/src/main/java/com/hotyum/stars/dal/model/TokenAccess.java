@@ -4,9 +4,11 @@ import java.io.Serializable;
 import java.util.Date;
 
 public class TokenAccess implements Serializable {
+    private Integer id;
+
     private String token;
 
-    private Long userId;
+    private Integer userId;
 
     private Date tokenCreate;
 
@@ -24,6 +26,14 @@ public class TokenAccess implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
     public String getToken() {
         return token;
     }
@@ -32,11 +42,11 @@ public class TokenAccess implements Serializable {
         this.token = token == null ? null : token.trim();
     }
 
-    public Long getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(Long userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
@@ -108,7 +118,8 @@ public class TokenAccess implements Serializable {
             return false;
         }
         TokenAccess other = (TokenAccess) that;
-        return (this.getToken() == null ? other.getToken() == null : this.getToken().equals(other.getToken()))
+        return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
+            && (this.getToken() == null ? other.getToken() == null : this.getToken().equals(other.getToken()))
             && (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()))
             && (this.getTokenCreate() == null ? other.getTokenCreate() == null : this.getTokenCreate().equals(other.getTokenCreate()))
             && (this.getTokenExpired() == null ? other.getTokenExpired() == null : this.getTokenExpired().equals(other.getTokenExpired()))
@@ -123,6 +134,7 @@ public class TokenAccess implements Serializable {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
+        result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
         result = prime * result + ((getToken() == null) ? 0 : getToken().hashCode());
         result = prime * result + ((getUserId() == null) ? 0 : getUserId().hashCode());
         result = prime * result + ((getTokenCreate() == null) ? 0 : getTokenCreate().hashCode());

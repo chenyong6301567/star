@@ -6,7 +6,7 @@ import java.util.Date;
 public class User implements Serializable {
     private Integer id;
 
-    private Integer account;
+    private String account;
 
     private String pwd;
 
@@ -28,11 +28,11 @@ public class User implements Serializable {
 
     private Byte refereeQualification;
 
-    private String numberAgents;
+    private String agentCode;
 
-    private Integer directRecommendationAccount;
+    private String directRecommendationAccount;
 
-    private Integer indirectRecommendationAccount;
+    private String indirectRecommendationAccount;
 
     private Byte certificateType;
 
@@ -62,12 +62,12 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public Integer getAccount() {
+    public String getAccount() {
         return account;
     }
 
-    public void setAccount(Integer account) {
-        this.account = account;
+    public void setAccount(String account) {
+        this.account = account == null ? null : account.trim();
     }
 
     public String getPwd() {
@@ -150,28 +150,28 @@ public class User implements Serializable {
         this.refereeQualification = refereeQualification;
     }
 
-    public String getNumberAgents() {
-        return numberAgents;
+    public String getAgentCode() {
+        return agentCode;
     }
 
-    public void setNumberAgents(String numberAgents) {
-        this.numberAgents = numberAgents == null ? null : numberAgents.trim();
+    public void setAgentCode(String agentCode) {
+        this.agentCode = agentCode == null ? null : agentCode.trim();
     }
 
-    public Integer getDirectRecommendationAccount() {
+    public String getDirectRecommendationAccount() {
         return directRecommendationAccount;
     }
 
-    public void setDirectRecommendationAccount(Integer directRecommendationAccount) {
-        this.directRecommendationAccount = directRecommendationAccount;
+    public void setDirectRecommendationAccount(String directRecommendationAccount) {
+        this.directRecommendationAccount = directRecommendationAccount == null ? null : directRecommendationAccount.trim();
     }
 
-    public Integer getIndirectRecommendationAccount() {
+    public String getIndirectRecommendationAccount() {
         return indirectRecommendationAccount;
     }
 
-    public void setIndirectRecommendationAccount(Integer indirectRecommendationAccount) {
-        this.indirectRecommendationAccount = indirectRecommendationAccount;
+    public void setIndirectRecommendationAccount(String indirectRecommendationAccount) {
+        this.indirectRecommendationAccount = indirectRecommendationAccount == null ? null : indirectRecommendationAccount.trim();
     }
 
     public Byte getCertificateType() {
@@ -270,7 +270,7 @@ public class User implements Serializable {
             && (this.getGmtModify() == null ? other.getGmtModify() == null : this.getGmtModify().equals(other.getGmtModify()))
             && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
             && (this.getRefereeQualification() == null ? other.getRefereeQualification() == null : this.getRefereeQualification().equals(other.getRefereeQualification()))
-            && (this.getNumberAgents() == null ? other.getNumberAgents() == null : this.getNumberAgents().equals(other.getNumberAgents()))
+            && (this.getAgentCode() == null ? other.getAgentCode() == null : this.getAgentCode().equals(other.getAgentCode()))
             && (this.getDirectRecommendationAccount() == null ? other.getDirectRecommendationAccount() == null : this.getDirectRecommendationAccount().equals(other.getDirectRecommendationAccount()))
             && (this.getIndirectRecommendationAccount() == null ? other.getIndirectRecommendationAccount() == null : this.getIndirectRecommendationAccount().equals(other.getIndirectRecommendationAccount()))
             && (this.getCertificateType() == null ? other.getCertificateType() == null : this.getCertificateType().equals(other.getCertificateType()))
@@ -300,7 +300,7 @@ public class User implements Serializable {
         result = prime * result + ((getGmtModify() == null) ? 0 : getGmtModify().hashCode());
         result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
         result = prime * result + ((getRefereeQualification() == null) ? 0 : getRefereeQualification().hashCode());
-        result = prime * result + ((getNumberAgents() == null) ? 0 : getNumberAgents().hashCode());
+        result = prime * result + ((getAgentCode() == null) ? 0 : getAgentCode().hashCode());
         result = prime * result + ((getDirectRecommendationAccount() == null) ? 0 : getDirectRecommendationAccount().hashCode());
         result = prime * result + ((getIndirectRecommendationAccount() == null) ? 0 : getIndirectRecommendationAccount().hashCode());
         result = prime * result + ((getCertificateType() == null) ? 0 : getCertificateType().hashCode());

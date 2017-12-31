@@ -11,6 +11,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.SelectKey;
 import org.apache.ibatis.annotations.SelectProvider;
 import org.apache.ibatis.annotations.Update;
 import org.apache.ibatis.annotations.UpdateProvider;
@@ -25,9 +26,10 @@ public interface TokenAccessMapper {
 
     @Delete({
         "delete from token_access",
-        "where token = #{token,jdbcType=VARCHAR}"
+        "where id = #{id,jdbcType=INTEGER}",
+          "and token = #{token,jdbcType=VARCHAR}"
     })
-    int deleteByPrimaryKey(String token);
+    int deleteByPrimaryKey(@Param("id") Integer id, @Param("token") String token);
 
     @Insert({
         "insert into token_access (token, user_id, ",
@@ -35,21 +37,24 @@ public interface TokenAccessMapper {
         "active_time, active_count, ",
         "remember, anonymous, ",
         "status)",
-        "values (#{token,jdbcType=VARCHAR}, #{userId,jdbcType=BIGINT}, ",
+        "values (#{token,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, ",
         "#{tokenCreate,jdbcType=TIMESTAMP}, #{tokenExpired,jdbcType=TIMESTAMP}, ",
         "#{activeTime,jdbcType=TIMESTAMP}, #{activeCount,jdbcType=INTEGER}, ",
         "#{remember,jdbcType=TINYINT}, #{anonymous,jdbcType=TINYINT}, ",
         "#{status,jdbcType=TINYINT})"
     })
+    @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=Integer.class)
     int insert(TokenAccess record);
 
     @InsertProvider(type=TokenAccessSqlProvider.class, method="insertSelective")
+    @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=Integer.class)
     int insertSelective(TokenAccess record);
 
     @SelectProvider(type=TokenAccessSqlProvider.class, method="selectByExample")
     @Results({
+        @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
         @Result(column="token", property="token", jdbcType=JdbcType.VARCHAR, id=true),
-        @Result(column="user_id", property="userId", jdbcType=JdbcType.BIGINT),
+        @Result(column="user_id", property="userId", jdbcType=JdbcType.INTEGER),
         @Result(column="token_create", property="tokenCreate", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="token_expired", property="tokenExpired", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="active_time", property="activeTime", jdbcType=JdbcType.TIMESTAMP),
@@ -62,14 +67,16 @@ public interface TokenAccessMapper {
 
     @Select({
         "select",
-        "token, user_id, token_create, token_expired, active_time, active_count, remember, ",
-        "anonymous, status",
+        "id, token, user_id, token_create, token_expired, active_time, active_count, ",
+        "remember, anonymous, status",
         "from token_access",
-        "where token = #{token,jdbcType=VARCHAR}"
+        "where id = #{id,jdbcType=INTEGER}",
+          "and token = #{token,jdbcType=VARCHAR}"
     })
     @Results({
+        @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
         @Result(column="token", property="token", jdbcType=JdbcType.VARCHAR, id=true),
-        @Result(column="user_id", property="userId", jdbcType=JdbcType.BIGINT),
+        @Result(column="user_id", property="userId", jdbcType=JdbcType.INTEGER),
         @Result(column="token_create", property="tokenCreate", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="token_expired", property="tokenExpired", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="active_time", property="activeTime", jdbcType=JdbcType.TIMESTAMP),
@@ -78,7 +85,7 @@ public interface TokenAccessMapper {
         @Result(column="anonymous", property="anonymous", jdbcType=JdbcType.TINYINT),
         @Result(column="status", property="status", jdbcType=JdbcType.TINYINT)
     })
-    TokenAccess selectByPrimaryKey(String token);
+    TokenAccess selectByPrimaryKey(@Param("id") Integer id, @Param("token") String token);
 
     @UpdateProvider(type=TokenAccessSqlProvider.class, method="updateByExampleSelective")
     int updateByExampleSelective(@Param("record") TokenAccess record, @Param("example") TokenAccessExample example);
@@ -91,7 +98,7 @@ public interface TokenAccessMapper {
 
     @Update({
         "update token_access",
-        "set user_id = #{userId,jdbcType=BIGINT},",
+        "set user_id = #{userId,jdbcType=INTEGER},",
           "token_create = #{tokenCreate,jdbcType=TIMESTAMP},",
           "token_expired = #{tokenExpired,jdbcType=TIMESTAMP},",
           "active_time = #{activeTime,jdbcType=TIMESTAMP},",
@@ -99,7 +106,8 @@ public interface TokenAccessMapper {
           "remember = #{remember,jdbcType=TINYINT},",
           "anonymous = #{anonymous,jdbcType=TINYINT},",
           "status = #{status,jdbcType=TINYINT}",
-        "where token = #{token,jdbcType=VARCHAR}"
+        "where id = #{id,jdbcType=INTEGER}",
+          "and token = #{token,jdbcType=VARCHAR}"
     })
     int updateByPrimaryKey(TokenAccess record);
 }

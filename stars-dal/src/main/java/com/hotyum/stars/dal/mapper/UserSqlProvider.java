@@ -29,7 +29,7 @@ public class UserSqlProvider {
         sql.INSERT_INTO("user");
         
         if (record.getAccount() != null) {
-            sql.VALUES("account", "#{account,jdbcType=INTEGER}");
+            sql.VALUES("account", "#{account,jdbcType=VARCHAR}");
         }
         
         if (record.getPwd() != null) {
@@ -72,16 +72,16 @@ public class UserSqlProvider {
             sql.VALUES("referee_qualification", "#{refereeQualification,jdbcType=TINYINT}");
         }
         
-        if (record.getNumberAgents() != null) {
-            sql.VALUES("number_agents", "#{numberAgents,jdbcType=VARCHAR}");
+        if (record.getAgentCode() != null) {
+            sql.VALUES("agent_code", "#{agentCode,jdbcType=VARCHAR}");
         }
         
         if (record.getDirectRecommendationAccount() != null) {
-            sql.VALUES("direct_recommendation_account", "#{directRecommendationAccount,jdbcType=INTEGER}");
+            sql.VALUES("direct_recommendation_account", "#{directRecommendationAccount,jdbcType=VARCHAR}");
         }
         
         if (record.getIndirectRecommendationAccount() != null) {
-            sql.VALUES("indirect_recommendation_account", "#{indirectRecommendationAccount,jdbcType=INTEGER}");
+            sql.VALUES("indirect_recommendation_account", "#{indirectRecommendationAccount,jdbcType=VARCHAR}");
         }
         
         if (record.getCertificateType() != null) {
@@ -141,7 +141,7 @@ public class UserSqlProvider {
         sql.SELECT("gmt_modify");
         sql.SELECT("status");
         sql.SELECT("referee_qualification");
-        sql.SELECT("number_agents");
+        sql.SELECT("agent_code");
         sql.SELECT("direct_recommendation_account");
         sql.SELECT("indirect_recommendation_account");
         sql.SELECT("certificate_type");
@@ -175,7 +175,7 @@ public class UserSqlProvider {
         }
         
         if (record.getAccount() != null) {
-            sql.SET("account = #{record.account,jdbcType=INTEGER}");
+            sql.SET("account = #{record.account,jdbcType=VARCHAR}");
         }
         
         if (record.getPwd() != null) {
@@ -218,16 +218,16 @@ public class UserSqlProvider {
             sql.SET("referee_qualification = #{record.refereeQualification,jdbcType=TINYINT}");
         }
         
-        if (record.getNumberAgents() != null) {
-            sql.SET("number_agents = #{record.numberAgents,jdbcType=VARCHAR}");
+        if (record.getAgentCode() != null) {
+            sql.SET("agent_code = #{record.agentCode,jdbcType=VARCHAR}");
         }
         
         if (record.getDirectRecommendationAccount() != null) {
-            sql.SET("direct_recommendation_account = #{record.directRecommendationAccount,jdbcType=INTEGER}");
+            sql.SET("direct_recommendation_account = #{record.directRecommendationAccount,jdbcType=VARCHAR}");
         }
         
         if (record.getIndirectRecommendationAccount() != null) {
-            sql.SET("indirect_recommendation_account = #{record.indirectRecommendationAccount,jdbcType=INTEGER}");
+            sql.SET("indirect_recommendation_account = #{record.indirectRecommendationAccount,jdbcType=VARCHAR}");
         }
         
         if (record.getCertificateType() != null) {
@@ -275,7 +275,7 @@ public class UserSqlProvider {
         sql.UPDATE("user");
         
         sql.SET("id = #{record.id,jdbcType=INTEGER}");
-        sql.SET("account = #{record.account,jdbcType=INTEGER}");
+        sql.SET("account = #{record.account,jdbcType=VARCHAR}");
         sql.SET("pwd = #{record.pwd,jdbcType=VARCHAR}");
         sql.SET("contact_phone = #{record.contactPhone,jdbcType=VARCHAR}");
         sql.SET("email = #{record.email,jdbcType=VARCHAR}");
@@ -286,9 +286,9 @@ public class UserSqlProvider {
         sql.SET("gmt_modify = #{record.gmtModify,jdbcType=TIMESTAMP}");
         sql.SET("status = #{record.status,jdbcType=TINYINT}");
         sql.SET("referee_qualification = #{record.refereeQualification,jdbcType=TINYINT}");
-        sql.SET("number_agents = #{record.numberAgents,jdbcType=VARCHAR}");
-        sql.SET("direct_recommendation_account = #{record.directRecommendationAccount,jdbcType=INTEGER}");
-        sql.SET("indirect_recommendation_account = #{record.indirectRecommendationAccount,jdbcType=INTEGER}");
+        sql.SET("agent_code = #{record.agentCode,jdbcType=VARCHAR}");
+        sql.SET("direct_recommendation_account = #{record.directRecommendationAccount,jdbcType=VARCHAR}");
+        sql.SET("indirect_recommendation_account = #{record.indirectRecommendationAccount,jdbcType=VARCHAR}");
         sql.SET("certificate_type = #{record.certificateType,jdbcType=TINYINT}");
         sql.SET("certificate_number = #{record.certificateNumber,jdbcType=VARCHAR}");
         sql.SET("certificate_front = #{record.certificateFront,jdbcType=VARCHAR}");
@@ -309,7 +309,7 @@ public class UserSqlProvider {
         sql.UPDATE("user");
         
         if (record.getAccount() != null) {
-            sql.SET("account = #{account,jdbcType=INTEGER}");
+            sql.SET("account = #{account,jdbcType=VARCHAR}");
         }
         
         if (record.getPwd() != null) {
@@ -352,16 +352,16 @@ public class UserSqlProvider {
             sql.SET("referee_qualification = #{refereeQualification,jdbcType=TINYINT}");
         }
         
-        if (record.getNumberAgents() != null) {
-            sql.SET("number_agents = #{numberAgents,jdbcType=VARCHAR}");
+        if (record.getAgentCode() != null) {
+            sql.SET("agent_code = #{agentCode,jdbcType=VARCHAR}");
         }
         
         if (record.getDirectRecommendationAccount() != null) {
-            sql.SET("direct_recommendation_account = #{directRecommendationAccount,jdbcType=INTEGER}");
+            sql.SET("direct_recommendation_account = #{directRecommendationAccount,jdbcType=VARCHAR}");
         }
         
         if (record.getIndirectRecommendationAccount() != null) {
-            sql.SET("indirect_recommendation_account = #{indirectRecommendationAccount,jdbcType=INTEGER}");
+            sql.SET("indirect_recommendation_account = #{indirectRecommendationAccount,jdbcType=VARCHAR}");
         }
         
         if (record.getCertificateType() != null) {

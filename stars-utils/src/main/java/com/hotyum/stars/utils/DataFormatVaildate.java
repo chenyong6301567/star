@@ -72,8 +72,6 @@ public class DataFormatVaildate {
 	}
 
 	public static boolean vaildTelephone(String str) {
-		/// ^0\d{2,3}-?\d{7,8}$/;
-		// ^(\\d{3,4})?\\d{6,8}$
 		Pattern p = Pattern.compile("^0\\d{2,3}-?\\d{7,8}$");
 		return p.matcher(str).matches();
 	}

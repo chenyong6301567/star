@@ -175,52 +175,62 @@ public class UserExample {
             return (Criteria) this;
         }
 
-        public Criteria andAccountEqualTo(Integer value) {
+        public Criteria andAccountEqualTo(String value) {
             addCriterion("account =", value, "account");
             return (Criteria) this;
         }
 
-        public Criteria andAccountNotEqualTo(Integer value) {
+        public Criteria andAccountNotEqualTo(String value) {
             addCriterion("account <>", value, "account");
             return (Criteria) this;
         }
 
-        public Criteria andAccountGreaterThan(Integer value) {
+        public Criteria andAccountGreaterThan(String value) {
             addCriterion("account >", value, "account");
             return (Criteria) this;
         }
 
-        public Criteria andAccountGreaterThanOrEqualTo(Integer value) {
+        public Criteria andAccountGreaterThanOrEqualTo(String value) {
             addCriterion("account >=", value, "account");
             return (Criteria) this;
         }
 
-        public Criteria andAccountLessThan(Integer value) {
+        public Criteria andAccountLessThan(String value) {
             addCriterion("account <", value, "account");
             return (Criteria) this;
         }
 
-        public Criteria andAccountLessThanOrEqualTo(Integer value) {
+        public Criteria andAccountLessThanOrEqualTo(String value) {
             addCriterion("account <=", value, "account");
             return (Criteria) this;
         }
 
-        public Criteria andAccountIn(List<Integer> values) {
+        public Criteria andAccountLike(String value) {
+            addCriterion("account like", value, "account");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountNotLike(String value) {
+            addCriterion("account not like", value, "account");
+            return (Criteria) this;
+        }
+
+        public Criteria andAccountIn(List<String> values) {
             addCriterion("account in", values, "account");
             return (Criteria) this;
         }
 
-        public Criteria andAccountNotIn(List<Integer> values) {
+        public Criteria andAccountNotIn(List<String> values) {
             addCriterion("account not in", values, "account");
             return (Criteria) this;
         }
 
-        public Criteria andAccountBetween(Integer value1, Integer value2) {
+        public Criteria andAccountBetween(String value1, String value2) {
             addCriterion("account between", value1, value2, "account");
             return (Criteria) this;
         }
 
-        public Criteria andAccountNotBetween(Integer value1, Integer value2) {
+        public Criteria andAccountNotBetween(String value1, String value2) {
             addCriterion("account not between", value1, value2, "account");
             return (Criteria) this;
         }
@@ -865,73 +875,73 @@ public class UserExample {
             return (Criteria) this;
         }
 
-        public Criteria andNumberAgentsIsNull() {
-            addCriterion("number_agents is null");
+        public Criteria andAgentCodeIsNull() {
+            addCriterion("agent_code is null");
             return (Criteria) this;
         }
 
-        public Criteria andNumberAgentsIsNotNull() {
-            addCriterion("number_agents is not null");
+        public Criteria andAgentCodeIsNotNull() {
+            addCriterion("agent_code is not null");
             return (Criteria) this;
         }
 
-        public Criteria andNumberAgentsEqualTo(String value) {
-            addCriterion("number_agents =", value, "numberAgents");
+        public Criteria andAgentCodeEqualTo(String value) {
+            addCriterion("agent_code =", value, "agentCode");
             return (Criteria) this;
         }
 
-        public Criteria andNumberAgentsNotEqualTo(String value) {
-            addCriterion("number_agents <>", value, "numberAgents");
+        public Criteria andAgentCodeNotEqualTo(String value) {
+            addCriterion("agent_code <>", value, "agentCode");
             return (Criteria) this;
         }
 
-        public Criteria andNumberAgentsGreaterThan(String value) {
-            addCriterion("number_agents >", value, "numberAgents");
+        public Criteria andAgentCodeGreaterThan(String value) {
+            addCriterion("agent_code >", value, "agentCode");
             return (Criteria) this;
         }
 
-        public Criteria andNumberAgentsGreaterThanOrEqualTo(String value) {
-            addCriterion("number_agents >=", value, "numberAgents");
+        public Criteria andAgentCodeGreaterThanOrEqualTo(String value) {
+            addCriterion("agent_code >=", value, "agentCode");
             return (Criteria) this;
         }
 
-        public Criteria andNumberAgentsLessThan(String value) {
-            addCriterion("number_agents <", value, "numberAgents");
+        public Criteria andAgentCodeLessThan(String value) {
+            addCriterion("agent_code <", value, "agentCode");
             return (Criteria) this;
         }
 
-        public Criteria andNumberAgentsLessThanOrEqualTo(String value) {
-            addCriterion("number_agents <=", value, "numberAgents");
+        public Criteria andAgentCodeLessThanOrEqualTo(String value) {
+            addCriterion("agent_code <=", value, "agentCode");
             return (Criteria) this;
         }
 
-        public Criteria andNumberAgentsLike(String value) {
-            addCriterion("number_agents like", value, "numberAgents");
+        public Criteria andAgentCodeLike(String value) {
+            addCriterion("agent_code like", value, "agentCode");
             return (Criteria) this;
         }
 
-        public Criteria andNumberAgentsNotLike(String value) {
-            addCriterion("number_agents not like", value, "numberAgents");
+        public Criteria andAgentCodeNotLike(String value) {
+            addCriterion("agent_code not like", value, "agentCode");
             return (Criteria) this;
         }
 
-        public Criteria andNumberAgentsIn(List<String> values) {
-            addCriterion("number_agents in", values, "numberAgents");
+        public Criteria andAgentCodeIn(List<String> values) {
+            addCriterion("agent_code in", values, "agentCode");
             return (Criteria) this;
         }
 
-        public Criteria andNumberAgentsNotIn(List<String> values) {
-            addCriterion("number_agents not in", values, "numberAgents");
+        public Criteria andAgentCodeNotIn(List<String> values) {
+            addCriterion("agent_code not in", values, "agentCode");
             return (Criteria) this;
         }
 
-        public Criteria andNumberAgentsBetween(String value1, String value2) {
-            addCriterion("number_agents between", value1, value2, "numberAgents");
+        public Criteria andAgentCodeBetween(String value1, String value2) {
+            addCriterion("agent_code between", value1, value2, "agentCode");
             return (Criteria) this;
         }
 
-        public Criteria andNumberAgentsNotBetween(String value1, String value2) {
-            addCriterion("number_agents not between", value1, value2, "numberAgents");
+        public Criteria andAgentCodeNotBetween(String value1, String value2) {
+            addCriterion("agent_code not between", value1, value2, "agentCode");
             return (Criteria) this;
         }
 
@@ -945,52 +955,62 @@ public class UserExample {
             return (Criteria) this;
         }
 
-        public Criteria andDirectRecommendationAccountEqualTo(Integer value) {
+        public Criteria andDirectRecommendationAccountEqualTo(String value) {
             addCriterion("direct_recommendation_account =", value, "directRecommendationAccount");
             return (Criteria) this;
         }
 
-        public Criteria andDirectRecommendationAccountNotEqualTo(Integer value) {
+        public Criteria andDirectRecommendationAccountNotEqualTo(String value) {
             addCriterion("direct_recommendation_account <>", value, "directRecommendationAccount");
             return (Criteria) this;
         }
 
-        public Criteria andDirectRecommendationAccountGreaterThan(Integer value) {
+        public Criteria andDirectRecommendationAccountGreaterThan(String value) {
             addCriterion("direct_recommendation_account >", value, "directRecommendationAccount");
             return (Criteria) this;
         }
 
-        public Criteria andDirectRecommendationAccountGreaterThanOrEqualTo(Integer value) {
+        public Criteria andDirectRecommendationAccountGreaterThanOrEqualTo(String value) {
             addCriterion("direct_recommendation_account >=", value, "directRecommendationAccount");
             return (Criteria) this;
         }
 
-        public Criteria andDirectRecommendationAccountLessThan(Integer value) {
+        public Criteria andDirectRecommendationAccountLessThan(String value) {
             addCriterion("direct_recommendation_account <", value, "directRecommendationAccount");
             return (Criteria) this;
         }
 
-        public Criteria andDirectRecommendationAccountLessThanOrEqualTo(Integer value) {
+        public Criteria andDirectRecommendationAccountLessThanOrEqualTo(String value) {
             addCriterion("direct_recommendation_account <=", value, "directRecommendationAccount");
             return (Criteria) this;
         }
 
-        public Criteria andDirectRecommendationAccountIn(List<Integer> values) {
+        public Criteria andDirectRecommendationAccountLike(String value) {
+            addCriterion("direct_recommendation_account like", value, "directRecommendationAccount");
+            return (Criteria) this;
+        }
+
+        public Criteria andDirectRecommendationAccountNotLike(String value) {
+            addCriterion("direct_recommendation_account not like", value, "directRecommendationAccount");
+            return (Criteria) this;
+        }
+
+        public Criteria andDirectRecommendationAccountIn(List<String> values) {
             addCriterion("direct_recommendation_account in", values, "directRecommendationAccount");
             return (Criteria) this;
         }
 
-        public Criteria andDirectRecommendationAccountNotIn(List<Integer> values) {
+        public Criteria andDirectRecommendationAccountNotIn(List<String> values) {
             addCriterion("direct_recommendation_account not in", values, "directRecommendationAccount");
             return (Criteria) this;
         }
 
-        public Criteria andDirectRecommendationAccountBetween(Integer value1, Integer value2) {
+        public Criteria andDirectRecommendationAccountBetween(String value1, String value2) {
             addCriterion("direct_recommendation_account between", value1, value2, "directRecommendationAccount");
             return (Criteria) this;
         }
 
-        public Criteria andDirectRecommendationAccountNotBetween(Integer value1, Integer value2) {
+        public Criteria andDirectRecommendationAccountNotBetween(String value1, String value2) {
             addCriterion("direct_recommendation_account not between", value1, value2, "directRecommendationAccount");
             return (Criteria) this;
         }
@@ -1005,52 +1025,62 @@ public class UserExample {
             return (Criteria) this;
         }
 
-        public Criteria andIndirectRecommendationAccountEqualTo(Integer value) {
+        public Criteria andIndirectRecommendationAccountEqualTo(String value) {
             addCriterion("indirect_recommendation_account =", value, "indirectRecommendationAccount");
             return (Criteria) this;
         }
 
-        public Criteria andIndirectRecommendationAccountNotEqualTo(Integer value) {
+        public Criteria andIndirectRecommendationAccountNotEqualTo(String value) {
             addCriterion("indirect_recommendation_account <>", value, "indirectRecommendationAccount");
             return (Criteria) this;
         }
 
-        public Criteria andIndirectRecommendationAccountGreaterThan(Integer value) {
+        public Criteria andIndirectRecommendationAccountGreaterThan(String value) {
             addCriterion("indirect_recommendation_account >", value, "indirectRecommendationAccount");
             return (Criteria) this;
         }
 
-        public Criteria andIndirectRecommendationAccountGreaterThanOrEqualTo(Integer value) {
+        public Criteria andIndirectRecommendationAccountGreaterThanOrEqualTo(String value) {
             addCriterion("indirect_recommendation_account >=", value, "indirectRecommendationAccount");
             return (Criteria) this;
         }
 
-        public Criteria andIndirectRecommendationAccountLessThan(Integer value) {
+        public Criteria andIndirectRecommendationAccountLessThan(String value) {
             addCriterion("indirect_recommendation_account <", value, "indirectRecommendationAccount");
             return (Criteria) this;
         }
 
-        public Criteria andIndirectRecommendationAccountLessThanOrEqualTo(Integer value) {
+        public Criteria andIndirectRecommendationAccountLessThanOrEqualTo(String value) {
             addCriterion("indirect_recommendation_account <=", value, "indirectRecommendationAccount");
             return (Criteria) this;
         }
 
-        public Criteria andIndirectRecommendationAccountIn(List<Integer> values) {
+        public Criteria andIndirectRecommendationAccountLike(String value) {
+            addCriterion("indirect_recommendation_account like", value, "indirectRecommendationAccount");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndirectRecommendationAccountNotLike(String value) {
+            addCriterion("indirect_recommendation_account not like", value, "indirectRecommendationAccount");
+            return (Criteria) this;
+        }
+
+        public Criteria andIndirectRecommendationAccountIn(List<String> values) {
             addCriterion("indirect_recommendation_account in", values, "indirectRecommendationAccount");
             return (Criteria) this;
         }
 
-        public Criteria andIndirectRecommendationAccountNotIn(List<Integer> values) {
+        public Criteria andIndirectRecommendationAccountNotIn(List<String> values) {
             addCriterion("indirect_recommendation_account not in", values, "indirectRecommendationAccount");
             return (Criteria) this;
         }
 
-        public Criteria andIndirectRecommendationAccountBetween(Integer value1, Integer value2) {
+        public Criteria andIndirectRecommendationAccountBetween(String value1, String value2) {
             addCriterion("indirect_recommendation_account between", value1, value2, "indirectRecommendationAccount");
             return (Criteria) this;
         }
 
-        public Criteria andIndirectRecommendationAccountNotBetween(Integer value1, Integer value2) {
+        public Criteria andIndirectRecommendationAccountNotBetween(String value1, String value2) {
             addCriterion("indirect_recommendation_account not between", value1, value2, "indirectRecommendationAccount");
             return (Criteria) this;
         }

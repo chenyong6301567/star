@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.WebRequest;
 
+import com.hotyum.stars.utils.exception.ApplicationException;
 import com.hotyum.stars.web.model.Result;
 
 @ControllerAdvice
@@ -22,7 +23,7 @@ public class UnifyExceptionHandler {
 	public Result DataAccessException(DataAccessException e, WebRequest request) {
 		String message = e.getMessage();
 		log.error("数据访问异常:" + message);
-		return Result.errorReponse("数据访问异常，请联系客服人员");
+		return Result.errorReponse("数据访问异常，请联系管理人员");
 	}
 
 	@ResponseBody
@@ -52,14 +53,21 @@ public class UnifyExceptionHandler {
 		if (StringUtils.isEmpty(message)) {
 			message = "内部服务器异常";
 		}
-		return Result.errorReponse("操作失败，请联系客服人员");
+		return Result.errorReponse("操作失败，请联系管理人员");
 	}
 
 	@ResponseBody
 	@ExceptionHandler(value = Exception.class)
 	public Result Exception(Exception exception, WebRequest request) {
 		log.error("异常解析器全局拦截", exception);
-		return Result.errorReponse("操作失败，请联系客服人员");
+		return Result.errorReponse("操作失败，请联系管理人员");
+	}
+
+	@ResponseBody
+	@ExceptionHandler(value = ApplicationException.class)
+	public Result ApplicationException(Exception e) {
+		log.error("异常解析器全局拦截", e);
+		return Result.errorReponse("操作失败，请联系管理人员");
 	}
 
 }
