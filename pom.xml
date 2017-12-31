@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<artifactId>stars</artifactId>
@@ -27,6 +28,9 @@
 		<productionMode>false</productionMode>
 		<mybatis.version>3.4.1</mybatis.version>
 		<mybatis-spring.version>1.3</mybatis-spring.version>
+		<poi.version>3.14</poi.version>
+		<javax.servlet-api.version>3.1.0</javax.servlet-api.version>
+		<commons-lang3.version>3.5</commons-lang3.version>
 		<project.build.finalName>archetype</project.build.finalName>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -56,8 +60,8 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-logging</artifactId>
 		</dependency>
-		<!-- ???????UI????Velocity??FreeMarker??JasperReports???? ??????? ???????(JRuby)?? ????Cache??EHCache???? 
-			??????Scheduling??uartz???? -->
+		<!-- ???????UI????Velocity??FreeMarker??JasperReports???? ??????? ???????(JRuby)?? 
+			????Cache??EHCache???? ??????Scheduling??uartz???? -->
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context-support</artifactId>
@@ -212,7 +216,7 @@
 					<target>${java.version}</target>
 					<encoding>${project.build.sourceEncoding}</encoding>
 					<compilerArguments>
-						<verbose/>
+						<verbose />
 					</compilerArguments>
 				</configuration>
 			</plugin>
@@ -241,13 +245,13 @@
 		</resources>
 	</build>
 
-  <modules>
-    <module>stars-dal</module>
-    <module>stars-biz</module>
-    <module>stars-facade</module>
-    <module>stars-utils</module>
-    <module>stars-client</module>
-    <module>stars-external</module>
-    <module>stars-web</module>
-  </modules>
+	<modules>
+		<module>stars-dal</module>
+		<module>stars-biz</module>
+		<module>stars-facade</module>
+		<module>stars-utils</module>
+		<module>stars-client</module>
+		<module>stars-external</module>
+		<module>stars-web</module>
+	</modules>
 </project>
