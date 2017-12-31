@@ -15,7 +15,6 @@ import com.hotyum.stars.biz.model.TokenInfoVO;
 import com.hotyum.stars.utils.Assert;
 import com.hotyum.stars.utils.Constants;
 import com.hotyum.stars.utils.RandomUtil;
-import com.hotyum.stars.utils.enums.SmsType;
 import com.hotyum.stars.web.model.Result;
 
 /**

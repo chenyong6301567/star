@@ -203,4 +203,25 @@ public class UserManagerImpl implements UserManager {
 
 	}
 
+	/**
+	* @Title:getUserById
+	* @author:cy
+	* @Description 
+	* @date:2017年12月31日下午11:24:22
+	* @param 
+	* @param 
+	* @param 
+	* @return 
+	* @throws:
+	*/
+	@Override
+	public User getUserById(Integer userId) {
+		try {
+			return userDAO.selectByPrimaryKey(userId);
+		} catch (DataAccessException e) {
+			LOGGER.error("getUserById失败====", e);
+			throw new RuntimeException("内部服务器错误");
+		}
+	}
+
 }

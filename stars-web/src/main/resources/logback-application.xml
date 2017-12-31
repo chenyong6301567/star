@@ -7,7 +7,7 @@
 		value="%-12(%d{yyyy-MM-dd HH:mm:ss.SSS}) |-%-5level [%thread] %c [%L] -| %msg%n" />
 	<property name="APP_Name" value="stars" />
 	<springProfile name="test,dev">
-		<property name="LOG_LEVEL" value="info" />
+		<property name="LOG_LEVEL" value="debug" />
 	</springProfile>
 	<springProfile name="prod">
 		<property name="LOG_LEVEL" value="INFO" />

@@ -1,6 +1,7 @@
 package com.hotyum.stars.biz.manager;
 
 import com.hotyum.stars.biz.model.TokenInfoVO;
+import com.hotyum.stars.dal.model.User;
 
 /**
  * @author cy
@@ -48,5 +49,18 @@ public interface UserManager {
 	* @throws:
 	*/
 	void resetPwd(String phone, String verifyCode, String pwd);
+
+	/**
+	* @Title getUserById
+	* @author cy
+	* @Description 
+	* @date 2017年12月31日下午11:24:15
+	* @param 
+	* @param 
+	* @param 
+	* @return User
+	* @throws:
+	*/
+	User getUserById(Integer userId);
 
 }

@@ -32,6 +32,8 @@
 		<javax.servlet-api.version>3.1.0</javax.servlet-api.version>
 		<commons-lang3.version>3.5</commons-lang3.version>
 		<javamail.version>1.4.1</javamail.version>
+		<fastjson.version>1.2.37</fastjson.version>
+		<xdoc.version>0.0.3-SNAPSHOT</xdoc.version>
 		<project.build.finalName>archetype</project.build.finalName>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -187,6 +189,26 @@
 				<groupId>com.github.treeleafj</groupId>
 				<artifactId>spring-boot-starter-xDoc</artifactId>
 				<version>0.0.12</version>
+				<exclusions>
+					<exclusion>
+						<groupId>ch.qos.logback</groupId>
+						<artifactId>logback-classic</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.slf4j</groupId>
+						<artifactId>slf4j-api</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.slf4j</groupId>
+						<artifactId>*</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<dependency>
+				<groupId>com.github.treeleafj</groupId>
+				<artifactId>spring-boot-starter-xDoc</artifactId>
+				<version>${xdoc.version}</version>
 				<exclusions>
 					<exclusion>
 						<groupId>ch.qos.logback</groupId>

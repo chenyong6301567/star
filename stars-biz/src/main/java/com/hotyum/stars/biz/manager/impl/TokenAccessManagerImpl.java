@@ -111,4 +111,51 @@ public class TokenAccessManagerImpl implements TokenAccessManager {
 		}
 	}
 
+	/**
+	* @Title:getToken
+	* @author:cy
+	* @Description 
+	* @date:2017年12月31日下午11:10:39
+	* @param 
+	* @param 
+	* @param 
+	* @return 
+	* @throws:
+	*/
+	@Override
+	public TokenAccess getToken(String token) {
+		TokenAccessExample tokenAccessExample = new TokenAccessExample();
+		TokenAccessExample.Criteria criteria = tokenAccessExample.createCriteria();
+		criteria.andTokenEqualTo(token);
+		try {
+			List<TokenAccess> tokenList = tokenAccessDAO.selectByExample(tokenAccessExample);
+			return CollectionUtils.isEmpty(tokenList) ? null : tokenList.get(0);
+		} catch (DataAccessException e) {
+			LOGGER.error("getToken异常", e);
+			throw new RuntimeException("内部服务器异常");
+		}
+	}
+
+	/**
+	* @Title:updateToken
+	* @author:cy
+	* @Description 
+	* @date:2017年12月31日下午11:18:01
+	* @param 
+	* @param 
+	* @param 
+	* @return 
+	* @throws:
+	*/
+	@Override
+	public void updateToken(TokenAccess tokenAccess) {
+		try {
+			tokenAccessDAO.updateByPrimaryKey(tokenAccess);
+		} catch (DataAccessException e) {
+			LOGGER.error("updateToken异常", e);
+			throw new RuntimeException("内部服务器异常");
+		}
+
+	}
+
 }

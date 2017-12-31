@@ -8,4 +8,6 @@ public class Constants {
 
 	public static final int MESSAGECODELENGTH = 4;
 
+	public static final String TOKEN_NAME = "loginToken";
+
 }
