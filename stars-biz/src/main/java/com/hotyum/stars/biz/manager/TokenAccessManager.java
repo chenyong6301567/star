@@ -49,4 +49,17 @@ public interface TokenAccessManager {
 	*/
 	void updateToken(TokenAccess tokenAccess);
 
+	/**
+	* @Title loginOut
+	* @author cy
+	* @Description 
+	* @date 2018年1月1日下午2:13:26
+	* @param 
+	* @param 
+	* @param 
+	* @return void
+	* @throws:
+	*/
+	void loginOut(Integer userId);
+
 }

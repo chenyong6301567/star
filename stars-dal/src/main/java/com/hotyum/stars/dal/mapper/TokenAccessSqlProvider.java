@@ -64,6 +64,14 @@ public class TokenAccessSqlProvider {
             sql.VALUES("status", "#{status,jdbcType=TINYINT}");
         }
         
+        if (record.getGmtCreate() != null) {
+            sql.VALUES("gmt_create", "#{gmtCreate,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getGmtModify() != null) {
+            sql.VALUES("gmt_modify", "#{gmtModify,jdbcType=VARCHAR}");
+        }
+        
         return sql.toString();
     }
 
@@ -83,6 +91,8 @@ public class TokenAccessSqlProvider {
         sql.SELECT("remember");
         sql.SELECT("anonymous");
         sql.SELECT("status");
+        sql.SELECT("gmt_create");
+        sql.SELECT("gmt_modify");
         sql.FROM("token_access");
         applyWhere(sql, example, false);
         
@@ -140,6 +150,14 @@ public class TokenAccessSqlProvider {
             sql.SET("status = #{record.status,jdbcType=TINYINT}");
         }
         
+        if (record.getGmtCreate() != null) {
+            sql.SET("gmt_create = #{record.gmtCreate,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getGmtModify() != null) {
+            sql.SET("gmt_modify = #{record.gmtModify,jdbcType=VARCHAR}");
+        }
+        
         applyWhere(sql, example, true);
         return sql.toString();
     }
@@ -158,6 +176,8 @@ public class TokenAccessSqlProvider {
         sql.SET("remember = #{record.remember,jdbcType=TINYINT}");
         sql.SET("anonymous = #{record.anonymous,jdbcType=TINYINT}");
         sql.SET("status = #{record.status,jdbcType=TINYINT}");
+        sql.SET("gmt_create = #{record.gmtCreate,jdbcType=VARCHAR}");
+        sql.SET("gmt_modify = #{record.gmtModify,jdbcType=VARCHAR}");
         
         TokenAccessExample example = (TokenAccessExample) parameter.get("example");
         applyWhere(sql, example, true);
@@ -198,6 +218,14 @@ public class TokenAccessSqlProvider {
         
         if (record.getStatus() != null) {
             sql.SET("status = #{status,jdbcType=TINYINT}");
+        }
+        
+        if (record.getGmtCreate() != null) {
+            sql.SET("gmt_create = #{gmtCreate,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getGmtModify() != null) {
+            sql.SET("gmt_modify = #{gmtModify,jdbcType=VARCHAR}");
         }
         
         sql.WHERE("id = #{id,jdbcType=INTEGER}");

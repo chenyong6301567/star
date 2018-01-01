@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.croky.util.StringUtils;
 import com.hotyum.stars.biz.manager.SmsManager;
+import com.hotyum.stars.biz.manager.TokenAccessManager;
 import com.hotyum.stars.biz.manager.UserManager;
 import com.hotyum.stars.biz.model.TokenInfoVO;
 import com.hotyum.stars.utils.Assert;
@@ -36,6 +37,9 @@ public class AccountController {
 
 	@Autowired
 	private SmsManager smsManager;
+
+	@Autowired
+	private TokenAccessManager tokenAccessManager;
 
 	private static final int[] LOGINTYPE = { 1, 2 };
 
@@ -63,6 +67,26 @@ public class AccountController {
 		}
 		TokenInfoVO tokenInfoVO = userManager.login(phone, password, verifyCode, loginType);
 		return Result.normalResponse(tokenInfoVO);
+
+	}
+
+	/**
+	 * 退出登录(带token)
+	 * 
+	 * @param a 不用带普通参数|String
+	 * @Title loginOut
+	 * @respbody 
+	 * @author cy
+	 * @Description 退出登录
+	 * @date 2018/1/1 14:29
+	 * @return Result
+	 * @throws  
+	 */
+	@RequestMapping(value = "account/loginOut")
+	public Result loginOut(HttpServletRequest request) {
+		Integer userId = TokenAccessUtils.getLoginUserId(request);
+		tokenAccessManager.loginOut(userId);
+		return Result.normalResponse();
 
 	}
 

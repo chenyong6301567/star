@@ -75,6 +75,7 @@ public class UserManagerImpl implements UserManager {
 	* @throws:
 	*/
 	@Override
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public TokenInfoVO login(String phone, String password, String verifyCode, Integer loginType) {
 		// 查询用户是否存在
 		User user = getUserByPhone(phone);
@@ -207,6 +208,7 @@ public class UserManagerImpl implements UserManager {
 	* @throws:
 	*/
 	@Override
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void resetPwd(String phone, String verifyCode, String pwd) {
 		// 查询用户是否存在
 		User user = getUserByPhone(phone);
@@ -261,6 +263,7 @@ public class UserManagerImpl implements UserManager {
 	* @throws:
 	*/
 	@Override
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void resetPwd(Integer userId, String pwd) {
 		User user = getUserById(userId);
 		user.setPwd(Md5Crypt.md5Crypt(pwd.getBytes()));

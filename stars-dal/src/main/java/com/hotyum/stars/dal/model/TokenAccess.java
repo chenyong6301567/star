@@ -24,6 +24,10 @@ public class TokenAccess implements Serializable {
 
     private Byte status;
 
+    private String gmtCreate;
+
+    private String gmtModify;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {
@@ -106,6 +110,22 @@ public class TokenAccess implements Serializable {
         this.status = status;
     }
 
+    public String getGmtCreate() {
+        return gmtCreate;
+    }
+
+    public void setGmtCreate(String gmtCreate) {
+        this.gmtCreate = gmtCreate == null ? null : gmtCreate.trim();
+    }
+
+    public String getGmtModify() {
+        return gmtModify;
+    }
+
+    public void setGmtModify(String gmtModify) {
+        this.gmtModify = gmtModify == null ? null : gmtModify.trim();
+    }
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -127,7 +147,9 @@ public class TokenAccess implements Serializable {
             && (this.getActiveCount() == null ? other.getActiveCount() == null : this.getActiveCount().equals(other.getActiveCount()))
             && (this.getRemember() == null ? other.getRemember() == null : this.getRemember().equals(other.getRemember()))
             && (this.getAnonymous() == null ? other.getAnonymous() == null : this.getAnonymous().equals(other.getAnonymous()))
-            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()));
+            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
+            && (this.getGmtCreate() == null ? other.getGmtCreate() == null : this.getGmtCreate().equals(other.getGmtCreate()))
+            && (this.getGmtModify() == null ? other.getGmtModify() == null : this.getGmtModify().equals(other.getGmtModify()));
     }
 
     @Override
@@ -144,6 +166,8 @@ public class TokenAccess implements Serializable {
         result = prime * result + ((getRemember() == null) ? 0 : getRemember().hashCode());
         result = prime * result + ((getAnonymous() == null) ? 0 : getAnonymous().hashCode());
         result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
+        result = prime * result + ((getGmtCreate() == null) ? 0 : getGmtCreate().hashCode());
+        result = prime * result + ((getGmtModify() == null) ? 0 : getGmtModify().hashCode());
         return result;
     }
 }

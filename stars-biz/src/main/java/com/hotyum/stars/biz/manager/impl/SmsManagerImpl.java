@@ -94,6 +94,7 @@ public class SmsManagerImpl implements SmsManager {
 	* @throws:
 	*/
 	@Override
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void saveMessageContent(String content, byte type, String phone, String messageCode) {
 		Sms sms = new Sms();
 		sms.setCode(messageCode);

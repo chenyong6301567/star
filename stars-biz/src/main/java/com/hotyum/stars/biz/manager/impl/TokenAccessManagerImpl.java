@@ -47,6 +47,7 @@ public class TokenAccessManagerImpl implements TokenAccessManager {
 	* @throws:
 	*/
 	@Override
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public String insertLoginToken(User user) {
 		// 先查询是否是第一次登录
 		TokenAccess token = getTokenByUserId(user.getId());
@@ -102,6 +103,7 @@ public class TokenAccessManagerImpl implements TokenAccessManager {
 		TokenAccessExample tokenAccessExample = new TokenAccessExample();
 		TokenAccessExample.Criteria criteria = tokenAccessExample.createCriteria();
 		criteria.andUserIdEqualTo(userId);
+		criteria.andStatusGreaterThanOrEqualTo(Status.ZERO.getValue());
 		try {
 			List<TokenAccess> tokenList = tokenAccessDAO.selectByExample(tokenAccessExample);
 			return CollectionUtils.isEmpty(tokenList) ? null : tokenList.get(0);
@@ -148,6 +150,7 @@ public class TokenAccessManagerImpl implements TokenAccessManager {
 	* @throws:
 	*/
 	@Override
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void updateToken(TokenAccess tokenAccess) {
 		try {
 			tokenAccessDAO.updateByPrimaryKey(tokenAccess);
@@ -156,6 +159,30 @@ public class TokenAccessManagerImpl implements TokenAccessManager {
 			throw new RuntimeException("内部服务器异常");
 		}
 
+	}
+
+	/**
+	* @Title:loginOut
+	* @author:cy
+	* @Description 
+	* @date:2018年1月1日下午2:14:33
+	* @param 
+	* @param 
+	* @param 
+	* @return 
+	* @throws:
+	*/
+	@Override
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	public void loginOut(Integer userId) {
+		TokenAccess token = getTokenByUserId(userId);
+		token.setStatus(Status.INVALID.getValue());
+		try {
+			tokenAccessDAO.updateByPrimaryKey(token);
+		} catch (DataAccessException e) {
+			LOGGER.error("loginOut异常", e);
+			throw new RuntimeException("内部服务器异常");
+		}
 	}
 
 }
