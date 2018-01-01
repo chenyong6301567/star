@@ -1,7 +1,6 @@
 package com.hotyum.stars.biz.manager.impl;
 
 import java.util.Date;
-import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,7 +9,6 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.CollectionUtils;
 
 import com.hotyum.stars.biz.manager.AgentManager;
 import com.hotyum.stars.biz.manager.UserManager;
