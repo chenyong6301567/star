@@ -1,5 +1,6 @@
 package com.hotyum.stars.biz.manager.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,17 +15,23 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
+import com.croky.util.ObjectUtils;
+import com.github.pagehelper.PageHelper;
 import com.hotyum.stars.biz.manager.RegisterNoticeManager;
 import com.hotyum.stars.biz.manager.SmsManager;
 import com.hotyum.stars.biz.manager.SysUserRoleManager;
 import com.hotyum.stars.biz.manager.TokenAccessManager;
 import com.hotyum.stars.biz.manager.UserManager;
 import com.hotyum.stars.biz.model.TokenInfoVO;
+import com.hotyum.stars.biz.model.UserListVO;
 import com.hotyum.stars.dal.dao.UserDAO;
+import com.hotyum.stars.dal.model.Product;
 import com.hotyum.stars.dal.model.SysUserRole;
 import com.hotyum.stars.dal.model.User;
 import com.hotyum.stars.dal.model.UserExample;
 import com.hotyum.stars.utils.Assert;
+import com.hotyum.stars.utils.DateUtil;
+import com.hotyum.stars.utils.Page;
 import com.hotyum.stars.utils.enums.LoginType;
 import com.hotyum.stars.utils.enums.PicType;
 import com.hotyum.stars.utils.enums.RefereeType;
@@ -438,6 +445,90 @@ public class UserManagerImpl implements UserManager {
 			LOGGER.error("getUserByPhone获取用户信息失败====", e);
 			throw new RuntimeException("内部服务器错误");
 		}
+	}
+
+	/**
+	* @Title:getUserList
+	* @author:cy
+	* @Description 
+	* @date:2018年1月1日下午8:40:40
+	* @param 
+	* @param 
+	* @param 
+	* @return 
+	* @throws:
+	*/
+	@Override
+	public Page<UserListVO> getUserList(String account, String userName, Byte userType, Byte whetherFreeze,
+			String contactPhone, String directRecommendationAccount, Date gmtCreateBegin, Date gmtCreateEnd,
+			int pageNum, int pageSize) {
+		UserExample userExample = new UserExample();
+		UserExample.Criteria criteria = userExample.createCriteria();
+		criteria.andStatusGreaterThanOrEqualTo(Status.ZERO.getValue());
+		if (StringUtils.isNotEmpty(account)) {
+			criteria.andAccountEqualTo(account);
+		}
+		if (StringUtils.isNotEmpty(userName)) {
+			criteria.andUserNameEqualTo(userName);
+		}
+		if (null != userType) {
+			criteria.andUserTypeEqualTo(userType);
+		}
+		if (null != whetherFreeze) {
+			criteria.andWhetherFreezeEqualTo(whetherFreeze);
+		}
+		if (StringUtils.isNotEmpty(contactPhone)) {
+			criteria.andContactPhoneEqualTo(contactPhone);
+		}
+		if (StringUtils.isNotEmpty(directRecommendationAccount)) {
+			criteria.andDirectRecommendationAccountEqualTo(directRecommendationAccount);
+		}
+		if (null != gmtCreateBegin) {
+			criteria.andGmtCreateGreaterThan(gmtCreateBegin);
+		}
+		if (null != gmtCreateEnd) {
+			criteria.andGmtCreateLessThan(gmtCreateEnd);
+		}
+
+		com.github.pagehelper.Page<User> page = PageHelper.startPage(pageNum, pageSize);
+		page.setOrderBy(" gmt_create desc");
+		try {
+			userDAO.selectByExample(userExample);
+		} catch (DataAccessException e) {
+			LOGGER.error("getRegisterNoticeByUserId失败====", e);
+			throw new RuntimeException("内部服务器错误");
+		}
+		return CovertPage(page, pageNum, pageSize);
+	}
+
+	/**
+	* @Title CovertPage
+	* @author cy
+	* @Description 
+	* @date 2018年1月1日下午8:50:04
+	* @param 
+	* @param 
+	* @param 
+	* @return Page<UserListVO>
+	* @throws:
+	*/
+	private Page<UserListVO> CovertPage(com.github.pagehelper.Page<User> page, int pageNum, int pageSize) {
+		List<User> userList = page.toPageInfo().getList();
+		List<UserListVO> userVOList = new ArrayList<>(userList.size());
+		for (User user : userList) {
+			try {
+				UserListVO userListVO = ObjectUtils.convert(user, UserListVO.class);
+				userListVO.setGmtCreate(DateUtil.date2Str(user.getGmtCreate()));
+				if (null != user.getFreezeDate()) {
+					userListVO.setFreezeDate(DateUtil.date2Str(user.getFreezeDate()));
+				}
+				userVOList.add(userListVO);
+			} catch (Exception e) {
+				LOGGER.error("CovertPage失败====", e);
+				throw new RuntimeException("内部服务器错误");
+			}
+		}
+		return new Page<>(pageSize, pageNum, userList.size(), userVOList);
 	}
 
 }

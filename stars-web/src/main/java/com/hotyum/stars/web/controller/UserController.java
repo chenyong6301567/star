@@ -20,7 +20,10 @@ import org.springframework.web.multipart.MultipartFile;
 import com.croky.util.ObjectUtils;
 import com.hotyum.stars.biz.manager.UserManager;
 import com.hotyum.stars.biz.model.UserBaseInfoVO;
+import com.hotyum.stars.biz.model.UserListVO;
 import com.hotyum.stars.dal.model.User;
+import com.hotyum.stars.utils.Constants;
+import com.hotyum.stars.utils.Page;
 import com.hotyum.stars.utils.enums.PicType;
 import com.hotyum.stars.web.model.Result;
 import com.hotyum.stars.web.util.TokenAccessUtils;
@@ -182,11 +185,41 @@ public class UserController {
 	 * @throws  
 	 */
 	@RequestMapping(value = "user/addUser")
-	public Result addUser(HttpServletRequest request, String userName,
-			String contactPhone,Byte userType,Byte whetherFreeze,
-			@RequestParam(required = true) String account,Date freezeDate,String agentName,String pwd) {
-        userManager.addUser(account,userName,contactPhone,userType,agentName,whetherFreeze,freezeDate,pwd);
+	public Result addUser(HttpServletRequest request, String userName, String contactPhone, Byte userType,
+			Byte whetherFreeze, @RequestParam(required = true) String account, Date freezeDate, String agentName,
+			String pwd) {
+		userManager.addUser(account, userName, contactPhone, userType, agentName, whetherFreeze, freezeDate, pwd);
 		return Result.normalResponse();
+	}
+
+	/**用户管理列表
+	 * 
+	 * @param account                       注册账号|string
+	 * @param userName                      用户名称|string
+	 * @param userType                      用户性质1代理商 2客户 3管理员|byte
+	 * @param whetherFreeze                 是否冻结0 未冻结，1冻结|byte
+	 * @param contactPhone                  联系方式|string
+	 * @param directRecommendationAccount   直接推荐人手机号|string
+	 * @param gmtCreateBegin                是否入金(0否，1是)|string
+	 * @param gmtCreateEnd                  推荐人资质(0否，1是)|string
+	 * @param pageNum                       页数|int|必填
+	 * @param pageSize                      每页多少|int|必填
+	 * @Title getUserList
+	 * @respbody 
+	 * @author cy
+	 * @Description 用户管理列表
+	 * @date 2018/1/1 20:29
+	 * @return Result
+	 * @throws  
+	 */
+	@RequestMapping(value = "user/getUserList")
+	public Result getUserList(String account, String userName, Byte userType, Byte whetherFreeze, String contactPhone,
+			String directRecommendationAccount, Date gmtCreateBegin, Date gmtCreateEnd,
+			@RequestParam(defaultValue = Constants.PAGENUM) int pageNum,
+			@RequestParam(defaultValue = Constants.PAGESIZE) int pageSize) {
+		Page<UserListVO> page = userManager.getUserList(account, userName, userType, whetherFreeze, contactPhone,
+				directRecommendationAccount, gmtCreateBegin, gmtCreateEnd, pageNum, pageSize);
+		return Result.normalResponse(page);
 	}
 
 }

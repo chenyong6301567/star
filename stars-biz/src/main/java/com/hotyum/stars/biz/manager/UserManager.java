@@ -3,7 +3,9 @@ package com.hotyum.stars.biz.manager;
 import java.util.Date;
 
 import com.hotyum.stars.biz.model.TokenInfoVO;
+import com.hotyum.stars.biz.model.UserListVO;
 import com.hotyum.stars.dal.model.User;
+import com.hotyum.stars.utils.Page;
 
 /**
  * @author cy
@@ -145,5 +147,22 @@ public interface UserManager {
 	* @throws:
 	*/
 	User getuserByAgentCode(String agentCode);
+
+	/**
+	* @Title getUserList
+	* @author cy
+	* @param pageSize 
+	* @param pageNum 
+	* @Description 获取用户管理列表
+	* @date 2018年1月1日下午8:40:24
+	* @param 
+	* @param 
+	* @param 
+	* @return Page<UserListVO>
+	* @throws:
+	*/
+	Page<UserListVO> getUserList(String account, String userName, Byte userType, Byte whetherFreeze,
+			String contactPhone, String directRecommendationAccount, Date gmtCreateBegin, Date gmtCreateEnd,
+			int pageNum, int pageSize);
 
 }
