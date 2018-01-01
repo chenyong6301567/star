@@ -28,6 +28,7 @@ import com.hotyum.stars.dal.model.User;
 import com.hotyum.stars.dal.model.UserExample;
 import com.hotyum.stars.utils.Assert;
 import com.hotyum.stars.utils.enums.LoginType;
+import com.hotyum.stars.utils.enums.PicType;
 import com.hotyum.stars.utils.enums.RefereeType;
 import com.hotyum.stars.utils.enums.SmsType;
 import com.hotyum.stars.utils.enums.Status;
@@ -312,6 +313,67 @@ public class UserManagerImpl implements UserManager {
 			throw new RuntimeException("内部服务器错误");
 		}
 
+	}
+
+	/**
+	* @Title:updateUsePic
+	* @author:cy
+	* @Description 保存上传图片路径
+	* @date:2018年1月1日下午4:32:27
+	* @param 
+	* @param 
+	* @param 
+	* @return 
+	* @throws:
+	*/
+	@Override
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	public void updateUsePic(String path, Byte picType, String account) {
+		User user = getUserByPhone(account);
+		if (null == user) {
+			throw new ApplicationException("账号对应的用户不存在");
+		}
+		if (picType.equals(PicType.FRONT.getValue())) {
+			user.setCertificateFront(path);
+		} else if (picType.equals(PicType.BACK.getValue())) {
+			user.setCertificateBack(path);
+		} else {
+			user.setAddressPic(path);
+		}
+		try {
+			userDAO.updateByPrimaryKey(user);
+		} catch (DataAccessException e) {
+			LOGGER.error("updateUsePic失败====", e);
+			throw new RuntimeException("内部服务器错误");
+		}
+	}
+
+	/**
+	* @Title:checkRealName
+	* @author:cy
+	* @Description 
+	* @date:2018年1月1日下午4:35:54
+	* @param 
+	* @param 
+	* @param 
+	* @return 
+	* @throws:
+	*/
+	@Override
+	public void checkRealName(String realName, Byte certificateType, String certificateNumber, String account) {
+		User user = getUserByPhone(account);
+		if (null == user) {
+			throw new ApplicationException("账号对应的用户不存在");
+		}
+		user.setRealName(realName);
+		user.setCertificateType(certificateType);
+		user.setCertificateNumber(certificateNumber);
+		try {
+			userDAO.updateByPrimaryKey(user);
+		} catch (DataAccessException e) {
+			LOGGER.error("checkRealName失败====", e);
+			throw new RuntimeException("内部服务器错误");
+		}
 	}
 
 }

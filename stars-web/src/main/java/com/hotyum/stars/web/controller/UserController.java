@@ -1,6 +1,10 @@
 package com.hotyum.stars.web.controller;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -10,17 +14,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.croky.util.ObjectUtils;
-import com.hotyum.stars.biz.manager.RegisterNoticeManager;
 import com.hotyum.stars.biz.manager.UserManager;
-import com.hotyum.stars.biz.model.RegisterNoticeVO;
 import com.hotyum.stars.biz.model.UserBaseInfoVO;
-import com.hotyum.stars.dal.model.TokenAccess;
 import com.hotyum.stars.dal.model.User;
+import com.hotyum.stars.utils.enums.PicType;
 import com.hotyum.stars.web.model.Result;
 import com.hotyum.stars.web.util.TokenAccessUtils;
-import com.hotyum.stars.web.vo.TokenInfo;
 
 /**
 * 用户信息
@@ -53,7 +55,7 @@ public class UserController {
 	@RequestMapping(value = "user/getUserBaseInfo")
 	public Result getUserBaseInfo(HttpServletRequest request) {
 		User user = TokenAccessUtils.getUserInfo(request);
-		UserBaseInfoVO userBaseInfoVO;
+		UserBaseInfoVO userBaseInfoVO = null;
 		try {
 			userBaseInfoVO = ObjectUtils.convert(user, UserBaseInfoVO.class);
 		} catch (Exception e) {
@@ -80,7 +82,7 @@ public class UserController {
 	 * @respbody 
 	 * @author cy
 	 * @Description 获取用户基本信息
-	 * @date 2018/1/1 15:49
+	 * @date 2018/1/1 15:29
 	 * @return Result
 	 * @throws  
 	 */
@@ -91,6 +93,71 @@ public class UserController {
 			String indirectRecommendationAccount) {
 		userManager.updateUserBaseInfo(account, realName, sex, contactPhone, email, whetherRealName, wheatherGetMoney,
 				refereeQualification, agentCode, directRecommendationAccount, indirectRecommendationAccount);
+		return Result.normalResponse();
+	}
+
+	/**
+	 * 实名验证
+	 * 
+	 * @param account                       注册账号|string|必填
+	 * @param file                          上传图片
+	 * @param picType                       图片类型（1，正面，2方面，3居住地)|byte|必填
+	 * @Title uploadPic
+	 * @respbody 
+	 * @author cy
+	 * @Description 上传图片
+	 * @date 2018/1/1 16:23
+	 * @return Result
+	 * @throws  
+	 */
+	@RequestMapping(value = "user/uploadPic")
+	public Result uploadPic(HttpServletRequest request, @RequestParam(required = true) String account,
+			@RequestParam(value = "file", required = false) MultipartFile file, Byte picType)
+			throws IllegalStateException, IOException {
+		String realPath = request.getServletContext().getRealPath("/upload/certificate/");
+		if (file != null) {// 判断上传的文件是否为空
+			String fileName = file.getOriginalFilename();// 文件原名称
+			String type = fileName.indexOf(".") != -1
+					? fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length()) : null;
+			if (!("GIF".equalsIgnoreCase(type) || "PNG".equalsIgnoreCase(type) || "JPG".equalsIgnoreCase(type))) {
+				return Result.errorReponse("不支持[" + type + "]文件上传");
+			}
+			String trueFileName = account + "." + type;
+			String path = realPath + trueFileName;
+			LOGGER.info("存放图片文件的路径:" + path);
+
+			File file_ = new File(path);
+			if (!file_.exists()) {
+				file_.getParentFile().mkdirs();
+				file_.createNewFile();
+			}
+			file.transferTo(file_);
+			userManager.updateUsePic(path, picType, account);
+			return Result.normalResponse(path);
+		}
+		return Result.errorReponse("上传文件不能为空");
+	}
+
+	/**
+	 * 实名验证
+	 * 
+	 * @param account                       注册账号|string|必填
+	 * @param realName                      真实姓名|string|必填
+	 * @param certificateType               证件类型(1.身份证；2 护照；3港澳通行证；4其他)|byte|必填
+	 * @param certificateNumber             证件号码 |string|必填
+	 * @param file                          上传图片
+	 * @Title updateUserBaseInfo
+	 * @respbody 
+	 * @author cy
+	 * @Description 实名验证
+	 * @date 2018/1/1 15:49
+	 * @return Result
+	 * @throws  
+	 */
+	@RequestMapping(value = "user/checkRealName")
+	public Result checkRealName(HttpServletRequest request, @RequestParam(required = true) String realName,
+			Byte certificateType, String certificateNumber, @RequestParam(required = true) String account) {
+		userManager.checkRealName(realName, certificateType, certificateNumber, account);
 		return Result.normalResponse();
 	}
 

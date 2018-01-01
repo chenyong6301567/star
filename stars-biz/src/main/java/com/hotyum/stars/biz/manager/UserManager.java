@@ -91,4 +91,30 @@ public interface UserManager {
 			Byte whetherRealName, Byte wheatherGetMoney, Byte refereeQualification, String agentCode,
 			String directRecommendationAccount, String indirectRecommendationAccount);
 
+	/**
+	* @Title updateUsePic
+	* @author cy
+	* @Description 
+	* @date 2018年1月1日下午4:32:20
+	* @param 
+	* @param 
+	* @param 
+	* @return void
+	* @throws:
+	*/
+	void updateUsePic(String path, Byte picType, String account);
+
+	/**
+	* @Title checkRealName
+	* @author cy
+	* @Description 
+	* @date 2018年1月1日下午4:35:45
+	* @param 
+	* @param 
+	* @param 
+	* @return void
+	* @throws:
+	*/
+	void checkRealName(String realName, Byte certificateType, String certificateNumber, String account);
+
 }

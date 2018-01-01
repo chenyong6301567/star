@@ -34,6 +34,16 @@ public class UserBaseInfoVO implements Serializable {
 
 	private String indirectRecommendationAccount;
 
+	private byte certificateType;
+
+	private String certificateNumber;
+
+	private String certificateFront;
+
+	private String certificateBack;
+
+	private String addressPic;
+
 	public Integer getId() {
 		return id;
 	}
@@ -128,6 +138,46 @@ public class UserBaseInfoVO implements Serializable {
 
 	public void setWheatherGetMoney(Byte wheatherGetMoney) {
 		this.wheatherGetMoney = wheatherGetMoney;
+	}
+
+	public byte getCertificateType() {
+		return certificateType;
+	}
+
+	public void setCertificateType(byte certificateType) {
+		this.certificateType = certificateType;
+	}
+
+	public String getCertificateNumber() {
+		return certificateNumber;
+	}
+
+	public void setCertificateNumber(String certificateNumber) {
+		this.certificateNumber = certificateNumber;
+	}
+
+	public String getCertificateFront() {
+		return certificateFront;
+	}
+
+	public void setCertificateFront(String certificateFront) {
+		this.certificateFront = certificateFront;
+	}
+
+	public String getCertificateBack() {
+		return certificateBack;
+	}
+
+	public void setCertificateBack(String certificateBack) {
+		this.certificateBack = certificateBack;
+	}
+
+	public String getAddressPic() {
+		return addressPic;
+	}
+
+	public void setAddressPic(String addressPic) {
+		this.addressPic = addressPic;
 	}
 
 }
