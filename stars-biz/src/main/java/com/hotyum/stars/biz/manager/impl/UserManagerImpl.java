@@ -14,17 +14,21 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
+import com.github.pagehelper.StringUtil;
+import com.hotyum.stars.biz.manager.RegisterNoticeManager;
 import com.hotyum.stars.biz.manager.SmsManager;
 import com.hotyum.stars.biz.manager.SysUserRoleManager;
 import com.hotyum.stars.biz.manager.TokenAccessManager;
 import com.hotyum.stars.biz.manager.UserManager;
 import com.hotyum.stars.biz.model.TokenInfoVO;
 import com.hotyum.stars.dal.dao.UserDAO;
+import com.hotyum.stars.dal.model.RegisterNotice;
 import com.hotyum.stars.dal.model.SysUserRole;
 import com.hotyum.stars.dal.model.User;
 import com.hotyum.stars.dal.model.UserExample;
 import com.hotyum.stars.utils.Assert;
 import com.hotyum.stars.utils.enums.LoginType;
+import com.hotyum.stars.utils.enums.RefereeType;
 import com.hotyum.stars.utils.enums.SmsType;
 import com.hotyum.stars.utils.enums.Status;
 import com.hotyum.stars.utils.exception.ApplicationException;
@@ -49,6 +53,13 @@ public class UserManagerImpl implements UserManager {
 
 	@Autowired
 	private SysUserRoleManager sysUserRoleManager;
+
+	@Autowired
+	private RegisterNoticeManager registerNoticeManager;
+
+	private static final String DERECTMESSAGE = "您的直推客户{0}成功注册了系统，请您悉知。";
+
+	private static final String INDERECTMESSAGE = "您的间推客户{0}成功注册了系统，请您悉知。";
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserManagerImpl.class);
 
@@ -132,6 +143,7 @@ public class UserManagerImpl implements UserManager {
 	* @throws:
 	*/
 	@Override
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void register(String phone, String userName, String verifyCode, String agentCode, String loginPwd,
 			String refereePhone) {
 		// 校验短信验证码是否正确
@@ -152,10 +164,23 @@ public class UserManagerImpl implements UserManager {
 			if (null == refereUser) {
 				throw new ApplicationException("您好，推荐用户不存在录");
 			}
-			newUser.setIndirectRecommendationAccount(refereUser.getDirectRecommendationAccount());
+			registerNoticeManager.insert(refereUser.getId(), refereePhone, RefereeType.DERECT.getValue(),
+					String.format(DERECTMESSAGE, refereUser.getRealName()));
+
+			// 直接推荐人
+			newUser.setDirectRecommendationAccount(refereePhone);
+			// 直接推荐人的推荐人就是间接推荐人,要查询间接推荐人是否存在
+			if (StringUtils.isNotEmpty(refereUser.getDirectRecommendationAccount())) {
+				User indirectUser = getUserByPhone(refereUser.getDirectRecommendationAccount());
+				if (null != indirectUser) {
+					// 间接推荐人
+					newUser.setIndirectRecommendationAccount(refereUser.getDirectRecommendationAccount());
+					registerNoticeManager.insert(refereUser.getId(), refereePhone, RefereeType.DERECT.getValue(),
+							String.format(DERECTMESSAGE, refereUser.getRealName()));
+				}
+			}
 		}
 		newUser.setAccount(phone);
-		newUser.setDirectRecommendationAccount(refereePhone);
 		newUser.setPwd(Md5Crypt.md5Crypt(loginPwd.getBytes()));
 		newUser.setAgentCode(agentCode);
 		newUser.setGmtCreate(new Date());

@@ -9,6 +9,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hotyum.stars.utils.Constants;
 
+/**
+* 默认访问
+* 
+* @Title: 默认访问 
+* @Description: 默认访问      
+* @author cy
+* @date 2018年1月1日 下午13:22:29 
+*/
 @RestController
 public class IndexController {
 

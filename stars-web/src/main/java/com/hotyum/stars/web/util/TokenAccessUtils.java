@@ -10,7 +10,6 @@ import com.croky.util.StringUtils;
 import com.hotyum.stars.dal.model.TokenAccess;
 import com.hotyum.stars.utils.exception.ApplicationException;
 import com.hotyum.stars.web.config.WebAppConfigurer;
-import com.hotyum.stars.web.interceptor.AuthcInterceptor;
 import com.hotyum.stars.web.vo.TokenInfo;
 
 public class TokenAccessUtils {
