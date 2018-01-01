@@ -1,7 +1,10 @@
 package com.hotyum.stars.biz.manager.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +13,18 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.croky.util.ObjectUtils;
+import com.github.pagehelper.PageHelper;
 import com.hotyum.stars.biz.manager.AgentManager;
 import com.hotyum.stars.biz.manager.UserManager;
+import com.hotyum.stars.biz.model.AgentVO;
+import com.hotyum.stars.biz.model.UserListVO;
 import com.hotyum.stars.dal.dao.AgentDAO;
 import com.hotyum.stars.dal.model.Agent;
+import com.hotyum.stars.dal.model.AgentExample;
 import com.hotyum.stars.dal.model.User;
+import com.hotyum.stars.utils.DateUtil;
+import com.hotyum.stars.utils.Page;
 import com.hotyum.stars.utils.enums.Status;
 import com.hotyum.stars.utils.exception.ApplicationException;
 
@@ -79,6 +89,103 @@ public class AgentManagerImpl implements AgentManager {
 			throw new RuntimeException("内部服务器错误");
 		}
 
+	}
+
+	/**
+	* @Title:getAgentList
+	* @author:cy
+	* @Description 
+	* @date:2018年1月1日下午9:12:31
+	* @param 
+	* @param 
+	* @param 
+	* @return 
+	* @throws:
+	*/
+	@Override
+	public Page<AgentVO> getAgentList(String agentCode, String agentName, String legalRepresentative,
+			Integer provinceId, Date businessStartTime, Date businessEndTime, Date contractStartTime,
+			Date contrctEndTime, int pageNum, int pageSize) {
+
+		AgentExample agentExample = new AgentExample();
+		AgentExample.Criteria criteria = agentExample.createCriteria();
+		criteria.andStatusGreaterThanOrEqualTo(Status.ZERO.getValue());
+
+		if (StringUtils.isNotEmpty(agentCode)) {
+			criteria.andAgentCodeLike("%" + agentCode + "%");
+		}
+		if (StringUtils.isNotEmpty(agentName)) {
+			criteria.andAgentNameLike("%" + agentName + "%");
+		}
+		if (StringUtils.isNotEmpty(legalRepresentative)) {
+			criteria.andLegalRepresentativeLike("%" + legalRepresentative + "%");
+		}
+		if (null != provinceId) {
+			criteria.andProvinceIdEqualTo(provinceId);
+		}
+
+		if (null != businessStartTime) {
+			criteria.andBusinessStartTimeGreaterThanOrEqualTo(businessStartTime);
+		}
+		if (null != businessEndTime) {
+			criteria.andBusinessStartTimeLessThanOrEqualTo(businessEndTime);
+		}
+
+		if (null != contractStartTime) {
+			criteria.andContractStartTimeGreaterThanOrEqualTo(contractStartTime);
+		}
+		if (null != contrctEndTime) {
+			criteria.andContractStartTimeLessThanOrEqualTo(contrctEndTime);
+		}
+
+		com.github.pagehelper.Page<Agent> page = PageHelper.startPage(pageNum, pageSize);
+		page.setOrderBy(" gmt_create desc");
+		try {
+			agentDAO.selectByExample(agentExample);
+		} catch (DataAccessException e) {
+			LOGGER.error("getAgentList失败====", e);
+			throw new RuntimeException("内部服务器错误");
+		}
+		return CovertPage(page, pageNum, pageSize);
+
+	}
+
+	/**
+	* @Title CovertPage
+	* @author cy
+	* @Description 
+	* @date 2018年1月1日下午9:24:32
+	* @param 
+	* @param 
+	* @param 
+	* @return Page<AgentVO>
+	* @throws:
+	*/
+	private Page<AgentVO> CovertPage(com.github.pagehelper.Page<Agent> page, int pageNum, int pageSize) {
+		List<Agent> agentList = page.toPageInfo().getList();
+		List<AgentVO> agentVOList = new ArrayList<AgentVO>(agentList.size());
+		for (Agent agent : agentList) {
+			try {
+				AgentVO agentVO = ObjectUtils.convert(agent, AgentVO.class);
+				if (null != agent.getBusinessStartTime()) {
+					agentVO.setBusinessStartTime(DateUtil.date2Str(agent.getBusinessStartTime()));
+				}
+				if (null != agent.getBusinessEndTime()) {
+					agentVO.setBusinessEndTime(DateUtil.date2Str(agent.getBusinessEndTime()));
+				}
+				if (null != agent.getContractStartTime()) {
+					agentVO.setContractStartTime(DateUtil.date2Str(agent.getContractStartTime()));
+				}
+				if (null != agent.getContrctEndTime()) {
+					agentVO.setContrctEndTime(DateUtil.date2Str(agent.getContrctEndTime()));
+				}
+				agentVOList.add(agentVO);
+			} catch (Exception e) {
+				LOGGER.error("CovertPage失败====", e);
+				throw new RuntimeException("内部服务器错误");
+			}
+		}
+		return new Page<>(pageSize, pageNum, agentVOList.size(), agentVOList);
 	}
 
 }

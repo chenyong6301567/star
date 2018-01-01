@@ -17,8 +17,12 @@ import org.springframework.web.multipart.MultipartFile;
 import com.croky.util.ObjectUtils;
 import com.hotyum.stars.biz.manager.AgentManager;
 import com.hotyum.stars.biz.manager.UserManager;
+import com.hotyum.stars.biz.model.AgentVO;
 import com.hotyum.stars.biz.model.UserBaseInfoVO;
+import com.hotyum.stars.biz.model.UserListVO;
 import com.hotyum.stars.dal.model.User;
+import com.hotyum.stars.utils.Constants;
+import com.hotyum.stars.utils.Page;
 import com.hotyum.stars.web.model.Result;
 import com.hotyum.stars.web.util.TokenAccessUtils;
 
@@ -71,6 +75,36 @@ public class AgentController {
 				provinceName, contactPhone, businessAddress, businessStartTime, businessEndTime, contractStartTime,
 				contrctEndTime);
 		return Result.normalResponse();
+	}
+
+	/**用户管理列表
+	 * 
+	 * @param agentCode                     代理商编号|string
+	 * @param agentName                     代理商名称|string
+	 * @param legalRepresentative           法定代表人|byte
+	 * @param provinceId                    省份Id  |Integer
+	 * @param businessStartTime             签约时间从|string
+	 * @param businessEndTime               签约时间到|string
+	 * @param contractStartTime             到期时间从|string
+	 * @param contrctEndTime                到期时间到|string
+	 * @param pageNum                       页数|int|必填
+	 * @param pageSize                      每页多少|int|必填
+	 * @Title getUserList
+	 * @respbody 
+	 * @author cy
+	 * @Description 用户管理列表
+	 * @date 2018/1/1 20:29
+	 * @return Result
+	 * @throws  
+	 */
+	@RequestMapping(value = "agent/getAgentList")
+	public Result getAgentList(String agentCode, String agentName, String legalRepresentative, Integer provinceId,
+			Date businessStartTime, Date businessEndTime, Date contractStartTime, Date contrctEndTime,
+			@RequestParam(defaultValue = Constants.PAGENUM) int pageNum,
+			@RequestParam(defaultValue = Constants.PAGESIZE) int pageSize) {
+		Page<AgentVO> page = agentManager.getAgentList(agentCode, agentName, legalRepresentative, provinceId,
+				businessStartTime, businessEndTime, contractStartTime, contrctEndTime, pageNum, pageSize);
+		return Result.normalResponse(page);
 	}
 
 }
