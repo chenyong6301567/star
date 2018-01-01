@@ -52,8 +52,8 @@ public class AgentSqlProvider {
             sql.VALUES("province_name", "#{provinceName,jdbcType=VARCHAR}");
         }
         
-        if (record.getContact() != null) {
-            sql.VALUES("contact", "#{contact,jdbcType=VARCHAR}");
+        if (record.getContactPhone() != null) {
+            sql.VALUES("contact_phone", "#{contactPhone,jdbcType=VARCHAR}");
         }
         
         if (record.getBusinessAddress() != null) {
@@ -76,6 +76,18 @@ public class AgentSqlProvider {
             sql.VALUES("contrct_end_time", "#{contrctEndTime,jdbcType=TIMESTAMP}");
         }
         
+        if (record.getGmtCreate() != null) {
+            sql.VALUES("gmt_create", "#{gmtCreate,jdbcType=TIMESTAMP}");
+        }
+        
+        if (record.getGmtModify() != null) {
+            sql.VALUES("gmt_modify", "#{gmtModify,jdbcType=TIMESTAMP}");
+        }
+        
+        if (record.getStatus() != null) {
+            sql.VALUES("status", "#{status,jdbcType=TINYINT}");
+        }
+        
         return sql.toString();
     }
 
@@ -92,12 +104,15 @@ public class AgentSqlProvider {
         sql.SELECT("legal_representative");
         sql.SELECT("province_id");
         sql.SELECT("province_name");
-        sql.SELECT("contact");
+        sql.SELECT("contact_phone");
         sql.SELECT("business_address");
         sql.SELECT("business_start_time");
         sql.SELECT("business_end_time");
         sql.SELECT("contract_start_time");
         sql.SELECT("contrct_end_time");
+        sql.SELECT("gmt_create");
+        sql.SELECT("gmt_modify");
+        sql.SELECT("status");
         sql.FROM("agent");
         applyWhere(sql, example, false);
         
@@ -143,8 +158,8 @@ public class AgentSqlProvider {
             sql.SET("province_name = #{record.provinceName,jdbcType=VARCHAR}");
         }
         
-        if (record.getContact() != null) {
-            sql.SET("contact = #{record.contact,jdbcType=VARCHAR}");
+        if (record.getContactPhone() != null) {
+            sql.SET("contact_phone = #{record.contactPhone,jdbcType=VARCHAR}");
         }
         
         if (record.getBusinessAddress() != null) {
@@ -167,6 +182,18 @@ public class AgentSqlProvider {
             sql.SET("contrct_end_time = #{record.contrctEndTime,jdbcType=TIMESTAMP}");
         }
         
+        if (record.getGmtCreate() != null) {
+            sql.SET("gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP}");
+        }
+        
+        if (record.getGmtModify() != null) {
+            sql.SET("gmt_modify = #{record.gmtModify,jdbcType=TIMESTAMP}");
+        }
+        
+        if (record.getStatus() != null) {
+            sql.SET("status = #{record.status,jdbcType=TINYINT}");
+        }
+        
         applyWhere(sql, example, true);
         return sql.toString();
     }
@@ -182,12 +209,15 @@ public class AgentSqlProvider {
         sql.SET("legal_representative = #{record.legalRepresentative,jdbcType=VARCHAR}");
         sql.SET("province_id = #{record.provinceId,jdbcType=INTEGER}");
         sql.SET("province_name = #{record.provinceName,jdbcType=VARCHAR}");
-        sql.SET("contact = #{record.contact,jdbcType=VARCHAR}");
+        sql.SET("contact_phone = #{record.contactPhone,jdbcType=VARCHAR}");
         sql.SET("business_address = #{record.businessAddress,jdbcType=VARCHAR}");
         sql.SET("business_start_time = #{record.businessStartTime,jdbcType=TIMESTAMP}");
         sql.SET("business_end_time = #{record.businessEndTime,jdbcType=TIMESTAMP}");
         sql.SET("contract_start_time = #{record.contractStartTime,jdbcType=TIMESTAMP}");
         sql.SET("contrct_end_time = #{record.contrctEndTime,jdbcType=TIMESTAMP}");
+        sql.SET("gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP}");
+        sql.SET("gmt_modify = #{record.gmtModify,jdbcType=TIMESTAMP}");
+        sql.SET("status = #{record.status,jdbcType=TINYINT}");
         
         AgentExample example = (AgentExample) parameter.get("example");
         applyWhere(sql, example, true);
@@ -222,8 +252,8 @@ public class AgentSqlProvider {
             sql.SET("province_name = #{provinceName,jdbcType=VARCHAR}");
         }
         
-        if (record.getContact() != null) {
-            sql.SET("contact = #{contact,jdbcType=VARCHAR}");
+        if (record.getContactPhone() != null) {
+            sql.SET("contact_phone = #{contactPhone,jdbcType=VARCHAR}");
         }
         
         if (record.getBusinessAddress() != null) {
@@ -244,6 +274,18 @@ public class AgentSqlProvider {
         
         if (record.getContrctEndTime() != null) {
             sql.SET("contrct_end_time = #{contrctEndTime,jdbcType=TIMESTAMP}");
+        }
+        
+        if (record.getGmtCreate() != null) {
+            sql.SET("gmt_create = #{gmtCreate,jdbcType=TIMESTAMP}");
+        }
+        
+        if (record.getGmtModify() != null) {
+            sql.SET("gmt_modify = #{gmtModify,jdbcType=TIMESTAMP}");
+        }
+        
+        if (record.getStatus() != null) {
+            sql.SET("status = #{status,jdbcType=TINYINT}");
         }
         
         sql.WHERE("id = #{id,jdbcType=INTEGER}");

@@ -3,6 +3,7 @@ package com.hotyum.stars.web.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -158,6 +159,33 @@ public class UserController {
 	public Result checkRealName(HttpServletRequest request, @RequestParam(required = true) String realName,
 			Byte certificateType, String certificateNumber, @RequestParam(required = true) String account) {
 		userManager.checkRealName(realName, certificateType, certificateNumber, account);
+		return Result.normalResponse();
+	}
+
+	/**
+	 * 用户添加
+	 * 
+	 * @param account                       注册账号|string|必填
+	 * @param userName                      真实姓名|string|必填
+	 * @param contactPhone                  联系方式 |string|必填
+	 * @param userType                      用户性质1代理商 2客户 3管理员|Byte|必填
+	 * @param whetherFreeze                 0 未冻结，1冻结|string|必填
+	 * @param freezeDate                    冻结日期|string|必填
+	 * @param agentName                     代理商名称|string|必填 
+	 * @param pwd                           密码|string|必填
+	 * @Title addUser
+	 * @respbody 
+	 * @author cy
+	 * @Description 用户添加
+	 * @date 2018/1/1 16:41
+	 * @return Result
+	 * @throws  
+	 */
+	@RequestMapping(value = "user/addUser")
+	public Result addUser(HttpServletRequest request, String userName,
+			String contactPhone,Byte userType,Byte whetherFreeze,
+			@RequestParam(required = true) String account,Date freezeDate,String agentName,String pwd) {
+        userManager.addUser(account,userName,contactPhone,userType,agentName,whetherFreeze,freezeDate,pwd);
 		return Result.normalResponse();
 	}
 

@@ -34,15 +34,19 @@ public interface AgentMapper {
         "insert into agent (agent_code, agent_name, ",
         "unified_social_credit_code, legal_representative, ",
         "province_id, province_name, ",
-        "contact, business_address, ",
+        "contact_phone, business_address, ",
         "business_start_time, business_end_time, ",
-        "contract_start_time, contrct_end_time)",
+        "contract_start_time, contrct_end_time, ",
+        "gmt_create, gmt_modify, ",
+        "status)",
         "values (#{agentCode,jdbcType=VARCHAR}, #{agentName,jdbcType=VARCHAR}, ",
         "#{unifiedSocialCreditCode,jdbcType=VARCHAR}, #{legalRepresentative,jdbcType=VARCHAR}, ",
         "#{provinceId,jdbcType=INTEGER}, #{provinceName,jdbcType=VARCHAR}, ",
-        "#{contact,jdbcType=VARCHAR}, #{businessAddress,jdbcType=VARCHAR}, ",
+        "#{contactPhone,jdbcType=VARCHAR}, #{businessAddress,jdbcType=VARCHAR}, ",
         "#{businessStartTime,jdbcType=TIMESTAMP}, #{businessEndTime,jdbcType=TIMESTAMP}, ",
-        "#{contractStartTime,jdbcType=TIMESTAMP}, #{contrctEndTime,jdbcType=TIMESTAMP})"
+        "#{contractStartTime,jdbcType=TIMESTAMP}, #{contrctEndTime,jdbcType=TIMESTAMP}, ",
+        "#{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModify,jdbcType=TIMESTAMP}, ",
+        "#{status,jdbcType=TINYINT})"
     })
     @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=Integer.class)
     int insert(Agent record);
@@ -60,20 +64,24 @@ public interface AgentMapper {
         @Result(column="legal_representative", property="legalRepresentative", jdbcType=JdbcType.VARCHAR),
         @Result(column="province_id", property="provinceId", jdbcType=JdbcType.INTEGER),
         @Result(column="province_name", property="provinceName", jdbcType=JdbcType.VARCHAR),
-        @Result(column="contact", property="contact", jdbcType=JdbcType.VARCHAR),
+        @Result(column="contact_phone", property="contactPhone", jdbcType=JdbcType.VARCHAR),
         @Result(column="business_address", property="businessAddress", jdbcType=JdbcType.VARCHAR),
         @Result(column="business_start_time", property="businessStartTime", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="business_end_time", property="businessEndTime", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="contract_start_time", property="contractStartTime", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="contrct_end_time", property="contrctEndTime", jdbcType=JdbcType.TIMESTAMP)
+        @Result(column="contrct_end_time", property="contrctEndTime", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="gmt_create", property="gmtCreate", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="gmt_modify", property="gmtModify", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="status", property="status", jdbcType=JdbcType.TINYINT)
     })
     List<Agent> selectByExample(AgentExample example);
 
     @Select({
         "select",
         "id, agent_code, agent_name, unified_social_credit_code, legal_representative, ",
-        "province_id, province_name, contact, business_address, business_start_time, ",
-        "business_end_time, contract_start_time, contrct_end_time",
+        "province_id, province_name, contact_phone, business_address, business_start_time, ",
+        "business_end_time, contract_start_time, contrct_end_time, gmt_create, gmt_modify, ",
+        "status",
         "from agent",
         "where id = #{id,jdbcType=INTEGER}"
     })
@@ -85,12 +93,15 @@ public interface AgentMapper {
         @Result(column="legal_representative", property="legalRepresentative", jdbcType=JdbcType.VARCHAR),
         @Result(column="province_id", property="provinceId", jdbcType=JdbcType.INTEGER),
         @Result(column="province_name", property="provinceName", jdbcType=JdbcType.VARCHAR),
-        @Result(column="contact", property="contact", jdbcType=JdbcType.VARCHAR),
+        @Result(column="contact_phone", property="contactPhone", jdbcType=JdbcType.VARCHAR),
         @Result(column="business_address", property="businessAddress", jdbcType=JdbcType.VARCHAR),
         @Result(column="business_start_time", property="businessStartTime", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="business_end_time", property="businessEndTime", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="contract_start_time", property="contractStartTime", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="contrct_end_time", property="contrctEndTime", jdbcType=JdbcType.TIMESTAMP)
+        @Result(column="contrct_end_time", property="contrctEndTime", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="gmt_create", property="gmtCreate", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="gmt_modify", property="gmtModify", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="status", property="status", jdbcType=JdbcType.TINYINT)
     })
     Agent selectByPrimaryKey(Integer id);
 
@@ -111,12 +122,15 @@ public interface AgentMapper {
           "legal_representative = #{legalRepresentative,jdbcType=VARCHAR},",
           "province_id = #{provinceId,jdbcType=INTEGER},",
           "province_name = #{provinceName,jdbcType=VARCHAR},",
-          "contact = #{contact,jdbcType=VARCHAR},",
+          "contact_phone = #{contactPhone,jdbcType=VARCHAR},",
           "business_address = #{businessAddress,jdbcType=VARCHAR},",
           "business_start_time = #{businessStartTime,jdbcType=TIMESTAMP},",
           "business_end_time = #{businessEndTime,jdbcType=TIMESTAMP},",
           "contract_start_time = #{contractStartTime,jdbcType=TIMESTAMP},",
-          "contrct_end_time = #{contrctEndTime,jdbcType=TIMESTAMP}",
+          "contrct_end_time = #{contrctEndTime,jdbcType=TIMESTAMP},",
+          "gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},",
+          "gmt_modify = #{gmtModify,jdbcType=TIMESTAMP},",
+          "status = #{status,jdbcType=TINYINT}",
         "where id = #{id,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(Agent record);

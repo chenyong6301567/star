@@ -14,7 +14,6 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
-import com.github.pagehelper.StringUtil;
 import com.hotyum.stars.biz.manager.RegisterNoticeManager;
 import com.hotyum.stars.biz.manager.SmsManager;
 import com.hotyum.stars.biz.manager.SysUserRoleManager;
@@ -22,7 +21,6 @@ import com.hotyum.stars.biz.manager.TokenAccessManager;
 import com.hotyum.stars.biz.manager.UserManager;
 import com.hotyum.stars.biz.model.TokenInfoVO;
 import com.hotyum.stars.dal.dao.UserDAO;
-import com.hotyum.stars.dal.model.RegisterNotice;
 import com.hotyum.stars.dal.model.SysUserRole;
 import com.hotyum.stars.dal.model.User;
 import com.hotyum.stars.dal.model.UserExample;
@@ -372,6 +370,72 @@ public class UserManagerImpl implements UserManager {
 			userDAO.updateByPrimaryKey(user);
 		} catch (DataAccessException e) {
 			LOGGER.error("checkRealName失败====", e);
+			throw new RuntimeException("内部服务器错误");
+		}
+	}
+
+	/**
+	* @Title:addUser
+	* @author:cy
+	* @Description 
+	* @date:2018年1月1日下午4:52:08
+	* @param 
+	* @param 
+	* @param 
+	* @return 
+	* @throws:
+	*/
+	@Override
+	public void addUser(String account, String userName, String contactPhone, Byte userType, String agentName,
+			Byte whetherFreeze, Date freezeDate, String pwd) {
+		User user = getUserByPhone(account);
+		if (null != user) {
+			throw new ApplicationException("账号对应的用户已存在");
+		}
+
+		User newUser = new User();
+		newUser.setAccount(account);
+		newUser.setUserName(userName);
+		newUser.setAgentName(agentName);
+		newUser.setContactPhone(contactPhone);
+		newUser.setUserType(userType);
+		newUser.setWhetherFreeze(whetherFreeze);
+		newUser.setFreezeDate(freezeDate);
+		newUser.setPwd(Md5Crypt.md5Crypt(pwd.getBytes()));
+		newUser.setGmtCreate(new Date());
+		newUser.setGmtModify(new Date());
+		newUser.setStatus(Status.ZERO.getValue());
+		try {
+			userDAO.insertSelective(newUser);
+		} catch (DataAccessException e) {
+			LOGGER.error("checkRealName失败====", e);
+			throw new RuntimeException("内部服务器错误");
+		}
+
+	}
+
+	/**
+	* @Title:getuserByAgentCode
+	* @author:cy
+	* @Description 
+	* @date:2018年1月1日下午5:14:33
+	* @param 
+	* @param 
+	* @param 
+	* @return 
+	* @throws:
+	*/
+	@Override
+	public User getuserByAgentCode(String agentCode) {
+		UserExample userExample = new UserExample();
+		UserExample.Criteria criteria = userExample.createCriteria();
+		criteria.andStatusGreaterThanOrEqualTo(Status.ZERO.getValue());
+		criteria.andAgentCodeEqualTo(agentCode);
+		try {
+			List<User> userList = userDAO.selectByExample(userExample);
+			return CollectionUtils.isEmpty(userList) ? null : userList.get(0);
+		} catch (DataAccessException e) {
+			LOGGER.error("getUserByPhone获取用户信息失败====", e);
 			throw new RuntimeException("内部服务器错误");
 		}
 	}

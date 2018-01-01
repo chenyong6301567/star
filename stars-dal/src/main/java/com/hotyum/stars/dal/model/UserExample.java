@@ -1005,6 +1005,76 @@ public class UserExample {
             return (Criteria) this;
         }
 
+        public Criteria andAgentNameIsNull() {
+            addCriterion("agent_name is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgentNameIsNotNull() {
+            addCriterion("agent_name is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgentNameEqualTo(String value) {
+            addCriterion("agent_name =", value, "agentName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgentNameNotEqualTo(String value) {
+            addCriterion("agent_name <>", value, "agentName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgentNameGreaterThan(String value) {
+            addCriterion("agent_name >", value, "agentName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgentNameGreaterThanOrEqualTo(String value) {
+            addCriterion("agent_name >=", value, "agentName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgentNameLessThan(String value) {
+            addCriterion("agent_name <", value, "agentName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgentNameLessThanOrEqualTo(String value) {
+            addCriterion("agent_name <=", value, "agentName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgentNameLike(String value) {
+            addCriterion("agent_name like", value, "agentName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgentNameNotLike(String value) {
+            addCriterion("agent_name not like", value, "agentName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgentNameIn(List<String> values) {
+            addCriterion("agent_name in", values, "agentName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgentNameNotIn(List<String> values) {
+            addCriterion("agent_name not in", values, "agentName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgentNameBetween(String value1, String value2) {
+            addCriterion("agent_name between", value1, value2, "agentName");
+            return (Criteria) this;
+        }
+
+        public Criteria andAgentNameNotBetween(String value1, String value2) {
+            addCriterion("agent_name not between", value1, value2, "agentName");
+            return (Criteria) this;
+        }
+
         public Criteria andDirectRecommendationAccountIsNull() {
             addCriterion("direct_recommendation_account is null");
             return (Criteria) this;
@@ -1615,63 +1685,63 @@ public class UserExample {
             return (Criteria) this;
         }
 
-        public Criteria andFreezeTypeIsNull() {
-            addCriterion("freeze_type is null");
+        public Criteria andWhetherFreezeIsNull() {
+            addCriterion("whether_freeze is null");
             return (Criteria) this;
         }
 
-        public Criteria andFreezeTypeIsNotNull() {
-            addCriterion("freeze_type is not null");
+        public Criteria andWhetherFreezeIsNotNull() {
+            addCriterion("whether_freeze is not null");
             return (Criteria) this;
         }
 
-        public Criteria andFreezeTypeEqualTo(Byte value) {
-            addCriterion("freeze_type =", value, "freezeType");
+        public Criteria andWhetherFreezeEqualTo(Byte value) {
+            addCriterion("whether_freeze =", value, "whetherFreeze");
             return (Criteria) this;
         }
 
-        public Criteria andFreezeTypeNotEqualTo(Byte value) {
-            addCriterion("freeze_type <>", value, "freezeType");
+        public Criteria andWhetherFreezeNotEqualTo(Byte value) {
+            addCriterion("whether_freeze <>", value, "whetherFreeze");
             return (Criteria) this;
         }
 
-        public Criteria andFreezeTypeGreaterThan(Byte value) {
-            addCriterion("freeze_type >", value, "freezeType");
+        public Criteria andWhetherFreezeGreaterThan(Byte value) {
+            addCriterion("whether_freeze >", value, "whetherFreeze");
             return (Criteria) this;
         }
 
-        public Criteria andFreezeTypeGreaterThanOrEqualTo(Byte value) {
-            addCriterion("freeze_type >=", value, "freezeType");
+        public Criteria andWhetherFreezeGreaterThanOrEqualTo(Byte value) {
+            addCriterion("whether_freeze >=", value, "whetherFreeze");
             return (Criteria) this;
         }
 
-        public Criteria andFreezeTypeLessThan(Byte value) {
-            addCriterion("freeze_type <", value, "freezeType");
+        public Criteria andWhetherFreezeLessThan(Byte value) {
+            addCriterion("whether_freeze <", value, "whetherFreeze");
             return (Criteria) this;
         }
 
-        public Criteria andFreezeTypeLessThanOrEqualTo(Byte value) {
-            addCriterion("freeze_type <=", value, "freezeType");
+        public Criteria andWhetherFreezeLessThanOrEqualTo(Byte value) {
+            addCriterion("whether_freeze <=", value, "whetherFreeze");
             return (Criteria) this;
         }
 
-        public Criteria andFreezeTypeIn(List<Byte> values) {
-            addCriterion("freeze_type in", values, "freezeType");
+        public Criteria andWhetherFreezeIn(List<Byte> values) {
+            addCriterion("whether_freeze in", values, "whetherFreeze");
             return (Criteria) this;
         }
 
-        public Criteria andFreezeTypeNotIn(List<Byte> values) {
-            addCriterion("freeze_type not in", values, "freezeType");
+        public Criteria andWhetherFreezeNotIn(List<Byte> values) {
+            addCriterion("whether_freeze not in", values, "whetherFreeze");
             return (Criteria) this;
         }
 
-        public Criteria andFreezeTypeBetween(Byte value1, Byte value2) {
-            addCriterion("freeze_type between", value1, value2, "freezeType");
+        public Criteria andWhetherFreezeBetween(Byte value1, Byte value2) {
+            addCriterion("whether_freeze between", value1, value2, "whetherFreeze");
             return (Criteria) this;
         }
 
-        public Criteria andFreezeTypeNotBetween(Byte value1, Byte value2) {
-            addCriterion("freeze_type not between", value1, value2, "freezeType");
+        public Criteria andWhetherFreezeNotBetween(Byte value1, Byte value2) {
+            addCriterion("whether_freeze not between", value1, value2, "whetherFreeze");
             return (Criteria) this;
         }
 

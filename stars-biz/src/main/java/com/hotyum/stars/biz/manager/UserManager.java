@@ -1,5 +1,7 @@
 package com.hotyum.stars.biz.manager;
 
+import java.util.Date;
+
 import com.hotyum.stars.biz.model.TokenInfoVO;
 import com.hotyum.stars.dal.model.User;
 
@@ -116,5 +118,32 @@ public interface UserManager {
 	* @throws:
 	*/
 	void checkRealName(String realName, Byte certificateType, String certificateNumber, String account);
+
+	/**
+	* @Title addUser
+	* @author cy
+	* @Description 
+	* @date 2018年1月1日下午4:52:01
+	* @param 
+	* @param 
+	* @param 
+	* @return void
+	* @throws:
+	*/
+	void addUser(String account, String userName, String contactPhone, Byte userType, String agentName,
+			Byte whetherFreeze, Date freezeDate, String pwd);
+
+	/**
+	* @Title getuserByAgentCode
+	* @author cy
+	* @Description 
+	* @date 2018年1月1日下午5:14:20
+	* @param 
+	* @param 
+	* @param 
+	* @return User
+	* @throws:
+	*/
+	User getuserByAgentCode(String agentCode);
 
 }

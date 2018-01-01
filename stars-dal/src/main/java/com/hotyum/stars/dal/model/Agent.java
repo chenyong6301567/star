@@ -18,7 +18,7 @@ public class Agent implements Serializable {
 
     private String provinceName;
 
-    private String contact;
+    private String contactPhone;
 
     private String businessAddress;
 
@@ -29,6 +29,12 @@ public class Agent implements Serializable {
     private Date contractStartTime;
 
     private Date contrctEndTime;
+
+    private Date gmtCreate;
+
+    private Date gmtModify;
+
+    private Byte status;
 
     private static final long serialVersionUID = 1L;
 
@@ -88,12 +94,12 @@ public class Agent implements Serializable {
         this.provinceName = provinceName == null ? null : provinceName.trim();
     }
 
-    public String getContact() {
-        return contact;
+    public String getContactPhone() {
+        return contactPhone;
     }
 
-    public void setContact(String contact) {
-        this.contact = contact == null ? null : contact.trim();
+    public void setContactPhone(String contactPhone) {
+        this.contactPhone = contactPhone == null ? null : contactPhone.trim();
     }
 
     public String getBusinessAddress() {
@@ -136,6 +142,30 @@ public class Agent implements Serializable {
         this.contrctEndTime = contrctEndTime;
     }
 
+    public Date getGmtCreate() {
+        return gmtCreate;
+    }
+
+    public void setGmtCreate(Date gmtCreate) {
+        this.gmtCreate = gmtCreate;
+    }
+
+    public Date getGmtModify() {
+        return gmtModify;
+    }
+
+    public void setGmtModify(Date gmtModify) {
+        this.gmtModify = gmtModify;
+    }
+
+    public Byte getStatus() {
+        return status;
+    }
+
+    public void setStatus(Byte status) {
+        this.status = status;
+    }
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -155,12 +185,15 @@ public class Agent implements Serializable {
             && (this.getLegalRepresentative() == null ? other.getLegalRepresentative() == null : this.getLegalRepresentative().equals(other.getLegalRepresentative()))
             && (this.getProvinceId() == null ? other.getProvinceId() == null : this.getProvinceId().equals(other.getProvinceId()))
             && (this.getProvinceName() == null ? other.getProvinceName() == null : this.getProvinceName().equals(other.getProvinceName()))
-            && (this.getContact() == null ? other.getContact() == null : this.getContact().equals(other.getContact()))
+            && (this.getContactPhone() == null ? other.getContactPhone() == null : this.getContactPhone().equals(other.getContactPhone()))
             && (this.getBusinessAddress() == null ? other.getBusinessAddress() == null : this.getBusinessAddress().equals(other.getBusinessAddress()))
             && (this.getBusinessStartTime() == null ? other.getBusinessStartTime() == null : this.getBusinessStartTime().equals(other.getBusinessStartTime()))
             && (this.getBusinessEndTime() == null ? other.getBusinessEndTime() == null : this.getBusinessEndTime().equals(other.getBusinessEndTime()))
             && (this.getContractStartTime() == null ? other.getContractStartTime() == null : this.getContractStartTime().equals(other.getContractStartTime()))
-            && (this.getContrctEndTime() == null ? other.getContrctEndTime() == null : this.getContrctEndTime().equals(other.getContrctEndTime()));
+            && (this.getContrctEndTime() == null ? other.getContrctEndTime() == null : this.getContrctEndTime().equals(other.getContrctEndTime()))
+            && (this.getGmtCreate() == null ? other.getGmtCreate() == null : this.getGmtCreate().equals(other.getGmtCreate()))
+            && (this.getGmtModify() == null ? other.getGmtModify() == null : this.getGmtModify().equals(other.getGmtModify()))
+            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()));
     }
 
     @Override
@@ -174,12 +207,15 @@ public class Agent implements Serializable {
         result = prime * result + ((getLegalRepresentative() == null) ? 0 : getLegalRepresentative().hashCode());
         result = prime * result + ((getProvinceId() == null) ? 0 : getProvinceId().hashCode());
         result = prime * result + ((getProvinceName() == null) ? 0 : getProvinceName().hashCode());
-        result = prime * result + ((getContact() == null) ? 0 : getContact().hashCode());
+        result = prime * result + ((getContactPhone() == null) ? 0 : getContactPhone().hashCode());
         result = prime * result + ((getBusinessAddress() == null) ? 0 : getBusinessAddress().hashCode());
         result = prime * result + ((getBusinessStartTime() == null) ? 0 : getBusinessStartTime().hashCode());
         result = prime * result + ((getBusinessEndTime() == null) ? 0 : getBusinessEndTime().hashCode());
         result = prime * result + ((getContractStartTime() == null) ? 0 : getContractStartTime().hashCode());
         result = prime * result + ((getContrctEndTime() == null) ? 0 : getContrctEndTime().hashCode());
+        result = prime * result + ((getGmtCreate() == null) ? 0 : getGmtCreate().hashCode());
+        result = prime * result + ((getGmtModify() == null) ? 0 : getGmtModify().hashCode());
+        result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
         return result;
     }
 }

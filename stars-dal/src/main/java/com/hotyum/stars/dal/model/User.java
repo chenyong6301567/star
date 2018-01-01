@@ -32,6 +32,8 @@ public class User implements Serializable {
 
     private String agentCode;
 
+    private String agentName;
+
     private String directRecommendationAccount;
 
     private String indirectRecommendationAccount;
@@ -50,7 +52,7 @@ public class User implements Serializable {
 
     private Byte userType;
 
-    private Byte freezeType;
+    private Byte whetherFreeze;
 
     private Date freezeDate;
 
@@ -168,6 +170,14 @@ public class User implements Serializable {
         this.agentCode = agentCode == null ? null : agentCode.trim();
     }
 
+    public String getAgentName() {
+        return agentName;
+    }
+
+    public void setAgentName(String agentName) {
+        this.agentName = agentName == null ? null : agentName.trim();
+    }
+
     public String getDirectRecommendationAccount() {
         return directRecommendationAccount;
     }
@@ -240,12 +250,12 @@ public class User implements Serializable {
         this.userType = userType;
     }
 
-    public Byte getFreezeType() {
-        return freezeType;
+    public Byte getWhetherFreeze() {
+        return whetherFreeze;
     }
 
-    public void setFreezeType(Byte freezeType) {
-        this.freezeType = freezeType;
+    public void setWhetherFreeze(Byte whetherFreeze) {
+        this.whetherFreeze = whetherFreeze;
     }
 
     public Date getFreezeDate() {
@@ -282,6 +292,7 @@ public class User implements Serializable {
             && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
             && (this.getRefereeQualification() == null ? other.getRefereeQualification() == null : this.getRefereeQualification().equals(other.getRefereeQualification()))
             && (this.getAgentCode() == null ? other.getAgentCode() == null : this.getAgentCode().equals(other.getAgentCode()))
+            && (this.getAgentName() == null ? other.getAgentName() == null : this.getAgentName().equals(other.getAgentName()))
             && (this.getDirectRecommendationAccount() == null ? other.getDirectRecommendationAccount() == null : this.getDirectRecommendationAccount().equals(other.getDirectRecommendationAccount()))
             && (this.getIndirectRecommendationAccount() == null ? other.getIndirectRecommendationAccount() == null : this.getIndirectRecommendationAccount().equals(other.getIndirectRecommendationAccount()))
             && (this.getCertificateType() == null ? other.getCertificateType() == null : this.getCertificateType().equals(other.getCertificateType()))
@@ -291,7 +302,7 @@ public class User implements Serializable {
             && (this.getAddressPic() == null ? other.getAddressPic() == null : this.getAddressPic().equals(other.getAddressPic()))
             && (this.getUserName() == null ? other.getUserName() == null : this.getUserName().equals(other.getUserName()))
             && (this.getUserType() == null ? other.getUserType() == null : this.getUserType().equals(other.getUserType()))
-            && (this.getFreezeType() == null ? other.getFreezeType() == null : this.getFreezeType().equals(other.getFreezeType()))
+            && (this.getWhetherFreeze() == null ? other.getWhetherFreeze() == null : this.getWhetherFreeze().equals(other.getWhetherFreeze()))
             && (this.getFreezeDate() == null ? other.getFreezeDate() == null : this.getFreezeDate().equals(other.getFreezeDate()));
     }
 
@@ -313,6 +324,7 @@ public class User implements Serializable {
         result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
         result = prime * result + ((getRefereeQualification() == null) ? 0 : getRefereeQualification().hashCode());
         result = prime * result + ((getAgentCode() == null) ? 0 : getAgentCode().hashCode());
+        result = prime * result + ((getAgentName() == null) ? 0 : getAgentName().hashCode());
         result = prime * result + ((getDirectRecommendationAccount() == null) ? 0 : getDirectRecommendationAccount().hashCode());
         result = prime * result + ((getIndirectRecommendationAccount() == null) ? 0 : getIndirectRecommendationAccount().hashCode());
         result = prime * result + ((getCertificateType() == null) ? 0 : getCertificateType().hashCode());
@@ -322,7 +334,7 @@ public class User implements Serializable {
         result = prime * result + ((getAddressPic() == null) ? 0 : getAddressPic().hashCode());
         result = prime * result + ((getUserName() == null) ? 0 : getUserName().hashCode());
         result = prime * result + ((getUserType() == null) ? 0 : getUserType().hashCode());
-        result = prime * result + ((getFreezeType() == null) ? 0 : getFreezeType().hashCode());
+        result = prime * result + ((getWhetherFreeze() == null) ? 0 : getWhetherFreeze().hashCode());
         result = prime * result + ((getFreezeDate() == null) ? 0 : getFreezeDate().hashCode());
         return result;
     }

@@ -80,6 +80,10 @@ public class UserSqlProvider {
             sql.VALUES("agent_code", "#{agentCode,jdbcType=VARCHAR}");
         }
         
+        if (record.getAgentName() != null) {
+            sql.VALUES("agent_name", "#{agentName,jdbcType=VARCHAR}");
+        }
+        
         if (record.getDirectRecommendationAccount() != null) {
             sql.VALUES("direct_recommendation_account", "#{directRecommendationAccount,jdbcType=VARCHAR}");
         }
@@ -116,8 +120,8 @@ public class UserSqlProvider {
             sql.VALUES("user_type", "#{userType,jdbcType=TINYINT}");
         }
         
-        if (record.getFreezeType() != null) {
-            sql.VALUES("freeze_type", "#{freezeType,jdbcType=TINYINT}");
+        if (record.getWhetherFreeze() != null) {
+            sql.VALUES("whether_freeze", "#{whetherFreeze,jdbcType=TINYINT}");
         }
         
         if (record.getFreezeDate() != null) {
@@ -147,6 +151,7 @@ public class UserSqlProvider {
         sql.SELECT("status");
         sql.SELECT("referee_qualification");
         sql.SELECT("agent_code");
+        sql.SELECT("agent_name");
         sql.SELECT("direct_recommendation_account");
         sql.SELECT("indirect_recommendation_account");
         sql.SELECT("certificate_type");
@@ -156,7 +161,7 @@ public class UserSqlProvider {
         sql.SELECT("address_pic");
         sql.SELECT("user_name");
         sql.SELECT("user_type");
-        sql.SELECT("freeze_type");
+        sql.SELECT("whether_freeze");
         sql.SELECT("freeze_date");
         sql.FROM("user");
         applyWhere(sql, example, false);
@@ -231,6 +236,10 @@ public class UserSqlProvider {
             sql.SET("agent_code = #{record.agentCode,jdbcType=VARCHAR}");
         }
         
+        if (record.getAgentName() != null) {
+            sql.SET("agent_name = #{record.agentName,jdbcType=VARCHAR}");
+        }
+        
         if (record.getDirectRecommendationAccount() != null) {
             sql.SET("direct_recommendation_account = #{record.directRecommendationAccount,jdbcType=VARCHAR}");
         }
@@ -267,8 +276,8 @@ public class UserSqlProvider {
             sql.SET("user_type = #{record.userType,jdbcType=TINYINT}");
         }
         
-        if (record.getFreezeType() != null) {
-            sql.SET("freeze_type = #{record.freezeType,jdbcType=TINYINT}");
+        if (record.getWhetherFreeze() != null) {
+            sql.SET("whether_freeze = #{record.whetherFreeze,jdbcType=TINYINT}");
         }
         
         if (record.getFreezeDate() != null) {
@@ -297,6 +306,7 @@ public class UserSqlProvider {
         sql.SET("status = #{record.status,jdbcType=TINYINT}");
         sql.SET("referee_qualification = #{record.refereeQualification,jdbcType=TINYINT}");
         sql.SET("agent_code = #{record.agentCode,jdbcType=VARCHAR}");
+        sql.SET("agent_name = #{record.agentName,jdbcType=VARCHAR}");
         sql.SET("direct_recommendation_account = #{record.directRecommendationAccount,jdbcType=VARCHAR}");
         sql.SET("indirect_recommendation_account = #{record.indirectRecommendationAccount,jdbcType=VARCHAR}");
         sql.SET("certificate_type = #{record.certificateType,jdbcType=TINYINT}");
@@ -306,7 +316,7 @@ public class UserSqlProvider {
         sql.SET("address_pic = #{record.addressPic,jdbcType=VARCHAR}");
         sql.SET("user_name = #{record.userName,jdbcType=VARCHAR}");
         sql.SET("user_type = #{record.userType,jdbcType=TINYINT}");
-        sql.SET("freeze_type = #{record.freezeType,jdbcType=TINYINT}");
+        sql.SET("whether_freeze = #{record.whetherFreeze,jdbcType=TINYINT}");
         sql.SET("freeze_date = #{record.freezeDate,jdbcType=TIMESTAMP}");
         
         UserExample example = (UserExample) parameter.get("example");
@@ -370,6 +380,10 @@ public class UserSqlProvider {
             sql.SET("agent_code = #{agentCode,jdbcType=VARCHAR}");
         }
         
+        if (record.getAgentName() != null) {
+            sql.SET("agent_name = #{agentName,jdbcType=VARCHAR}");
+        }
+        
         if (record.getDirectRecommendationAccount() != null) {
             sql.SET("direct_recommendation_account = #{directRecommendationAccount,jdbcType=VARCHAR}");
         }
@@ -406,8 +420,8 @@ public class UserSqlProvider {
             sql.SET("user_type = #{userType,jdbcType=TINYINT}");
         }
         
-        if (record.getFreezeType() != null) {
-            sql.SET("freeze_type = #{freezeType,jdbcType=TINYINT}");
+        if (record.getWhetherFreeze() != null) {
+            sql.SET("whether_freeze = #{whetherFreeze,jdbcType=TINYINT}");
         }
         
         if (record.getFreezeDate() != null) {
