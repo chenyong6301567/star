@@ -66,7 +66,7 @@ public class UserManagerImpl implements UserManager {
 	/**
 	* @Title:login
 	* @author:cy
-	* @Description 
+	* @Description 登录
 	* @date:2017年12月31日下午8:11:33
 	* @param 
 	* @param 
@@ -109,7 +109,7 @@ public class UserManagerImpl implements UserManager {
 	/**
 	* @Title getUserByPhone
 	* @author cy
-	* @Description 
+	* @Description 根据手机号码获取用户
 	* @date 2017年12月31日下午8:12:06
 	* @param 
 	* @param 
@@ -176,7 +176,7 @@ public class UserManagerImpl implements UserManager {
 					// 间接推荐人
 					newUser.setIndirectRecommendationAccount(refereUser.getDirectRecommendationAccount());
 					registerNoticeManager.insert(refereUser.getId(), refereePhone, RefereeType.DERECT.getValue(),
-							String.format(DERECTMESSAGE, refereUser.getRealName()));
+							String.format(INDERECTMESSAGE, refereUser.getRealName()));
 				}
 			}
 		}
@@ -247,6 +247,30 @@ public class UserManagerImpl implements UserManager {
 			LOGGER.error("getUserById失败====", e);
 			throw new RuntimeException("内部服务器错误");
 		}
+	}
+
+	/**
+	* @Title:resetPwd
+	* @author:cy
+	* @Description 
+	* @date:2018年1月1日下午2:06:57
+	* @param 
+	* @param 
+	* @param 
+	* @return 
+	* @throws:
+	*/
+	@Override
+	public void resetPwd(Integer userId, String pwd) {
+		User user = getUserById(userId);
+		user.setPwd(Md5Crypt.md5Crypt(pwd.getBytes()));
+		try {
+			userDAO.updateByPrimaryKey(user);
+		} catch (DataAccessException e) {
+			LOGGER.error("resetPwd失败====", e);
+			throw new RuntimeException("内部服务器错误");
+		}
+
 	}
 
 }

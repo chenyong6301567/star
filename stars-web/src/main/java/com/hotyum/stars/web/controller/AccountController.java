@@ -2,6 +2,8 @@ package com.hotyum.stars.web.controller;
 
 import java.text.MessageFormat;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +18,7 @@ import com.hotyum.stars.utils.Assert;
 import com.hotyum.stars.utils.Constants;
 import com.hotyum.stars.utils.RandomUtil;
 import com.hotyum.stars.web.model.Result;
+import com.hotyum.stars.web.util.TokenAccessUtils;
 
 /**
 * 登录以及注册  
@@ -117,11 +120,30 @@ public class AccountController {
 	}
 
 	/**
+	 * 登录之后修改密码
+	 * 
+	 * @param pwd 密码|string|必填
+	 * @Title loginResetPwd
+	 * @respbody 
+	 * @author cy
+	 * @Description 登录之后修改密码
+	 * @date 2018/1/1 14:29
+	 * @return Result
+	 * @throws  
+	 */
+	@RequestMapping(value = "account/loginResetPwd")
+	public Result loginResetPwd(@RequestParam(required = true) String pwd, HttpServletRequest request) {
+		Integer userId = TokenAccessUtils.getLoginUserId(request);
+		userManager.resetPwd(userId, pwd);
+		return Result.normalResponse();
+	}
+
+	/**
 	 * 发送短信验证码
 	 * 
 	 * @param phone 手机号|string|必填
 	 * @param type  短信类型|type|必填
-	 * @Title resetPwd
+	 * @Title sendMsg
 	 * @respbody 
 	 * @author cy
 	 * @Description 重置密码

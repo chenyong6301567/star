@@ -63,4 +63,17 @@ public interface UserManager {
 	*/
 	User getUserById(Integer userId);
 
+	/**
+	* @Title resetPwd
+	* @author cy
+	* @Description 
+	* @date 2018年1月1日下午2:06:50
+	* @param 
+	* @param 
+	* @param 
+	* @return void
+	* @throws:
+	*/	
+	void resetPwd(Integer userId, String pwd);
+
 }
