@@ -20,6 +20,8 @@ public class User implements Serializable {
 
     private Byte whetherRealName;
 
+    private Byte wheatherGetMoney;
+
     private Date gmtCreate;
 
     private Date gmtModify;
@@ -116,6 +118,14 @@ public class User implements Serializable {
 
     public void setWhetherRealName(Byte whetherRealName) {
         this.whetherRealName = whetherRealName;
+    }
+
+    public Byte getWheatherGetMoney() {
+        return wheatherGetMoney;
+    }
+
+    public void setWheatherGetMoney(Byte wheatherGetMoney) {
+        this.wheatherGetMoney = wheatherGetMoney;
     }
 
     public Date getGmtCreate() {
@@ -266,6 +276,7 @@ public class User implements Serializable {
             && (this.getSex() == null ? other.getSex() == null : this.getSex().equals(other.getSex()))
             && (this.getRealName() == null ? other.getRealName() == null : this.getRealName().equals(other.getRealName()))
             && (this.getWhetherRealName() == null ? other.getWhetherRealName() == null : this.getWhetherRealName().equals(other.getWhetherRealName()))
+            && (this.getWheatherGetMoney() == null ? other.getWheatherGetMoney() == null : this.getWheatherGetMoney().equals(other.getWheatherGetMoney()))
             && (this.getGmtCreate() == null ? other.getGmtCreate() == null : this.getGmtCreate().equals(other.getGmtCreate()))
             && (this.getGmtModify() == null ? other.getGmtModify() == null : this.getGmtModify().equals(other.getGmtModify()))
             && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
@@ -296,6 +307,7 @@ public class User implements Serializable {
         result = prime * result + ((getSex() == null) ? 0 : getSex().hashCode());
         result = prime * result + ((getRealName() == null) ? 0 : getRealName().hashCode());
         result = prime * result + ((getWhetherRealName() == null) ? 0 : getWhetherRealName().hashCode());
+        result = prime * result + ((getWheatherGetMoney() == null) ? 0 : getWheatherGetMoney().hashCode());
         result = prime * result + ((getGmtCreate() == null) ? 0 : getGmtCreate().hashCode());
         result = prime * result + ((getGmtModify() == null) ? 0 : getGmtModify().hashCode());
         result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());

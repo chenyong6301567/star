@@ -635,6 +635,66 @@ public class UserExample {
             return (Criteria) this;
         }
 
+        public Criteria andWheatherGetMoneyIsNull() {
+            addCriterion("wheather_get_money is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWheatherGetMoneyIsNotNull() {
+            addCriterion("wheather_get_money is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWheatherGetMoneyEqualTo(Byte value) {
+            addCriterion("wheather_get_money =", value, "wheatherGetMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andWheatherGetMoneyNotEqualTo(Byte value) {
+            addCriterion("wheather_get_money <>", value, "wheatherGetMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andWheatherGetMoneyGreaterThan(Byte value) {
+            addCriterion("wheather_get_money >", value, "wheatherGetMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andWheatherGetMoneyGreaterThanOrEqualTo(Byte value) {
+            addCriterion("wheather_get_money >=", value, "wheatherGetMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andWheatherGetMoneyLessThan(Byte value) {
+            addCriterion("wheather_get_money <", value, "wheatherGetMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andWheatherGetMoneyLessThanOrEqualTo(Byte value) {
+            addCriterion("wheather_get_money <=", value, "wheatherGetMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andWheatherGetMoneyIn(List<Byte> values) {
+            addCriterion("wheather_get_money in", values, "wheatherGetMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andWheatherGetMoneyNotIn(List<Byte> values) {
+            addCriterion("wheather_get_money not in", values, "wheatherGetMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andWheatherGetMoneyBetween(Byte value1, Byte value2) {
+            addCriterion("wheather_get_money between", value1, value2, "wheatherGetMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andWheatherGetMoneyNotBetween(Byte value1, Byte value2) {
+            addCriterion("wheather_get_money not between", value1, value2, "wheatherGetMoney");
+            return (Criteria) this;
+        }
+
         public Criteria andGmtCreateIsNull() {
             addCriterion("gmt_create is null");
             return (Criteria) this;

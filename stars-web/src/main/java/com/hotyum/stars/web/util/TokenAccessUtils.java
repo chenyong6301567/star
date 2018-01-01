@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.croky.util.StringUtils;
 import com.hotyum.stars.dal.model.TokenAccess;
+import com.hotyum.stars.dal.model.User;
 import com.hotyum.stars.utils.exception.ApplicationException;
 import com.hotyum.stars.web.config.WebAppConfigurer;
 import com.hotyum.stars.web.vo.TokenInfo;
@@ -17,6 +18,11 @@ public class TokenAccessUtils {
 
 	private static TokenInfo getTokenInfo(HttpServletRequest req) {
 		return (TokenInfo) req.getAttribute(REQ_TOKEN_ATTR);
+	}
+
+	public static User getUserInfo(HttpServletRequest req) {
+		TokenInfo tokenInfo = getTokenInfo(req);
+		return tokenInfo.getUser();
 	}
 
 	public static TokenAccess getSessionToken(HttpServletRequest req) {

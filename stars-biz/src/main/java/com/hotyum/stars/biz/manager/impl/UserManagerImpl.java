@@ -276,4 +276,42 @@ public class UserManagerImpl implements UserManager {
 
 	}
 
+	/**
+	* @Title:updateUserBaseInfo
+	* @author:cy
+	* @Description 
+	* @date:2018年1月1日下午3:37:10
+	* @param 
+	* @param 
+	* @param 
+	* @return 
+	* @throws:
+	*/
+	@Override
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	public void updateUserBaseInfo(String account, String realName, Byte sex, String contactPhone, String email,
+			Byte whetherRealName, Byte wheatherGetMoney, Byte refereeQualification, String agentCode,
+			String directRecommendationAccount, String indirectRecommendationAccount) {
+		User user = getUserByPhone(account);
+		if (null == user) {
+			throw new ApplicationException("账号对应的用户不存在");
+		}
+		user.setRealName(realName);
+		user.setSex(sex);
+		user.setContactPhone(contactPhone);
+		user.setWheatherGetMoney(wheatherGetMoney);
+		user.setWhetherRealName(whetherRealName);
+		user.setRefereeQualification(refereeQualification);
+		user.setAgentCode(agentCode);
+		user.setDirectRecommendationAccount(indirectRecommendationAccount);
+		user.setIndirectRecommendationAccount(indirectRecommendationAccount);
+		try {
+			userDAO.updateByPrimaryKey(user);
+		} catch (DataAccessException e) {
+			LOGGER.error("updateUserBaseInfo失败====", e);
+			throw new RuntimeException("内部服务器错误");
+		}
+
+	}
+
 }

@@ -73,7 +73,22 @@ public interface UserManager {
 	* @param 
 	* @return void
 	* @throws:
-	*/	
+	*/
 	void resetPwd(Integer userId, String pwd);
+
+	/**
+	* @Title updateUserBaseInfo
+	* @author cy
+	* @Description 
+	* @date 2018年1月1日下午3:37:02
+	* @param 
+	* @param 
+	* @param 
+	* @return void
+	* @throws:
+	*/
+	void updateUserBaseInfo(String account, String realName, Byte sex, String contactPhone, String email,
+			Byte whetherRealName, Byte wheatherGetMoney, Byte refereeQualification, String agentCode,
+			String directRecommendationAccount, String indirectRecommendationAccount);
 
 }
