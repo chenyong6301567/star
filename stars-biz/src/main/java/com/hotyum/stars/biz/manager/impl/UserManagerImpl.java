@@ -466,10 +466,10 @@ public class UserManagerImpl implements UserManager {
 		UserExample.Criteria criteria = userExample.createCriteria();
 		criteria.andStatusGreaterThanOrEqualTo(Status.ZERO.getValue());
 		if (StringUtils.isNotEmpty(account)) {
-			criteria.andAccountEqualTo(account);
+			criteria.andAccountLike("%" + account + "%");
 		}
 		if (StringUtils.isNotEmpty(userName)) {
-			criteria.andUserNameEqualTo(userName);
+			criteria.andUserNameLike("%" + userName + "%");
 		}
 		if (null != userType) {
 			criteria.andUserTypeEqualTo(userType);
@@ -478,10 +478,10 @@ public class UserManagerImpl implements UserManager {
 			criteria.andWhetherFreezeEqualTo(whetherFreeze);
 		}
 		if (StringUtils.isNotEmpty(contactPhone)) {
-			criteria.andContactPhoneEqualTo(contactPhone);
+			criteria.andContactPhoneLike("%" + contactPhone + "%");
 		}
 		if (StringUtils.isNotEmpty(directRecommendationAccount)) {
-			criteria.andDirectRecommendationAccountEqualTo(directRecommendationAccount);
+			criteria.andDirectRecommendationAccountLike("%" + directRecommendationAccount + "%");
 		}
 		if (null != gmtCreateBegin) {
 			criteria.andGmtCreateGreaterThan(gmtCreateBegin);
