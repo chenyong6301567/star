@@ -1,5 +1,6 @@
 package com.hotyum.stars.dal.model;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -1025,52 +1026,52 @@ public class PersonDocumentExample {
             return (Criteria) this;
         }
 
-        public Criteria andInvestmentAmountEqualTo(Long value) {
+        public Criteria andInvestmentAmountEqualTo(BigDecimal value) {
             addCriterion("investment_amount =", value, "investmentAmount");
             return (Criteria) this;
         }
 
-        public Criteria andInvestmentAmountNotEqualTo(Long value) {
+        public Criteria andInvestmentAmountNotEqualTo(BigDecimal value) {
             addCriterion("investment_amount <>", value, "investmentAmount");
             return (Criteria) this;
         }
 
-        public Criteria andInvestmentAmountGreaterThan(Long value) {
+        public Criteria andInvestmentAmountGreaterThan(BigDecimal value) {
             addCriterion("investment_amount >", value, "investmentAmount");
             return (Criteria) this;
         }
 
-        public Criteria andInvestmentAmountGreaterThanOrEqualTo(Long value) {
+        public Criteria andInvestmentAmountGreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("investment_amount >=", value, "investmentAmount");
             return (Criteria) this;
         }
 
-        public Criteria andInvestmentAmountLessThan(Long value) {
+        public Criteria andInvestmentAmountLessThan(BigDecimal value) {
             addCriterion("investment_amount <", value, "investmentAmount");
             return (Criteria) this;
         }
 
-        public Criteria andInvestmentAmountLessThanOrEqualTo(Long value) {
+        public Criteria andInvestmentAmountLessThanOrEqualTo(BigDecimal value) {
             addCriterion("investment_amount <=", value, "investmentAmount");
             return (Criteria) this;
         }
 
-        public Criteria andInvestmentAmountIn(List<Long> values) {
+        public Criteria andInvestmentAmountIn(List<BigDecimal> values) {
             addCriterion("investment_amount in", values, "investmentAmount");
             return (Criteria) this;
         }
 
-        public Criteria andInvestmentAmountNotIn(List<Long> values) {
+        public Criteria andInvestmentAmountNotIn(List<BigDecimal> values) {
             addCriterion("investment_amount not in", values, "investmentAmount");
             return (Criteria) this;
         }
 
-        public Criteria andInvestmentAmountBetween(Long value1, Long value2) {
+        public Criteria andInvestmentAmountBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("investment_amount between", value1, value2, "investmentAmount");
             return (Criteria) this;
         }
 
-        public Criteria andInvestmentAmountNotBetween(Long value1, Long value2) {
+        public Criteria andInvestmentAmountNotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("investment_amount not between", value1, value2, "investmentAmount");
             return (Criteria) this;
         }
@@ -1085,52 +1086,52 @@ public class PersonDocumentExample {
             return (Criteria) this;
         }
 
-        public Criteria andEstimatedEarningsEqualTo(Long value) {
+        public Criteria andEstimatedEarningsEqualTo(BigDecimal value) {
             addCriterion("estimated_earnings =", value, "estimatedEarnings");
             return (Criteria) this;
         }
 
-        public Criteria andEstimatedEarningsNotEqualTo(Long value) {
+        public Criteria andEstimatedEarningsNotEqualTo(BigDecimal value) {
             addCriterion("estimated_earnings <>", value, "estimatedEarnings");
             return (Criteria) this;
         }
 
-        public Criteria andEstimatedEarningsGreaterThan(Long value) {
+        public Criteria andEstimatedEarningsGreaterThan(BigDecimal value) {
             addCriterion("estimated_earnings >", value, "estimatedEarnings");
             return (Criteria) this;
         }
 
-        public Criteria andEstimatedEarningsGreaterThanOrEqualTo(Long value) {
+        public Criteria andEstimatedEarningsGreaterThanOrEqualTo(BigDecimal value) {
             addCriterion("estimated_earnings >=", value, "estimatedEarnings");
             return (Criteria) this;
         }
 
-        public Criteria andEstimatedEarningsLessThan(Long value) {
+        public Criteria andEstimatedEarningsLessThan(BigDecimal value) {
             addCriterion("estimated_earnings <", value, "estimatedEarnings");
             return (Criteria) this;
         }
 
-        public Criteria andEstimatedEarningsLessThanOrEqualTo(Long value) {
+        public Criteria andEstimatedEarningsLessThanOrEqualTo(BigDecimal value) {
             addCriterion("estimated_earnings <=", value, "estimatedEarnings");
             return (Criteria) this;
         }
 
-        public Criteria andEstimatedEarningsIn(List<Long> values) {
+        public Criteria andEstimatedEarningsIn(List<BigDecimal> values) {
             addCriterion("estimated_earnings in", values, "estimatedEarnings");
             return (Criteria) this;
         }
 
-        public Criteria andEstimatedEarningsNotIn(List<Long> values) {
+        public Criteria andEstimatedEarningsNotIn(List<BigDecimal> values) {
             addCriterion("estimated_earnings not in", values, "estimatedEarnings");
             return (Criteria) this;
         }
 
-        public Criteria andEstimatedEarningsBetween(Long value1, Long value2) {
+        public Criteria andEstimatedEarningsBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("estimated_earnings between", value1, value2, "estimatedEarnings");
             return (Criteria) this;
         }
 
-        public Criteria andEstimatedEarningsNotBetween(Long value1, Long value2) {
+        public Criteria andEstimatedEarningsNotBetween(BigDecimal value1, BigDecimal value2) {
             addCriterion("estimated_earnings not between", value1, value2, "estimatedEarnings");
             return (Criteria) this;
         }
@@ -1145,52 +1146,62 @@ public class PersonDocumentExample {
             return (Criteria) this;
         }
 
-        public Criteria andContactPhoneEqualTo(Integer value) {
+        public Criteria andContactPhoneEqualTo(String value) {
             addCriterion("contact_phone =", value, "contactPhone");
             return (Criteria) this;
         }
 
-        public Criteria andContactPhoneNotEqualTo(Integer value) {
+        public Criteria andContactPhoneNotEqualTo(String value) {
             addCriterion("contact_phone <>", value, "contactPhone");
             return (Criteria) this;
         }
 
-        public Criteria andContactPhoneGreaterThan(Integer value) {
+        public Criteria andContactPhoneGreaterThan(String value) {
             addCriterion("contact_phone >", value, "contactPhone");
             return (Criteria) this;
         }
 
-        public Criteria andContactPhoneGreaterThanOrEqualTo(Integer value) {
+        public Criteria andContactPhoneGreaterThanOrEqualTo(String value) {
             addCriterion("contact_phone >=", value, "contactPhone");
             return (Criteria) this;
         }
 
-        public Criteria andContactPhoneLessThan(Integer value) {
+        public Criteria andContactPhoneLessThan(String value) {
             addCriterion("contact_phone <", value, "contactPhone");
             return (Criteria) this;
         }
 
-        public Criteria andContactPhoneLessThanOrEqualTo(Integer value) {
+        public Criteria andContactPhoneLessThanOrEqualTo(String value) {
             addCriterion("contact_phone <=", value, "contactPhone");
             return (Criteria) this;
         }
 
-        public Criteria andContactPhoneIn(List<Integer> values) {
+        public Criteria andContactPhoneLike(String value) {
+            addCriterion("contact_phone like", value, "contactPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andContactPhoneNotLike(String value) {
+            addCriterion("contact_phone not like", value, "contactPhone");
+            return (Criteria) this;
+        }
+
+        public Criteria andContactPhoneIn(List<String> values) {
             addCriterion("contact_phone in", values, "contactPhone");
             return (Criteria) this;
         }
 
-        public Criteria andContactPhoneNotIn(List<Integer> values) {
+        public Criteria andContactPhoneNotIn(List<String> values) {
             addCriterion("contact_phone not in", values, "contactPhone");
             return (Criteria) this;
         }
 
-        public Criteria andContactPhoneBetween(Integer value1, Integer value2) {
+        public Criteria andContactPhoneBetween(String value1, String value2) {
             addCriterion("contact_phone between", value1, value2, "contactPhone");
             return (Criteria) this;
         }
 
-        public Criteria andContactPhoneNotBetween(Integer value1, Integer value2) {
+        public Criteria andContactPhoneNotBetween(String value1, String value2) {
             addCriterion("contact_phone not between", value1, value2, "contactPhone");
             return (Criteria) this;
         }
@@ -1472,6 +1483,186 @@ public class PersonDocumentExample {
 
         public Criteria andInderectRecomandPersonNotBetween(String value1, String value2) {
             addCriterion("inderect_recomand_person not between", value1, value2, "inderectRecomandPerson");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateIsNull() {
+            addCriterion("gmt_create is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateIsNotNull() {
+            addCriterion("gmt_create is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateEqualTo(Date value) {
+            addCriterion("gmt_create =", value, "gmtCreate");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateNotEqualTo(Date value) {
+            addCriterion("gmt_create <>", value, "gmtCreate");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateGreaterThan(Date value) {
+            addCriterion("gmt_create >", value, "gmtCreate");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateGreaterThanOrEqualTo(Date value) {
+            addCriterion("gmt_create >=", value, "gmtCreate");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateLessThan(Date value) {
+            addCriterion("gmt_create <", value, "gmtCreate");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateLessThanOrEqualTo(Date value) {
+            addCriterion("gmt_create <=", value, "gmtCreate");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateIn(List<Date> values) {
+            addCriterion("gmt_create in", values, "gmtCreate");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateNotIn(List<Date> values) {
+            addCriterion("gmt_create not in", values, "gmtCreate");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateBetween(Date value1, Date value2) {
+            addCriterion("gmt_create between", value1, value2, "gmtCreate");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtCreateNotBetween(Date value1, Date value2) {
+            addCriterion("gmt_create not between", value1, value2, "gmtCreate");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtModifyIsNull() {
+            addCriterion("gmt_modify is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtModifyIsNotNull() {
+            addCriterion("gmt_modify is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtModifyEqualTo(Date value) {
+            addCriterion("gmt_modify =", value, "gmtModify");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtModifyNotEqualTo(Date value) {
+            addCriterion("gmt_modify <>", value, "gmtModify");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtModifyGreaterThan(Date value) {
+            addCriterion("gmt_modify >", value, "gmtModify");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtModifyGreaterThanOrEqualTo(Date value) {
+            addCriterion("gmt_modify >=", value, "gmtModify");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtModifyLessThan(Date value) {
+            addCriterion("gmt_modify <", value, "gmtModify");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtModifyLessThanOrEqualTo(Date value) {
+            addCriterion("gmt_modify <=", value, "gmtModify");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtModifyIn(List<Date> values) {
+            addCriterion("gmt_modify in", values, "gmtModify");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtModifyNotIn(List<Date> values) {
+            addCriterion("gmt_modify not in", values, "gmtModify");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtModifyBetween(Date value1, Date value2) {
+            addCriterion("gmt_modify between", value1, value2, "gmtModify");
+            return (Criteria) this;
+        }
+
+        public Criteria andGmtModifyNotBetween(Date value1, Date value2) {
+            addCriterion("gmt_modify not between", value1, value2, "gmtModify");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusIsNull() {
+            addCriterion("status is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusIsNotNull() {
+            addCriterion("status is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusEqualTo(Byte value) {
+            addCriterion("status =", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusNotEqualTo(Byte value) {
+            addCriterion("status <>", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusGreaterThan(Byte value) {
+            addCriterion("status >", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusGreaterThanOrEqualTo(Byte value) {
+            addCriterion("status >=", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusLessThan(Byte value) {
+            addCriterion("status <", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusLessThanOrEqualTo(Byte value) {
+            addCriterion("status <=", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusIn(List<Byte> values) {
+            addCriterion("status in", values, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusNotIn(List<Byte> values) {
+            addCriterion("status not in", values, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusBetween(Byte value1, Byte value2) {
+            addCriterion("status between", value1, value2, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusNotBetween(Byte value1, Byte value2) {
+            addCriterion("status not between", value1, value2, "status");
             return (Criteria) this;
         }
     }

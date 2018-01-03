@@ -40,7 +40,9 @@ public interface PersonDocumentMapper {
         "buy_num, investment_amount, ",
         "estimated_earnings, contact_phone, ",
         "register_email, agent_code, ",
-        "derect_recomand_person, inderect_recomand_person)",
+        "derect_recomand_person, inderect_recomand_person, ",
+        "gmt_create, gmt_modify, ",
+        "status)",
         "values (#{documentCode,jdbcType=VARCHAR}, #{customerName,jdbcType=VARCHAR}, ",
         "#{tradePlatform,jdbcType=VARCHAR}, #{tradeAccount,jdbcType=VARCHAR}, ",
         "#{wheatherGetMoney,jdbcType=TINYINT}, #{getMoneyDate,jdbcType=TIMESTAMP}, ",
@@ -48,9 +50,11 @@ public interface PersonDocumentMapper {
         "#{contractDate,jdbcType=TIMESTAMP}, #{productType,jdbcType=VARCHAR}, ",
         "#{productRate,jdbcType=VARCHAR}, #{serviceDate,jdbcType=TINYINT}, ",
         "#{buyNum,jdbcType=INTEGER}, #{investmentAmount,jdbcType=DECIMAL}, ",
-        "#{estimatedEarnings,jdbcType=DECIMAL}, #{contactPhone,jdbcType=INTEGER}, ",
+        "#{estimatedEarnings,jdbcType=DECIMAL}, #{contactPhone,jdbcType=VARCHAR}, ",
         "#{registerEmail,jdbcType=VARCHAR}, #{agentCode,jdbcType=VARCHAR}, ",
-        "#{derectRecomandPerson,jdbcType=VARCHAR}, #{inderectRecomandPerson,jdbcType=VARCHAR})"
+        "#{derectRecomandPerson,jdbcType=VARCHAR}, #{inderectRecomandPerson,jdbcType=VARCHAR}, ",
+        "#{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModify,jdbcType=TIMESTAMP}, ",
+        "#{status,jdbcType=TINYINT})"
     })
     @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=Integer.class)
     int insert(PersonDocument record);
@@ -77,11 +81,14 @@ public interface PersonDocumentMapper {
         @Result(column="buy_num", property="buyNum", jdbcType=JdbcType.INTEGER),
         @Result(column="investment_amount", property="investmentAmount", jdbcType=JdbcType.DECIMAL),
         @Result(column="estimated_earnings", property="estimatedEarnings", jdbcType=JdbcType.DECIMAL),
-        @Result(column="contact_phone", property="contactPhone", jdbcType=JdbcType.INTEGER),
+        @Result(column="contact_phone", property="contactPhone", jdbcType=JdbcType.VARCHAR),
         @Result(column="register_email", property="registerEmail", jdbcType=JdbcType.VARCHAR),
         @Result(column="agent_code", property="agentCode", jdbcType=JdbcType.VARCHAR),
         @Result(column="derect_recomand_person", property="derectRecomandPerson", jdbcType=JdbcType.VARCHAR),
-        @Result(column="inderect_recomand_person", property="inderectRecomandPerson", jdbcType=JdbcType.VARCHAR)
+        @Result(column="inderect_recomand_person", property="inderectRecomandPerson", jdbcType=JdbcType.VARCHAR),
+        @Result(column="gmt_create", property="gmtCreate", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="gmt_modify", property="gmtModify", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="status", property="status", jdbcType=JdbcType.TINYINT)
     })
     List<PersonDocument> selectByExample(PersonDocumentExample example);
 
@@ -90,7 +97,8 @@ public interface PersonDocumentMapper {
         "id, document_code, customer_name, trade_platform, trade_account, wheather_get_money, ",
         "get_money_date, certificate_type, certificate_number, contract_date, product_type, ",
         "product_rate, service_date, buy_num, investment_amount, estimated_earnings, ",
-        "contact_phone, register_email, agent_code, derect_recomand_person, inderect_recomand_person",
+        "contact_phone, register_email, agent_code, derect_recomand_person, inderect_recomand_person, ",
+        "gmt_create, gmt_modify, status",
         "from person_document",
         "where id = #{id,jdbcType=INTEGER}"
     })
@@ -111,11 +119,14 @@ public interface PersonDocumentMapper {
         @Result(column="buy_num", property="buyNum", jdbcType=JdbcType.INTEGER),
         @Result(column="investment_amount", property="investmentAmount", jdbcType=JdbcType.DECIMAL),
         @Result(column="estimated_earnings", property="estimatedEarnings", jdbcType=JdbcType.DECIMAL),
-        @Result(column="contact_phone", property="contactPhone", jdbcType=JdbcType.INTEGER),
+        @Result(column="contact_phone", property="contactPhone", jdbcType=JdbcType.VARCHAR),
         @Result(column="register_email", property="registerEmail", jdbcType=JdbcType.VARCHAR),
         @Result(column="agent_code", property="agentCode", jdbcType=JdbcType.VARCHAR),
         @Result(column="derect_recomand_person", property="derectRecomandPerson", jdbcType=JdbcType.VARCHAR),
-        @Result(column="inderect_recomand_person", property="inderectRecomandPerson", jdbcType=JdbcType.VARCHAR)
+        @Result(column="inderect_recomand_person", property="inderectRecomandPerson", jdbcType=JdbcType.VARCHAR),
+        @Result(column="gmt_create", property="gmtCreate", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="gmt_modify", property="gmtModify", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="status", property="status", jdbcType=JdbcType.TINYINT)
     })
     PersonDocument selectByPrimaryKey(Integer id);
 
@@ -145,11 +156,14 @@ public interface PersonDocumentMapper {
           "buy_num = #{buyNum,jdbcType=INTEGER},",
           "investment_amount = #{investmentAmount,jdbcType=DECIMAL},",
           "estimated_earnings = #{estimatedEarnings,jdbcType=DECIMAL},",
-          "contact_phone = #{contactPhone,jdbcType=INTEGER},",
+          "contact_phone = #{contactPhone,jdbcType=VARCHAR},",
           "register_email = #{registerEmail,jdbcType=VARCHAR},",
           "agent_code = #{agentCode,jdbcType=VARCHAR},",
           "derect_recomand_person = #{derectRecomandPerson,jdbcType=VARCHAR},",
-          "inderect_recomand_person = #{inderectRecomandPerson,jdbcType=VARCHAR}",
+          "inderect_recomand_person = #{inderectRecomandPerson,jdbcType=VARCHAR},",
+          "gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},",
+          "gmt_modify = #{gmtModify,jdbcType=TIMESTAMP},",
+          "status = #{status,jdbcType=TINYINT}",
         "where id = #{id,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(PersonDocument record);

@@ -89,7 +89,7 @@ public class PersonDocumentSqlProvider {
         }
         
         if (record.getContactPhone() != null) {
-            sql.VALUES("contact_phone", "#{contactPhone,jdbcType=INTEGER}");
+            sql.VALUES("contact_phone", "#{contactPhone,jdbcType=VARCHAR}");
         }
         
         if (record.getRegisterEmail() != null) {
@@ -106,6 +106,18 @@ public class PersonDocumentSqlProvider {
         
         if (record.getInderectRecomandPerson() != null) {
             sql.VALUES("inderect_recomand_person", "#{inderectRecomandPerson,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getGmtCreate() != null) {
+            sql.VALUES("gmt_create", "#{gmtCreate,jdbcType=TIMESTAMP}");
+        }
+        
+        if (record.getGmtModify() != null) {
+            sql.VALUES("gmt_modify", "#{gmtModify,jdbcType=TIMESTAMP}");
+        }
+        
+        if (record.getStatus() != null) {
+            sql.VALUES("status", "#{status,jdbcType=TINYINT}");
         }
         
         return sql.toString();
@@ -138,6 +150,9 @@ public class PersonDocumentSqlProvider {
         sql.SELECT("agent_code");
         sql.SELECT("derect_recomand_person");
         sql.SELECT("inderect_recomand_person");
+        sql.SELECT("gmt_create");
+        sql.SELECT("gmt_modify");
+        sql.SELECT("status");
         sql.FROM("person_document");
         applyWhere(sql, example, false);
         
@@ -220,7 +235,7 @@ public class PersonDocumentSqlProvider {
         }
         
         if (record.getContactPhone() != null) {
-            sql.SET("contact_phone = #{record.contactPhone,jdbcType=INTEGER}");
+            sql.SET("contact_phone = #{record.contactPhone,jdbcType=VARCHAR}");
         }
         
         if (record.getRegisterEmail() != null) {
@@ -237,6 +252,18 @@ public class PersonDocumentSqlProvider {
         
         if (record.getInderectRecomandPerson() != null) {
             sql.SET("inderect_recomand_person = #{record.inderectRecomandPerson,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getGmtCreate() != null) {
+            sql.SET("gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP}");
+        }
+        
+        if (record.getGmtModify() != null) {
+            sql.SET("gmt_modify = #{record.gmtModify,jdbcType=TIMESTAMP}");
+        }
+        
+        if (record.getStatus() != null) {
+            sql.SET("status = #{record.status,jdbcType=TINYINT}");
         }
         
         applyWhere(sql, example, true);
@@ -263,11 +290,14 @@ public class PersonDocumentSqlProvider {
         sql.SET("buy_num = #{record.buyNum,jdbcType=INTEGER}");
         sql.SET("investment_amount = #{record.investmentAmount,jdbcType=DECIMAL}");
         sql.SET("estimated_earnings = #{record.estimatedEarnings,jdbcType=DECIMAL}");
-        sql.SET("contact_phone = #{record.contactPhone,jdbcType=INTEGER}");
+        sql.SET("contact_phone = #{record.contactPhone,jdbcType=VARCHAR}");
         sql.SET("register_email = #{record.registerEmail,jdbcType=VARCHAR}");
         sql.SET("agent_code = #{record.agentCode,jdbcType=VARCHAR}");
         sql.SET("derect_recomand_person = #{record.derectRecomandPerson,jdbcType=VARCHAR}");
         sql.SET("inderect_recomand_person = #{record.inderectRecomandPerson,jdbcType=VARCHAR}");
+        sql.SET("gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP}");
+        sql.SET("gmt_modify = #{record.gmtModify,jdbcType=TIMESTAMP}");
+        sql.SET("status = #{record.status,jdbcType=TINYINT}");
         
         PersonDocumentExample example = (PersonDocumentExample) parameter.get("example");
         applyWhere(sql, example, true);
@@ -339,7 +369,7 @@ public class PersonDocumentSqlProvider {
         }
         
         if (record.getContactPhone() != null) {
-            sql.SET("contact_phone = #{contactPhone,jdbcType=INTEGER}");
+            sql.SET("contact_phone = #{contactPhone,jdbcType=VARCHAR}");
         }
         
         if (record.getRegisterEmail() != null) {
@@ -356,6 +386,18 @@ public class PersonDocumentSqlProvider {
         
         if (record.getInderectRecomandPerson() != null) {
             sql.SET("inderect_recomand_person = #{inderectRecomandPerson,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getGmtCreate() != null) {
+            sql.SET("gmt_create = #{gmtCreate,jdbcType=TIMESTAMP}");
+        }
+        
+        if (record.getGmtModify() != null) {
+            sql.SET("gmt_modify = #{gmtModify,jdbcType=TIMESTAMP}");
+        }
+        
+        if (record.getStatus() != null) {
+            sql.SET("status = #{status,jdbcType=TINYINT}");
         }
         
         sql.WHERE("id = #{id,jdbcType=INTEGER}");

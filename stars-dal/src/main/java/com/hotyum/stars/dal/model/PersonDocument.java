@@ -1,6 +1,7 @@
 package com.hotyum.stars.dal.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class PersonDocument implements Serializable {
@@ -32,11 +33,11 @@ public class PersonDocument implements Serializable {
 
     private Integer buyNum;
 
-    private Long investmentAmount;
+    private BigDecimal investmentAmount;
 
-    private Long estimatedEarnings;
+    private BigDecimal estimatedEarnings;
 
-    private Integer contactPhone;
+    private String contactPhone;
 
     private String registerEmail;
 
@@ -45,6 +46,12 @@ public class PersonDocument implements Serializable {
     private String derectRecomandPerson;
 
     private String inderectRecomandPerson;
+
+    private Date gmtCreate;
+
+    private Date gmtModify;
+
+    private Byte status;
 
     private static final long serialVersionUID = 1L;
 
@@ -160,28 +167,28 @@ public class PersonDocument implements Serializable {
         this.buyNum = buyNum;
     }
 
-    public Long getInvestmentAmount() {
+    public BigDecimal getInvestmentAmount() {
         return investmentAmount;
     }
 
-    public void setInvestmentAmount(Long investmentAmount) {
+    public void setInvestmentAmount(BigDecimal investmentAmount) {
         this.investmentAmount = investmentAmount;
     }
 
-    public Long getEstimatedEarnings() {
+    public BigDecimal getEstimatedEarnings() {
         return estimatedEarnings;
     }
 
-    public void setEstimatedEarnings(Long estimatedEarnings) {
+    public void setEstimatedEarnings(BigDecimal estimatedEarnings) {
         this.estimatedEarnings = estimatedEarnings;
     }
 
-    public Integer getContactPhone() {
+    public String getContactPhone() {
         return contactPhone;
     }
 
-    public void setContactPhone(Integer contactPhone) {
-        this.contactPhone = contactPhone;
+    public void setContactPhone(String contactPhone) {
+        this.contactPhone = contactPhone == null ? null : contactPhone.trim();
     }
 
     public String getRegisterEmail() {
@@ -216,6 +223,30 @@ public class PersonDocument implements Serializable {
         this.inderectRecomandPerson = inderectRecomandPerson == null ? null : inderectRecomandPerson.trim();
     }
 
+    public Date getGmtCreate() {
+        return gmtCreate;
+    }
+
+    public void setGmtCreate(Date gmtCreate) {
+        this.gmtCreate = gmtCreate;
+    }
+
+    public Date getGmtModify() {
+        return gmtModify;
+    }
+
+    public void setGmtModify(Date gmtModify) {
+        this.gmtModify = gmtModify;
+    }
+
+    public Byte getStatus() {
+        return status;
+    }
+
+    public void setStatus(Byte status) {
+        this.status = status;
+    }
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -248,7 +279,10 @@ public class PersonDocument implements Serializable {
             && (this.getRegisterEmail() == null ? other.getRegisterEmail() == null : this.getRegisterEmail().equals(other.getRegisterEmail()))
             && (this.getAgentCode() == null ? other.getAgentCode() == null : this.getAgentCode().equals(other.getAgentCode()))
             && (this.getDerectRecomandPerson() == null ? other.getDerectRecomandPerson() == null : this.getDerectRecomandPerson().equals(other.getDerectRecomandPerson()))
-            && (this.getInderectRecomandPerson() == null ? other.getInderectRecomandPerson() == null : this.getInderectRecomandPerson().equals(other.getInderectRecomandPerson()));
+            && (this.getInderectRecomandPerson() == null ? other.getInderectRecomandPerson() == null : this.getInderectRecomandPerson().equals(other.getInderectRecomandPerson()))
+            && (this.getGmtCreate() == null ? other.getGmtCreate() == null : this.getGmtCreate().equals(other.getGmtCreate()))
+            && (this.getGmtModify() == null ? other.getGmtModify() == null : this.getGmtModify().equals(other.getGmtModify()))
+            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()));
     }
 
     @Override
@@ -276,6 +310,9 @@ public class PersonDocument implements Serializable {
         result = prime * result + ((getAgentCode() == null) ? 0 : getAgentCode().hashCode());
         result = prime * result + ((getDerectRecomandPerson() == null) ? 0 : getDerectRecomandPerson().hashCode());
         result = prime * result + ((getInderectRecomandPerson() == null) ? 0 : getInderectRecomandPerson().hashCode());
+        result = prime * result + ((getGmtCreate() == null) ? 0 : getGmtCreate().hashCode());
+        result = prime * result + ((getGmtModify() == null) ? 0 : getGmtModify().hashCode());
+        result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
         return result;
     }
 }
