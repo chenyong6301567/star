@@ -11,7 +11,7 @@ public class MyReferralInformation implements Serializable {
 
     private String userName;
 
-    private Byte starDegree;
+    private String starDegree;
 
     private BigDecimal sumMoney;
 
@@ -55,12 +55,12 @@ public class MyReferralInformation implements Serializable {
         this.userName = userName == null ? null : userName.trim();
     }
 
-    public Byte getStarDegree() {
+    public String getStarDegree() {
         return starDegree;
     }
 
-    public void setStarDegree(Byte starDegree) {
-        this.starDegree = starDegree;
+    public void setStarDegree(String starDegree) {
+        this.starDegree = starDegree == null ? null : starDegree.trim();
     }
 
     public BigDecimal getSumMoney() {

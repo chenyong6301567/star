@@ -1,5 +1,6 @@
 package com.hotyum.stars.biz.manager;
 
+import com.hotyum.stars.biz.model.UserBaseInfoVO;
 import com.hotyum.stars.dal.model.User;
 
 /**
@@ -21,5 +22,18 @@ public interface ReferralInformationManager {
 	* @throws:
 	*/
 	void saveReferalInfomation(User refereUser, Byte type);
+
+	/**
+	* @Title getReferInfomation
+	* @author cy
+	* @Description 
+	* @date 2018年1月4日下午3:03:29
+	* @param 
+	* @param 
+	* @param 
+	* @return void
+	* @throws:
+	*/
+	void getReferInfomation(UserBaseInfoVO userBaseInfoVO);
 
 }

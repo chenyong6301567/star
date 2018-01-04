@@ -1,6 +1,7 @@
 package com.hotyum.stars.biz.model;
 
 import java.io.Serializable;
+import java.util.List;
 
 /**
  * @author cy
@@ -43,6 +44,12 @@ public class UserBaseInfoVO implements Serializable {
 	private String certificateBack;
 
 	private String addressPic;
+
+	private MyReferinfoMationVO myReferinfoMationVO;
+
+	private List<DerectCustomerReferInfoMationVO> derectCustomerReferInfoMationVOList;
+
+	private List<InDerectCustomerReferInfoMationVO> inDerectCustomerReferInfoMationVOList;
 
 	public Integer getId() {
 		return id;
@@ -178,6 +185,32 @@ public class UserBaseInfoVO implements Serializable {
 
 	public void setAddressPic(String addressPic) {
 		this.addressPic = addressPic;
+	}
+
+	public MyReferinfoMationVO getMyReferinfoMationVO() {
+		return myReferinfoMationVO;
+	}
+
+	public void setMyReferinfoMationVO(MyReferinfoMationVO myReferinfoMationVO) {
+		this.myReferinfoMationVO = myReferinfoMationVO;
+	}
+
+	public List<DerectCustomerReferInfoMationVO> getDerectCustomerReferInfoMationVOList() {
+		return derectCustomerReferInfoMationVOList;
+	}
+
+	public void setDerectCustomerReferInfoMationVOList(
+			List<DerectCustomerReferInfoMationVO> derectCustomerReferInfoMationVOList) {
+		this.derectCustomerReferInfoMationVOList = derectCustomerReferInfoMationVOList;
+	}
+
+	public List<InDerectCustomerReferInfoMationVO> getInDerectCustomerReferInfoMationVOList() {
+		return inDerectCustomerReferInfoMationVOList;
+	}
+
+	public void setInDerectCustomerReferInfoMationVOList(
+			List<InDerectCustomerReferInfoMationVO> inDerectCustomerReferInfoMationVOList) {
+		this.inDerectCustomerReferInfoMationVOList = inDerectCustomerReferInfoMationVOList;
 	}
 
 }

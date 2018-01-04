@@ -1,5 +1,6 @@
 package com.hotyum.stars.biz.manager.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -15,9 +16,14 @@ import org.springframework.transaction.annotation.Transactional;
 import com.alibaba.dubbo.common.utils.CollectionUtils;
 import com.croky.lang.Status;
 import com.hotyum.stars.biz.manager.ReferralInformationManager;
+import com.hotyum.stars.biz.model.DerectCustomerReferInfoMationVO;
+import com.hotyum.stars.biz.model.InDerectCustomerReferInfoMationVO;
+import com.hotyum.stars.biz.model.MyReferinfoMationVO;
+import com.hotyum.stars.biz.model.UserBaseInfoVO;
 import com.hotyum.stars.dal.dao.CustomerReferralInformationDAO;
 import com.hotyum.stars.dal.dao.MyReferralInformationDAO;
 import com.hotyum.stars.dal.model.CustomerReferralInformation;
+import com.hotyum.stars.dal.model.CustomerReferralInformationExample;
 import com.hotyum.stars.dal.model.MyReferralInformation;
 import com.hotyum.stars.dal.model.MyReferralInformationExample;
 import com.hotyum.stars.dal.model.User;
@@ -39,6 +45,8 @@ public class ReferralInformationManagerImpl implements ReferralInformationManage
 	private MyReferralInformationDAO myReferralInformationDAO;
 
 	private static final String[] RATES = { "1%", "1.2%", "1.5%" };
+
+	private static final String[] STARDEGREE = { "1星", "2星", "3星" };
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ReferralInformationManagerImpl.class);
 
@@ -102,6 +110,7 @@ public class ReferralInformationManagerImpl implements ReferralInformationManage
 				// 直接客户
 				myReferralInformation.setDirectReferralNumber(1);
 				myReferralInformation.setDirectRewardRate(RATES[0]);
+				myReferralInformation.setStarDegree(STARDEGREE[0]);
 			} else {
 				myReferralInformation.setIndirectReferralNumber(1);
 			}
@@ -119,8 +128,10 @@ public class ReferralInformationManagerImpl implements ReferralInformationManage
 				info.setDirectReferralNumber(num);
 				if (5 <= num && num <= 10) {
 					info.setDirectRewardRate(RATES[1]);
+					info.setStarDegree(STARDEGREE[1]);
 				} else if (num > 10) {
 					info.setDirectRewardRate(RATES[2]);
+					info.setStarDegree(STARDEGREE[2]);
 				}
 			} else {
 				info.setIndirectReferralNumber(info.getIndirectReferralNumber() + 1);
@@ -160,6 +171,112 @@ public class ReferralInformationManagerImpl implements ReferralInformationManage
 			LOGGER.error("saveReferalInfomation失败====", e);
 			throw new RuntimeException("内部服务器错误");
 		}
+	}
+
+	/**
+	* @Title:getReferInfomation
+	* @author:cy
+	* @Description 
+	* @date:2018年1月4日下午3:03:42
+	* @param 
+	* @param 
+	* @param 
+	* @return 
+	* @throws:
+	*/
+	@Override
+	public void getReferInfomation(UserBaseInfoVO userBaseInfoVO) {
+		MyReferralInformation myReferralInformation = getMyInfo(userBaseInfoVO.getId());
+		if (null != myReferralInformation) {
+			MyReferinfoMationVO myinfoVo = new MyReferinfoMationVO();
+			myinfoVo.setDirectRewardRate(myReferralInformation.getDirectRewardRate());
+			myinfoVo.setIndirectRewardRate(myReferralInformation.getIndirectRewardRate());
+			myinfoVo.setStarDegree(myReferralInformation.getStarDegree());
+			if (null != myReferralInformation.getSumMoney()) {
+				myinfoVo.setSumMoney(myReferralInformation.getSumMoney().doubleValue());
+			}
+			userBaseInfoVO.setMyReferinfoMationVO(myinfoVo);
+		}
+
+		userBaseInfoVO
+				.setDerectCustomerReferInfoMationVOList(getDerectCustomerReferInfoMationVOList(userBaseInfoVO.getId()));
+		userBaseInfoVO.setInDerectCustomerReferInfoMationVOList(
+				getInDerectCustomerReferInfoMationVOList(userBaseInfoVO.getId()));
+	}
+
+	/**
+	* @Title getInDerectCustomerReferInfoMationVOList
+	* @author cy
+	* @Description 
+	* @date 2018年1月4日下午3:11:46
+	* @param 
+	* @param 
+	* @param 
+	* @return List<InDerectCustomerReferInfoMationVO>
+	* @throws:
+	*/
+	private List<InDerectCustomerReferInfoMationVO> getInDerectCustomerReferInfoMationVOList(Integer usId) {
+		CustomerReferralInformationExample example = new CustomerReferralInformationExample();
+		CustomerReferralInformationExample.Criteria criteria = example.createCriteria();
+		criteria.andIndirectRecommendationIdEqualTo(usId);
+		criteria.andStatusGreaterThanOrEqualTo(Status.ZERO.getValue());
+		List<CustomerReferralInformation> infoList = null;
+		try {
+			infoList = customerReferralInformationDAO.selectByExample(example);
+		} catch (DataAccessException e) {
+			LOGGER.error("getInDerectCustomerReferInfoMationVOList失败====", e);
+			throw new RuntimeException("内部服务器错误");
+		}
+		if (org.springframework.util.CollectionUtils.isEmpty(infoList)) {
+			return null;
+		}
+		List<InDerectCustomerReferInfoMationVO> voList = new ArrayList<InDerectCustomerReferInfoMationVO>(
+				infoList.size());
+		for (CustomerReferralInformation cus : infoList) {
+			InDerectCustomerReferInfoMationVO vo = new InDerectCustomerReferInfoMationVO();
+			vo.setId(cus.getId());
+			vo.setContractNum(cus.getContractNum());
+			vo.setIndirectRecommendationName(cus.getIndirectRecommendationName());
+			voList.add(vo);
+		}
+		return voList;
+	}
+
+	/**
+	* @Title getDerectCustomerReferInfoMationVOList
+	* @author cy
+	* @Description 
+	* @date 2018年1月4日下午3:11:43
+	* @param 
+	* @param 
+	* @param 
+	* @return List<DerectCustomerReferInfoMationVO>
+	* @throws:
+	*/
+	private List<DerectCustomerReferInfoMationVO> getDerectCustomerReferInfoMationVOList(Integer usId) {
+		CustomerReferralInformationExample example = new CustomerReferralInformationExample();
+		CustomerReferralInformationExample.Criteria criteria = example.createCriteria();
+		criteria.andDirectRecommendationIdEqualTo(usId);
+		criteria.andStatusGreaterThanOrEqualTo(Status.ZERO.getValue());
+		List<CustomerReferralInformation> infoList = null;
+		try {
+			infoList = customerReferralInformationDAO.selectByExample(example);
+		} catch (DataAccessException e) {
+			LOGGER.error("getDerectCustomerReferInfoMationVOList失败====", e);
+			throw new RuntimeException("内部服务器错误");
+		}
+		if (org.springframework.util.CollectionUtils.isEmpty(infoList)) {
+			return null;
+		}
+		List<DerectCustomerReferInfoMationVO> voList = new ArrayList<DerectCustomerReferInfoMationVO>(infoList.size());
+		for (CustomerReferralInformation cus : infoList) {
+			DerectCustomerReferInfoMationVO vo = new DerectCustomerReferInfoMationVO();
+			vo.setId(cus.getId());
+			vo.setContractNum(cus.getContractNum());
+			vo.setDirectRecommendationName(cus.getDirectRecommendationName());
+			voList.add(vo);
+		}
+		return voList;
 	}
 
 }

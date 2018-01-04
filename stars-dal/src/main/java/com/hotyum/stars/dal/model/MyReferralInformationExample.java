@@ -306,52 +306,62 @@ public class MyReferralInformationExample {
             return (Criteria) this;
         }
 
-        public Criteria andStarDegreeEqualTo(Byte value) {
+        public Criteria andStarDegreeEqualTo(String value) {
             addCriterion("star_degree =", value, "starDegree");
             return (Criteria) this;
         }
 
-        public Criteria andStarDegreeNotEqualTo(Byte value) {
+        public Criteria andStarDegreeNotEqualTo(String value) {
             addCriterion("star_degree <>", value, "starDegree");
             return (Criteria) this;
         }
 
-        public Criteria andStarDegreeGreaterThan(Byte value) {
+        public Criteria andStarDegreeGreaterThan(String value) {
             addCriterion("star_degree >", value, "starDegree");
             return (Criteria) this;
         }
 
-        public Criteria andStarDegreeGreaterThanOrEqualTo(Byte value) {
+        public Criteria andStarDegreeGreaterThanOrEqualTo(String value) {
             addCriterion("star_degree >=", value, "starDegree");
             return (Criteria) this;
         }
 
-        public Criteria andStarDegreeLessThan(Byte value) {
+        public Criteria andStarDegreeLessThan(String value) {
             addCriterion("star_degree <", value, "starDegree");
             return (Criteria) this;
         }
 
-        public Criteria andStarDegreeLessThanOrEqualTo(Byte value) {
+        public Criteria andStarDegreeLessThanOrEqualTo(String value) {
             addCriterion("star_degree <=", value, "starDegree");
             return (Criteria) this;
         }
 
-        public Criteria andStarDegreeIn(List<Byte> values) {
+        public Criteria andStarDegreeLike(String value) {
+            addCriterion("star_degree like", value, "starDegree");
+            return (Criteria) this;
+        }
+
+        public Criteria andStarDegreeNotLike(String value) {
+            addCriterion("star_degree not like", value, "starDegree");
+            return (Criteria) this;
+        }
+
+        public Criteria andStarDegreeIn(List<String> values) {
             addCriterion("star_degree in", values, "starDegree");
             return (Criteria) this;
         }
 
-        public Criteria andStarDegreeNotIn(List<Byte> values) {
+        public Criteria andStarDegreeNotIn(List<String> values) {
             addCriterion("star_degree not in", values, "starDegree");
             return (Criteria) this;
         }
 
-        public Criteria andStarDegreeBetween(Byte value1, Byte value2) {
+        public Criteria andStarDegreeBetween(String value1, String value2) {
             addCriterion("star_degree between", value1, value2, "starDegree");
             return (Criteria) this;
         }
 
-        public Criteria andStarDegreeNotBetween(Byte value1, Byte value2) {
+        public Criteria andStarDegreeNotBetween(String value1, String value2) {
             addCriterion("star_degree not between", value1, value2, "starDegree");
             return (Criteria) this;
         }

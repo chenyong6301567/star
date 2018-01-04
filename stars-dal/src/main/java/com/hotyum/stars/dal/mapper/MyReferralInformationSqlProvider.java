@@ -37,7 +37,7 @@ public class MyReferralInformationSqlProvider {
         }
         
         if (record.getStarDegree() != null) {
-            sql.VALUES("star_degree", "#{starDegree,jdbcType=TINYINT}");
+            sql.VALUES("star_degree", "#{starDegree,jdbcType=VARCHAR}");
         }
         
         if (record.getSumMoney() != null) {
@@ -123,7 +123,7 @@ public class MyReferralInformationSqlProvider {
         }
         
         if (record.getStarDegree() != null) {
-            sql.SET("star_degree = #{record.starDegree,jdbcType=TINYINT}");
+            sql.SET("star_degree = #{record.starDegree,jdbcType=VARCHAR}");
         }
         
         if (record.getSumMoney() != null) {
@@ -169,7 +169,7 @@ public class MyReferralInformationSqlProvider {
         sql.SET("id = #{record.id,jdbcType=INTEGER}");
         sql.SET("us_id = #{record.usId,jdbcType=INTEGER}");
         sql.SET("user_name = #{record.userName,jdbcType=VARCHAR}");
-        sql.SET("star_degree = #{record.starDegree,jdbcType=TINYINT}");
+        sql.SET("star_degree = #{record.starDegree,jdbcType=VARCHAR}");
         sql.SET("sum_money = #{record.sumMoney,jdbcType=DECIMAL}");
         sql.SET("direct_reward_rate = #{record.directRewardRate,jdbcType=VARCHAR}");
         sql.SET("indirect_reward_rate = #{record.indirectRewardRate,jdbcType=VARCHAR}");
@@ -197,7 +197,7 @@ public class MyReferralInformationSqlProvider {
         }
         
         if (record.getStarDegree() != null) {
-            sql.SET("star_degree = #{starDegree,jdbcType=TINYINT}");
+            sql.SET("star_degree = #{starDegree,jdbcType=VARCHAR}");
         }
         
         if (record.getSumMoney() != null) {
