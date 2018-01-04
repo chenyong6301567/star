@@ -17,6 +17,7 @@ import org.springframework.util.CollectionUtils;
 
 import com.croky.util.ObjectUtils;
 import com.github.pagehelper.PageHelper;
+import com.hotyum.stars.biz.manager.ReferralInformationManager;
 import com.hotyum.stars.biz.manager.RegisterNoticeManager;
 import com.hotyum.stars.biz.manager.SmsManager;
 import com.hotyum.stars.biz.manager.SysUserRoleManager;
@@ -62,6 +63,9 @@ public class UserManagerImpl implements UserManager {
 
 	@Autowired
 	private RegisterNoticeManager registerNoticeManager;
+
+	@Autowired
+	private ReferralInformationManager referralInformationManager;
 
 	private static final String DERECTMESSAGE = "您的直推客户{0}成功注册了系统，请您悉知。";
 
@@ -176,6 +180,10 @@ public class UserManagerImpl implements UserManager {
 
 			// 直接推荐人
 			newUser.setDirectRecommendationAccount(refereePhone);
+
+			// 入库直接推荐人的推荐信息
+			referralInformationManager.saveReferalInfomation(refereUser, RefereeType.DERECT.getValue());
+
 			// 直接推荐人的推荐人就是间接推荐人,要查询间接推荐人是否存在
 			if (StringUtils.isNotEmpty(refereUser.getDirectRecommendationAccount())) {
 				User indirectUser = getUserByPhone(refereUser.getDirectRecommendationAccount());
@@ -184,6 +192,7 @@ public class UserManagerImpl implements UserManager {
 					newUser.setIndirectRecommendationAccount(refereUser.getDirectRecommendationAccount());
 					registerNoticeManager.insert(refereUser.getId(), refereePhone, RefereeType.DERECT.getValue(),
 							String.format(INDERECTMESSAGE, refereUser.getRealName()));
+					referralInformationManager.saveReferalInfomation(indirectUser, RefereeType.INDERECT.getValue());
 				}
 			}
 		}
