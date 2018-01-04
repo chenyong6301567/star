@@ -8,7 +8,7 @@ public class SystemNotice implements Serializable {
 
     private Byte toType;
 
-    private String sysType;
+    private Byte sysType;
 
     private String noticeContent;
 
@@ -36,12 +36,12 @@ public class SystemNotice implements Serializable {
         this.toType = toType;
     }
 
-    public String getSysType() {
+    public Byte getSysType() {
         return sysType;
     }
 
-    public void setSysType(String sysType) {
-        this.sysType = sysType == null ? null : sysType.trim();
+    public void setSysType(Byte sysType) {
+        this.sysType = sysType;
     }
 
     public String getNoticeContent() {

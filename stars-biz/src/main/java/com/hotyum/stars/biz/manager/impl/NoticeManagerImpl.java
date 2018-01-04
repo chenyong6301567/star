@@ -30,7 +30,7 @@ import com.hotyum.stars.utils.enums.Status;
 public class NoticeManagerImpl implements NoticeManager {
 
 	@Autowired
-	private NoticeDAO registerNoticeDAO;
+	private NoticeDAO noticeDAO;
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(NoticeManagerImpl.class);
 
@@ -58,7 +58,7 @@ public class NoticeManagerImpl implements NoticeManager {
 		notice.setNoticeContent(content);
 		notice.setRead(Status.ZERO.getValue());
 		try {
-			registerNoticeDAO.insert(notice);
+			noticeDAO.insert(notice);
 		} catch (DataAccessException e) {
 			LOGGER.error("insert失败====", e);
 			throw new RuntimeException("内部服务器错误");
@@ -83,11 +83,12 @@ public class NoticeManagerImpl implements NoticeManager {
 		NoticeExample.Criteria criteria = noticeExample.createCriteria();
 		criteria.andUserIdEqualTo(userId);
 		criteria.andStatusGreaterThan(Status.ZERO.getValue());
+		criteria.andReadEqualTo(Status.ZERO.getValue());
 		List<Notice> noticeList = null;
 		try {
-			noticeList = registerNoticeDAO.selectByExample(noticeExample);
+			noticeList = noticeDAO.selectByExample(noticeExample);
 		} catch (DataAccessException e) {
-			LOGGER.error("getRegisterNoticeByUserId失败====", e);
+			LOGGER.error("getNoticeByUserId失败====", e);
 			throw new RuntimeException("内部服务器错误");
 		}
 		return PoTOVo(noticeList);
@@ -112,6 +113,9 @@ public class NoticeManagerImpl implements NoticeManager {
 			vo.setId(notice.getId());
 			vo.setNoticeContent(notice.getNoticeContent());
 			voList.add(vo);
+			// 设置为已经读取状态
+			notice.setRead(Status.INVALID.getValue());
+			noticeDAO.updateByPrimaryKey(notice);
 		}
 		return voList;
 	}
@@ -134,7 +138,7 @@ public class NoticeManagerImpl implements NoticeManager {
 		criteria.andUserIdEqualTo(userId);
 		criteria.andStatusGreaterThan(Status.ZERO.getValue());
 		try {
-			return registerNoticeDAO.countByExample(noticeExample);
+			return noticeDAO.countByExample(noticeExample);
 		} catch (DataAccessException e) {
 			LOGGER.error("getMyNoticeCount失败====", e);
 			throw new RuntimeException("内部服务器错误");

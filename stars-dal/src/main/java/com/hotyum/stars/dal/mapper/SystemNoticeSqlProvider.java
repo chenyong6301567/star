@@ -33,7 +33,7 @@ public class SystemNoticeSqlProvider {
         }
         
         if (record.getSysType() != null) {
-            sql.VALUES("sys_type", "#{sysType,jdbcType=VARCHAR}");
+            sql.VALUES("sys_type", "#{sysType,jdbcType=TINYINT}");
         }
         
         if (record.getNoticeContent() != null) {
@@ -94,7 +94,7 @@ public class SystemNoticeSqlProvider {
         }
         
         if (record.getSysType() != null) {
-            sql.SET("sys_type = #{record.sysType,jdbcType=VARCHAR}");
+            sql.SET("sys_type = #{record.sysType,jdbcType=TINYINT}");
         }
         
         if (record.getNoticeContent() != null) {
@@ -123,7 +123,7 @@ public class SystemNoticeSqlProvider {
         
         sql.SET("id = #{record.id,jdbcType=INTEGER}");
         sql.SET("to_type = #{record.toType,jdbcType=TINYINT}");
-        sql.SET("sys_type = #{record.sysType,jdbcType=VARCHAR}");
+        sql.SET("sys_type = #{record.sysType,jdbcType=TINYINT}");
         sql.SET("notice_content = #{record.noticeContent,jdbcType=VARCHAR}");
         sql.SET("gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP}");
         sql.SET("gmt_modify = #{record.gmtModify,jdbcType=TIMESTAMP}");
@@ -143,7 +143,7 @@ public class SystemNoticeSqlProvider {
         }
         
         if (record.getSysType() != null) {
-            sql.SET("sys_type = #{sysType,jdbcType=VARCHAR}");
+            sql.SET("sys_type = #{sysType,jdbcType=TINYINT}");
         }
         
         if (record.getNoticeContent() != null) {

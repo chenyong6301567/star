@@ -34,7 +34,7 @@ public interface SystemNoticeMapper {
         "insert into system_notice (to_type, sys_type, ",
         "notice_content, gmt_create, ",
         "gmt_modify, status)",
-        "values (#{toType,jdbcType=TINYINT}, #{sysType,jdbcType=VARCHAR}, ",
+        "values (#{toType,jdbcType=TINYINT}, #{sysType,jdbcType=TINYINT}, ",
         "#{noticeContent,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, ",
         "#{gmtModify,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT})"
     })
@@ -49,7 +49,7 @@ public interface SystemNoticeMapper {
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
         @Result(column="to_type", property="toType", jdbcType=JdbcType.TINYINT),
-        @Result(column="sys_type", property="sysType", jdbcType=JdbcType.VARCHAR),
+        @Result(column="sys_type", property="sysType", jdbcType=JdbcType.TINYINT),
         @Result(column="notice_content", property="noticeContent", jdbcType=JdbcType.VARCHAR),
         @Result(column="gmt_create", property="gmtCreate", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="gmt_modify", property="gmtModify", jdbcType=JdbcType.TIMESTAMP),
@@ -66,7 +66,7 @@ public interface SystemNoticeMapper {
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
         @Result(column="to_type", property="toType", jdbcType=JdbcType.TINYINT),
-        @Result(column="sys_type", property="sysType", jdbcType=JdbcType.VARCHAR),
+        @Result(column="sys_type", property="sysType", jdbcType=JdbcType.TINYINT),
         @Result(column="notice_content", property="noticeContent", jdbcType=JdbcType.VARCHAR),
         @Result(column="gmt_create", property="gmtCreate", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="gmt_modify", property="gmtModify", jdbcType=JdbcType.TIMESTAMP),
@@ -86,7 +86,7 @@ public interface SystemNoticeMapper {
     @Update({
         "update system_notice",
         "set to_type = #{toType,jdbcType=TINYINT},",
-          "sys_type = #{sysType,jdbcType=VARCHAR},",
+          "sys_type = #{sysType,jdbcType=TINYINT},",
           "notice_content = #{noticeContent,jdbcType=VARCHAR},",
           "gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},",
           "gmt_modify = #{gmtModify,jdbcType=TIMESTAMP},",

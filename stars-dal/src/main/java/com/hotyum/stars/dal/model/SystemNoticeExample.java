@@ -235,62 +235,52 @@ public class SystemNoticeExample {
             return (Criteria) this;
         }
 
-        public Criteria andSysTypeEqualTo(String value) {
+        public Criteria andSysTypeEqualTo(Byte value) {
             addCriterion("sys_type =", value, "sysType");
             return (Criteria) this;
         }
 
-        public Criteria andSysTypeNotEqualTo(String value) {
+        public Criteria andSysTypeNotEqualTo(Byte value) {
             addCriterion("sys_type <>", value, "sysType");
             return (Criteria) this;
         }
 
-        public Criteria andSysTypeGreaterThan(String value) {
+        public Criteria andSysTypeGreaterThan(Byte value) {
             addCriterion("sys_type >", value, "sysType");
             return (Criteria) this;
         }
 
-        public Criteria andSysTypeGreaterThanOrEqualTo(String value) {
+        public Criteria andSysTypeGreaterThanOrEqualTo(Byte value) {
             addCriterion("sys_type >=", value, "sysType");
             return (Criteria) this;
         }
 
-        public Criteria andSysTypeLessThan(String value) {
+        public Criteria andSysTypeLessThan(Byte value) {
             addCriterion("sys_type <", value, "sysType");
             return (Criteria) this;
         }
 
-        public Criteria andSysTypeLessThanOrEqualTo(String value) {
+        public Criteria andSysTypeLessThanOrEqualTo(Byte value) {
             addCriterion("sys_type <=", value, "sysType");
             return (Criteria) this;
         }
 
-        public Criteria andSysTypeLike(String value) {
-            addCriterion("sys_type like", value, "sysType");
-            return (Criteria) this;
-        }
-
-        public Criteria andSysTypeNotLike(String value) {
-            addCriterion("sys_type not like", value, "sysType");
-            return (Criteria) this;
-        }
-
-        public Criteria andSysTypeIn(List<String> values) {
+        public Criteria andSysTypeIn(List<Byte> values) {
             addCriterion("sys_type in", values, "sysType");
             return (Criteria) this;
         }
 
-        public Criteria andSysTypeNotIn(List<String> values) {
+        public Criteria andSysTypeNotIn(List<Byte> values) {
             addCriterion("sys_type not in", values, "sysType");
             return (Criteria) this;
         }
 
-        public Criteria andSysTypeBetween(String value1, String value2) {
+        public Criteria andSysTypeBetween(Byte value1, Byte value2) {
             addCriterion("sys_type between", value1, value2, "sysType");
             return (Criteria) this;
         }
 
-        public Criteria andSysTypeNotBetween(String value1, String value2) {
+        public Criteria andSysTypeNotBetween(Byte value1, Byte value2) {
             addCriterion("sys_type not between", value1, value2, "sysType");
             return (Criteria) this;
         }
