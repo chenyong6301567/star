@@ -56,6 +56,10 @@ public class SmsSqlProvider {
             sql.VALUES("type", "#{type,jdbcType=TINYINT}");
         }
         
+        if (record.getEndDate() != null) {
+            sql.VALUES("end_date", "#{endDate,jdbcType=TIMESTAMP}");
+        }
+        
         return sql.toString();
     }
 
@@ -73,6 +77,7 @@ public class SmsSqlProvider {
         sql.SELECT("status");
         sql.SELECT("content");
         sql.SELECT("type");
+        sql.SELECT("end_date");
         sql.FROM("sms");
         applyWhere(sql, example, false);
         
@@ -122,6 +127,10 @@ public class SmsSqlProvider {
             sql.SET("type = #{record.type,jdbcType=TINYINT}");
         }
         
+        if (record.getEndDate() != null) {
+            sql.SET("end_date = #{record.endDate,jdbcType=TIMESTAMP}");
+        }
+        
         applyWhere(sql, example, true);
         return sql.toString();
     }
@@ -138,6 +147,7 @@ public class SmsSqlProvider {
         sql.SET("status = #{record.status,jdbcType=TINYINT}");
         sql.SET("content = #{record.content,jdbcType=VARCHAR}");
         sql.SET("type = #{record.type,jdbcType=TINYINT}");
+        sql.SET("end_date = #{record.endDate,jdbcType=TIMESTAMP}");
         
         SmsExample example = (SmsExample) parameter.get("example");
         applyWhere(sql, example, true);
@@ -174,6 +184,10 @@ public class SmsSqlProvider {
         
         if (record.getType() != null) {
             sql.SET("type = #{type,jdbcType=TINYINT}");
+        }
+        
+        if (record.getEndDate() != null) {
+            sql.SET("end_date = #{endDate,jdbcType=TIMESTAMP}");
         }
         
         sql.WHERE("id = #{id,jdbcType=INTEGER}");

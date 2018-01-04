@@ -72,7 +72,8 @@ public class SmsManagerImpl implements SmsManager {
 		criteria.andTypeEqualTo(type);
 		criteria.andStatusGreaterThanOrEqualTo(Status.ZERO.getValue());
 		Date nowDate = new Date();
-		criteria.andGmtCreateBetween(DateUtil.addSeconds(nowDate, -600), nowDate);// 短信十分钟有效
+		//criteria.andGmtCreateBetween(DateUtil.addSeconds(nowDate, -900), nowDate);// 短信15分钟有效
+		criteria.andEndDateGreaterThanOrEqualTo(nowDate);
 		try {
 			List<Sms> smsList = smsDAO.selectByExample(smsExample);
 			return CollectionUtils.isEmpty(smsList) ? null : smsList.get(0);
@@ -103,6 +104,7 @@ public class SmsManagerImpl implements SmsManager {
 		sms.setGmtModify(new Date());
 		sms.setPhone(Integer.valueOf(phone));
 		sms.setStatus(Status.ZERO.getValue());
+		sms.setEndDate(DateUtil.addSeconds(new Date(), 900));
 		sms.setType(type);
 		try {
 			smsDAO.insert(sms);

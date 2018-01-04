@@ -34,11 +34,11 @@ public interface SmsMapper {
         "insert into sms (phone, code, ",
         "gmt_create, gmt_modify, ",
         "status, content, ",
-        "type)",
+        "type, end_date)",
         "values (#{phone,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, ",
         "#{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModify,jdbcType=TIMESTAMP}, ",
         "#{status,jdbcType=TINYINT}, #{content,jdbcType=VARCHAR}, ",
-        "#{type,jdbcType=TINYINT})"
+        "#{type,jdbcType=TINYINT}, #{endDate,jdbcType=TIMESTAMP})"
     })
     @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=Integer.class)
     int insert(Sms record);
@@ -56,13 +56,14 @@ public interface SmsMapper {
         @Result(column="gmt_modify", property="gmtModify", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="status", property="status", jdbcType=JdbcType.TINYINT),
         @Result(column="content", property="content", jdbcType=JdbcType.VARCHAR),
-        @Result(column="type", property="type", jdbcType=JdbcType.TINYINT)
+        @Result(column="type", property="type", jdbcType=JdbcType.TINYINT),
+        @Result(column="end_date", property="endDate", jdbcType=JdbcType.TIMESTAMP)
     })
     List<Sms> selectByExample(SmsExample example);
 
     @Select({
         "select",
-        "id, phone, code, gmt_create, gmt_modify, status, content, type",
+        "id, phone, code, gmt_create, gmt_modify, status, content, type, end_date",
         "from sms",
         "where id = #{id,jdbcType=INTEGER}"
     })
@@ -74,7 +75,8 @@ public interface SmsMapper {
         @Result(column="gmt_modify", property="gmtModify", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="status", property="status", jdbcType=JdbcType.TINYINT),
         @Result(column="content", property="content", jdbcType=JdbcType.VARCHAR),
-        @Result(column="type", property="type", jdbcType=JdbcType.TINYINT)
+        @Result(column="type", property="type", jdbcType=JdbcType.TINYINT),
+        @Result(column="end_date", property="endDate", jdbcType=JdbcType.TIMESTAMP)
     })
     Sms selectByPrimaryKey(Integer id);
 
@@ -95,7 +97,8 @@ public interface SmsMapper {
           "gmt_modify = #{gmtModify,jdbcType=TIMESTAMP},",
           "status = #{status,jdbcType=TINYINT},",
           "content = #{content,jdbcType=VARCHAR},",
-          "type = #{type,jdbcType=TINYINT}",
+          "type = #{type,jdbcType=TINYINT},",
+          "end_date = #{endDate,jdbcType=TIMESTAMP}",
         "where id = #{id,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(Sms record);
