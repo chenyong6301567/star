@@ -7,7 +7,7 @@ import java.io.Serializable;
  * @Description 
  * @date 2018年1月1日下午1:49:31 
  */
-public class RegisterNoticeVO implements Serializable {
+public class NoticeVO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Integer id;

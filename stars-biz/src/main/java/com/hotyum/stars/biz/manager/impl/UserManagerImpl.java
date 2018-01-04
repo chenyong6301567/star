@@ -18,7 +18,7 @@ import org.springframework.util.CollectionUtils;
 import com.croky.util.ObjectUtils;
 import com.github.pagehelper.PageHelper;
 import com.hotyum.stars.biz.manager.ReferralInformationManager;
-import com.hotyum.stars.biz.manager.RegisterNoticeManager;
+import com.hotyum.stars.biz.manager.NoticeManager;
 import com.hotyum.stars.biz.manager.SmsManager;
 import com.hotyum.stars.biz.manager.SysUserRoleManager;
 import com.hotyum.stars.biz.manager.TokenAccessManager;
@@ -34,6 +34,7 @@ import com.hotyum.stars.utils.Assert;
 import com.hotyum.stars.utils.DateUtil;
 import com.hotyum.stars.utils.Page;
 import com.hotyum.stars.utils.enums.LoginType;
+import com.hotyum.stars.utils.enums.NoticeType;
 import com.hotyum.stars.utils.enums.PicType;
 import com.hotyum.stars.utils.enums.RefereeType;
 import com.hotyum.stars.utils.enums.SmsType;
@@ -62,7 +63,7 @@ public class UserManagerImpl implements UserManager {
 	private SysUserRoleManager sysUserRoleManager;
 
 	@Autowired
-	private RegisterNoticeManager registerNoticeManager;
+	private NoticeManager noticeManager;
 
 	@Autowired
 	private ReferralInformationManager referralInformationManager;
@@ -175,7 +176,7 @@ public class UserManagerImpl implements UserManager {
 			if (null == refereUser) {
 				throw new ApplicationException("您好，推荐用户不存在录");
 			}
-			registerNoticeManager.insert(refereUser.getId(), refereePhone, RefereeType.DERECT.getValue(),
+			noticeManager.insert(refereUser.getId(), NoticeType.REGISTERNOTICE.getValue(),
 					String.format(DERECTMESSAGE, refereUser.getRealName()));
 
 			// 直接推荐人
@@ -190,7 +191,7 @@ public class UserManagerImpl implements UserManager {
 				if (null != indirectUser) {
 					// 间接推荐人
 					newUser.setIndirectRecommendationAccount(refereUser.getDirectRecommendationAccount());
-					registerNoticeManager.insert(refereUser.getId(), refereePhone, RefereeType.DERECT.getValue(),
+					noticeManager.insert(refereUser.getId(), NoticeType.REGISTERNOTICE.getValue(),
 							String.format(INDERECTMESSAGE, refereUser.getRealName()));
 					referralInformationManager.saveReferalInfomation(indirectUser, RefereeType.INDERECT.getValue());
 				}

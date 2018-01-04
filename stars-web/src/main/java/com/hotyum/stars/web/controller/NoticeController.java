@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hotyum.stars.biz.manager.RegisterNoticeManager;
-import com.hotyum.stars.biz.model.RegisterNoticeVO;
+import com.hotyum.stars.biz.manager.NoticeManager;
+import com.hotyum.stars.biz.model.NoticeVO;
 import com.hotyum.stars.web.model.Result;
 import com.hotyum.stars.web.util.TokenAccessUtils;
 
@@ -25,7 +25,27 @@ import com.hotyum.stars.web.util.TokenAccessUtils;
 public class NoticeController {
 
 	@Autowired
-	private RegisterNoticeManager registerNoticeManager;
+	private NoticeManager registerNoticeManager;
+
+	/**
+	 * 获取我通知的数目
+	 * 
+	 * @param a 不用普通参数，带令牌token|string|必填
+	 * @Title getMyNoticeCount
+	 * @respbody 
+	 * @author cy
+	 * @Description 获取我通知的数目
+	 * @date 2018/1/1 13:49
+	 * @return Result
+	 * @throws  
+	 */
+	@RequestMapping(value = "notice/getMyNoticeCount")
+	public Result getMyNoticeCount(HttpServletRequest request) {
+		Integer userId = TokenAccessUtils.getLoginUserId(request);
+		long count = registerNoticeManager.getMyNoticeCount(userId);
+		return Result.normalResponse(count);
+
+	}
 
 	/**
 	 * 获取我推荐的人注册通知
@@ -34,16 +54,16 @@ public class NoticeController {
 	 * @Title getRegisterNotice
 	 * @respbody 
 	 * @author cy
-	 * @Description 获取我推荐的人注册通知
+	 * @Description 获取我的通知
 	 * @date 2018/1/1 13:49
 	 * @return Result
 	 * @throws  
 	 */
-	@RequestMapping(value = "notice/getRegisterNotice")
-	public Result getRegisterNotice(HttpServletRequest request) {
+	@RequestMapping(value = "notice/getNoticeList")
+	public Result getNoticeList(HttpServletRequest request) {
 		Integer userId = TokenAccessUtils.getLoginUserId(request);
-		List<RegisterNoticeVO> registerNoticeVOList = registerNoticeManager.getRegisterNoticeByUserId(userId);
-		return Result.normalResponse(registerNoticeVOList);
+		List<NoticeVO> noticeVOList = registerNoticeManager.getNoticeByUserId(userId);
+		return Result.normalResponse(noticeVOList);
 
 	}
 
