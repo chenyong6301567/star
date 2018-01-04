@@ -1,7 +1,5 @@
 package com.hotyum.stars.web.controller;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,19 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.MultipartFile;
 
-import com.croky.util.ObjectUtils;
 import com.hotyum.stars.biz.manager.AgentManager;
-import com.hotyum.stars.biz.manager.UserManager;
 import com.hotyum.stars.biz.model.AgentVO;
-import com.hotyum.stars.biz.model.UserBaseInfoVO;
-import com.hotyum.stars.biz.model.UserListVO;
-import com.hotyum.stars.dal.model.User;
 import com.hotyum.stars.utils.Constants;
 import com.hotyum.stars.utils.Page;
 import com.hotyum.stars.web.model.Result;
-import com.hotyum.stars.web.util.TokenAccessUtils;
 
 /**
 * 代理商

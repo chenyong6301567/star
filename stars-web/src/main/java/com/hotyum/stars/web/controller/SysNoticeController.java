@@ -22,7 +22,7 @@ import com.hotyum.stars.web.util.TokenAccessUtils;
 * @date 2018年1月1日 下午13:43:29 
 */
 @RestController
-public class NoticeController {
+public class SysNoticeController {
 
 	@Autowired
 	private RegisterNoticeManager registerNoticeManager;

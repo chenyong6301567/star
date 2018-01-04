@@ -1,9 +1,6 @@
 package com.hotyum.stars.web.controller;
 
 import java.util.Date;
-import java.util.List;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

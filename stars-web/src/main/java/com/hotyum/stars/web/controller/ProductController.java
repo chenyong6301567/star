@@ -52,22 +52,6 @@ public class ProductController {
 
 	}
 
-	private Integer id;
-
-	private String productType;
-
-	private Byte serviceTime;
-
-	private String monthRate;
-
-	private Byte enableFlag;
-
-	private Date gmtCreate;
-
-	private Date gmtModify;
-
-	private Byte stauts;
-
 	/**
 	 * 产品收益查询
 	 * 
