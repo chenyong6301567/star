@@ -11,7 +11,7 @@ import java.util.Map;
 public enum UserType {
 	// 1代理商 2客户 3管理员
 
-	AGENT("代理商", (byte) 1), CUSTOMER("中间值", (byte) 2), ADMIN("有效", (byte) 3);
+	AGENT("代理商", (byte) 1), CUSTOMER("客户", (byte) 2), ADMIN("管理员", (byte) 3), ALL("全部", (byte) 4);
 
 	private String description;
 	private byte value;

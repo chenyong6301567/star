@@ -534,6 +534,126 @@ public class SystemNoticeExample {
             addCriterion("status not between", value1, value2, "status");
             return (Criteria) this;
         }
+
+        public Criteria andNoticeStatusIsNull() {
+            addCriterion("notice_status is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNoticeStatusIsNotNull() {
+            addCriterion("notice_status is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNoticeStatusEqualTo(Byte value) {
+            addCriterion("notice_status =", value, "noticeStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andNoticeStatusNotEqualTo(Byte value) {
+            addCriterion("notice_status <>", value, "noticeStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andNoticeStatusGreaterThan(Byte value) {
+            addCriterion("notice_status >", value, "noticeStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andNoticeStatusGreaterThanOrEqualTo(Byte value) {
+            addCriterion("notice_status >=", value, "noticeStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andNoticeStatusLessThan(Byte value) {
+            addCriterion("notice_status <", value, "noticeStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andNoticeStatusLessThanOrEqualTo(Byte value) {
+            addCriterion("notice_status <=", value, "noticeStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andNoticeStatusIn(List<Byte> values) {
+            addCriterion("notice_status in", values, "noticeStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andNoticeStatusNotIn(List<Byte> values) {
+            addCriterion("notice_status not in", values, "noticeStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andNoticeStatusBetween(Byte value1, Byte value2) {
+            addCriterion("notice_status between", value1, value2, "noticeStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andNoticeStatusNotBetween(Byte value1, Byte value2) {
+            addCriterion("notice_status not between", value1, value2, "noticeStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andSmsStatusIsNull() {
+            addCriterion("sms_status is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSmsStatusIsNotNull() {
+            addCriterion("sms_status is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSmsStatusEqualTo(Byte value) {
+            addCriterion("sms_status =", value, "smsStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andSmsStatusNotEqualTo(Byte value) {
+            addCriterion("sms_status <>", value, "smsStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andSmsStatusGreaterThan(Byte value) {
+            addCriterion("sms_status >", value, "smsStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andSmsStatusGreaterThanOrEqualTo(Byte value) {
+            addCriterion("sms_status >=", value, "smsStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andSmsStatusLessThan(Byte value) {
+            addCriterion("sms_status <", value, "smsStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andSmsStatusLessThanOrEqualTo(Byte value) {
+            addCriterion("sms_status <=", value, "smsStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andSmsStatusIn(List<Byte> values) {
+            addCriterion("sms_status in", values, "smsStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andSmsStatusNotIn(List<Byte> values) {
+            addCriterion("sms_status not in", values, "smsStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andSmsStatusBetween(Byte value1, Byte value2) {
+            addCriterion("sms_status between", value1, value2, "smsStatus");
+            return (Criteria) this;
+        }
+
+        public Criteria andSmsStatusNotBetween(Byte value1, Byte value2) {
+            addCriterion("sms_status not between", value1, value2, "smsStatus");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

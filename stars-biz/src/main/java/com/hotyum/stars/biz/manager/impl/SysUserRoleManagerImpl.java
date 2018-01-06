@@ -53,4 +53,28 @@ public class SysUserRoleManagerImpl implements SysUserRoleManager {
 		}
 	}
 
+	/**
+	* @Title:getUserIdByRole
+	* @author:cy
+	* @Description 
+	* @date:2018年1月6日下午1:28:51
+	* @param 
+	* @param 
+	* @param 
+	* @return 
+	* @throws:
+	*/
+	@Override
+	public List<SysUserRole> getUserIdByRole(Byte toType) {
+		SysUserRoleExample sysUserRoleExample = new SysUserRoleExample();
+		SysUserRoleExample.Criteria criteria = sysUserRoleExample.createCriteria();
+		criteria.andRoleIdEqualTo(Integer.valueOf(toType));
+		try {
+			return sysUserRoleDAO.selectByExample(sysUserRoleExample);
+		} catch (DataAccessException e) {
+			LOGGER.error("getRoleByUserId获取失败====", e);
+			throw new RuntimeException("内部服务器异常");
+		}
+	}
+
 }

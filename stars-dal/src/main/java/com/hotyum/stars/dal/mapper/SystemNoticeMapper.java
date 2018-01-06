@@ -33,10 +33,12 @@ public interface SystemNoticeMapper {
     @Insert({
         "insert into system_notice (to_type, sys_type, ",
         "notice_content, gmt_create, ",
-        "gmt_modify, status)",
+        "gmt_modify, status, ",
+        "notice_status, sms_status)",
         "values (#{toType,jdbcType=TINYINT}, #{sysType,jdbcType=TINYINT}, ",
         "#{noticeContent,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, ",
-        "#{gmtModify,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT})"
+        "#{gmtModify,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT}, ",
+        "#{noticeStatus,jdbcType=TINYINT}, #{smsStatus,jdbcType=TINYINT})"
     })
     @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=Integer.class)
     int insert(SystemNotice record);
@@ -53,13 +55,16 @@ public interface SystemNoticeMapper {
         @Result(column="notice_content", property="noticeContent", jdbcType=JdbcType.VARCHAR),
         @Result(column="gmt_create", property="gmtCreate", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="gmt_modify", property="gmtModify", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="status", property="status", jdbcType=JdbcType.TINYINT)
+        @Result(column="status", property="status", jdbcType=JdbcType.TINYINT),
+        @Result(column="notice_status", property="noticeStatus", jdbcType=JdbcType.TINYINT),
+        @Result(column="sms_status", property="smsStatus", jdbcType=JdbcType.TINYINT)
     })
     List<SystemNotice> selectByExample(SystemNoticeExample example);
 
     @Select({
         "select",
-        "id, to_type, sys_type, notice_content, gmt_create, gmt_modify, status",
+        "id, to_type, sys_type, notice_content, gmt_create, gmt_modify, status, notice_status, ",
+        "sms_status",
         "from system_notice",
         "where id = #{id,jdbcType=INTEGER}"
     })
@@ -70,7 +75,9 @@ public interface SystemNoticeMapper {
         @Result(column="notice_content", property="noticeContent", jdbcType=JdbcType.VARCHAR),
         @Result(column="gmt_create", property="gmtCreate", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="gmt_modify", property="gmtModify", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="status", property="status", jdbcType=JdbcType.TINYINT)
+        @Result(column="status", property="status", jdbcType=JdbcType.TINYINT),
+        @Result(column="notice_status", property="noticeStatus", jdbcType=JdbcType.TINYINT),
+        @Result(column="sms_status", property="smsStatus", jdbcType=JdbcType.TINYINT)
     })
     SystemNotice selectByPrimaryKey(Integer id);
 
@@ -90,7 +97,9 @@ public interface SystemNoticeMapper {
           "notice_content = #{noticeContent,jdbcType=VARCHAR},",
           "gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},",
           "gmt_modify = #{gmtModify,jdbcType=TIMESTAMP},",
-          "status = #{status,jdbcType=TINYINT}",
+          "status = #{status,jdbcType=TINYINT},",
+          "notice_status = #{noticeStatus,jdbcType=TINYINT},",
+          "sms_status = #{smsStatus,jdbcType=TINYINT}",
         "where id = #{id,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(SystemNotice record);

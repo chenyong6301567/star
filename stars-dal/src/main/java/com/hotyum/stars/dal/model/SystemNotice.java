@@ -18,6 +18,10 @@ public class SystemNotice implements Serializable {
 
     private Byte status;
 
+    private Byte noticeStatus;
+
+    private Byte smsStatus;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {
@@ -76,6 +80,22 @@ public class SystemNotice implements Serializable {
         this.status = status;
     }
 
+    public Byte getNoticeStatus() {
+        return noticeStatus;
+    }
+
+    public void setNoticeStatus(Byte noticeStatus) {
+        this.noticeStatus = noticeStatus;
+    }
+
+    public Byte getSmsStatus() {
+        return smsStatus;
+    }
+
+    public void setSmsStatus(Byte smsStatus) {
+        this.smsStatus = smsStatus;
+    }
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -94,7 +114,9 @@ public class SystemNotice implements Serializable {
             && (this.getNoticeContent() == null ? other.getNoticeContent() == null : this.getNoticeContent().equals(other.getNoticeContent()))
             && (this.getGmtCreate() == null ? other.getGmtCreate() == null : this.getGmtCreate().equals(other.getGmtCreate()))
             && (this.getGmtModify() == null ? other.getGmtModify() == null : this.getGmtModify().equals(other.getGmtModify()))
-            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()));
+            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
+            && (this.getNoticeStatus() == null ? other.getNoticeStatus() == null : this.getNoticeStatus().equals(other.getNoticeStatus()))
+            && (this.getSmsStatus() == null ? other.getSmsStatus() == null : this.getSmsStatus().equals(other.getSmsStatus()));
     }
 
     @Override
@@ -108,6 +130,8 @@ public class SystemNotice implements Serializable {
         result = prime * result + ((getGmtCreate() == null) ? 0 : getGmtCreate().hashCode());
         result = prime * result + ((getGmtModify() == null) ? 0 : getGmtModify().hashCode());
         result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
+        result = prime * result + ((getNoticeStatus() == null) ? 0 : getNoticeStatus().hashCode());
+        result = prime * result + ((getSmsStatus() == null) ? 0 : getSmsStatus().hashCode());
         return result;
     }
 }

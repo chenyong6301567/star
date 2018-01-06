@@ -24,4 +24,17 @@ public interface SysUserRoleManager {
 	*/
 	List<SysUserRole> getRoleByUserId(Integer id);
 
+	/**
+	* @Title getUserIdByRole
+	* @author cy
+	* @Description 
+	* @date 2018年1月6日下午1:28:40
+	* @param 
+	* @param 
+	* @param 
+	* @return List<SysUserRole>
+	* @throws:
+	*/
+	List<SysUserRole> getUserIdByRole(Byte toType);
+
 }

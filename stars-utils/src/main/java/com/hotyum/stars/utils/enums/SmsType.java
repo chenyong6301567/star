@@ -9,7 +9,7 @@ import java.util.Map;
  */
 
 public enum SmsType {
-	LOGIN("登录", (byte) 1), REGISTER("注册", (byte) 2), RESETPWD("重置密码", (byte) 3);
+	LOGIN("登录", (byte) 1), REGISTER("注册", (byte) 2), RESETPWD("重置密码", (byte) 3), NOTICE("通知", (byte) 4);
 
 	private String description;
 	private Byte value;

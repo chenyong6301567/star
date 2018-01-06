@@ -1,6 +1,7 @@
 package com.hotyum.stars.biz.manager;
 
 import java.util.Date;
+import java.util.List;
 
 import com.hotyum.stars.biz.model.TokenInfoVO;
 import com.hotyum.stars.biz.model.UserListVO;
@@ -164,5 +165,18 @@ public interface UserManager {
 	Page<UserListVO> getUserList(String account, String userName, Byte userType, Byte whetherFreeze,
 			String contactPhone, String directRecommendationAccount, Date gmtCreateBegin, Date gmtCreateEnd,
 			int pageNum, int pageSize);
+
+	/**
+	* @Title getAllUser
+	* @author cy
+	* @Description 
+	* @date 2018年1月6日下午1:21:36
+	* @param 
+	* @param 
+	* @param 
+	* @return List<User>
+	* @throws:
+	*/
+	List<User> getAllUser();
 
 }

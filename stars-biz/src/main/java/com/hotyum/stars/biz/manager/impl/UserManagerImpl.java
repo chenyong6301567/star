@@ -17,8 +17,8 @@ import org.springframework.util.CollectionUtils;
 
 import com.croky.util.ObjectUtils;
 import com.github.pagehelper.PageHelper;
-import com.hotyum.stars.biz.manager.ReferralInformationManager;
 import com.hotyum.stars.biz.manager.NoticeManager;
+import com.hotyum.stars.biz.manager.ReferralInformationManager;
 import com.hotyum.stars.biz.manager.SmsManager;
 import com.hotyum.stars.biz.manager.SysUserRoleManager;
 import com.hotyum.stars.biz.manager.TokenAccessManager;
@@ -26,7 +26,6 @@ import com.hotyum.stars.biz.manager.UserManager;
 import com.hotyum.stars.biz.model.TokenInfoVO;
 import com.hotyum.stars.biz.model.UserListVO;
 import com.hotyum.stars.dal.dao.UserDAO;
-import com.hotyum.stars.dal.model.Product;
 import com.hotyum.stars.dal.model.SysUserRole;
 import com.hotyum.stars.dal.model.User;
 import com.hotyum.stars.dal.model.UserExample;
@@ -539,6 +538,30 @@ public class UserManagerImpl implements UserManager {
 			}
 		}
 		return new Page<>(pageSize, pageNum, userList.size(), userVOList);
+	}
+
+	/**
+	* @Title:getAllUser
+	* @author:cy
+	* @Description 
+	* @date:2018年1月6日下午1:22:02
+	* @param 
+	* @param 
+	* @param 
+	* @return 
+	* @throws:
+	*/
+	@Override
+	public List<User> getAllUser() {
+		UserExample userExample = new UserExample();
+		UserExample.Criteria criteria = userExample.createCriteria();
+		criteria.andStatusGreaterThanOrEqualTo(Status.ZERO.getValue());
+		try {
+			return userDAO.selectByExample(userExample);
+		} catch (DataAccessException e) {
+			LOGGER.error("getAllUser失败====", e);
+			throw new RuntimeException("内部服务器错误");
+		}
 	}
 
 }

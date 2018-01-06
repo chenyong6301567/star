@@ -8,14 +8,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
-import com.alibaba.fastjson.JSON;
 import com.croky.lang.Status;
-import com.hotyum.stars.biz.manager.NoticeManager;
-import com.hotyum.stars.biz.manager.SmsManager;
 import com.hotyum.stars.biz.manager.SysNoticeManager;
 import com.hotyum.stars.biz.model.SysNoticeVO;
 import com.hotyum.stars.dal.dao.SystemNoticeDAO;
@@ -28,6 +26,8 @@ import com.hotyum.stars.utils.DateUtil;
  * @Description 
  * @date 2018年1月4日下午3:51:01 
  */
+@Service
+@Transactional(readOnly = true, propagation = Propagation.SUPPORTS)
 public class SysNoticeManagerImpl implements SysNoticeManager {
 
 	@Autowired

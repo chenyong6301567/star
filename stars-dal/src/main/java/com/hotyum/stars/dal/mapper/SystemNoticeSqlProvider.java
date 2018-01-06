@@ -52,6 +52,14 @@ public class SystemNoticeSqlProvider {
             sql.VALUES("status", "#{status,jdbcType=TINYINT}");
         }
         
+        if (record.getNoticeStatus() != null) {
+            sql.VALUES("notice_status", "#{noticeStatus,jdbcType=TINYINT}");
+        }
+        
+        if (record.getSmsStatus() != null) {
+            sql.VALUES("sms_status", "#{smsStatus,jdbcType=TINYINT}");
+        }
+        
         return sql.toString();
     }
 
@@ -68,6 +76,8 @@ public class SystemNoticeSqlProvider {
         sql.SELECT("gmt_create");
         sql.SELECT("gmt_modify");
         sql.SELECT("status");
+        sql.SELECT("notice_status");
+        sql.SELECT("sms_status");
         sql.FROM("system_notice");
         applyWhere(sql, example, false);
         
@@ -113,6 +123,14 @@ public class SystemNoticeSqlProvider {
             sql.SET("status = #{record.status,jdbcType=TINYINT}");
         }
         
+        if (record.getNoticeStatus() != null) {
+            sql.SET("notice_status = #{record.noticeStatus,jdbcType=TINYINT}");
+        }
+        
+        if (record.getSmsStatus() != null) {
+            sql.SET("sms_status = #{record.smsStatus,jdbcType=TINYINT}");
+        }
+        
         applyWhere(sql, example, true);
         return sql.toString();
     }
@@ -128,6 +146,8 @@ public class SystemNoticeSqlProvider {
         sql.SET("gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP}");
         sql.SET("gmt_modify = #{record.gmtModify,jdbcType=TIMESTAMP}");
         sql.SET("status = #{record.status,jdbcType=TINYINT}");
+        sql.SET("notice_status = #{record.noticeStatus,jdbcType=TINYINT}");
+        sql.SET("sms_status = #{record.smsStatus,jdbcType=TINYINT}");
         
         SystemNoticeExample example = (SystemNoticeExample) parameter.get("example");
         applyWhere(sql, example, true);
@@ -160,6 +180,14 @@ public class SystemNoticeSqlProvider {
         
         if (record.getStatus() != null) {
             sql.SET("status = #{status,jdbcType=TINYINT}");
+        }
+        
+        if (record.getNoticeStatus() != null) {
+            sql.SET("notice_status = #{noticeStatus,jdbcType=TINYINT}");
+        }
+        
+        if (record.getSmsStatus() != null) {
+            sql.SET("sms_status = #{smsStatus,jdbcType=TINYINT}");
         }
         
         sql.WHERE("id = #{id,jdbcType=INTEGER}");
