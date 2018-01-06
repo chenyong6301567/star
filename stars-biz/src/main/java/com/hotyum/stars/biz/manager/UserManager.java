@@ -3,6 +3,7 @@ package com.hotyum.stars.biz.manager;
 import java.util.Date;
 import java.util.List;
 
+import com.hotyum.stars.biz.model.CustomerRecommandVO;
 import com.hotyum.stars.biz.model.TokenInfoVO;
 import com.hotyum.stars.biz.model.UserListVO;
 import com.hotyum.stars.dal.model.User;
@@ -178,5 +179,46 @@ public interface UserManager {
 	* @throws:
 	*/
 	List<User> getAllUser();
+
+	/**
+	* @Title getByAccount
+	* @author cy
+	* @Description 
+	* @date 2018年1月6日下午4:07:04
+	* @param 
+	* @param 
+	* @param 
+	* @return User
+	* @throws:
+	*/
+	User getByAccount(String derectRecomandPerson);
+
+	/**
+	* @Title updateSumMoneyByUsId
+	* @author cy
+	* @Description 
+	* @date 2018年1月6日下午9:10:49
+	* @param 
+	* @param 
+	* @param 
+	* @return void
+	* @throws:
+	*/
+	void updateSumMoneyByUsId(double investmentAmount, Integer usId);
+
+	/**
+	* @Title getCustomerRecommandVOList
+	* @author cy
+	* @Description 
+	* @date 2018年1月6日下午9:20:08
+	* @param 
+	* @param 
+	* @param 
+	* @return Page<CustomerRecommandVO>
+	* @throws:
+	*/
+	Page<CustomerRecommandVO> getCustomerRecommandVOList(String account, String realName, Byte whetherGetMoney,
+			Byte refereeQualification, String indirectRecommendationAccount, String directRecommendationAccount,
+			Date gmtCreateBegin, Date gmtCreateEnd, int pageNum, int pageSize);
 
 }

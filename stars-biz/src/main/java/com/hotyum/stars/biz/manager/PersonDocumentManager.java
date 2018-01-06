@@ -15,6 +15,7 @@ public interface PersonDocumentManager {
 	/**
 	* @Title addpersonDocument
 	* @author cy
+	 * @param usId 
 	* @Description 档案添加
 	* @date 2018年1月3日下午10:07:32
 	* @param 
@@ -25,9 +26,9 @@ public interface PersonDocumentManager {
 	*/
 	void addpersonDocument(String documentCode, String customerName, String tradePlatform, String tradeAccount,
 			Byte wheatherGetMoney, Date getMoneyDate, Byte certificateType, String certificateNumber, Date contractDate,
-			String productId, String productType, Byte serviceDate, int buyNum, double investmentAmount,
-			double estimatedEarnings, String contactPhone, String registerEmail, String agentCode,
-			String derectRecomandPerson, String inderectRecomandPerson, String productRate);
+			Integer productId, String productType, Byte serviceDate, double investmentAmount, double estimatedEarnings,
+			String contactPhone, String registerEmail, String agentCode, Integer derectRecomandPersonId,
+			Integer inderectRecomandPersonId, String productRate, Integer usId);
 
 	/**
 	* @Title getPersonDocumentList

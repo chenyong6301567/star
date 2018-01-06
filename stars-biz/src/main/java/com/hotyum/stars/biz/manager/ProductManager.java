@@ -3,6 +3,7 @@ package com.hotyum.stars.biz.manager;
 import java.util.List;
 
 import com.github.pagehelper.Page;
+import com.hotyum.stars.biz.model.ProductVO;
 import com.hotyum.stars.dal.model.Product;
 
 /**
@@ -37,5 +38,19 @@ public interface ProductManager {
 	* @throws:
 	*/
 	void addProduct(List<Product> productList);
+
+	/**
+	* @Title getProductVOList
+	* @author cy
+	* @Description 
+	* @date 2018年1月6日下午6:30:10
+	* @param 
+	* @param 
+	* @param 
+	* @return List<ProductVO>
+	 * @throws Exception 
+	* @throws:
+	*/
+	List<ProductVO> getProductVOList() throws Exception;
 
 }

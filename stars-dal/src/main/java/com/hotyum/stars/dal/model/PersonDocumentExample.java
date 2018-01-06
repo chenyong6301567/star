@@ -756,73 +756,133 @@ public class PersonDocumentExample {
             return (Criteria) this;
         }
 
-        public Criteria andProductTypeIsNull() {
-            addCriterion("product_type is null");
+        public Criteria andProductIdIsNull() {
+            addCriterion("product_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andProductTypeIsNotNull() {
-            addCriterion("product_type is not null");
+        public Criteria andProductIdIsNotNull() {
+            addCriterion("product_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andProductTypeEqualTo(String value) {
-            addCriterion("product_type =", value, "productType");
+        public Criteria andProductIdEqualTo(Integer value) {
+            addCriterion("product_id =", value, "productId");
             return (Criteria) this;
         }
 
-        public Criteria andProductTypeNotEqualTo(String value) {
-            addCriterion("product_type <>", value, "productType");
+        public Criteria andProductIdNotEqualTo(Integer value) {
+            addCriterion("product_id <>", value, "productId");
             return (Criteria) this;
         }
 
-        public Criteria andProductTypeGreaterThan(String value) {
-            addCriterion("product_type >", value, "productType");
+        public Criteria andProductIdGreaterThan(Integer value) {
+            addCriterion("product_id >", value, "productId");
             return (Criteria) this;
         }
 
-        public Criteria andProductTypeGreaterThanOrEqualTo(String value) {
-            addCriterion("product_type >=", value, "productType");
+        public Criteria andProductIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("product_id >=", value, "productId");
             return (Criteria) this;
         }
 
-        public Criteria andProductTypeLessThan(String value) {
-            addCriterion("product_type <", value, "productType");
+        public Criteria andProductIdLessThan(Integer value) {
+            addCriterion("product_id <", value, "productId");
             return (Criteria) this;
         }
 
-        public Criteria andProductTypeLessThanOrEqualTo(String value) {
-            addCriterion("product_type <=", value, "productType");
+        public Criteria andProductIdLessThanOrEqualTo(Integer value) {
+            addCriterion("product_id <=", value, "productId");
             return (Criteria) this;
         }
 
-        public Criteria andProductTypeLike(String value) {
-            addCriterion("product_type like", value, "productType");
+        public Criteria andProductIdIn(List<Integer> values) {
+            addCriterion("product_id in", values, "productId");
             return (Criteria) this;
         }
 
-        public Criteria andProductTypeNotLike(String value) {
-            addCriterion("product_type not like", value, "productType");
+        public Criteria andProductIdNotIn(List<Integer> values) {
+            addCriterion("product_id not in", values, "productId");
             return (Criteria) this;
         }
 
-        public Criteria andProductTypeIn(List<String> values) {
-            addCriterion("product_type in", values, "productType");
+        public Criteria andProductIdBetween(Integer value1, Integer value2) {
+            addCriterion("product_id between", value1, value2, "productId");
             return (Criteria) this;
         }
 
-        public Criteria andProductTypeNotIn(List<String> values) {
-            addCriterion("product_type not in", values, "productType");
+        public Criteria andProductIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("product_id not between", value1, value2, "productId");
             return (Criteria) this;
         }
 
-        public Criteria andProductTypeBetween(String value1, String value2) {
-            addCriterion("product_type between", value1, value2, "productType");
+        public Criteria andProductTypeNameIsNull() {
+            addCriterion("product_type_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andProductTypeNotBetween(String value1, String value2) {
-            addCriterion("product_type not between", value1, value2, "productType");
+        public Criteria andProductTypeNameIsNotNull() {
+            addCriterion("product_type_name is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductTypeNameEqualTo(String value) {
+            addCriterion("product_type_name =", value, "productTypeName");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductTypeNameNotEqualTo(String value) {
+            addCriterion("product_type_name <>", value, "productTypeName");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductTypeNameGreaterThan(String value) {
+            addCriterion("product_type_name >", value, "productTypeName");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductTypeNameGreaterThanOrEqualTo(String value) {
+            addCriterion("product_type_name >=", value, "productTypeName");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductTypeNameLessThan(String value) {
+            addCriterion("product_type_name <", value, "productTypeName");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductTypeNameLessThanOrEqualTo(String value) {
+            addCriterion("product_type_name <=", value, "productTypeName");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductTypeNameLike(String value) {
+            addCriterion("product_type_name like", value, "productTypeName");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductTypeNameNotLike(String value) {
+            addCriterion("product_type_name not like", value, "productTypeName");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductTypeNameIn(List<String> values) {
+            addCriterion("product_type_name in", values, "productTypeName");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductTypeNameNotIn(List<String> values) {
+            addCriterion("product_type_name not in", values, "productTypeName");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductTypeNameBetween(String value1, String value2) {
+            addCriterion("product_type_name between", value1, value2, "productTypeName");
+            return (Criteria) this;
+        }
+
+        public Criteria andProductTypeNameNotBetween(String value1, String value2) {
+            addCriterion("product_type_name not between", value1, value2, "productTypeName");
             return (Criteria) this;
         }
 
@@ -1136,6 +1196,66 @@ public class PersonDocumentExample {
             return (Criteria) this;
         }
 
+        public Criteria andContractIncomeIsNull() {
+            addCriterion("contract_income is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractIncomeIsNotNull() {
+            addCriterion("contract_income is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractIncomeEqualTo(BigDecimal value) {
+            addCriterion("contract_income =", value, "contractIncome");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractIncomeNotEqualTo(BigDecimal value) {
+            addCriterion("contract_income <>", value, "contractIncome");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractIncomeGreaterThan(BigDecimal value) {
+            addCriterion("contract_income >", value, "contractIncome");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractIncomeGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("contract_income >=", value, "contractIncome");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractIncomeLessThan(BigDecimal value) {
+            addCriterion("contract_income <", value, "contractIncome");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractIncomeLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("contract_income <=", value, "contractIncome");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractIncomeIn(List<BigDecimal> values) {
+            addCriterion("contract_income in", values, "contractIncome");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractIncomeNotIn(List<BigDecimal> values) {
+            addCriterion("contract_income not in", values, "contractIncome");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractIncomeBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("contract_income between", value1, value2, "contractIncome");
+            return (Criteria) this;
+        }
+
+        public Criteria andContractIncomeNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("contract_income not between", value1, value2, "contractIncome");
+            return (Criteria) this;
+        }
+
         public Criteria andContactPhoneIsNull() {
             addCriterion("contact_phone is null");
             return (Criteria) this;
@@ -1346,143 +1466,263 @@ public class PersonDocumentExample {
             return (Criteria) this;
         }
 
-        public Criteria andDerectRecomandPersonIsNull() {
-            addCriterion("derect_recomand_person is null");
+        public Criteria andDerectRecomandPersonIdIsNull() {
+            addCriterion("derect_recomand_person_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andDerectRecomandPersonIsNotNull() {
-            addCriterion("derect_recomand_person is not null");
+        public Criteria andDerectRecomandPersonIdIsNotNull() {
+            addCriterion("derect_recomand_person_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDerectRecomandPersonEqualTo(String value) {
-            addCriterion("derect_recomand_person =", value, "derectRecomandPerson");
+        public Criteria andDerectRecomandPersonIdEqualTo(Integer value) {
+            addCriterion("derect_recomand_person_id =", value, "derectRecomandPersonId");
             return (Criteria) this;
         }
 
-        public Criteria andDerectRecomandPersonNotEqualTo(String value) {
-            addCriterion("derect_recomand_person <>", value, "derectRecomandPerson");
+        public Criteria andDerectRecomandPersonIdNotEqualTo(Integer value) {
+            addCriterion("derect_recomand_person_id <>", value, "derectRecomandPersonId");
             return (Criteria) this;
         }
 
-        public Criteria andDerectRecomandPersonGreaterThan(String value) {
-            addCriterion("derect_recomand_person >", value, "derectRecomandPerson");
+        public Criteria andDerectRecomandPersonIdGreaterThan(Integer value) {
+            addCriterion("derect_recomand_person_id >", value, "derectRecomandPersonId");
             return (Criteria) this;
         }
 
-        public Criteria andDerectRecomandPersonGreaterThanOrEqualTo(String value) {
-            addCriterion("derect_recomand_person >=", value, "derectRecomandPerson");
+        public Criteria andDerectRecomandPersonIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("derect_recomand_person_id >=", value, "derectRecomandPersonId");
             return (Criteria) this;
         }
 
-        public Criteria andDerectRecomandPersonLessThan(String value) {
-            addCriterion("derect_recomand_person <", value, "derectRecomandPerson");
+        public Criteria andDerectRecomandPersonIdLessThan(Integer value) {
+            addCriterion("derect_recomand_person_id <", value, "derectRecomandPersonId");
             return (Criteria) this;
         }
 
-        public Criteria andDerectRecomandPersonLessThanOrEqualTo(String value) {
-            addCriterion("derect_recomand_person <=", value, "derectRecomandPerson");
+        public Criteria andDerectRecomandPersonIdLessThanOrEqualTo(Integer value) {
+            addCriterion("derect_recomand_person_id <=", value, "derectRecomandPersonId");
             return (Criteria) this;
         }
 
-        public Criteria andDerectRecomandPersonLike(String value) {
-            addCriterion("derect_recomand_person like", value, "derectRecomandPerson");
+        public Criteria andDerectRecomandPersonIdIn(List<Integer> values) {
+            addCriterion("derect_recomand_person_id in", values, "derectRecomandPersonId");
             return (Criteria) this;
         }
 
-        public Criteria andDerectRecomandPersonNotLike(String value) {
-            addCriterion("derect_recomand_person not like", value, "derectRecomandPerson");
+        public Criteria andDerectRecomandPersonIdNotIn(List<Integer> values) {
+            addCriterion("derect_recomand_person_id not in", values, "derectRecomandPersonId");
             return (Criteria) this;
         }
 
-        public Criteria andDerectRecomandPersonIn(List<String> values) {
-            addCriterion("derect_recomand_person in", values, "derectRecomandPerson");
+        public Criteria andDerectRecomandPersonIdBetween(Integer value1, Integer value2) {
+            addCriterion("derect_recomand_person_id between", value1, value2, "derectRecomandPersonId");
             return (Criteria) this;
         }
 
-        public Criteria andDerectRecomandPersonNotIn(List<String> values) {
-            addCriterion("derect_recomand_person not in", values, "derectRecomandPerson");
+        public Criteria andDerectRecomandPersonIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("derect_recomand_person_id not between", value1, value2, "derectRecomandPersonId");
             return (Criteria) this;
         }
 
-        public Criteria andDerectRecomandPersonBetween(String value1, String value2) {
-            addCriterion("derect_recomand_person between", value1, value2, "derectRecomandPerson");
+        public Criteria andDerectRecomandPersonNameIsNull() {
+            addCriterion("derect_recomand_person_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andDerectRecomandPersonNotBetween(String value1, String value2) {
-            addCriterion("derect_recomand_person not between", value1, value2, "derectRecomandPerson");
+        public Criteria andDerectRecomandPersonNameIsNotNull() {
+            addCriterion("derect_recomand_person_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andInderectRecomandPersonIsNull() {
-            addCriterion("inderect_recomand_person is null");
+        public Criteria andDerectRecomandPersonNameEqualTo(String value) {
+            addCriterion("derect_recomand_person_name =", value, "derectRecomandPersonName");
             return (Criteria) this;
         }
 
-        public Criteria andInderectRecomandPersonIsNotNull() {
-            addCriterion("inderect_recomand_person is not null");
+        public Criteria andDerectRecomandPersonNameNotEqualTo(String value) {
+            addCriterion("derect_recomand_person_name <>", value, "derectRecomandPersonName");
             return (Criteria) this;
         }
 
-        public Criteria andInderectRecomandPersonEqualTo(String value) {
-            addCriterion("inderect_recomand_person =", value, "inderectRecomandPerson");
+        public Criteria andDerectRecomandPersonNameGreaterThan(String value) {
+            addCriterion("derect_recomand_person_name >", value, "derectRecomandPersonName");
             return (Criteria) this;
         }
 
-        public Criteria andInderectRecomandPersonNotEqualTo(String value) {
-            addCriterion("inderect_recomand_person <>", value, "inderectRecomandPerson");
+        public Criteria andDerectRecomandPersonNameGreaterThanOrEqualTo(String value) {
+            addCriterion("derect_recomand_person_name >=", value, "derectRecomandPersonName");
             return (Criteria) this;
         }
 
-        public Criteria andInderectRecomandPersonGreaterThan(String value) {
-            addCriterion("inderect_recomand_person >", value, "inderectRecomandPerson");
+        public Criteria andDerectRecomandPersonNameLessThan(String value) {
+            addCriterion("derect_recomand_person_name <", value, "derectRecomandPersonName");
             return (Criteria) this;
         }
 
-        public Criteria andInderectRecomandPersonGreaterThanOrEqualTo(String value) {
-            addCriterion("inderect_recomand_person >=", value, "inderectRecomandPerson");
+        public Criteria andDerectRecomandPersonNameLessThanOrEqualTo(String value) {
+            addCriterion("derect_recomand_person_name <=", value, "derectRecomandPersonName");
             return (Criteria) this;
         }
 
-        public Criteria andInderectRecomandPersonLessThan(String value) {
-            addCriterion("inderect_recomand_person <", value, "inderectRecomandPerson");
+        public Criteria andDerectRecomandPersonNameLike(String value) {
+            addCriterion("derect_recomand_person_name like", value, "derectRecomandPersonName");
             return (Criteria) this;
         }
 
-        public Criteria andInderectRecomandPersonLessThanOrEqualTo(String value) {
-            addCriterion("inderect_recomand_person <=", value, "inderectRecomandPerson");
+        public Criteria andDerectRecomandPersonNameNotLike(String value) {
+            addCriterion("derect_recomand_person_name not like", value, "derectRecomandPersonName");
             return (Criteria) this;
         }
 
-        public Criteria andInderectRecomandPersonLike(String value) {
-            addCriterion("inderect_recomand_person like", value, "inderectRecomandPerson");
+        public Criteria andDerectRecomandPersonNameIn(List<String> values) {
+            addCriterion("derect_recomand_person_name in", values, "derectRecomandPersonName");
             return (Criteria) this;
         }
 
-        public Criteria andInderectRecomandPersonNotLike(String value) {
-            addCriterion("inderect_recomand_person not like", value, "inderectRecomandPerson");
+        public Criteria andDerectRecomandPersonNameNotIn(List<String> values) {
+            addCriterion("derect_recomand_person_name not in", values, "derectRecomandPersonName");
             return (Criteria) this;
         }
 
-        public Criteria andInderectRecomandPersonIn(List<String> values) {
-            addCriterion("inderect_recomand_person in", values, "inderectRecomandPerson");
+        public Criteria andDerectRecomandPersonNameBetween(String value1, String value2) {
+            addCriterion("derect_recomand_person_name between", value1, value2, "derectRecomandPersonName");
             return (Criteria) this;
         }
 
-        public Criteria andInderectRecomandPersonNotIn(List<String> values) {
-            addCriterion("inderect_recomand_person not in", values, "inderectRecomandPerson");
+        public Criteria andDerectRecomandPersonNameNotBetween(String value1, String value2) {
+            addCriterion("derect_recomand_person_name not between", value1, value2, "derectRecomandPersonName");
             return (Criteria) this;
         }
 
-        public Criteria andInderectRecomandPersonBetween(String value1, String value2) {
-            addCriterion("inderect_recomand_person between", value1, value2, "inderectRecomandPerson");
+        public Criteria andInderectRecomandPersonIdIsNull() {
+            addCriterion("inderect_recomand_person_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andInderectRecomandPersonNotBetween(String value1, String value2) {
-            addCriterion("inderect_recomand_person not between", value1, value2, "inderectRecomandPerson");
+        public Criteria andInderectRecomandPersonIdIsNotNull() {
+            addCriterion("inderect_recomand_person_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andInderectRecomandPersonIdEqualTo(Integer value) {
+            addCriterion("inderect_recomand_person_id =", value, "inderectRecomandPersonId");
+            return (Criteria) this;
+        }
+
+        public Criteria andInderectRecomandPersonIdNotEqualTo(Integer value) {
+            addCriterion("inderect_recomand_person_id <>", value, "inderectRecomandPersonId");
+            return (Criteria) this;
+        }
+
+        public Criteria andInderectRecomandPersonIdGreaterThan(Integer value) {
+            addCriterion("inderect_recomand_person_id >", value, "inderectRecomandPersonId");
+            return (Criteria) this;
+        }
+
+        public Criteria andInderectRecomandPersonIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("inderect_recomand_person_id >=", value, "inderectRecomandPersonId");
+            return (Criteria) this;
+        }
+
+        public Criteria andInderectRecomandPersonIdLessThan(Integer value) {
+            addCriterion("inderect_recomand_person_id <", value, "inderectRecomandPersonId");
+            return (Criteria) this;
+        }
+
+        public Criteria andInderectRecomandPersonIdLessThanOrEqualTo(Integer value) {
+            addCriterion("inderect_recomand_person_id <=", value, "inderectRecomandPersonId");
+            return (Criteria) this;
+        }
+
+        public Criteria andInderectRecomandPersonIdIn(List<Integer> values) {
+            addCriterion("inderect_recomand_person_id in", values, "inderectRecomandPersonId");
+            return (Criteria) this;
+        }
+
+        public Criteria andInderectRecomandPersonIdNotIn(List<Integer> values) {
+            addCriterion("inderect_recomand_person_id not in", values, "inderectRecomandPersonId");
+            return (Criteria) this;
+        }
+
+        public Criteria andInderectRecomandPersonIdBetween(Integer value1, Integer value2) {
+            addCriterion("inderect_recomand_person_id between", value1, value2, "inderectRecomandPersonId");
+            return (Criteria) this;
+        }
+
+        public Criteria andInderectRecomandPersonIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("inderect_recomand_person_id not between", value1, value2, "inderectRecomandPersonId");
+            return (Criteria) this;
+        }
+
+        public Criteria andInderectRecomandPersonNameIsNull() {
+            addCriterion("inderect_recomand_person_name is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andInderectRecomandPersonNameIsNotNull() {
+            addCriterion("inderect_recomand_person_name is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andInderectRecomandPersonNameEqualTo(String value) {
+            addCriterion("inderect_recomand_person_name =", value, "inderectRecomandPersonName");
+            return (Criteria) this;
+        }
+
+        public Criteria andInderectRecomandPersonNameNotEqualTo(String value) {
+            addCriterion("inderect_recomand_person_name <>", value, "inderectRecomandPersonName");
+            return (Criteria) this;
+        }
+
+        public Criteria andInderectRecomandPersonNameGreaterThan(String value) {
+            addCriterion("inderect_recomand_person_name >", value, "inderectRecomandPersonName");
+            return (Criteria) this;
+        }
+
+        public Criteria andInderectRecomandPersonNameGreaterThanOrEqualTo(String value) {
+            addCriterion("inderect_recomand_person_name >=", value, "inderectRecomandPersonName");
+            return (Criteria) this;
+        }
+
+        public Criteria andInderectRecomandPersonNameLessThan(String value) {
+            addCriterion("inderect_recomand_person_name <", value, "inderectRecomandPersonName");
+            return (Criteria) this;
+        }
+
+        public Criteria andInderectRecomandPersonNameLessThanOrEqualTo(String value) {
+            addCriterion("inderect_recomand_person_name <=", value, "inderectRecomandPersonName");
+            return (Criteria) this;
+        }
+
+        public Criteria andInderectRecomandPersonNameLike(String value) {
+            addCriterion("inderect_recomand_person_name like", value, "inderectRecomandPersonName");
+            return (Criteria) this;
+        }
+
+        public Criteria andInderectRecomandPersonNameNotLike(String value) {
+            addCriterion("inderect_recomand_person_name not like", value, "inderectRecomandPersonName");
+            return (Criteria) this;
+        }
+
+        public Criteria andInderectRecomandPersonNameIn(List<String> values) {
+            addCriterion("inderect_recomand_person_name in", values, "inderectRecomandPersonName");
+            return (Criteria) this;
+        }
+
+        public Criteria andInderectRecomandPersonNameNotIn(List<String> values) {
+            addCriterion("inderect_recomand_person_name not in", values, "inderectRecomandPersonName");
+            return (Criteria) this;
+        }
+
+        public Criteria andInderectRecomandPersonNameBetween(String value1, String value2) {
+            addCriterion("inderect_recomand_person_name between", value1, value2, "inderectRecomandPersonName");
+            return (Criteria) this;
+        }
+
+        public Criteria andInderectRecomandPersonNameNotBetween(String value1, String value2) {
+            addCriterion("inderect_recomand_person_name not between", value1, value2, "inderectRecomandPersonName");
             return (Criteria) this;
         }
 

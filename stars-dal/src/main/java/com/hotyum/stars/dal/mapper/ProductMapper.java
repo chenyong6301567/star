@@ -31,11 +31,11 @@ public interface ProductMapper {
     int deleteByPrimaryKey(Integer id);
 
     @Insert({
-        "insert into product (product_type, service_time, ",
+        "insert into product (product_type_name, service_time, ",
         "month_rate, enable_flag, ",
         "gmt_create, gmt_modify, ",
         "stauts)",
-        "values (#{productType,jdbcType=VARCHAR}, #{serviceTime,jdbcType=TINYINT}, ",
+        "values (#{productTypeName,jdbcType=VARCHAR}, #{serviceTime,jdbcType=TINYINT}, ",
         "#{monthRate,jdbcType=VARCHAR}, #{enableFlag,jdbcType=TINYINT}, ",
         "#{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModify,jdbcType=TIMESTAMP}, ",
         "#{stauts,jdbcType=TINYINT})"
@@ -50,7 +50,7 @@ public interface ProductMapper {
     @SelectProvider(type=ProductSqlProvider.class, method="selectByExample")
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
-        @Result(column="product_type", property="productType", jdbcType=JdbcType.VARCHAR),
+        @Result(column="product_type_name", property="productTypeName", jdbcType=JdbcType.VARCHAR),
         @Result(column="service_time", property="serviceTime", jdbcType=JdbcType.TINYINT),
         @Result(column="month_rate", property="monthRate", jdbcType=JdbcType.VARCHAR),
         @Result(column="enable_flag", property="enableFlag", jdbcType=JdbcType.TINYINT),
@@ -62,14 +62,14 @@ public interface ProductMapper {
 
     @Select({
         "select",
-        "id, product_type, service_time, month_rate, enable_flag, gmt_create, gmt_modify, ",
+        "id, product_type_name, service_time, month_rate, enable_flag, gmt_create, gmt_modify, ",
         "stauts",
         "from product",
         "where id = #{id,jdbcType=INTEGER}"
     })
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
-        @Result(column="product_type", property="productType", jdbcType=JdbcType.VARCHAR),
+        @Result(column="product_type_name", property="productTypeName", jdbcType=JdbcType.VARCHAR),
         @Result(column="service_time", property="serviceTime", jdbcType=JdbcType.TINYINT),
         @Result(column="month_rate", property="monthRate", jdbcType=JdbcType.VARCHAR),
         @Result(column="enable_flag", property="enableFlag", jdbcType=JdbcType.TINYINT),
@@ -90,7 +90,7 @@ public interface ProductMapper {
 
     @Update({
         "update product",
-        "set product_type = #{productType,jdbcType=VARCHAR},",
+        "set product_type_name = #{productTypeName,jdbcType=VARCHAR},",
           "service_time = #{serviceTime,jdbcType=TINYINT},",
           "month_rate = #{monthRate,jdbcType=VARCHAR},",
           "enable_flag = #{enableFlag,jdbcType=TINYINT},",

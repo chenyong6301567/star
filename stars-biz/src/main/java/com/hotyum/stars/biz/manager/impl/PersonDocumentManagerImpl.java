@@ -17,11 +17,15 @@ import org.springframework.transaction.annotation.Transactional;
 import com.croky.lang.Status;
 import com.croky.util.ObjectUtils;
 import com.github.pagehelper.PageHelper;
+import com.hotyum.stars.biz.manager.ContractIncomeDistributionManager;
 import com.hotyum.stars.biz.manager.PersonDocumentManager;
+import com.hotyum.stars.biz.manager.ReferralInformationManager;
+import com.hotyum.stars.biz.manager.UserManager;
 import com.hotyum.stars.biz.model.CustomerMoneyVO;
 import com.hotyum.stars.dal.dao.PersonDocumentDAO;
 import com.hotyum.stars.dal.model.PersonDocument;
 import com.hotyum.stars.dal.model.PersonDocumentExample;
+import com.hotyum.stars.dal.model.User;
 import com.hotyum.stars.utils.DateUtil;
 import com.hotyum.stars.utils.Page;
 
@@ -36,6 +40,15 @@ public class PersonDocumentManagerImpl implements PersonDocumentManager {
 
 	@Autowired
 	private PersonDocumentDAO personDocumentDAO;
+
+	@Autowired
+	private ContractIncomeDistributionManager contractIncomeDistributionManager;
+
+	@Autowired
+	private ReferralInformationManager referralInformationManager;
+
+	@Autowired
+	private UserManager userManager;
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(PersonDocumentManagerImpl.class);
 
@@ -54,26 +67,38 @@ public class PersonDocumentManagerImpl implements PersonDocumentManager {
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void addpersonDocument(String documentCode, String customerName, String tradePlatform, String tradeAccount,
 			Byte wheatherGetMoney, Date getMoneyDate, Byte certificateType, String certificateNumber, Date contractDate,
-			String productId, String productType, Byte serviceDate, int buyNum, double investmentAmount,
+			Integer productId, String productTypeName, Byte serviceDate, double investmentAmount,
 			double estimatedEarnings, String contactPhone, String registerEmail, String agentCode,
-			String derectRecomandPerson, String inderectRecomandPerson, String productRate) {
+			Integer derectRecomandPersonId, Integer inderectRecomandPersonId, String productRate, Integer usId) {
 
 		PersonDocument personDocument = new PersonDocument();
 		personDocument.setAgentCode(agentCode);
-		personDocument.setBuyNum(buyNum);
 		personDocument.setCertificateNumber(certificateNumber);
 		personDocument.setCertificateType(certificateType);
 		personDocument.setContactPhone(contactPhone);
 		personDocument.setContractDate(contractDate);
 		personDocument.setCustomerName(customerName);
-		personDocument.setDerectRecomandPerson(inderectRecomandPerson);
+		if (null != derectRecomandPersonId) {
+			personDocument.setDerectRecomandPersonId(derectRecomandPersonId);
+			User user = userManager.getUserById(derectRecomandPersonId);
+			if (null != user) {
+				personDocument.setDerectRecomandPersonName(user.getRealName());
+			}
+		}
+		if (null != derectRecomandPersonId) {
+			personDocument.setInderectRecomandPersonId(inderectRecomandPersonId);
+			User user = userManager.getUserById(derectRecomandPersonId);
+			if (null != user) {
+				personDocument.setInderectRecomandPersonName(user.getRealName());
+			}
+		}
 		personDocument.setDocumentCode(documentCode);
 		personDocument.setEstimatedEarnings(new BigDecimal(estimatedEarnings));
 		personDocument.setGetMoneyDate(getMoneyDate);
-		personDocument.setInderectRecomandPerson(inderectRecomandPerson);
 		personDocument.setInvestmentAmount(new BigDecimal(investmentAmount));
 		personDocument.setProductRate(productRate);
-		personDocument.setProductType(productType);
+		personDocument.setProductId(productId);
+		personDocument.setProductTypeName(productTypeName);
 		personDocument.setRegisterEmail(registerEmail);
 		personDocument.setServiceDate(serviceDate);
 		personDocument.setTradeAccount(tradeAccount);
@@ -88,7 +113,14 @@ public class PersonDocumentManagerImpl implements PersonDocumentManager {
 			LOGGER.error("addpersonDocument失败====", e);
 			throw new RuntimeException("内部服务器错误");
 		}
+		contractIncomeDistributionManager.addContractIncomeDistribution(documentCode, customerName, tradePlatform,
+				tradeAccount, wheatherGetMoney, getMoneyDate, certificateType, certificateNumber, contractDate,
+				productId, productTypeName, serviceDate, investmentAmount, estimatedEarnings, contactPhone,
+				registerEmail, agentCode, derectRecomandPersonId, inderectRecomandPersonId, productRate);
 
+		// 更新用户入金金额
+		referralInformationManager.updateByUsId(investmentAmount, usId);
+		userManager.updateSumMoneyByUsId(investmentAmount, usId);
 	}
 
 	/**
@@ -104,7 +136,7 @@ public class PersonDocumentManagerImpl implements PersonDocumentManager {
 	*/
 	@Override
 	public Page<CustomerMoneyVO> getPersonDocumentList(String documentCode, String tradePlatform, Byte wheatherGetMoney,
-			String productType, String registerEmail, Integer buyNum, Date contractDateBegin, Date contractDateEnd,
+			String productTypeName, String registerEmail, Integer buyNum, Date contractDateBegin, Date contractDateEnd,
 			int pageNum, int pageSize) {
 		PersonDocumentExample personDocumentExample = new PersonDocumentExample();
 		PersonDocumentExample.Criteria criteria = personDocumentExample.createCriteria();
@@ -118,8 +150,8 @@ public class PersonDocumentManagerImpl implements PersonDocumentManager {
 		if (null != wheatherGetMoney) {
 			criteria.andWheatherGetMoneyEqualTo(wheatherGetMoney);
 		}
-		if (StringUtils.isNoneEmpty(productType)) {
-			criteria.andProductTypeLike(("%" + productType + "%"));
+		if (StringUtils.isNoneEmpty(productTypeName)) {
+			criteria.andProductTypeNameLike("%" + productTypeName + "%");
 		}
 		if (StringUtils.isNoneEmpty(registerEmail)) {
 			criteria.andRegisterEmailLike("%" + registerEmail + "%");

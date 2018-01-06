@@ -6,7 +6,7 @@ import java.util.Date;
 public class Product implements Serializable {
     private Integer id;
 
-    private String productType;
+    private String productTypeName;
 
     private Byte serviceTime;
 
@@ -30,12 +30,12 @@ public class Product implements Serializable {
         this.id = id;
     }
 
-    public String getProductType() {
-        return productType;
+    public String getProductTypeName() {
+        return productTypeName;
     }
 
-    public void setProductType(String productType) {
-        this.productType = productType == null ? null : productType.trim();
+    public void setProductTypeName(String productTypeName) {
+        this.productTypeName = productTypeName == null ? null : productTypeName.trim();
     }
 
     public Byte getServiceTime() {
@@ -99,7 +99,7 @@ public class Product implements Serializable {
         }
         Product other = (Product) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getProductType() == null ? other.getProductType() == null : this.getProductType().equals(other.getProductType()))
+            && (this.getProductTypeName() == null ? other.getProductTypeName() == null : this.getProductTypeName().equals(other.getProductTypeName()))
             && (this.getServiceTime() == null ? other.getServiceTime() == null : this.getServiceTime().equals(other.getServiceTime()))
             && (this.getMonthRate() == null ? other.getMonthRate() == null : this.getMonthRate().equals(other.getMonthRate()))
             && (this.getEnableFlag() == null ? other.getEnableFlag() == null : this.getEnableFlag().equals(other.getEnableFlag()))
@@ -113,7 +113,7 @@ public class Product implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getProductType() == null) ? 0 : getProductType().hashCode());
+        result = prime * result + ((getProductTypeName() == null) ? 0 : getProductTypeName().hashCode());
         result = prime * result + ((getServiceTime() == null) ? 0 : getServiceTime().hashCode());
         result = prime * result + ((getMonthRate() == null) ? 0 : getMonthRate().hashCode());
         result = prime * result + ((getEnableFlag() == null) ? 0 : getEnableFlag().hashCode());

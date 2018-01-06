@@ -1,5 +1,6 @@
 package com.hotyum.stars.dal.model;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -692,6 +693,66 @@ public class UserExample {
 
         public Criteria andWheatherGetMoneyNotBetween(Byte value1, Byte value2) {
             addCriterion("wheather_get_money not between", value1, value2, "wheatherGetMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andSumMoneyIsNull() {
+            addCriterion("sum_money is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSumMoneyIsNotNull() {
+            addCriterion("sum_money is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSumMoneyEqualTo(BigDecimal value) {
+            addCriterion("sum_money =", value, "sumMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andSumMoneyNotEqualTo(BigDecimal value) {
+            addCriterion("sum_money <>", value, "sumMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andSumMoneyGreaterThan(BigDecimal value) {
+            addCriterion("sum_money >", value, "sumMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andSumMoneyGreaterThanOrEqualTo(BigDecimal value) {
+            addCriterion("sum_money >=", value, "sumMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andSumMoneyLessThan(BigDecimal value) {
+            addCriterion("sum_money <", value, "sumMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andSumMoneyLessThanOrEqualTo(BigDecimal value) {
+            addCriterion("sum_money <=", value, "sumMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andSumMoneyIn(List<BigDecimal> values) {
+            addCriterion("sum_money in", values, "sumMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andSumMoneyNotIn(List<BigDecimal> values) {
+            addCriterion("sum_money not in", values, "sumMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andSumMoneyBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("sum_money between", value1, value2, "sumMoney");
+            return (Criteria) this;
+        }
+
+        public Criteria andSumMoneyNotBetween(BigDecimal value1, BigDecimal value2) {
+            addCriterion("sum_money not between", value1, value2, "sumMoney");
             return (Criteria) this;
         }
 

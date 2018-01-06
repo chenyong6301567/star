@@ -1,5 +1,6 @@
 package com.hotyum.stars.biz.manager.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -10,10 +11,13 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
+import com.croky.util.ObjectUtils;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import com.hotyum.stars.biz.manager.ProductManager;
+import com.hotyum.stars.biz.model.ProductVO;
 import com.hotyum.stars.dal.dao.ProductDAO;
 import com.hotyum.stars.dal.model.Product;
 import com.hotyum.stars.dal.model.ProductExample;
@@ -154,6 +158,43 @@ public class ProductManagerImpl implements ProductManager {
 			LOGGER.error("getProductById失败====", e);
 			throw new RuntimeException("内部服务器错误");
 		}
+	}
+
+	/**
+	* @Title:getProductVOList
+	* @author:cy
+	* @Description 
+	* @date:2018年1月6日下午6:30:19
+	* @param 
+	* @param 
+	* @param 
+	* @return 
+	 * @throws Exception 
+	 * @throws:
+	*/
+	@Override
+	public List<ProductVO> getProductVOList() throws Exception {
+		ProductExample productExample = new ProductExample();
+		ProductExample.Criteria criteria = productExample.createCriteria();
+		criteria.andStautsGreaterThanOrEqualTo(Status.ZERO.getValue());
+		criteria.andEnableFlagEqualTo(Status.VALID.getValue());
+		List<Product> productList = null;
+		try {
+			productList = productDAO.selectByExample(productExample);
+		} catch (DataAccessException e) {
+			LOGGER.error("getProductVOList失败====", e);
+			throw new RuntimeException("内部服务器错误");
+		}
+		if (CollectionUtils.isEmpty(productList)) {
+			return null;
+		}
+		List<ProductVO> voList = new ArrayList<>();
+		for (Product product : productList) {
+			ProductVO vo = new ProductVO();
+			vo = ObjectUtils.convert(product, ProductVO.class);
+			voList.add(vo);
+		}
+		return voList;
 	}
 
 }

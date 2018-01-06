@@ -60,6 +60,10 @@ public class UserSqlProvider {
             sql.VALUES("wheather_get_money", "#{wheatherGetMoney,jdbcType=TINYINT}");
         }
         
+        if (record.getSumMoney() != null) {
+            sql.VALUES("sum_money", "#{sumMoney,jdbcType=DECIMAL}");
+        }
+        
         if (record.getGmtCreate() != null) {
             sql.VALUES("gmt_create", "#{gmtCreate,jdbcType=TIMESTAMP}");
         }
@@ -146,6 +150,7 @@ public class UserSqlProvider {
         sql.SELECT("real_name");
         sql.SELECT("whether_real_name");
         sql.SELECT("wheather_get_money");
+        sql.SELECT("sum_money");
         sql.SELECT("gmt_create");
         sql.SELECT("gmt_modify");
         sql.SELECT("status");
@@ -214,6 +219,10 @@ public class UserSqlProvider {
         
         if (record.getWheatherGetMoney() != null) {
             sql.SET("wheather_get_money = #{record.wheatherGetMoney,jdbcType=TINYINT}");
+        }
+        
+        if (record.getSumMoney() != null) {
+            sql.SET("sum_money = #{record.sumMoney,jdbcType=DECIMAL}");
         }
         
         if (record.getGmtCreate() != null) {
@@ -301,6 +310,7 @@ public class UserSqlProvider {
         sql.SET("real_name = #{record.realName,jdbcType=VARCHAR}");
         sql.SET("whether_real_name = #{record.whetherRealName,jdbcType=TINYINT}");
         sql.SET("wheather_get_money = #{record.wheatherGetMoney,jdbcType=TINYINT}");
+        sql.SET("sum_money = #{record.sumMoney,jdbcType=DECIMAL}");
         sql.SET("gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP}");
         sql.SET("gmt_modify = #{record.gmtModify,jdbcType=TIMESTAMP}");
         sql.SET("status = #{record.status,jdbcType=TINYINT}");
@@ -358,6 +368,10 @@ public class UserSqlProvider {
         
         if (record.getWheatherGetMoney() != null) {
             sql.SET("wheather_get_money = #{wheatherGetMoney,jdbcType=TINYINT}");
+        }
+        
+        if (record.getSumMoney() != null) {
+            sql.SET("sum_money = #{sumMoney,jdbcType=DECIMAL}");
         }
         
         if (record.getGmtCreate() != null) {

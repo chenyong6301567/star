@@ -1,5 +1,6 @@
 package com.hotyum.stars.biz.manager.impl;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -27,6 +28,7 @@ import com.hotyum.stars.dal.model.CustomerReferralInformationExample;
 import com.hotyum.stars.dal.model.MyReferralInformation;
 import com.hotyum.stars.dal.model.MyReferralInformationExample;
 import com.hotyum.stars.dal.model.User;
+import com.hotyum.stars.utils.DecimalUtil;
 import com.hotyum.stars.utils.enums.RefereeType;
 
 /**
@@ -159,7 +161,7 @@ public class ReferralInformationManagerImpl implements ReferralInformationManage
 	* @return MyReferralInformation
 	* @throws:
 	*/
-	private MyReferralInformation getMyInfo(Integer usId) {
+	public MyReferralInformation getMyInfo(Integer usId) {
 		MyReferralInformationExample example = new MyReferralInformationExample();
 		MyReferralInformationExample.Criteria criteria = example.createCriteria();
 		criteria.andUsIdEqualTo(usId);
@@ -277,6 +279,35 @@ public class ReferralInformationManagerImpl implements ReferralInformationManage
 			voList.add(vo);
 		}
 		return voList;
+	}
+
+	/**
+	* @Title:updateByUsId
+	* @author:cy
+	* @Description 
+	* @date:2018年1月6日下午9:01:03
+	* @param 
+	* @param 
+	* @param 
+	* @return 
+	* @throws:
+	*/
+	@Override
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	public void updateByUsId(double investmentAmount, Integer usId) {
+		MyReferralInformation myinfo = getMyInfo(usId);
+		if (null != myinfo) {
+			myinfo.setSumMoney(new BigDecimal(DecimalUtil.add(myinfo.getSumMoney().doubleValue(), investmentAmount)));
+			myinfo.setGmtModify(new Date());
+			try {
+				myReferralInformationDAO.updateByPrimaryKey(myinfo);
+			} catch (DataAccessException e) {
+				LOGGER.error("updateByUsId失败====", e);
+				throw new RuntimeException("内部服务器错误");
+			}
+
+		}
+
 	}
 
 }

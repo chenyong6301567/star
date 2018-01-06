@@ -1,6 +1,7 @@
 package com.hotyum.stars.dal.model;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 
 public class User implements Serializable {
@@ -21,6 +22,8 @@ public class User implements Serializable {
     private Byte whetherRealName;
 
     private Byte wheatherGetMoney;
+
+    private BigDecimal sumMoney;
 
     private Date gmtCreate;
 
@@ -128,6 +131,14 @@ public class User implements Serializable {
 
     public void setWheatherGetMoney(Byte wheatherGetMoney) {
         this.wheatherGetMoney = wheatherGetMoney;
+    }
+
+    public BigDecimal getSumMoney() {
+        return sumMoney;
+    }
+
+    public void setSumMoney(BigDecimal sumMoney) {
+        this.sumMoney = sumMoney;
     }
 
     public Date getGmtCreate() {
@@ -287,6 +298,7 @@ public class User implements Serializable {
             && (this.getRealName() == null ? other.getRealName() == null : this.getRealName().equals(other.getRealName()))
             && (this.getWhetherRealName() == null ? other.getWhetherRealName() == null : this.getWhetherRealName().equals(other.getWhetherRealName()))
             && (this.getWheatherGetMoney() == null ? other.getWheatherGetMoney() == null : this.getWheatherGetMoney().equals(other.getWheatherGetMoney()))
+            && (this.getSumMoney() == null ? other.getSumMoney() == null : this.getSumMoney().equals(other.getSumMoney()))
             && (this.getGmtCreate() == null ? other.getGmtCreate() == null : this.getGmtCreate().equals(other.getGmtCreate()))
             && (this.getGmtModify() == null ? other.getGmtModify() == null : this.getGmtModify().equals(other.getGmtModify()))
             && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
@@ -319,6 +331,7 @@ public class User implements Serializable {
         result = prime * result + ((getRealName() == null) ? 0 : getRealName().hashCode());
         result = prime * result + ((getWhetherRealName() == null) ? 0 : getWhetherRealName().hashCode());
         result = prime * result + ((getWheatherGetMoney() == null) ? 0 : getWheatherGetMoney().hashCode());
+        result = prime * result + ((getSumMoney() == null) ? 0 : getSumMoney().hashCode());
         result = prime * result + ((getGmtCreate() == null) ? 0 : getGmtCreate().hashCode());
         result = prime * result + ((getGmtModify() == null) ? 0 : getGmtModify().hashCode());
         result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());

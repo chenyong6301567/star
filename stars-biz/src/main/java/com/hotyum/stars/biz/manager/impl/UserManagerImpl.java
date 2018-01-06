@@ -1,5 +1,6 @@
 package com.hotyum.stars.biz.manager.impl;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -10,6 +11,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.expression.spel.ast.BooleanLiteral;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,6 +25,7 @@ import com.hotyum.stars.biz.manager.SmsManager;
 import com.hotyum.stars.biz.manager.SysUserRoleManager;
 import com.hotyum.stars.biz.manager.TokenAccessManager;
 import com.hotyum.stars.biz.manager.UserManager;
+import com.hotyum.stars.biz.model.CustomerRecommandVO;
 import com.hotyum.stars.biz.model.TokenInfoVO;
 import com.hotyum.stars.biz.model.UserListVO;
 import com.hotyum.stars.dal.dao.UserDAO;
@@ -31,11 +34,14 @@ import com.hotyum.stars.dal.model.User;
 import com.hotyum.stars.dal.model.UserExample;
 import com.hotyum.stars.utils.Assert;
 import com.hotyum.stars.utils.DateUtil;
+import com.hotyum.stars.utils.DecimalUtil;
 import com.hotyum.stars.utils.Page;
+import com.hotyum.stars.utils.enums.BooleanType;
 import com.hotyum.stars.utils.enums.LoginType;
 import com.hotyum.stars.utils.enums.NoticeType;
 import com.hotyum.stars.utils.enums.PicType;
 import com.hotyum.stars.utils.enums.RefereeType;
+import com.hotyum.stars.utils.enums.SexType;
 import com.hotyum.stars.utils.enums.SmsType;
 import com.hotyum.stars.utils.enums.Status;
 import com.hotyum.stars.utils.exception.ApplicationException;
@@ -70,6 +76,16 @@ public class UserManagerImpl implements UserManager {
 	private static final String DERECTMESSAGE = "您的直推客户{0}成功注册了系统，请您悉知。";
 
 	private static final String INDERECTMESSAGE = "您的间推客户{0}成功注册了系统，请您悉知。";
+
+	private static final String PHONEREX = "(\\d{3})\\d{4}(\\d{4})";
+
+	private static final String HIDESTR = "$1****$2";
+
+	private static final String ACCOUNTHIDESTR = "$1*********";
+
+	private static final String ACCOUNTREX = "(\\d{3})";
+
+	private static final String IDCARD = "(\\d{4})\\d{10}(\\w{4})";
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserManagerImpl.class);
 
@@ -537,7 +553,7 @@ public class UserManagerImpl implements UserManager {
 				throw new RuntimeException("内部服务器错误");
 			}
 		}
-		return new Page<>(pageSize, pageNum, userList.size(), userVOList);
+		return new Page<UserListVO>(pageSize, pageNum, userList.size(), userVOList);
 	}
 
 	/**
@@ -562,6 +578,160 @@ public class UserManagerImpl implements UserManager {
 			LOGGER.error("getAllUser失败====", e);
 			throw new RuntimeException("内部服务器错误");
 		}
+	}
+
+	/**
+	* @Title:getByAccount
+	* @author:cy
+	* @Description 
+	* @date:2018年1月6日下午4:07:14
+	* @param 
+	* @param 
+	* @param 
+	* @return 
+	* @throws:
+	*/
+	@Override
+	public User getByAccount(String derectRecomandPerson) {
+		UserExample userExample = new UserExample();
+		UserExample.Criteria criteria = userExample.createCriteria();
+		criteria.andStatusGreaterThanOrEqualTo(Status.ZERO.getValue());
+		criteria.andAccountEqualTo(derectRecomandPerson);
+		try {
+			List<User> userList = userDAO.selectByExample(userExample);
+			return CollectionUtils.isEmpty(userList) ? null : userList.get(0);
+		} catch (DataAccessException e) {
+			LOGGER.error("getAllUser失败====", e);
+			throw new RuntimeException("内部服务器错误");
+		}
+	}
+
+	/**
+	* @Title:updateSumMoneyByUsId
+	* @author:cy
+	* @Description 
+	* @date:2018年1月6日下午9:11:09
+	* @param 
+	* @param 
+	* @param 
+	* @return 
+	* @throws:
+	*/
+	@Override
+	public void updateSumMoneyByUsId(double investmentAmount, Integer userId) {
+		User user = getUserById(userId);
+		if (null != user) {
+			user.setGmtModify(new Date());
+			user.setSumMoney(new BigDecimal(DecimalUtil.add(user.getSumMoney().doubleValue(), investmentAmount)));
+			try {
+				userDAO.updateByPrimaryKey(user);
+			} catch (DataAccessException e) {
+				LOGGER.error("updateSumMoneyByUsId失败====", e);
+				throw new RuntimeException("内部服务器错误");
+			}
+		}
+
+	}
+
+	/**
+	* @Title:getCustomerRecommandVOList
+	* @author:cy
+	* @Description 
+	* @date:2018年1月6日下午9:23:17
+	* @param 
+	* @param 
+	* @param 
+	* @return 
+	* @throws:
+	*/
+	@Override
+	public Page<CustomerRecommandVO> getCustomerRecommandVOList(String account, String realName, Byte whetherGetMoney,
+			Byte refereeQualification, String indirectRecommendationAccount, String directRecommendationAccount,
+			Date gmtCreateBegin, Date gmtCreateEnd, int pageNum, int pageSize) {
+		UserExample userExample = new UserExample();
+		UserExample.Criteria criteria = userExample.createCriteria();
+		criteria.andStatusGreaterThanOrEqualTo(Status.ZERO.getValue());
+		if (StringUtils.isNotEmpty(account)) {
+			criteria.andAccountLike("%" + account + "%");
+		}
+		if (StringUtils.isNotEmpty(realName)) {
+			criteria.andRealNameLike("%" + realName + "%");
+		}
+		if (null != whetherGetMoney) {
+			criteria.andWhetherRealNameEqualTo(whetherGetMoney);
+		}
+		if (null != refereeQualification) {
+			criteria.andRefereeQualificationEqualTo(refereeQualification);
+		}
+		if (StringUtils.isNotEmpty(indirectRecommendationAccount)) {
+			criteria.andIndirectRecommendationAccountLike("%" + indirectRecommendationAccount + "%");
+		}
+		if (StringUtils.isNotEmpty(directRecommendationAccount)) {
+			criteria.andDirectRecommendationAccountLike("%" + directRecommendationAccount + "%");
+		}
+		if (null != gmtCreateBegin) {
+			criteria.andGmtCreateGreaterThan(gmtCreateBegin);
+		}
+		if (null != gmtCreateEnd) {
+			criteria.andGmtCreateLessThan(gmtCreateEnd);
+		}
+
+		com.github.pagehelper.Page<User> page = PageHelper.startPage(pageNum, pageSize);
+		page.setOrderBy(" gmt_create desc");
+		try {
+			userDAO.selectByExample(userExample);
+		} catch (DataAccessException e) {
+			LOGGER.error("getRegisterNoticeByUserId失败====", e);
+			throw new RuntimeException("内部服务器错误");
+		}
+		return CovertCustomerRecommandVOPage(page, pageNum, pageSize);
+	}
+
+	/**
+	* @Title CovertCustomerRecommandVOPage
+	* @author cy
+	* @Description 
+	* @date 2018年1月6日下午9:27:01
+	* @param 
+	* @param 
+	* @param 
+	* @return Page<CustomerRecommandVO>
+	* @throws:
+	*/
+	private Page<CustomerRecommandVO> CovertCustomerRecommandVOPage(com.github.pagehelper.Page<User> page, int pageNum,
+			int pageSize) {
+		List<User> userList = page.toPageInfo().getList();
+		List<CustomerRecommandVO> customerRecommandVOList = new ArrayList<CustomerRecommandVO>(userList.size());
+		for (User user : userList) {
+			try {
+				CustomerRecommandVO customerRecommandVO = ObjectUtils.convert(user, CustomerRecommandVO.class);
+				customerRecommandVO.setAccount(user.getAccount().replaceAll(PHONEREX, HIDESTR));
+				if (StringUtils.isNoneEmpty(user.getContactPhone())) {
+					customerRecommandVO.setContactPhone(user.getContactPhone().replaceAll(PHONEREX, HIDESTR));
+				}
+				customerRecommandVO.setGmtCreate(DateUtil.date2Str(user.getGmtCreate()));
+				if (user.getSex().equals(SexType.MALE.getValue())) {
+					customerRecommandVO.setSexName(SexType.MALE.getDescription());
+				} else {
+					customerRecommandVO.setSexName(SexType.FEMALE.getDescription());
+				}
+				customerRecommandVO.setWhetherRealName(BooleanType.getDes(user.getWhetherRealName()));
+				customerRecommandVO.setWheatherGetMoney(BooleanType.getDes(user.getWheatherGetMoney()));
+				customerRecommandVO.setRefereeQualification(BooleanType.getDes(user.getRefereeQualification()));
+				customerRecommandVO.setSumMoney(user.getSumMoney().doubleValue());
+				customerRecommandVO.setDirectRecommendationAccount(
+						user.getDirectRecommendationAccount().replaceAll(ACCOUNTREX, ACCOUNTHIDESTR));
+				customerRecommandVO.setIndirectRecommendationAccount(
+						user.getIndirectRecommendationAccount().replaceAll(ACCOUNTREX, ACCOUNTHIDESTR));
+
+				customerRecommandVOList.add(customerRecommandVO);
+			} catch (Exception e) {
+				LOGGER.error("CovertPage失败====", e);
+				throw new RuntimeException("内部服务器错误");
+			}
+		}
+		return new Page<CustomerRecommandVO>(pageSize, pageNum, customerRecommandVOList.size(),
+				customerRecommandVOList);
 	}
 
 }

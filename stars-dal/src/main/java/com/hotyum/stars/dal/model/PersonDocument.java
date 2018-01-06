@@ -25,7 +25,9 @@ public class PersonDocument implements Serializable {
 
     private Date contractDate;
 
-    private String productType;
+    private Integer productId;
+
+    private String productTypeName;
 
     private String productRate;
 
@@ -37,15 +39,21 @@ public class PersonDocument implements Serializable {
 
     private BigDecimal estimatedEarnings;
 
+    private BigDecimal contractIncome;
+
     private String contactPhone;
 
     private String registerEmail;
 
     private String agentCode;
 
-    private String derectRecomandPerson;
+    private Integer derectRecomandPersonId;
 
-    private String inderectRecomandPerson;
+    private String derectRecomandPersonName;
+
+    private Integer inderectRecomandPersonId;
+
+    private String inderectRecomandPersonName;
 
     private Date gmtCreate;
 
@@ -135,12 +143,20 @@ public class PersonDocument implements Serializable {
         this.contractDate = contractDate;
     }
 
-    public String getProductType() {
-        return productType;
+    public Integer getProductId() {
+        return productId;
     }
 
-    public void setProductType(String productType) {
-        this.productType = productType == null ? null : productType.trim();
+    public void setProductId(Integer productId) {
+        this.productId = productId;
+    }
+
+    public String getProductTypeName() {
+        return productTypeName;
+    }
+
+    public void setProductTypeName(String productTypeName) {
+        this.productTypeName = productTypeName == null ? null : productTypeName.trim();
     }
 
     public String getProductRate() {
@@ -183,6 +199,14 @@ public class PersonDocument implements Serializable {
         this.estimatedEarnings = estimatedEarnings;
     }
 
+    public BigDecimal getContractIncome() {
+        return contractIncome;
+    }
+
+    public void setContractIncome(BigDecimal contractIncome) {
+        this.contractIncome = contractIncome;
+    }
+
     public String getContactPhone() {
         return contactPhone;
     }
@@ -207,20 +231,36 @@ public class PersonDocument implements Serializable {
         this.agentCode = agentCode == null ? null : agentCode.trim();
     }
 
-    public String getDerectRecomandPerson() {
-        return derectRecomandPerson;
+    public Integer getDerectRecomandPersonId() {
+        return derectRecomandPersonId;
     }
 
-    public void setDerectRecomandPerson(String derectRecomandPerson) {
-        this.derectRecomandPerson = derectRecomandPerson == null ? null : derectRecomandPerson.trim();
+    public void setDerectRecomandPersonId(Integer derectRecomandPersonId) {
+        this.derectRecomandPersonId = derectRecomandPersonId;
     }
 
-    public String getInderectRecomandPerson() {
-        return inderectRecomandPerson;
+    public String getDerectRecomandPersonName() {
+        return derectRecomandPersonName;
     }
 
-    public void setInderectRecomandPerson(String inderectRecomandPerson) {
-        this.inderectRecomandPerson = inderectRecomandPerson == null ? null : inderectRecomandPerson.trim();
+    public void setDerectRecomandPersonName(String derectRecomandPersonName) {
+        this.derectRecomandPersonName = derectRecomandPersonName == null ? null : derectRecomandPersonName.trim();
+    }
+
+    public Integer getInderectRecomandPersonId() {
+        return inderectRecomandPersonId;
+    }
+
+    public void setInderectRecomandPersonId(Integer inderectRecomandPersonId) {
+        this.inderectRecomandPersonId = inderectRecomandPersonId;
+    }
+
+    public String getInderectRecomandPersonName() {
+        return inderectRecomandPersonName;
+    }
+
+    public void setInderectRecomandPersonName(String inderectRecomandPersonName) {
+        this.inderectRecomandPersonName = inderectRecomandPersonName == null ? null : inderectRecomandPersonName.trim();
     }
 
     public Date getGmtCreate() {
@@ -269,17 +309,21 @@ public class PersonDocument implements Serializable {
             && (this.getCertificateType() == null ? other.getCertificateType() == null : this.getCertificateType().equals(other.getCertificateType()))
             && (this.getCertificateNumber() == null ? other.getCertificateNumber() == null : this.getCertificateNumber().equals(other.getCertificateNumber()))
             && (this.getContractDate() == null ? other.getContractDate() == null : this.getContractDate().equals(other.getContractDate()))
-            && (this.getProductType() == null ? other.getProductType() == null : this.getProductType().equals(other.getProductType()))
+            && (this.getProductId() == null ? other.getProductId() == null : this.getProductId().equals(other.getProductId()))
+            && (this.getProductTypeName() == null ? other.getProductTypeName() == null : this.getProductTypeName().equals(other.getProductTypeName()))
             && (this.getProductRate() == null ? other.getProductRate() == null : this.getProductRate().equals(other.getProductRate()))
             && (this.getServiceDate() == null ? other.getServiceDate() == null : this.getServiceDate().equals(other.getServiceDate()))
             && (this.getBuyNum() == null ? other.getBuyNum() == null : this.getBuyNum().equals(other.getBuyNum()))
             && (this.getInvestmentAmount() == null ? other.getInvestmentAmount() == null : this.getInvestmentAmount().equals(other.getInvestmentAmount()))
             && (this.getEstimatedEarnings() == null ? other.getEstimatedEarnings() == null : this.getEstimatedEarnings().equals(other.getEstimatedEarnings()))
+            && (this.getContractIncome() == null ? other.getContractIncome() == null : this.getContractIncome().equals(other.getContractIncome()))
             && (this.getContactPhone() == null ? other.getContactPhone() == null : this.getContactPhone().equals(other.getContactPhone()))
             && (this.getRegisterEmail() == null ? other.getRegisterEmail() == null : this.getRegisterEmail().equals(other.getRegisterEmail()))
             && (this.getAgentCode() == null ? other.getAgentCode() == null : this.getAgentCode().equals(other.getAgentCode()))
-            && (this.getDerectRecomandPerson() == null ? other.getDerectRecomandPerson() == null : this.getDerectRecomandPerson().equals(other.getDerectRecomandPerson()))
-            && (this.getInderectRecomandPerson() == null ? other.getInderectRecomandPerson() == null : this.getInderectRecomandPerson().equals(other.getInderectRecomandPerson()))
+            && (this.getDerectRecomandPersonId() == null ? other.getDerectRecomandPersonId() == null : this.getDerectRecomandPersonId().equals(other.getDerectRecomandPersonId()))
+            && (this.getDerectRecomandPersonName() == null ? other.getDerectRecomandPersonName() == null : this.getDerectRecomandPersonName().equals(other.getDerectRecomandPersonName()))
+            && (this.getInderectRecomandPersonId() == null ? other.getInderectRecomandPersonId() == null : this.getInderectRecomandPersonId().equals(other.getInderectRecomandPersonId()))
+            && (this.getInderectRecomandPersonName() == null ? other.getInderectRecomandPersonName() == null : this.getInderectRecomandPersonName().equals(other.getInderectRecomandPersonName()))
             && (this.getGmtCreate() == null ? other.getGmtCreate() == null : this.getGmtCreate().equals(other.getGmtCreate()))
             && (this.getGmtModify() == null ? other.getGmtModify() == null : this.getGmtModify().equals(other.getGmtModify()))
             && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()));
@@ -299,17 +343,21 @@ public class PersonDocument implements Serializable {
         result = prime * result + ((getCertificateType() == null) ? 0 : getCertificateType().hashCode());
         result = prime * result + ((getCertificateNumber() == null) ? 0 : getCertificateNumber().hashCode());
         result = prime * result + ((getContractDate() == null) ? 0 : getContractDate().hashCode());
-        result = prime * result + ((getProductType() == null) ? 0 : getProductType().hashCode());
+        result = prime * result + ((getProductId() == null) ? 0 : getProductId().hashCode());
+        result = prime * result + ((getProductTypeName() == null) ? 0 : getProductTypeName().hashCode());
         result = prime * result + ((getProductRate() == null) ? 0 : getProductRate().hashCode());
         result = prime * result + ((getServiceDate() == null) ? 0 : getServiceDate().hashCode());
         result = prime * result + ((getBuyNum() == null) ? 0 : getBuyNum().hashCode());
         result = prime * result + ((getInvestmentAmount() == null) ? 0 : getInvestmentAmount().hashCode());
         result = prime * result + ((getEstimatedEarnings() == null) ? 0 : getEstimatedEarnings().hashCode());
+        result = prime * result + ((getContractIncome() == null) ? 0 : getContractIncome().hashCode());
         result = prime * result + ((getContactPhone() == null) ? 0 : getContactPhone().hashCode());
         result = prime * result + ((getRegisterEmail() == null) ? 0 : getRegisterEmail().hashCode());
         result = prime * result + ((getAgentCode() == null) ? 0 : getAgentCode().hashCode());
-        result = prime * result + ((getDerectRecomandPerson() == null) ? 0 : getDerectRecomandPerson().hashCode());
-        result = prime * result + ((getInderectRecomandPerson() == null) ? 0 : getInderectRecomandPerson().hashCode());
+        result = prime * result + ((getDerectRecomandPersonId() == null) ? 0 : getDerectRecomandPersonId().hashCode());
+        result = prime * result + ((getDerectRecomandPersonName() == null) ? 0 : getDerectRecomandPersonName().hashCode());
+        result = prime * result + ((getInderectRecomandPersonId() == null) ? 0 : getInderectRecomandPersonId().hashCode());
+        result = prime * result + ((getInderectRecomandPersonName() == null) ? 0 : getInderectRecomandPersonName().hashCode());
         result = prime * result + ((getGmtCreate() == null) ? 0 : getGmtCreate().hashCode());
         result = prime * result + ((getGmtModify() == null) ? 0 : getGmtModify().hashCode());
         result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());

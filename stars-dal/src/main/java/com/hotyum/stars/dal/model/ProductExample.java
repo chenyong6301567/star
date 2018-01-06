@@ -165,73 +165,73 @@ public class ProductExample {
             return (Criteria) this;
         }
 
-        public Criteria andProductTypeIsNull() {
-            addCriterion("product_type is null");
+        public Criteria andProductTypeNameIsNull() {
+            addCriterion("product_type_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andProductTypeIsNotNull() {
-            addCriterion("product_type is not null");
+        public Criteria andProductTypeNameIsNotNull() {
+            addCriterion("product_type_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andProductTypeEqualTo(String value) {
-            addCriterion("product_type =", value, "productType");
+        public Criteria andProductTypeNameEqualTo(String value) {
+            addCriterion("product_type_name =", value, "productTypeName");
             return (Criteria) this;
         }
 
-        public Criteria andProductTypeNotEqualTo(String value) {
-            addCriterion("product_type <>", value, "productType");
+        public Criteria andProductTypeNameNotEqualTo(String value) {
+            addCriterion("product_type_name <>", value, "productTypeName");
             return (Criteria) this;
         }
 
-        public Criteria andProductTypeGreaterThan(String value) {
-            addCriterion("product_type >", value, "productType");
+        public Criteria andProductTypeNameGreaterThan(String value) {
+            addCriterion("product_type_name >", value, "productTypeName");
             return (Criteria) this;
         }
 
-        public Criteria andProductTypeGreaterThanOrEqualTo(String value) {
-            addCriterion("product_type >=", value, "productType");
+        public Criteria andProductTypeNameGreaterThanOrEqualTo(String value) {
+            addCriterion("product_type_name >=", value, "productTypeName");
             return (Criteria) this;
         }
 
-        public Criteria andProductTypeLessThan(String value) {
-            addCriterion("product_type <", value, "productType");
+        public Criteria andProductTypeNameLessThan(String value) {
+            addCriterion("product_type_name <", value, "productTypeName");
             return (Criteria) this;
         }
 
-        public Criteria andProductTypeLessThanOrEqualTo(String value) {
-            addCriterion("product_type <=", value, "productType");
+        public Criteria andProductTypeNameLessThanOrEqualTo(String value) {
+            addCriterion("product_type_name <=", value, "productTypeName");
             return (Criteria) this;
         }
 
-        public Criteria andProductTypeLike(String value) {
-            addCriterion("product_type like", value, "productType");
+        public Criteria andProductTypeNameLike(String value) {
+            addCriterion("product_type_name like", value, "productTypeName");
             return (Criteria) this;
         }
 
-        public Criteria andProductTypeNotLike(String value) {
-            addCriterion("product_type not like", value, "productType");
+        public Criteria andProductTypeNameNotLike(String value) {
+            addCriterion("product_type_name not like", value, "productTypeName");
             return (Criteria) this;
         }
 
-        public Criteria andProductTypeIn(List<String> values) {
-            addCriterion("product_type in", values, "productType");
+        public Criteria andProductTypeNameIn(List<String> values) {
+            addCriterion("product_type_name in", values, "productTypeName");
             return (Criteria) this;
         }
 
-        public Criteria andProductTypeNotIn(List<String> values) {
-            addCriterion("product_type not in", values, "productType");
+        public Criteria andProductTypeNameNotIn(List<String> values) {
+            addCriterion("product_type_name not in", values, "productTypeName");
             return (Criteria) this;
         }
 
-        public Criteria andProductTypeBetween(String value1, String value2) {
-            addCriterion("product_type between", value1, value2, "productType");
+        public Criteria andProductTypeNameBetween(String value1, String value2) {
+            addCriterion("product_type_name between", value1, value2, "productTypeName");
             return (Criteria) this;
         }
 
-        public Criteria andProductTypeNotBetween(String value1, String value2) {
-            addCriterion("product_type not between", value1, value2, "productType");
+        public Criteria andProductTypeNameNotBetween(String value1, String value2) {
+            addCriterion("product_type_name not between", value1, value2, "productTypeName");
             return (Criteria) this;
         }
 

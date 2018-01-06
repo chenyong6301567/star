@@ -17,6 +17,8 @@ import org.springframework.web.multipart.MultipartFile;
 import com.croky.util.ObjectUtils;
 import com.hotyum.stars.biz.manager.ReferralInformationManager;
 import com.hotyum.stars.biz.manager.UserManager;
+import com.hotyum.stars.biz.model.CustomerMoneyVO;
+import com.hotyum.stars.biz.model.CustomerRecommandVO;
 import com.hotyum.stars.biz.model.UserBaseInfoVO;
 import com.hotyum.stars.biz.model.UserListVO;
 import com.hotyum.stars.dal.model.User;
@@ -201,8 +203,8 @@ public class UserController {
 	 * @param whetherFreeze                 是否冻结0 未冻结，1冻结|byte
 	 * @param contactPhone                  联系方式|string
 	 * @param directRecommendationAccount   直接推荐人手机号|string
-	 * @param gmtCreateBegin                是否入金(0否，1是)|string
-	 * @param gmtCreateEnd                  推荐人资质(0否，1是)|string
+	 * @param gmtCreateBegin                註冊開始日期|string
+	 * @param gmtCreateEnd                  注册截止日期|string
 	 * @param pageNum                       页数|int|必填
 	 * @param pageSize                      每页多少|int|必填
 	 * @Title getUserList
@@ -220,6 +222,37 @@ public class UserController {
 			@RequestParam(defaultValue = Constants.PAGESIZE) int pageSize) {
 		Page<UserListVO> page = userManager.getUserList(account, userName, userType, whetherFreeze, contactPhone,
 				directRecommendationAccount, gmtCreateBegin, gmtCreateEnd, pageNum, pageSize);
+		return Result.normalResponse(page);
+	}
+
+	/**客户推荐表查询
+	 * 
+	 * @param account                       注册账号|string
+	 * @param realName                      真实姓名|string
+	 * @param whetherGetMoney               是否入金0 未，1是|byte
+	 * @param refereeQualification          推荐人资质0 未，1是|string
+	 * @param directRecommendationAccount   直接推荐人账号|string
+	 * @param indirectRecommendationAccount 间接推荐人账号|string
+	 * @param gmtCreateBegin                注册开始止日期|string
+	 * @param gmtCreateEnd                  注册截止日期|string
+	 * @param pageNum                       页数|int|必填
+	 * @param pageSize                      每页多少|int|必填
+	 * @Title getCustomerRecommandVOList
+	 * @respbody 
+	 * @author cy
+	 * @Description 用户管理列表
+	 * @date 2018/1/1 20:29
+	 * @return Result
+	 * @throws  
+	 */
+	@RequestMapping(value = "user/getCustomerRecommandVOList")
+	public Result getCustomerRecommandVOList(String account, String realName, Byte whetherGetMoney,
+			Byte refereeQualification, String indirectRecommendationAccount, String directRecommendationAccount,
+			Date gmtCreateBegin, Date gmtCreateEnd, @RequestParam(defaultValue = Constants.PAGENUM) int pageNum,
+			@RequestParam(defaultValue = Constants.PAGESIZE) int pageSize) {
+		Page<CustomerRecommandVO> page = userManager.getCustomerRecommandVOList(account, realName, whetherGetMoney,
+				refereeQualification, indirectRecommendationAccount, directRecommendationAccount, gmtCreateBegin,
+				gmtCreateEnd, pageNum, pageSize);
 		return Result.normalResponse(page);
 	}
 

@@ -13,7 +13,7 @@ public class ContractIncomeDistribution implements Serializable {
 
     private BigDecimal investmentAmount;
 
-    private Long contractIncome;
+    private BigDecimal contractIncome;
 
     private Date firstTradeDate;
 
@@ -27,9 +27,13 @@ public class ContractIncomeDistribution implements Serializable {
 
     private String productRate;
 
-    private String derectRecomandPerson;
+    private Integer derectRecomandPersonId;
 
-    private String inderectRecomandPerson;
+    private String derectRecomandPersonName;
+
+    private Integer inderectRecomandPersonId;
+
+    private String inderectRecomandPersonName;
 
     private String derectRecomandRate;
 
@@ -89,11 +93,11 @@ public class ContractIncomeDistribution implements Serializable {
         this.investmentAmount = investmentAmount;
     }
 
-    public Long getContractIncome() {
+    public BigDecimal getContractIncome() {
         return contractIncome;
     }
 
-    public void setContractIncome(Long contractIncome) {
+    public void setContractIncome(BigDecimal contractIncome) {
         this.contractIncome = contractIncome;
     }
 
@@ -145,20 +149,36 @@ public class ContractIncomeDistribution implements Serializable {
         this.productRate = productRate == null ? null : productRate.trim();
     }
 
-    public String getDerectRecomandPerson() {
-        return derectRecomandPerson;
+    public Integer getDerectRecomandPersonId() {
+        return derectRecomandPersonId;
     }
 
-    public void setDerectRecomandPerson(String derectRecomandPerson) {
-        this.derectRecomandPerson = derectRecomandPerson == null ? null : derectRecomandPerson.trim();
+    public void setDerectRecomandPersonId(Integer derectRecomandPersonId) {
+        this.derectRecomandPersonId = derectRecomandPersonId;
     }
 
-    public String getInderectRecomandPerson() {
-        return inderectRecomandPerson;
+    public String getDerectRecomandPersonName() {
+        return derectRecomandPersonName;
     }
 
-    public void setInderectRecomandPerson(String inderectRecomandPerson) {
-        this.inderectRecomandPerson = inderectRecomandPerson == null ? null : inderectRecomandPerson.trim();
+    public void setDerectRecomandPersonName(String derectRecomandPersonName) {
+        this.derectRecomandPersonName = derectRecomandPersonName == null ? null : derectRecomandPersonName.trim();
+    }
+
+    public Integer getInderectRecomandPersonId() {
+        return inderectRecomandPersonId;
+    }
+
+    public void setInderectRecomandPersonId(Integer inderectRecomandPersonId) {
+        this.inderectRecomandPersonId = inderectRecomandPersonId;
+    }
+
+    public String getInderectRecomandPersonName() {
+        return inderectRecomandPersonName;
+    }
+
+    public void setInderectRecomandPersonName(String inderectRecomandPersonName) {
+        this.inderectRecomandPersonName = inderectRecomandPersonName == null ? null : inderectRecomandPersonName.trim();
     }
 
     public String getDerectRecomandRate() {
@@ -280,8 +300,10 @@ public class ContractIncomeDistribution implements Serializable {
             && (this.getTradeEndDate() == null ? other.getTradeEndDate() == null : this.getTradeEndDate().equals(other.getTradeEndDate()))
             && (this.getTradeStatus() == null ? other.getTradeStatus() == null : this.getTradeStatus().equals(other.getTradeStatus()))
             && (this.getProductRate() == null ? other.getProductRate() == null : this.getProductRate().equals(other.getProductRate()))
-            && (this.getDerectRecomandPerson() == null ? other.getDerectRecomandPerson() == null : this.getDerectRecomandPerson().equals(other.getDerectRecomandPerson()))
-            && (this.getInderectRecomandPerson() == null ? other.getInderectRecomandPerson() == null : this.getInderectRecomandPerson().equals(other.getInderectRecomandPerson()))
+            && (this.getDerectRecomandPersonId() == null ? other.getDerectRecomandPersonId() == null : this.getDerectRecomandPersonId().equals(other.getDerectRecomandPersonId()))
+            && (this.getDerectRecomandPersonName() == null ? other.getDerectRecomandPersonName() == null : this.getDerectRecomandPersonName().equals(other.getDerectRecomandPersonName()))
+            && (this.getInderectRecomandPersonId() == null ? other.getInderectRecomandPersonId() == null : this.getInderectRecomandPersonId().equals(other.getInderectRecomandPersonId()))
+            && (this.getInderectRecomandPersonName() == null ? other.getInderectRecomandPersonName() == null : this.getInderectRecomandPersonName().equals(other.getInderectRecomandPersonName()))
             && (this.getDerectRecomandRate() == null ? other.getDerectRecomandRate() == null : this.getDerectRecomandRate().equals(other.getDerectRecomandRate()))
             && (this.getInderectRecomandRate() == null ? other.getInderectRecomandRate() == null : this.getInderectRecomandRate().equals(other.getInderectRecomandRate()))
             && (this.getAgentCode() == null ? other.getAgentCode() == null : this.getAgentCode().equals(other.getAgentCode()))
@@ -311,8 +333,10 @@ public class ContractIncomeDistribution implements Serializable {
         result = prime * result + ((getTradeEndDate() == null) ? 0 : getTradeEndDate().hashCode());
         result = prime * result + ((getTradeStatus() == null) ? 0 : getTradeStatus().hashCode());
         result = prime * result + ((getProductRate() == null) ? 0 : getProductRate().hashCode());
-        result = prime * result + ((getDerectRecomandPerson() == null) ? 0 : getDerectRecomandPerson().hashCode());
-        result = prime * result + ((getInderectRecomandPerson() == null) ? 0 : getInderectRecomandPerson().hashCode());
+        result = prime * result + ((getDerectRecomandPersonId() == null) ? 0 : getDerectRecomandPersonId().hashCode());
+        result = prime * result + ((getDerectRecomandPersonName() == null) ? 0 : getDerectRecomandPersonName().hashCode());
+        result = prime * result + ((getInderectRecomandPersonId() == null) ? 0 : getInderectRecomandPersonId().hashCode());
+        result = prime * result + ((getInderectRecomandPersonName() == null) ? 0 : getInderectRecomandPersonName().hashCode());
         result = prime * result + ((getDerectRecomandRate() == null) ? 0 : getDerectRecomandRate().hashCode());
         result = prime * result + ((getInderectRecomandRate() == null) ? 0 : getInderectRecomandRate().hashCode());
         result = prime * result + ((getAgentCode() == null) ? 0 : getAgentCode().hashCode());

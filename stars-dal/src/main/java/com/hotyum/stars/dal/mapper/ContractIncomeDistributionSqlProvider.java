@@ -68,12 +68,20 @@ public class ContractIncomeDistributionSqlProvider {
             sql.VALUES("product_rate", "#{productRate,jdbcType=VARCHAR}");
         }
         
-        if (record.getDerectRecomandPerson() != null) {
-            sql.VALUES("derect_recomand_person", "#{derectRecomandPerson,jdbcType=VARCHAR}");
+        if (record.getDerectRecomandPersonId() != null) {
+            sql.VALUES("derect_recomand_person_id", "#{derectRecomandPersonId,jdbcType=INTEGER}");
         }
         
-        if (record.getInderectRecomandPerson() != null) {
-            sql.VALUES("inderect_recomand_person", "#{inderectRecomandPerson,jdbcType=VARCHAR}");
+        if (record.getDerectRecomandPersonName() != null) {
+            sql.VALUES("derect_recomand_person_name", "#{derectRecomandPersonName,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getInderectRecomandPersonId() != null) {
+            sql.VALUES("inderect_recomand_person_id", "#{inderectRecomandPersonId,jdbcType=INTEGER}");
+        }
+        
+        if (record.getInderectRecomandPersonName() != null) {
+            sql.VALUES("inderect_recomand_person_name", "#{inderectRecomandPersonName,jdbcType=VARCHAR}");
         }
         
         if (record.getDerectRecomandRate() != null) {
@@ -144,8 +152,10 @@ public class ContractIncomeDistributionSqlProvider {
         sql.SELECT("trade_end_date");
         sql.SELECT("trade_status");
         sql.SELECT("product_rate");
-        sql.SELECT("derect_recomand_person");
-        sql.SELECT("inderect_recomand_person");
+        sql.SELECT("derect_recomand_person_id");
+        sql.SELECT("derect_recomand_person_name");
+        sql.SELECT("inderect_recomand_person_id");
+        sql.SELECT("inderect_recomand_person_name");
         sql.SELECT("derect_recomand_rate");
         sql.SELECT("inderect_recomand_rate");
         sql.SELECT("agent_code");
@@ -219,12 +229,20 @@ public class ContractIncomeDistributionSqlProvider {
             sql.SET("product_rate = #{record.productRate,jdbcType=VARCHAR}");
         }
         
-        if (record.getDerectRecomandPerson() != null) {
-            sql.SET("derect_recomand_person = #{record.derectRecomandPerson,jdbcType=VARCHAR}");
+        if (record.getDerectRecomandPersonId() != null) {
+            sql.SET("derect_recomand_person_id = #{record.derectRecomandPersonId,jdbcType=INTEGER}");
         }
         
-        if (record.getInderectRecomandPerson() != null) {
-            sql.SET("inderect_recomand_person = #{record.inderectRecomandPerson,jdbcType=VARCHAR}");
+        if (record.getDerectRecomandPersonName() != null) {
+            sql.SET("derect_recomand_person_name = #{record.derectRecomandPersonName,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getInderectRecomandPersonId() != null) {
+            sql.SET("inderect_recomand_person_id = #{record.inderectRecomandPersonId,jdbcType=INTEGER}");
+        }
+        
+        if (record.getInderectRecomandPersonName() != null) {
+            sql.SET("inderect_recomand_person_name = #{record.inderectRecomandPersonName,jdbcType=VARCHAR}");
         }
         
         if (record.getDerectRecomandRate() != null) {
@@ -294,8 +312,10 @@ public class ContractIncomeDistributionSqlProvider {
         sql.SET("trade_end_date = #{record.tradeEndDate,jdbcType=TIMESTAMP}");
         sql.SET("trade_status = #{record.tradeStatus,jdbcType=TINYINT}");
         sql.SET("product_rate = #{record.productRate,jdbcType=VARCHAR}");
-        sql.SET("derect_recomand_person = #{record.derectRecomandPerson,jdbcType=VARCHAR}");
-        sql.SET("inderect_recomand_person = #{record.inderectRecomandPerson,jdbcType=VARCHAR}");
+        sql.SET("derect_recomand_person_id = #{record.derectRecomandPersonId,jdbcType=INTEGER}");
+        sql.SET("derect_recomand_person_name = #{record.derectRecomandPersonName,jdbcType=VARCHAR}");
+        sql.SET("inderect_recomand_person_id = #{record.inderectRecomandPersonId,jdbcType=INTEGER}");
+        sql.SET("inderect_recomand_person_name = #{record.inderectRecomandPersonName,jdbcType=VARCHAR}");
         sql.SET("derect_recomand_rate = #{record.derectRecomandRate,jdbcType=VARCHAR}");
         sql.SET("inderect_recomand_rate = #{record.inderectRecomandRate,jdbcType=VARCHAR}");
         sql.SET("agent_code = #{record.agentCode,jdbcType=VARCHAR}");
@@ -358,12 +378,20 @@ public class ContractIncomeDistributionSqlProvider {
             sql.SET("product_rate = #{productRate,jdbcType=VARCHAR}");
         }
         
-        if (record.getDerectRecomandPerson() != null) {
-            sql.SET("derect_recomand_person = #{derectRecomandPerson,jdbcType=VARCHAR}");
+        if (record.getDerectRecomandPersonId() != null) {
+            sql.SET("derect_recomand_person_id = #{derectRecomandPersonId,jdbcType=INTEGER}");
         }
         
-        if (record.getInderectRecomandPerson() != null) {
-            sql.SET("inderect_recomand_person = #{inderectRecomandPerson,jdbcType=VARCHAR}");
+        if (record.getDerectRecomandPersonName() != null) {
+            sql.SET("derect_recomand_person_name = #{derectRecomandPersonName,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getInderectRecomandPersonId() != null) {
+            sql.SET("inderect_recomand_person_id = #{inderectRecomandPersonId,jdbcType=INTEGER}");
+        }
+        
+        if (record.getInderectRecomandPersonName() != null) {
+            sql.SET("inderect_recomand_person_name = #{inderectRecomandPersonName,jdbcType=VARCHAR}");
         }
         
         if (record.getDerectRecomandRate() != null) {
