@@ -56,7 +56,7 @@ public class NoticeManagerImpl implements NoticeManager {
 		notice.setType(type);
 		notice.setUserId(userId);
 		notice.setNoticeContent(content);
-		notice.setRead(Status.ZERO.getValue());
+		notice.setReadStatus(Status.ZERO.getValue());
 		try {
 			noticeDAO.insert(notice);
 		} catch (DataAccessException e) {
@@ -82,8 +82,8 @@ public class NoticeManagerImpl implements NoticeManager {
 		NoticeExample noticeExample = new NoticeExample();
 		NoticeExample.Criteria criteria = noticeExample.createCriteria();
 		criteria.andUserIdEqualTo(userId);
-		criteria.andStatusGreaterThan(Status.ZERO.getValue());
-		criteria.andReadEqualTo(Status.ZERO.getValue());
+		criteria.andStatusGreaterThanOrEqualTo(Status.ZERO.getValue());
+		criteria.andReadStatusGreaterThanOrEqualTo(Status.ZERO.getValue());
 		List<Notice> noticeList = null;
 		try {
 			noticeList = noticeDAO.selectByExample(noticeExample);
@@ -114,7 +114,7 @@ public class NoticeManagerImpl implements NoticeManager {
 			vo.setNoticeContent(notice.getNoticeContent());
 			voList.add(vo);
 			// 设置为已经读取状态
-			notice.setRead(Status.INVALID.getValue());
+			notice.setReadStatus(Status.INVALID.getValue());
 			noticeDAO.updateByPrimaryKey(notice);
 		}
 		return voList;
@@ -136,7 +136,8 @@ public class NoticeManagerImpl implements NoticeManager {
 		NoticeExample noticeExample = new NoticeExample();
 		NoticeExample.Criteria criteria = noticeExample.createCriteria();
 		criteria.andUserIdEqualTo(userId);
-		criteria.andStatusGreaterThan(Status.ZERO.getValue());
+		criteria.andStatusGreaterThanOrEqualTo(Status.ZERO.getValue());
+		criteria.andReadStatusGreaterThanOrEqualTo(Status.ZERO.getValue());
 		try {
 			return noticeDAO.countByExample(noticeExample);
 		} catch (DataAccessException e) {

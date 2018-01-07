@@ -7,9 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hotyum.stars.biz.manager.NoticeManager;
 import com.hotyum.stars.biz.manager.SysNoticeManager;
-import com.hotyum.stars.biz.model.ProvinceVO;
 import com.hotyum.stars.biz.model.SysNoticeVO;
 import com.hotyum.stars.web.model.Result;
 
@@ -55,7 +53,7 @@ public class SysNoticeController {
 	 * @param sysType         通知类型: 1:系统内通知；2短信通知|byte[]|必填
 	 * @param noticeContent   通知内容|String|必填
 	 * @Title 
-	 * @respbody 
+	 * @respbody {"code":1,"message":"成功","data":[{"id":1,"toType":4,"sysType":3,"noticeContent":"测试通知11111111111111111","gmtCreate":"2018-01-07 22:07:11"}],"error":false,"success":true}
 	 * @author cy
 	 * @Description  系统公告发布
 	 * @date 2018/1/4 15:55

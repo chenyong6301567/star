@@ -51,7 +51,7 @@ public class AccountController {
 	 * @param verifyCode 短信验证码,短信登录必填|string
 	 * @param loginType 登录方式(1手机验证码登录,2密码登录)|int|必填
 	 * @Title authLogin
-	 * @respbody 
+	 * @respbody {"code":1,"message":"成功","data":{"token":"ce853538a80f4026b62155665b9b78fd","sysUserRoleList":[{"id":1,"userId":1,"roleId":1}]},"error":false,"success":true}
 	 * @author cy
 	 * @Description 登录(包括密码登录和手机验证码登录，根据loginType进行区分)
 	 * @date 2017/12/31 19:29
@@ -73,7 +73,7 @@ public class AccountController {
 	/**
 	 * 退出登录(带token)
 	 * 
-	 * @param a 不用带普通参数|String
+	 * @param a 不用带普通参数(带token)|String
 	 * @Title loginOut
 	 * @respbody 
 	 * @author cy

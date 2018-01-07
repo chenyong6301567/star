@@ -5,13 +5,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.codec.digest.Md5Crypt;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import org.springframework.expression.spel.ast.BooleanLiteral;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,6 +17,7 @@ import org.springframework.util.CollectionUtils;
 
 import com.croky.util.ObjectUtils;
 import com.github.pagehelper.PageHelper;
+import com.hotyum.stars.biz.manager.AgentManager;
 import com.hotyum.stars.biz.manager.NoticeManager;
 import com.hotyum.stars.biz.manager.ReferralInformationManager;
 import com.hotyum.stars.biz.manager.SmsManager;
@@ -29,12 +28,14 @@ import com.hotyum.stars.biz.model.CustomerRecommandVO;
 import com.hotyum.stars.biz.model.TokenInfoVO;
 import com.hotyum.stars.biz.model.UserListVO;
 import com.hotyum.stars.dal.dao.UserDAO;
+import com.hotyum.stars.dal.model.Agent;
 import com.hotyum.stars.dal.model.SysUserRole;
 import com.hotyum.stars.dal.model.User;
 import com.hotyum.stars.dal.model.UserExample;
 import com.hotyum.stars.utils.Assert;
 import com.hotyum.stars.utils.DateUtil;
 import com.hotyum.stars.utils.DecimalUtil;
+import com.hotyum.stars.utils.MD5Util;
 import com.hotyum.stars.utils.Page;
 import com.hotyum.stars.utils.enums.BooleanType;
 import com.hotyum.stars.utils.enums.LoginType;
@@ -72,6 +73,9 @@ public class UserManagerImpl implements UserManager {
 
 	@Autowired
 	private ReferralInformationManager referralInformationManager;
+
+	@Autowired
+	private AgentManager agentManager;
 
 	private static final String DERECTMESSAGE = "您的直推客户{0}成功注册了系统，请您悉知。";
 
@@ -111,6 +115,7 @@ public class UserManagerImpl implements UserManager {
 		// 区分登录方式
 		if (loginType.equals(LoginType.VERIFYCODELOGIN.getValue())) {
 			// 短信验证码登录,校验短信验证码
+			Assert.notEmpty(verifyCode, "验证码不能为空");
 			boolean codeResult = smsManager.checkVerifyCode(phone, verifyCode, SmsType.LOGIN.getValue());
 			if (!codeResult) {
 				throw new ApplicationException("您好，短信验证码错误");
@@ -118,12 +123,12 @@ public class UserManagerImpl implements UserManager {
 		} else if (loginType.equals(LoginType.PASSWORDLOGIN.getValue())) {
 			// 密码登录
 			Assert.notEmpty(password, "密码不能为空");
-			String md5pwd = Md5Crypt.md5Crypt(password.getBytes());
+			String md5pwd = MD5Util.generatePassword(password);
 			if (StringUtils.isEmpty(user.getPwd())) {
 				throw new ApplicationException("您好，请先用验证码登录之后设置好密码再用密码登录");
 			}
-			if (user.getPwd().equals(md5pwd)) {
-				throw new ApplicationException("您好，密码不一致，请重新輸入正确的密码");
+			if (!user.getPwd().equalsIgnoreCase(md5pwd)) {
+				throw new ApplicationException("您好，请重新輸入正确的登录密码");
 			}
 		}
 
@@ -213,7 +218,7 @@ public class UserManagerImpl implements UserManager {
 			}
 		}
 		newUser.setAccount(phone);
-		newUser.setPwd(Md5Crypt.md5Crypt(loginPwd.getBytes()));
+		newUser.setPwd(MD5Util.generatePassword(loginPwd));
 		newUser.setAgentCode(agentCode);
 		newUser.setGmtCreate(new Date());
 		newUser.setGmtModify(new Date());
@@ -247,11 +252,11 @@ public class UserManagerImpl implements UserManager {
 			throw new ApplicationException("您好，请先注册账号");
 		}
 		// 校验短信验证码是否正确
-		boolean codeResult = smsManager.checkVerifyCode(phone, verifyCode, SmsType.REGISTER.getValue());
+		boolean codeResult = smsManager.checkVerifyCode(phone, verifyCode, SmsType.RESETPWD.getValue());
 		if (!codeResult) {
 			throw new ApplicationException("您好，重置密码短信验证码错误");
 		}
-		user.setPwd(Md5Crypt.md5Crypt(pwd.getBytes()));
+		user.setPwd(MD5Util.generatePassword(pwd));
 		try {
 			userDAO.updateByPrimaryKey(user);
 		} catch (DataAccessException e) {
@@ -297,7 +302,8 @@ public class UserManagerImpl implements UserManager {
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void resetPwd(Integer userId, String pwd) {
 		User user = getUserById(userId);
-		user.setPwd(Md5Crypt.md5Crypt(pwd.getBytes()));
+		user.setPwd(MD5Util.generatePassword(pwd));
+		user.setGmtModify(new Date());
 		try {
 			userDAO.updateByPrimaryKey(user);
 		} catch (DataAccessException e) {
@@ -424,6 +430,12 @@ public class UserManagerImpl implements UserManager {
 		if (null != user) {
 			throw new ApplicationException("账号对应的用户已存在");
 		}
+		// 首先要查询代理商是否添加、
+
+		Agent agent = agentManager.getAgentByAgentName(agentName);
+		if (null == agent) {
+			throw new ApplicationException("请先添加对应的代理商在再来添加用户");
+		}
 
 		User newUser = new User();
 		newUser.setAccount(account);
@@ -433,7 +445,7 @@ public class UserManagerImpl implements UserManager {
 		newUser.setUserType(userType);
 		newUser.setWhetherFreeze(whetherFreeze);
 		newUser.setFreezeDate(freezeDate);
-		newUser.setPwd(Md5Crypt.md5Crypt(pwd.getBytes()));
+		newUser.setPwd(MD5Util.generatePassword(pwd));
 		newUser.setGmtCreate(new Date());
 		newUser.setGmtModify(new Date());
 		newUser.setStatus(Status.ZERO.getValue());

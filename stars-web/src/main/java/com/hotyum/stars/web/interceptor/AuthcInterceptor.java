@@ -19,6 +19,7 @@ import com.hotyum.stars.biz.manager.TokenAccessManager;
 import com.hotyum.stars.biz.manager.UserManager;
 import com.hotyum.stars.dal.model.TokenAccess;
 import com.hotyum.stars.utils.UuidUtil;
+import com.hotyum.stars.utils.exception.ApplicationException;
 import com.hotyum.stars.web.model.Result;
 import com.hotyum.stars.web.util.ResponseUtils;
 import com.hotyum.stars.web.util.TokenAccessUtils;
@@ -68,23 +69,27 @@ public class AuthcInterceptor implements HandlerInterceptor {
 		if (!StringUtils.isEmpty(token) && !token.startsWith("uuid")) {
 			TokenAccess tokenAccess = tokenAccessManager.getToken(token);
 			if (tokenAccess == null) {
-				ResponseUtils.sendUnauthorizedCode(response, Result.errorReponse("令牌已经失效,请重新登录!").toString());
-				return false;
+				/*ResponseUtils.sendUnauthorizedCode(response, Result.errorReponse("令牌已经失效,请重新登录!").toString());
+				return false;*/
+				throw new ApplicationException("令牌已经失效,请重新登录!");
 			}
 			// 令牌超过了其最长使用到的日期
 			if ((null != tokenAccess.getTokenExpired()) && (tokenAccess.getTokenExpired().getTime() < now.getTime())) {
-				ResponseUtils.sendUnauthorizedCode(response, Result.errorReponse("令牌使用超过设定日期!").toString());
-				return false;
+				throw new ApplicationException("令牌使用超过设定日期!");
+				//ResponseUtils.sendUnauthorizedCode(response, Result.errorReponse("令牌使用超过设定日期!").toString());
+				//return false;
 			}
 			// 令牌使用次数超过了它的最大可使用次数
 			Integer activeCount = tokenAccess.getActiveCount() + 1;
 			if (activeCount > maxActiveCount) {
-				ResponseUtils.sendUnauthorizedCode(response, Result.errorReponse("令牌使用次数达到极限!").toString());
-				return false;
+				/*ResponseUtils.sendUnauthorizedCode(response, Result.errorReponse("令牌使用次数达到极限!").toString());
+				return false;*/
+				throw new ApplicationException("令牌使用次数达到极限!");
 			}
 			if ((now.getTime() - tokenAccess.getActiveTime().getTime()) > (timeout * 60 * 1000)) {
-				ResponseUtils.sendUnauthorizedCode(response, Result.errorReponse("过长时间没有操作导致令牌过期!").toString());
-				return false;
+				throw new ApplicationException("过长时间没有操作导致令牌过期!");
+				/*ResponseUtils.sendUnauthorizedCode(response, Result.errorReponse("过长时间没有操作导致令牌过期!").toString());
+				return false;*/
 			}
 			tokenAccess.setActiveTime(now);
 			tokenAccess.setActiveCount(activeCount);

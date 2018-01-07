@@ -32,7 +32,7 @@ public class NoticeController {
 	 * 
 	 * @param a 不用普通参数，带令牌token|string|必填
 	 * @Title getMyNoticeCount
-	 * @respbody 
+	 * @respbody {"code":1,"message":"成功","data":1,"error":false,"success":true}
 	 * @author cy
 	 * @Description 获取我通知的数目
 	 * @date 2018/1/1 13:49
@@ -52,7 +52,7 @@ public class NoticeController {
 	 * 
 	 * @param a 不用普通参数，带令牌token|string|必填
 	 * @Title getRegisterNotice
-	 * @respbody 
+	 * @respbody {"code":1,"message":"成功","data":[{"id":1,"noticeContent":"测试通知11111111111111111","gmtCreate":"2018-01-07 22:39:05"}],"error":false,"success":true}
 	 * @author cy
 	 * @Description 获取我的通知
 	 * @date 2018/1/1 13:49

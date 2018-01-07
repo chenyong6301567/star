@@ -6,7 +6,7 @@ import java.util.Date;
 public class Sms implements Serializable {
     private Integer id;
 
-    private Integer phone;
+    private String phone;
 
     private String code;
 
@@ -32,12 +32,12 @@ public class Sms implements Serializable {
         this.id = id;
     }
 
-    public Integer getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(Integer phone) {
-        this.phone = phone;
+    public void setPhone(String phone) {
+        this.phone = phone == null ? null : phone.trim();
     }
 
     public String getCode() {

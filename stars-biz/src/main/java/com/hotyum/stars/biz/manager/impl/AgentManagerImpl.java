@@ -12,6 +12,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import com.croky.util.ObjectUtils;
 import com.github.pagehelper.PageHelper;
@@ -62,10 +63,6 @@ public class AgentManagerImpl implements AgentManager {
 			String legalRepresentative, Integer provinceId, String provinceName, String contactPhone,
 			String businessAddress, Date businessStartTime, Date businessEndTime, Date contractStartTime,
 			Date contrctEndTime) {
-		User user = userManager.getuserByAgentCode(agentCode);
-		if (null == user) {
-			throw new ApplicationException("代理商编码对应的用户不存在");
-		}
 		Agent agent = new Agent();
 		agent.setAgentCode(agentCode);
 		agent.setAgentName(agentName);
@@ -82,6 +79,7 @@ public class AgentManagerImpl implements AgentManager {
 		agent.setGmtCreate(new Date());
 		agent.setGmtModify(new Date());
 		agent.setStatus(Status.ZERO.getValue());
+		agent.setProvinceIndex(getMaxProvinceIndex(provinceId) + 1);
 		try {
 			agentDAO.insertSelective(agent);
 		} catch (DataAccessException e) {
@@ -186,6 +184,55 @@ public class AgentManagerImpl implements AgentManager {
 			}
 		}
 		return new Page<>(pageSize, pageNum, agentVOList.size(), agentVOList);
+	}
+
+	/**
+	* @Title:getAgentByAgentName
+	* @author:cy
+	* @Description 
+	* @date:2018年1月7日下午7:32:15
+	* @param 
+	* @param 
+	* @param 
+	* @return 
+	* @throws:
+	*/
+	@Override
+	public Agent getAgentByAgentName(String agentName) {
+		AgentExample agentExample = new AgentExample();
+		AgentExample.Criteria criteria = agentExample.createCriteria();
+		criteria.andStatusGreaterThanOrEqualTo(Status.ZERO.getValue());
+		criteria.andAgentNameEqualTo(agentName);
+		try {
+			List<Agent> agentList = agentDAO.selectByExample(agentExample);
+			return CollectionUtils.isEmpty(agentList) ? null : agentList.get(0);
+		} catch (DataAccessException e) {
+			LOGGER.error("getAgentByAgentName失败====", e);
+			throw new RuntimeException("内部服务器错误");
+		}
+	}
+
+	/**
+	* @Title:getMaxProvinceIndex
+	* @author:cy
+	* @Description 
+	* @date:2018年1月7日下午9:00:04
+	* @param 
+	* @param 
+	* @param 
+	* @return 
+	* @throws:
+	*/
+	@Override
+	public int getMaxProvinceIndex(Integer provinceId) {
+		try {
+			Integer index = agentDAO.selectMaxIndexByProvinceId(provinceId);
+			return index == null ? 0 : index;
+		} catch (DataAccessException e) {
+			LOGGER.error("getMaxProvinceIndex失败====", e);
+			throw new RuntimeException("内部服务器错误");
+		}
+
 	}
 
 }

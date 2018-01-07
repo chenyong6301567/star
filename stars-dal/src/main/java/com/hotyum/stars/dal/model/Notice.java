@@ -18,7 +18,7 @@ public class Notice implements Serializable {
 
     private Byte status;
 
-    private Byte read;
+    private Byte readStatus;
 
     private static final long serialVersionUID = 1L;
 
@@ -78,12 +78,12 @@ public class Notice implements Serializable {
         this.status = status;
     }
 
-    public Byte getRead() {
-        return read;
+    public Byte getReadStatus() {
+        return readStatus;
     }
 
-    public void setRead(Byte read) {
-        this.read = read;
+    public void setReadStatus(Byte readStatus) {
+        this.readStatus = readStatus;
     }
 
     @Override
@@ -105,7 +105,7 @@ public class Notice implements Serializable {
             && (this.getGmtCreate() == null ? other.getGmtCreate() == null : this.getGmtCreate().equals(other.getGmtCreate()))
             && (this.getGmtModify() == null ? other.getGmtModify() == null : this.getGmtModify().equals(other.getGmtModify()))
             && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
-            && (this.getRead() == null ? other.getRead() == null : this.getRead().equals(other.getRead()));
+            && (this.getReadStatus() == null ? other.getReadStatus() == null : this.getReadStatus().equals(other.getReadStatus()));
     }
 
     @Override
@@ -119,7 +119,7 @@ public class Notice implements Serializable {
         result = prime * result + ((getGmtCreate() == null) ? 0 : getGmtCreate().hashCode());
         result = prime * result + ((getGmtModify() == null) ? 0 : getGmtModify().hashCode());
         result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
-        result = prime * result + ((getRead() == null) ? 0 : getRead().hashCode());
+        result = prime * result + ((getReadStatus() == null) ? 0 : getReadStatus().hashCode());
         return result;
     }
 }

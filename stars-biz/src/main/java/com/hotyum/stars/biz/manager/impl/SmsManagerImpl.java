@@ -67,12 +67,13 @@ public class SmsManagerImpl implements SmsManager {
 	private Sms getSms(String phone, String verifyCode, Byte type) {
 		SmsExample smsExample = new SmsExample();
 		SmsExample.Criteria criteria = smsExample.createCriteria();
-		criteria.andPhoneEqualTo(Integer.valueOf(phone));
+		criteria.andPhoneEqualTo(phone);
 		criteria.andCodeEqualTo(verifyCode);
 		criteria.andTypeEqualTo(type);
 		criteria.andStatusGreaterThanOrEqualTo(Status.ZERO.getValue());
 		Date nowDate = new Date();
-		//criteria.andGmtCreateBetween(DateUtil.addSeconds(nowDate, -900), nowDate);// 短信15分钟有效
+		// criteria.andGmtCreateBetween(DateUtil.addSeconds(nowDate, -900),
+		// nowDate);// 短信15分钟有效
 		criteria.andEndDateGreaterThanOrEqualTo(nowDate);
 		try {
 			List<Sms> smsList = smsDAO.selectByExample(smsExample);
@@ -102,7 +103,7 @@ public class SmsManagerImpl implements SmsManager {
 		sms.setContent(content);
 		sms.setGmtCreate(new Date());
 		sms.setGmtModify(new Date());
-		sms.setPhone(Integer.valueOf(phone));
+		sms.setPhone(phone);
 		sms.setStatus(Status.ZERO.getValue());
 		sms.setEndDate(DateUtil.addSeconds(new Date(), 900));
 		sms.setType(type);

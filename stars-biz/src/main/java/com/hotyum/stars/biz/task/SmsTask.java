@@ -9,9 +9,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.croky.lang.Status;
-import com.hotyum.stars.biz.manager.NoticeManager;
 import com.hotyum.stars.biz.manager.SmsManager;
 import com.hotyum.stars.biz.manager.SysUserRoleManager;
 import com.hotyum.stars.biz.manager.SystemNoticeManager;
@@ -19,7 +20,6 @@ import com.hotyum.stars.biz.manager.UserManager;
 import com.hotyum.stars.dal.model.SysUserRole;
 import com.hotyum.stars.dal.model.SystemNotice;
 import com.hotyum.stars.dal.model.User;
-import com.hotyum.stars.utils.enums.NoticeType;
 import com.hotyum.stars.utils.enums.SmsType;
 import com.hotyum.stars.utils.enums.UserType;
 
@@ -33,9 +33,6 @@ public class SmsTask {
 	private SystemNoticeManager systemNoticeManager;
 
 	@Autowired
-	private NoticeManager noticeManager;
-
-	@Autowired
 	private UserManager userManager;
 
 	@Autowired
@@ -46,6 +43,7 @@ public class SmsTask {
 	private Lock lock = new ReentrantLock();
 
 	@Scheduled(cron = "0 0/1 * * * ? ")
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void NoticeTask() {
 		LOGGER.info("短信系统通知执行通知轮询操作开始");
 		lock.lock();

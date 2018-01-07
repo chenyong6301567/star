@@ -9,9 +9,11 @@ public class Constants {
 	public static final int MESSAGECODELENGTH = 4;
 
 	public static final String TOKEN_NAME = "loginToken";
-	
+
 	public final static String PAGENUM = "1";
 
 	public final static String PAGESIZE = "50";
+
+	public static final String DEFAULTPWD = "123456";
 
 }

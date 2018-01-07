@@ -57,8 +57,8 @@ public class ProvinceManagerImpl implements ProvinceManager {
 		List<ProvinceVO> voList = new ArrayList<ProvinceVO>(provinceList.size());
 		for (Province province : provinceList) {
 			ProvinceVO vo = new ProvinceVO();
-			vo.setId(province.getId());
-			vo.setProvinceName(province.getProvinceName());
+			vo.setLabel(province.getProvinceName());
+			vo.setValue(province.getId());
 			voList.add(vo);
 		}
 		return voList;

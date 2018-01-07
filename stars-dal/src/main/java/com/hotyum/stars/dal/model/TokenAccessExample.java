@@ -725,62 +725,52 @@ public class TokenAccessExample {
             return (Criteria) this;
         }
 
-        public Criteria andGmtCreateEqualTo(String value) {
+        public Criteria andGmtCreateEqualTo(Date value) {
             addCriterion("gmt_create =", value, "gmtCreate");
             return (Criteria) this;
         }
 
-        public Criteria andGmtCreateNotEqualTo(String value) {
+        public Criteria andGmtCreateNotEqualTo(Date value) {
             addCriterion("gmt_create <>", value, "gmtCreate");
             return (Criteria) this;
         }
 
-        public Criteria andGmtCreateGreaterThan(String value) {
+        public Criteria andGmtCreateGreaterThan(Date value) {
             addCriterion("gmt_create >", value, "gmtCreate");
             return (Criteria) this;
         }
 
-        public Criteria andGmtCreateGreaterThanOrEqualTo(String value) {
+        public Criteria andGmtCreateGreaterThanOrEqualTo(Date value) {
             addCriterion("gmt_create >=", value, "gmtCreate");
             return (Criteria) this;
         }
 
-        public Criteria andGmtCreateLessThan(String value) {
+        public Criteria andGmtCreateLessThan(Date value) {
             addCriterion("gmt_create <", value, "gmtCreate");
             return (Criteria) this;
         }
 
-        public Criteria andGmtCreateLessThanOrEqualTo(String value) {
+        public Criteria andGmtCreateLessThanOrEqualTo(Date value) {
             addCriterion("gmt_create <=", value, "gmtCreate");
             return (Criteria) this;
         }
 
-        public Criteria andGmtCreateLike(String value) {
-            addCriterion("gmt_create like", value, "gmtCreate");
-            return (Criteria) this;
-        }
-
-        public Criteria andGmtCreateNotLike(String value) {
-            addCriterion("gmt_create not like", value, "gmtCreate");
-            return (Criteria) this;
-        }
-
-        public Criteria andGmtCreateIn(List<String> values) {
+        public Criteria andGmtCreateIn(List<Date> values) {
             addCriterion("gmt_create in", values, "gmtCreate");
             return (Criteria) this;
         }
 
-        public Criteria andGmtCreateNotIn(List<String> values) {
+        public Criteria andGmtCreateNotIn(List<Date> values) {
             addCriterion("gmt_create not in", values, "gmtCreate");
             return (Criteria) this;
         }
 
-        public Criteria andGmtCreateBetween(String value1, String value2) {
+        public Criteria andGmtCreateBetween(Date value1, Date value2) {
             addCriterion("gmt_create between", value1, value2, "gmtCreate");
             return (Criteria) this;
         }
 
-        public Criteria andGmtCreateNotBetween(String value1, String value2) {
+        public Criteria andGmtCreateNotBetween(Date value1, Date value2) {
             addCriterion("gmt_create not between", value1, value2, "gmtCreate");
             return (Criteria) this;
         }
@@ -795,62 +785,52 @@ public class TokenAccessExample {
             return (Criteria) this;
         }
 
-        public Criteria andGmtModifyEqualTo(String value) {
+        public Criteria andGmtModifyEqualTo(Date value) {
             addCriterion("gmt_modify =", value, "gmtModify");
             return (Criteria) this;
         }
 
-        public Criteria andGmtModifyNotEqualTo(String value) {
+        public Criteria andGmtModifyNotEqualTo(Date value) {
             addCriterion("gmt_modify <>", value, "gmtModify");
             return (Criteria) this;
         }
 
-        public Criteria andGmtModifyGreaterThan(String value) {
+        public Criteria andGmtModifyGreaterThan(Date value) {
             addCriterion("gmt_modify >", value, "gmtModify");
             return (Criteria) this;
         }
 
-        public Criteria andGmtModifyGreaterThanOrEqualTo(String value) {
+        public Criteria andGmtModifyGreaterThanOrEqualTo(Date value) {
             addCriterion("gmt_modify >=", value, "gmtModify");
             return (Criteria) this;
         }
 
-        public Criteria andGmtModifyLessThan(String value) {
+        public Criteria andGmtModifyLessThan(Date value) {
             addCriterion("gmt_modify <", value, "gmtModify");
             return (Criteria) this;
         }
 
-        public Criteria andGmtModifyLessThanOrEqualTo(String value) {
+        public Criteria andGmtModifyLessThanOrEqualTo(Date value) {
             addCriterion("gmt_modify <=", value, "gmtModify");
             return (Criteria) this;
         }
 
-        public Criteria andGmtModifyLike(String value) {
-            addCriterion("gmt_modify like", value, "gmtModify");
-            return (Criteria) this;
-        }
-
-        public Criteria andGmtModifyNotLike(String value) {
-            addCriterion("gmt_modify not like", value, "gmtModify");
-            return (Criteria) this;
-        }
-
-        public Criteria andGmtModifyIn(List<String> values) {
+        public Criteria andGmtModifyIn(List<Date> values) {
             addCriterion("gmt_modify in", values, "gmtModify");
             return (Criteria) this;
         }
 
-        public Criteria andGmtModifyNotIn(List<String> values) {
+        public Criteria andGmtModifyNotIn(List<Date> values) {
             addCriterion("gmt_modify not in", values, "gmtModify");
             return (Criteria) this;
         }
 
-        public Criteria andGmtModifyBetween(String value1, String value2) {
+        public Criteria andGmtModifyBetween(Date value1, Date value2) {
             addCriterion("gmt_modify between", value1, value2, "gmtModify");
             return (Criteria) this;
         }
 
-        public Criteria andGmtModifyNotBetween(String value1, String value2) {
+        public Criteria andGmtModifyNotBetween(Date value1, Date value2) {
             addCriterion("gmt_modify not between", value1, value2, "gmtModify");
             return (Criteria) this;
         }

@@ -65,11 +65,11 @@ public class TokenAccessSqlProvider {
         }
         
         if (record.getGmtCreate() != null) {
-            sql.VALUES("gmt_create", "#{gmtCreate,jdbcType=VARCHAR}");
+            sql.VALUES("gmt_create", "#{gmtCreate,jdbcType=TIMESTAMP}");
         }
         
         if (record.getGmtModify() != null) {
-            sql.VALUES("gmt_modify", "#{gmtModify,jdbcType=VARCHAR}");
+            sql.VALUES("gmt_modify", "#{gmtModify,jdbcType=TIMESTAMP}");
         }
         
         return sql.toString();
@@ -151,11 +151,11 @@ public class TokenAccessSqlProvider {
         }
         
         if (record.getGmtCreate() != null) {
-            sql.SET("gmt_create = #{record.gmtCreate,jdbcType=VARCHAR}");
+            sql.SET("gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP}");
         }
         
         if (record.getGmtModify() != null) {
-            sql.SET("gmt_modify = #{record.gmtModify,jdbcType=VARCHAR}");
+            sql.SET("gmt_modify = #{record.gmtModify,jdbcType=TIMESTAMP}");
         }
         
         applyWhere(sql, example, true);
@@ -176,8 +176,8 @@ public class TokenAccessSqlProvider {
         sql.SET("remember = #{record.remember,jdbcType=TINYINT}");
         sql.SET("anonymous = #{record.anonymous,jdbcType=TINYINT}");
         sql.SET("status = #{record.status,jdbcType=TINYINT}");
-        sql.SET("gmt_create = #{record.gmtCreate,jdbcType=VARCHAR}");
-        sql.SET("gmt_modify = #{record.gmtModify,jdbcType=VARCHAR}");
+        sql.SET("gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP}");
+        sql.SET("gmt_modify = #{record.gmtModify,jdbcType=TIMESTAMP}");
         
         TokenAccessExample example = (TokenAccessExample) parameter.get("example");
         applyWhere(sql, example, true);
@@ -221,11 +221,11 @@ public class TokenAccessSqlProvider {
         }
         
         if (record.getGmtCreate() != null) {
-            sql.SET("gmt_create = #{gmtCreate,jdbcType=VARCHAR}");
+            sql.SET("gmt_create = #{gmtCreate,jdbcType=TIMESTAMP}");
         }
         
         if (record.getGmtModify() != null) {
-            sql.SET("gmt_modify = #{gmtModify,jdbcType=VARCHAR}");
+            sql.SET("gmt_modify = #{gmtModify,jdbcType=TIMESTAMP}");
         }
         
         sql.WHERE("id = #{id,jdbcType=INTEGER}");

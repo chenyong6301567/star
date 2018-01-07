@@ -111,7 +111,7 @@ public class Assert {
 	}
 
 	public static void checkPhone(String phone, String message) {
-		if (!DataFormatVaildate.vaildTelephone(phone)) {
+		if (!DataFormatVaildate.vaildPhone(phone)) {
 			throw new IllegalArgumentException(message);
 		}
 	}

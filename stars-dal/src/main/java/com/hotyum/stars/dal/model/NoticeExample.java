@@ -535,63 +535,63 @@ public class NoticeExample {
             return (Criteria) this;
         }
 
-        public Criteria andReadIsNull() {
-            addCriterion("read is null");
+        public Criteria andReadStatusIsNull() {
+            addCriterion("read_status is null");
             return (Criteria) this;
         }
 
-        public Criteria andReadIsNotNull() {
-            addCriterion("read is not null");
+        public Criteria andReadStatusIsNotNull() {
+            addCriterion("read_status is not null");
             return (Criteria) this;
         }
 
-        public Criteria andReadEqualTo(Byte value) {
-            addCriterion("read =", value, "read");
+        public Criteria andReadStatusEqualTo(Byte value) {
+            addCriterion("read_status =", value, "readStatus");
             return (Criteria) this;
         }
 
-        public Criteria andReadNotEqualTo(Byte value) {
-            addCriterion("read <>", value, "read");
+        public Criteria andReadStatusNotEqualTo(Byte value) {
+            addCriterion("read_status <>", value, "readStatus");
             return (Criteria) this;
         }
 
-        public Criteria andReadGreaterThan(Byte value) {
-            addCriterion("read >", value, "read");
+        public Criteria andReadStatusGreaterThan(Byte value) {
+            addCriterion("read_status >", value, "readStatus");
             return (Criteria) this;
         }
 
-        public Criteria andReadGreaterThanOrEqualTo(Byte value) {
-            addCriterion("read >=", value, "read");
+        public Criteria andReadStatusGreaterThanOrEqualTo(Byte value) {
+            addCriterion("read_status >=", value, "readStatus");
             return (Criteria) this;
         }
 
-        public Criteria andReadLessThan(Byte value) {
-            addCriterion("read <", value, "read");
+        public Criteria andReadStatusLessThan(Byte value) {
+            addCriterion("read_status <", value, "readStatus");
             return (Criteria) this;
         }
 
-        public Criteria andReadLessThanOrEqualTo(Byte value) {
-            addCriterion("read <=", value, "read");
+        public Criteria andReadStatusLessThanOrEqualTo(Byte value) {
+            addCriterion("read_status <=", value, "readStatus");
             return (Criteria) this;
         }
 
-        public Criteria andReadIn(List<Byte> values) {
-            addCriterion("read in", values, "read");
+        public Criteria andReadStatusIn(List<Byte> values) {
+            addCriterion("read_status in", values, "readStatus");
             return (Criteria) this;
         }
 
-        public Criteria andReadNotIn(List<Byte> values) {
-            addCriterion("read not in", values, "read");
+        public Criteria andReadStatusNotIn(List<Byte> values) {
+            addCriterion("read_status not in", values, "readStatus");
             return (Criteria) this;
         }
 
-        public Criteria andReadBetween(Byte value1, Byte value2) {
-            addCriterion("read between", value1, value2, "read");
+        public Criteria andReadStatusBetween(Byte value1, Byte value2) {
+            addCriterion("read_status between", value1, value2, "readStatus");
             return (Criteria) this;
         }
 
-        public Criteria andReadNotBetween(Byte value1, Byte value2) {
-            addCriterion("read not between", value1, value2, "read");
+        public Criteria andReadStatusNotBetween(Byte value1, Byte value2) {
+            addCriterion("read_status not between", value1, value2, "readStatus");
             return (Criteria) this;
         }
     }

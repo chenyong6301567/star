@@ -35,7 +35,7 @@ public interface SmsMapper {
         "gmt_create, gmt_modify, ",
         "status, content, ",
         "type, end_date)",
-        "values (#{phone,jdbcType=INTEGER}, #{code,jdbcType=VARCHAR}, ",
+        "values (#{phone,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, ",
         "#{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModify,jdbcType=TIMESTAMP}, ",
         "#{status,jdbcType=TINYINT}, #{content,jdbcType=VARCHAR}, ",
         "#{type,jdbcType=TINYINT}, #{endDate,jdbcType=TIMESTAMP})"
@@ -50,7 +50,7 @@ public interface SmsMapper {
     @SelectProvider(type=SmsSqlProvider.class, method="selectByExample")
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
-        @Result(column="phone", property="phone", jdbcType=JdbcType.INTEGER),
+        @Result(column="phone", property="phone", jdbcType=JdbcType.VARCHAR),
         @Result(column="code", property="code", jdbcType=JdbcType.VARCHAR),
         @Result(column="gmt_create", property="gmtCreate", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="gmt_modify", property="gmtModify", jdbcType=JdbcType.TIMESTAMP),
@@ -69,7 +69,7 @@ public interface SmsMapper {
     })
     @Results({
         @Result(column="id", property="id", jdbcType=JdbcType.INTEGER, id=true),
-        @Result(column="phone", property="phone", jdbcType=JdbcType.INTEGER),
+        @Result(column="phone", property="phone", jdbcType=JdbcType.VARCHAR),
         @Result(column="code", property="code", jdbcType=JdbcType.VARCHAR),
         @Result(column="gmt_create", property="gmtCreate", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="gmt_modify", property="gmtModify", jdbcType=JdbcType.TIMESTAMP),
@@ -91,7 +91,7 @@ public interface SmsMapper {
 
     @Update({
         "update sms",
-        "set phone = #{phone,jdbcType=INTEGER},",
+        "set phone = #{phone,jdbcType=VARCHAR},",
           "code = #{code,jdbcType=VARCHAR},",
           "gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},",
           "gmt_modify = #{gmtModify,jdbcType=TIMESTAMP},",

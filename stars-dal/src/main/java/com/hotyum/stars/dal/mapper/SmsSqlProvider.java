@@ -29,7 +29,7 @@ public class SmsSqlProvider {
         sql.INSERT_INTO("sms");
         
         if (record.getPhone() != null) {
-            sql.VALUES("phone", "#{phone,jdbcType=INTEGER}");
+            sql.VALUES("phone", "#{phone,jdbcType=VARCHAR}");
         }
         
         if (record.getCode() != null) {
@@ -100,7 +100,7 @@ public class SmsSqlProvider {
         }
         
         if (record.getPhone() != null) {
-            sql.SET("phone = #{record.phone,jdbcType=INTEGER}");
+            sql.SET("phone = #{record.phone,jdbcType=VARCHAR}");
         }
         
         if (record.getCode() != null) {
@@ -140,7 +140,7 @@ public class SmsSqlProvider {
         sql.UPDATE("sms");
         
         sql.SET("id = #{record.id,jdbcType=INTEGER}");
-        sql.SET("phone = #{record.phone,jdbcType=INTEGER}");
+        sql.SET("phone = #{record.phone,jdbcType=VARCHAR}");
         sql.SET("code = #{record.code,jdbcType=VARCHAR}");
         sql.SET("gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP}");
         sql.SET("gmt_modify = #{record.gmtModify,jdbcType=TIMESTAMP}");
@@ -159,7 +159,7 @@ public class SmsSqlProvider {
         sql.UPDATE("sms");
         
         if (record.getPhone() != null) {
-            sql.SET("phone = #{phone,jdbcType=INTEGER}");
+            sql.SET("phone = #{phone,jdbcType=VARCHAR}");
         }
         
         if (record.getCode() != null) {

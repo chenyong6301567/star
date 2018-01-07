@@ -52,8 +52,8 @@ public class NoticeSqlProvider {
             sql.VALUES("status", "#{status,jdbcType=TINYINT}");
         }
         
-        if (record.getRead() != null) {
-            sql.VALUES("read", "#{read,jdbcType=TINYINT}");
+        if (record.getReadStatus() != null) {
+            sql.VALUES("read_status", "#{readStatus,jdbcType=TINYINT}");
         }
         
         return sql.toString();
@@ -72,7 +72,7 @@ public class NoticeSqlProvider {
         sql.SELECT("gmt_create");
         sql.SELECT("gmt_modify");
         sql.SELECT("status");
-        sql.SELECT("read");
+        sql.SELECT("read_status");
         sql.FROM("notice");
         applyWhere(sql, example, false);
         
@@ -118,8 +118,8 @@ public class NoticeSqlProvider {
             sql.SET("status = #{record.status,jdbcType=TINYINT}");
         }
         
-        if (record.getRead() != null) {
-            sql.SET("read = #{record.read,jdbcType=TINYINT}");
+        if (record.getReadStatus() != null) {
+            sql.SET("read_status = #{record.readStatus,jdbcType=TINYINT}");
         }
         
         applyWhere(sql, example, true);
@@ -137,7 +137,7 @@ public class NoticeSqlProvider {
         sql.SET("gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP}");
         sql.SET("gmt_modify = #{record.gmtModify,jdbcType=TIMESTAMP}");
         sql.SET("status = #{record.status,jdbcType=TINYINT}");
-        sql.SET("read = #{record.read,jdbcType=TINYINT}");
+        sql.SET("read_status = #{record.readStatus,jdbcType=TINYINT}");
         
         NoticeExample example = (NoticeExample) parameter.get("example");
         applyWhere(sql, example, true);
@@ -172,8 +172,8 @@ public class NoticeSqlProvider {
             sql.SET("status = #{status,jdbcType=TINYINT}");
         }
         
-        if (record.getRead() != null) {
-            sql.SET("read = #{read,jdbcType=TINYINT}");
+        if (record.getReadStatus() != null) {
+            sql.SET("read_status = #{readStatus,jdbcType=TINYINT}");
         }
         
         sql.WHERE("id = #{id,jdbcType=INTEGER}");

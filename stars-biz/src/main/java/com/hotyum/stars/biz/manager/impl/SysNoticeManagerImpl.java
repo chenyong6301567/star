@@ -57,6 +57,8 @@ public class SysNoticeManagerImpl implements SysNoticeManager {
 		systemNotice.setStatus(Status.ZERO.getValue());
 		systemNotice.setSysType(sysType);
 		systemNotice.setToType(toType);
+		systemNotice.setNoticeStatus(Status.ZERO.getValue());
+		systemNotice.setSmsStatus(Status.ZERO.getValue());
 		try {
 			systemNoticeDAO.insert(systemNotice);
 		} catch (DataAccessException e) {

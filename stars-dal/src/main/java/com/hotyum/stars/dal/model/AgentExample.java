@@ -1134,6 +1134,66 @@ public class AgentExample {
             addCriterion("status not between", value1, value2, "status");
             return (Criteria) this;
         }
+
+        public Criteria andProvinceIndexIsNull() {
+            addCriterion("province_index is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProvinceIndexIsNotNull() {
+            addCriterion("province_index is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProvinceIndexEqualTo(Integer value) {
+            addCriterion("province_index =", value, "provinceIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andProvinceIndexNotEqualTo(Integer value) {
+            addCriterion("province_index <>", value, "provinceIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andProvinceIndexGreaterThan(Integer value) {
+            addCriterion("province_index >", value, "provinceIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andProvinceIndexGreaterThanOrEqualTo(Integer value) {
+            addCriterion("province_index >=", value, "provinceIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andProvinceIndexLessThan(Integer value) {
+            addCriterion("province_index <", value, "provinceIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andProvinceIndexLessThanOrEqualTo(Integer value) {
+            addCriterion("province_index <=", value, "provinceIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andProvinceIndexIn(List<Integer> values) {
+            addCriterion("province_index in", values, "provinceIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andProvinceIndexNotIn(List<Integer> values) {
+            addCriterion("province_index not in", values, "provinceIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andProvinceIndexBetween(Integer value1, Integer value2) {
+            addCriterion("province_index between", value1, value2, "provinceIndex");
+            return (Criteria) this;
+        }
+
+        public Criteria andProvinceIndexNotBetween(Integer value1, Integer value2) {
+            addCriterion("province_index not between", value1, value2, "provinceIndex");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

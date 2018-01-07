@@ -88,6 +88,10 @@ public class AgentSqlProvider {
             sql.VALUES("status", "#{status,jdbcType=TINYINT}");
         }
         
+        if (record.getProvinceIndex() != null) {
+            sql.VALUES("province_index", "#{provinceIndex,jdbcType=INTEGER}");
+        }
+        
         return sql.toString();
     }
 
@@ -113,6 +117,7 @@ public class AgentSqlProvider {
         sql.SELECT("gmt_create");
         sql.SELECT("gmt_modify");
         sql.SELECT("status");
+        sql.SELECT("province_index");
         sql.FROM("agent");
         applyWhere(sql, example, false);
         
@@ -194,6 +199,10 @@ public class AgentSqlProvider {
             sql.SET("status = #{record.status,jdbcType=TINYINT}");
         }
         
+        if (record.getProvinceIndex() != null) {
+            sql.SET("province_index = #{record.provinceIndex,jdbcType=INTEGER}");
+        }
+        
         applyWhere(sql, example, true);
         return sql.toString();
     }
@@ -218,6 +227,7 @@ public class AgentSqlProvider {
         sql.SET("gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP}");
         sql.SET("gmt_modify = #{record.gmtModify,jdbcType=TIMESTAMP}");
         sql.SET("status = #{record.status,jdbcType=TINYINT}");
+        sql.SET("province_index = #{record.provinceIndex,jdbcType=INTEGER}");
         
         AgentExample example = (AgentExample) parameter.get("example");
         applyWhere(sql, example, true);
@@ -286,6 +296,10 @@ public class AgentSqlProvider {
         
         if (record.getStatus() != null) {
             sql.SET("status = #{status,jdbcType=TINYINT}");
+        }
+        
+        if (record.getProvinceIndex() != null) {
+            sql.SET("province_index = #{provinceIndex,jdbcType=INTEGER}");
         }
         
         sql.WHERE("id = #{id,jdbcType=INTEGER}");

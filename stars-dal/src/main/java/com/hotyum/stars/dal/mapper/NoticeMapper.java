@@ -34,11 +34,11 @@ public interface NoticeMapper {
         "insert into notice (user_id, type, ",
         "notice_content, gmt_create, ",
         "gmt_modify, status, ",
-        "read)",
+        "read_status)",
         "values (#{userId,jdbcType=INTEGER}, #{type,jdbcType=TINYINT}, ",
         "#{noticeContent,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, ",
         "#{gmtModify,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT}, ",
-        "#{read,jdbcType=TINYINT})"
+        "#{readStatus,jdbcType=TINYINT})"
     })
     @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=Integer.class)
     int insert(Notice record);
@@ -56,13 +56,13 @@ public interface NoticeMapper {
         @Result(column="gmt_create", property="gmtCreate", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="gmt_modify", property="gmtModify", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="status", property="status", jdbcType=JdbcType.TINYINT),
-        @Result(column="read", property="read", jdbcType=JdbcType.TINYINT)
+        @Result(column="read_status", property="readStatus", jdbcType=JdbcType.TINYINT)
     })
     List<Notice> selectByExample(NoticeExample example);
 
     @Select({
         "select",
-        "id, user_id, type, notice_content, gmt_create, gmt_modify, status, read",
+        "id, user_id, type, notice_content, gmt_create, gmt_modify, status, read_status",
         "from notice",
         "where id = #{id,jdbcType=INTEGER}"
     })
@@ -74,7 +74,7 @@ public interface NoticeMapper {
         @Result(column="gmt_create", property="gmtCreate", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="gmt_modify", property="gmtModify", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="status", property="status", jdbcType=JdbcType.TINYINT),
-        @Result(column="read", property="read", jdbcType=JdbcType.TINYINT)
+        @Result(column="read_status", property="readStatus", jdbcType=JdbcType.TINYINT)
     })
     Notice selectByPrimaryKey(Integer id);
 
@@ -95,7 +95,7 @@ public interface NoticeMapper {
           "gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},",
           "gmt_modify = #{gmtModify,jdbcType=TIMESTAMP},",
           "status = #{status,jdbcType=TINYINT},",
-          "read = #{read,jdbcType=TINYINT}",
+          "read_status = #{readStatus,jdbcType=TINYINT}",
         "where id = #{id,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(Notice record);

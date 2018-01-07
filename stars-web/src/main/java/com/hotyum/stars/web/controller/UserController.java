@@ -6,6 +6,7 @@ import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,7 @@ import com.hotyum.stars.biz.model.UserListVO;
 import com.hotyum.stars.dal.model.User;
 import com.hotyum.stars.utils.Constants;
 import com.hotyum.stars.utils.Page;
+import com.hotyum.stars.utils.enums.UserType;
 import com.hotyum.stars.web.model.Result;
 import com.hotyum.stars.web.util.TokenAccessUtils;
 
@@ -51,7 +53,7 @@ public class UserController {
 	 * 
 	 * @param a 不用普通参数，带令牌token|string|必填
 	 * @Title getUserBaseInfo
-	 * @respbody 
+	 * @respbody {"code":1,"message":"成功","data":{"id":1,"account":"15700191306","realName":"陈勇","sex":1,"contactPhone":"15700191306","email":"629584407@qq.com","whetherRealName":1,"wheatherGetMoney":null,"refereeQualification":1,"agentCode":"abc123","directRecommendationAccount":"15700191293","indirectRecommendationAccount":"15700191294","certificateType":0,"certificateNumber":null,"certificateFront":null,"certificateBack":null,"addressPic":null,"myReferinfoMationVO":null,"derectCustomerReferInfoMationVOList":null,"inDerectCustomerReferInfoMationVOList":null},"error":false,"success":true}
 	 * @author cy
 	 * @Description 获取用户基本信息
 	 * @date 2018/1/1 15:49
@@ -188,9 +190,15 @@ public class UserController {
 	 * @throws  
 	 */
 	@RequestMapping(value = "user/addUser")
-	public Result addUser(HttpServletRequest request, String userName, String contactPhone, Byte userType,
-			Byte whetherFreeze, @RequestParam(required = true) String account, Date freezeDate, String agentName,
-			String pwd) {
+	public Result addUser(HttpServletRequest request, String userName, String contactPhone,
+			@RequestParam(required = true) Byte userType, Byte whetherFreeze,
+			@RequestParam(required = true) String account, Date freezeDate, String agentName,
+			@RequestParam(defaultValue = Constants.DEFAULTPWD) String pwd) {
+		if (userType.equals(UserType.AGENT.getValue())) {
+			if (StringUtils.isEmpty(agentName)) {
+				return Result.errorReponse("代理商名称不能为空");
+			}
+		}
 		userManager.addUser(account, userName, contactPhone, userType, agentName, whetherFreeze, freezeDate, pwd);
 		return Result.normalResponse();
 	}

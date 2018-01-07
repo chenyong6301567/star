@@ -24,9 +24,9 @@ public class TokenAccess implements Serializable {
 
     private Byte status;
 
-    private String gmtCreate;
+    private Date gmtCreate;
 
-    private String gmtModify;
+    private Date gmtModify;
 
     private static final long serialVersionUID = 1L;
 
@@ -110,20 +110,20 @@ public class TokenAccess implements Serializable {
         this.status = status;
     }
 
-    public String getGmtCreate() {
+    public Date getGmtCreate() {
         return gmtCreate;
     }
 
-    public void setGmtCreate(String gmtCreate) {
-        this.gmtCreate = gmtCreate == null ? null : gmtCreate.trim();
+    public void setGmtCreate(Date gmtCreate) {
+        this.gmtCreate = gmtCreate;
     }
 
-    public String getGmtModify() {
+    public Date getGmtModify() {
         return gmtModify;
     }
 
-    public void setGmtModify(String gmtModify) {
-        this.gmtModify = gmtModify == null ? null : gmtModify.trim();
+    public void setGmtModify(Date gmtModify) {
+        this.gmtModify = gmtModify;
     }
 
     @Override

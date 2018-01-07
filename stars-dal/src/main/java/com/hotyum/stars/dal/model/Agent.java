@@ -36,6 +36,8 @@ public class Agent implements Serializable {
 
     private Byte status;
 
+    private Integer provinceIndex;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {
@@ -166,6 +168,14 @@ public class Agent implements Serializable {
         this.status = status;
     }
 
+    public Integer getProvinceIndex() {
+        return provinceIndex;
+    }
+
+    public void setProvinceIndex(Integer provinceIndex) {
+        this.provinceIndex = provinceIndex;
+    }
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -193,7 +203,8 @@ public class Agent implements Serializable {
             && (this.getContrctEndTime() == null ? other.getContrctEndTime() == null : this.getContrctEndTime().equals(other.getContrctEndTime()))
             && (this.getGmtCreate() == null ? other.getGmtCreate() == null : this.getGmtCreate().equals(other.getGmtCreate()))
             && (this.getGmtModify() == null ? other.getGmtModify() == null : this.getGmtModify().equals(other.getGmtModify()))
-            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()));
+            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
+            && (this.getProvinceIndex() == null ? other.getProvinceIndex() == null : this.getProvinceIndex().equals(other.getProvinceIndex()));
     }
 
     @Override
@@ -216,6 +227,7 @@ public class Agent implements Serializable {
         result = prime * result + ((getGmtCreate() == null) ? 0 : getGmtCreate().hashCode());
         result = prime * result + ((getGmtModify() == null) ? 0 : getGmtModify().hashCode());
         result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
+        result = prime * result + ((getProvinceIndex() == null) ? 0 : getProvinceIndex().hashCode());
         return result;
     }
 }

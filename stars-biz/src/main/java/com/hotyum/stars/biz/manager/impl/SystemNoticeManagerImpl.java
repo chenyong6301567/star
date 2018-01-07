@@ -51,7 +51,7 @@ public class SystemNoticeManagerImpl implements SystemNoticeManager {
 	public List<SystemNotice> getSystemNotice() {
 		SystemNoticeExample systemNoticeExample = new SystemNoticeExample();
 		SystemNoticeExample.Criteria criteria = systemNoticeExample.createCriteria();
-		criteria.andToTypeIn(Arrays.asList(TYPES));
+		criteria.andSysTypeIn(Arrays.asList(TYPES));
 		criteria.andStatusGreaterThanOrEqualTo(Status.ZERO.getValue());
 		criteria.andNoticeStatusGreaterThanOrEqualTo(Status.ZERO.getValue());
 		try {
@@ -99,7 +99,7 @@ public class SystemNoticeManagerImpl implements SystemNoticeManager {
 	public List<SystemNotice> getSmsSystemNotice() {
 		SystemNoticeExample systemNoticeExample = new SystemNoticeExample();
 		SystemNoticeExample.Criteria criteria = systemNoticeExample.createCriteria();
-		criteria.andToTypeIn(Arrays.asList(SMSTYPES));
+		criteria.andSysTypeIn(Arrays.asList(SMSTYPES));
 		criteria.andStatusGreaterThanOrEqualTo(Status.ZERO.getValue());
 		criteria.andSmsStatusGreaterThanOrEqualTo(Status.ZERO.getValue());
 		try {

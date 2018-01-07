@@ -53,7 +53,7 @@ public class UnifyExceptionHandler {
 		if (StringUtils.isEmpty(message)) {
 			message = "内部服务器异常";
 		}
-		return Result.errorReponse("操作失败，请联系管理人员");
+		return Result.errorReponse(message);
 	}
 
 	@ResponseBody
@@ -67,7 +67,7 @@ public class UnifyExceptionHandler {
 	@ExceptionHandler(value = ApplicationException.class)
 	public Result ApplicationException(Exception e) {
 		log.error("异常解析器全局拦截", e);
-		return Result.errorReponse("操作失败，请联系管理人员");
+		return Result.errorReponse(e.getMessage());
 	}
 
 }

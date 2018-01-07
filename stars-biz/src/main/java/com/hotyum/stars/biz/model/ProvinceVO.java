@@ -11,24 +11,24 @@ public class ProvinceVO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private Integer id;
+	private String label;
 
-	private String provinceName;
+	private Integer value;
 
-	public Integer getId() {
-		return id;
+	public String getLabel() {
+		return label;
 	}
 
-	public void setId(Integer id) {
-		this.id = id;
+	public void setLabel(String label) {
+		this.label = label;
 	}
 
-	public String getProvinceName() {
-		return provinceName;
+	public Integer getValue() {
+		return value;
 	}
 
-	public void setProvinceName(String provinceName) {
-		this.provinceName = provinceName;
+	public void setValue(Integer value) {
+		this.value = value;
 	}
 
 }

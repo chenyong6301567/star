@@ -58,14 +58,33 @@ public class AgentController {
 	 */
 	@RequestMapping(value = "agent/addAgentInfo")
 	public Result addAgentInfo(HttpServletRequest request, @RequestParam(required = true) String agentCode,
-			String agentName, String unifiedSocialCreditCode, String legalRepresentative, Integer provinceId,
-			String provinceName, String contactPhone, String businessAddress, Date businessStartTime,
-			Date businessEndTime, Date contractStartTime, Date contrctEndTime) {
+			@RequestParam(required = true) String agentName, String unifiedSocialCreditCode, String legalRepresentative,
+			@RequestParam(required = true) Integer provinceId, @RequestParam(required = true) String provinceName,
+			String contactPhone, String businessAddress, Date businessStartTime, Date businessEndTime,
+			Date contractStartTime, Date contrctEndTime) {
 
 		agentManager.addAgentInfo(agentCode, agentName, unifiedSocialCreditCode, legalRepresentative, provinceId,
 				provinceName, contactPhone, businessAddress, businessStartTime, businessEndTime, contractStartTime,
 				contrctEndTime);
 		return Result.normalResponse();
+	}
+
+	/**
+	 * 查询代理商的最大步长数
+	 * 
+	 * @param provinceId                    省份Id|int
+	 * @Title getMaxProvinceIndex
+	 * @respbody 
+	 * @author cy
+	 * @Description 增加代理商信息
+	 * @date 2018/1/1 15:49
+	 * @return Result
+	 * @throws  
+	 */
+	@RequestMapping(value = "agent/getMaxProvinceIndex")
+	public Result getMaxProvinceIndex(Integer provinceId) {
+		int index = agentManager.getMaxProvinceIndex(provinceId);
+		return Result.normalResponse(index);
 	}
 
 	/**用户管理列表
@@ -81,7 +100,7 @@ public class AgentController {
 	 * @param pageNum                       页数|int|必填
 	 * @param pageSize                      每页多少|int|必填
 	 * @Title getUserList
-	 * @respbody 
+	 * @respbody {"code":1,"message":"成功","data":{"pageNum":1,"pageSize":50,"startRow":0,"pages":1,"total":3,"list":[{"id":5,"agentCode":"15700191302","agentName":"test2","unifiedSocialCreditCode":"1","legalRepresentative":"1","provinceId":1,"provinceName":"北京市","contactPhone":"111111","businessAddress":"地址","businessStartTime":"2018-01-07 21:57:47","businessEndTime":"2018-01-07 21:57:47","contractStartTime":"2018-01-07 21:57:47","contrctEndTime":"2018-01-07 21:57:47"},{"id":4,"agentCode":"15700191302","agentName":"test1","unifiedSocialCreditCode":"1","legalRepresentative":"1","provinceId":1,"provinceName":"北京市","contactPhone":"111111","businessAddress":"地址","businessStartTime":"2018-01-07 21:57:47","businessEndTime":"2018-01-07 21:57:47","contractStartTime":"2018-01-07 21:57:47","contrctEndTime":"2018-01-07 21:57:47"},{"id":2,"agentCode":"15700191302","agentName":"test","unifiedSocialCreditCode":"1","legalRepresentative":"1","provinceId":1,"provinceName":"北京市","contactPhone":"111111","businessAddress":"地址","businessStartTime":"2018-01-07 21:57:47","businessEndTime":"2018-01-07 21:57:47","contractStartTime":"2018-01-07 21:57:47","contrctEndTime":"2018-01-07 21:57:47"}],"hasPrePage":false,"hasNextPage":false},"error":false,"success":true}
 	 * @author cy
 	 * @Description 用户管理列表
 	 * @date 2018/1/1 20:29

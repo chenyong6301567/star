@@ -42,8 +42,8 @@ public interface TokenAccessMapper {
         "#{tokenCreate,jdbcType=TIMESTAMP}, #{tokenExpired,jdbcType=TIMESTAMP}, ",
         "#{activeTime,jdbcType=TIMESTAMP}, #{activeCount,jdbcType=INTEGER}, ",
         "#{remember,jdbcType=TINYINT}, #{anonymous,jdbcType=TINYINT}, ",
-        "#{status,jdbcType=TINYINT}, #{gmtCreate,jdbcType=VARCHAR}, ",
-        "#{gmtModify,jdbcType=VARCHAR})"
+        "#{status,jdbcType=TINYINT}, #{gmtCreate,jdbcType=TIMESTAMP}, ",
+        "#{gmtModify,jdbcType=TIMESTAMP})"
     })
     @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=Integer.class)
     int insert(TokenAccess record);
@@ -64,8 +64,8 @@ public interface TokenAccessMapper {
         @Result(column="remember", property="remember", jdbcType=JdbcType.TINYINT),
         @Result(column="anonymous", property="anonymous", jdbcType=JdbcType.TINYINT),
         @Result(column="status", property="status", jdbcType=JdbcType.TINYINT),
-        @Result(column="gmt_create", property="gmtCreate", jdbcType=JdbcType.VARCHAR),
-        @Result(column="gmt_modify", property="gmtModify", jdbcType=JdbcType.VARCHAR)
+        @Result(column="gmt_create", property="gmtCreate", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="gmt_modify", property="gmtModify", jdbcType=JdbcType.TIMESTAMP)
     })
     List<TokenAccess> selectByExample(TokenAccessExample example);
 
@@ -88,8 +88,8 @@ public interface TokenAccessMapper {
         @Result(column="remember", property="remember", jdbcType=JdbcType.TINYINT),
         @Result(column="anonymous", property="anonymous", jdbcType=JdbcType.TINYINT),
         @Result(column="status", property="status", jdbcType=JdbcType.TINYINT),
-        @Result(column="gmt_create", property="gmtCreate", jdbcType=JdbcType.VARCHAR),
-        @Result(column="gmt_modify", property="gmtModify", jdbcType=JdbcType.VARCHAR)
+        @Result(column="gmt_create", property="gmtCreate", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="gmt_modify", property="gmtModify", jdbcType=JdbcType.TIMESTAMP)
     })
     TokenAccess selectByPrimaryKey(@Param("id") Integer id, @Param("token") String token);
 
@@ -112,8 +112,8 @@ public interface TokenAccessMapper {
           "remember = #{remember,jdbcType=TINYINT},",
           "anonymous = #{anonymous,jdbcType=TINYINT},",
           "status = #{status,jdbcType=TINYINT},",
-          "gmt_create = #{gmtCreate,jdbcType=VARCHAR},",
-          "gmt_modify = #{gmtModify,jdbcType=VARCHAR}",
+          "gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},",
+          "gmt_modify = #{gmtModify,jdbcType=TIMESTAMP}",
         "where id = #{id,jdbcType=INTEGER}",
           "and token = #{token,jdbcType=VARCHAR}"
     })

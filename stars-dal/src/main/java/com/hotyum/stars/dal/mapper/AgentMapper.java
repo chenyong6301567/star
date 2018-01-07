@@ -38,7 +38,7 @@ public interface AgentMapper {
         "business_start_time, business_end_time, ",
         "contract_start_time, contrct_end_time, ",
         "gmt_create, gmt_modify, ",
-        "status)",
+        "status, province_index)",
         "values (#{agentCode,jdbcType=VARCHAR}, #{agentName,jdbcType=VARCHAR}, ",
         "#{unifiedSocialCreditCode,jdbcType=VARCHAR}, #{legalRepresentative,jdbcType=VARCHAR}, ",
         "#{provinceId,jdbcType=INTEGER}, #{provinceName,jdbcType=VARCHAR}, ",
@@ -46,7 +46,7 @@ public interface AgentMapper {
         "#{businessStartTime,jdbcType=TIMESTAMP}, #{businessEndTime,jdbcType=TIMESTAMP}, ",
         "#{contractStartTime,jdbcType=TIMESTAMP}, #{contrctEndTime,jdbcType=TIMESTAMP}, ",
         "#{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModify,jdbcType=TIMESTAMP}, ",
-        "#{status,jdbcType=TINYINT})"
+        "#{status,jdbcType=TINYINT}, #{provinceIndex,jdbcType=INTEGER})"
     })
     @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=Integer.class)
     int insert(Agent record);
@@ -72,7 +72,8 @@ public interface AgentMapper {
         @Result(column="contrct_end_time", property="contrctEndTime", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="gmt_create", property="gmtCreate", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="gmt_modify", property="gmtModify", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="status", property="status", jdbcType=JdbcType.TINYINT)
+        @Result(column="status", property="status", jdbcType=JdbcType.TINYINT),
+        @Result(column="province_index", property="provinceIndex", jdbcType=JdbcType.INTEGER)
     })
     List<Agent> selectByExample(AgentExample example);
 
@@ -81,7 +82,7 @@ public interface AgentMapper {
         "id, agent_code, agent_name, unified_social_credit_code, legal_representative, ",
         "province_id, province_name, contact_phone, business_address, business_start_time, ",
         "business_end_time, contract_start_time, contrct_end_time, gmt_create, gmt_modify, ",
-        "status",
+        "status, province_index",
         "from agent",
         "where id = #{id,jdbcType=INTEGER}"
     })
@@ -101,7 +102,8 @@ public interface AgentMapper {
         @Result(column="contrct_end_time", property="contrctEndTime", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="gmt_create", property="gmtCreate", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="gmt_modify", property="gmtModify", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="status", property="status", jdbcType=JdbcType.TINYINT)
+        @Result(column="status", property="status", jdbcType=JdbcType.TINYINT),
+        @Result(column="province_index", property="provinceIndex", jdbcType=JdbcType.INTEGER)
     })
     Agent selectByPrimaryKey(Integer id);
 
@@ -130,7 +132,8 @@ public interface AgentMapper {
           "contrct_end_time = #{contrctEndTime,jdbcType=TIMESTAMP},",
           "gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},",
           "gmt_modify = #{gmtModify,jdbcType=TIMESTAMP},",
-          "status = #{status,jdbcType=TINYINT}",
+          "status = #{status,jdbcType=TINYINT},",
+          "province_index = #{provinceIndex,jdbcType=INTEGER}",
         "where id = #{id,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(Agent record);

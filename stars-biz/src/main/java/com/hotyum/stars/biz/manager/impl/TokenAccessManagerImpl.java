@@ -77,6 +77,8 @@ public class TokenAccessManagerImpl implements TokenAccessManager {
 			token.setTokenCreate(nowDate);
 			token.setActiveCount(token.getActiveCount() + 1);
 			token.setToken(UuidUtil.getUuid());
+			token.setGmtCreate(new Date());
+			token.setGmtModify(new Date());
 			try {
 				tokenAccessDAO.updateByPrimaryKey(token);
 				return token.getToken();
@@ -129,6 +131,7 @@ public class TokenAccessManagerImpl implements TokenAccessManager {
 		TokenAccessExample tokenAccessExample = new TokenAccessExample();
 		TokenAccessExample.Criteria criteria = tokenAccessExample.createCriteria();
 		criteria.andTokenEqualTo(token);
+		criteria.andStatusGreaterThanOrEqualTo(Status.ZERO.getValue());
 		try {
 			List<TokenAccess> tokenList = tokenAccessDAO.selectByExample(tokenAccessExample);
 			return CollectionUtils.isEmpty(tokenList) ? null : tokenList.get(0);
