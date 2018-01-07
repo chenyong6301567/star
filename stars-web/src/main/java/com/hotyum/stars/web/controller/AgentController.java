@@ -74,7 +74,7 @@ public class AgentController {
 	 * 
 	 * @param provinceId                    省份Id|int
 	 * @Title getMaxProvinceIndex
-	 * @respbody 
+	 * @respbody {"code":1,"message":"成功","data":0,"error":false,"success":true}
 	 * @author cy
 	 * @Description 增加代理商信息
 	 * @date 2018/1/1 15:49

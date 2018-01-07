@@ -2,9 +2,9 @@ package com.hotyum.stars.biz.manager;
 
 import java.util.List;
 
-import com.github.pagehelper.Page;
 import com.hotyum.stars.biz.model.ProductVO;
 import com.hotyum.stars.dal.model.Product;
+import com.hotyum.stars.utils.Page;
 
 /**
  * @author cy
@@ -21,10 +21,10 @@ public interface ProductManager {
 	* @param 
 	* @param 
 	* @param 
-	* @return Page<Product>
+	* @return Page<ProductVO>
 	* @throws:
 	*/
-	Page<Product> getProductInfoList(int pageNum, int pageSize);
+	Page<ProductVO> getProductInfoList(int pageNum, int pageSize);
 
 	/**
 	* @Title addProduct

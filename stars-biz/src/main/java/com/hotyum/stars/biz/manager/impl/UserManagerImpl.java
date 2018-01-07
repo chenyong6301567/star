@@ -87,7 +87,7 @@ public class UserManagerImpl implements UserManager {
 
 	private static final String ACCOUNTHIDESTR = "$1*********";
 
-	private static final String ACCOUNTREX = "(\\d{3})";
+	private static final String ACCOUNTREX = "(\\d{3})\\d{8}";
 
 	private static final String IDCARD = "(\\d{4})\\d{10}(\\w{4})";
 
@@ -731,11 +731,14 @@ public class UserManagerImpl implements UserManager {
 				customerRecommandVO.setWheatherGetMoney(BooleanType.getDes(user.getWheatherGetMoney()));
 				customerRecommandVO.setRefereeQualification(BooleanType.getDes(user.getRefereeQualification()));
 				customerRecommandVO.setSumMoney(user.getSumMoney().doubleValue());
-				customerRecommandVO.setDirectRecommendationAccount(
-						user.getDirectRecommendationAccount().replaceAll(ACCOUNTREX, ACCOUNTHIDESTR));
-				customerRecommandVO.setIndirectRecommendationAccount(
-						user.getIndirectRecommendationAccount().replaceAll(ACCOUNTREX, ACCOUNTHIDESTR));
-
+				if (StringUtils.isNotEmpty(user.getDirectRecommendationAccount())) {
+					customerRecommandVO.setDirectRecommendationAccount(
+							user.getDirectRecommendationAccount().replaceAll(ACCOUNTREX, ACCOUNTHIDESTR));
+				}
+				if (StringUtils.isNotEmpty(user.getIndirectRecommendationAccount())) {
+					customerRecommandVO.setIndirectRecommendationAccount(
+							user.getIndirectRecommendationAccount().replaceAll(ACCOUNTREX, ACCOUNTHIDESTR));
+				}
 				customerRecommandVOList.add(customerRecommandVO);
 			} catch (Exception e) {
 				LOGGER.error("CovertPage失败====", e);
