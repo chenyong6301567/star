@@ -19,6 +19,7 @@ import com.github.pagehelper.PageHelper;
 import com.hotyum.stars.biz.manager.AgentManager;
 import com.hotyum.stars.biz.manager.UserManager;
 import com.hotyum.stars.biz.model.AgentVO;
+import com.hotyum.stars.biz.model.UserAgentVO;
 import com.hotyum.stars.biz.model.UserListVO;
 import com.hotyum.stars.dal.dao.AgentDAO;
 import com.hotyum.stars.dal.model.Agent;
@@ -183,7 +184,7 @@ public class AgentManagerImpl implements AgentManager {
 				throw new RuntimeException("内部服务器错误");
 			}
 		}
-		return new Page<>(pageSize, pageNum, agentVOList.size(), agentVOList);
+		return new Page<AgentVO>(pageSize, pageNum, agentVOList.size(), agentVOList);
 	}
 
 	/**
@@ -233,6 +234,69 @@ public class AgentManagerImpl implements AgentManager {
 			throw new RuntimeException("内部服务器错误");
 		}
 
+	}
+
+	/**
+	* @Title:searchAgentList
+	* @author:cy
+	* @Description 
+	* @date:2018年1月7日下午11:17:45
+	* @param 
+	* @param 
+	* @param 
+	* @return 
+	* @throws:
+	*/
+	@Override
+	public Page<UserAgentVO> searchAgentList(String agentCode, String agentName, int pageNum, int pageSize) {
+		AgentExample agentExample = new AgentExample();
+		AgentExample.Criteria criteria = agentExample.createCriteria();
+		criteria.andStatusGreaterThanOrEqualTo(Status.ZERO.getValue());
+
+		if (StringUtils.isNotEmpty(agentCode)) {
+			criteria.andAgentCodeLike("%" + agentCode + "%");
+		}
+		if (StringUtils.isNotEmpty(agentName)) {
+			criteria.andAgentNameLike("%" + agentName + "%");
+		}
+		com.github.pagehelper.Page<Agent> page = PageHelper.startPage(pageNum, pageSize);
+		page.setOrderBy(" gmt_create desc");
+		try {
+			agentDAO.selectByExample(agentExample);
+		} catch (DataAccessException e) {
+			LOGGER.error("getAgentList失败====", e);
+			throw new RuntimeException("内部服务器错误");
+		}
+		return CovertUserAgentVOPage(page, pageNum, pageSize);
+	}
+
+	/**
+	* @Title CovertUserAgentVOPage
+	* @author cy
+	* @Description 
+	* @date 2018年1月7日下午11:18:21
+	* @param 
+	* @param 
+	* @param 
+	* @return Page<UserAgentVO>
+	* @throws:
+	*/
+	private Page<UserAgentVO> CovertUserAgentVOPage(com.github.pagehelper.Page<Agent> page, int pageNum, int pageSize) {
+		List<Agent> agentList = page.toPageInfo().getList();
+		List<UserAgentVO> userAgentVOList = new ArrayList<UserAgentVO>(agentList.size());
+		for (Agent agent : agentList) {
+			try {
+				UserAgentVO userAgentVO = new UserAgentVO();
+				userAgentVO.setId(agent.getId());
+				userAgentVO.setAgentCode(agent.getAgentCode());
+				userAgentVO.setAgentName(agent.getAgentName());
+				userAgentVOList.add(userAgentVO);
+			} catch (Exception e) {
+				LOGGER.error("CovertPage失败====", e);
+				throw new RuntimeException("内部服务器错误");
+			}
+		}
+		return new Page<UserAgentVO>(pageSize, pageNum, userAgentVOList.size(), userAgentVOList);
 	}
 
 }

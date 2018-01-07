@@ -179,8 +179,9 @@ public class UserController {
 	 * @param userType                      用户性质1代理商 2客户 3管理员|Byte|必填
 	 * @param whetherFreeze                 0 未冻结，1冻结|string|必填
 	 * @param freezeDate                    冻结日期|string|必填
-	 * @param agentName                     代理商名称|string|必填 
-	 * @param pwd                           密码|string|必填
+	 * @param agentName                     代理商名称(代理商必填)|string|必填 
+	 * @param agentCode                     代理商编码(代理商必填)|String|必填
+	 * @param pwd                           密码(默认123456)|string|必填
 	 * @Title addUser
 	 * @respbody 
 	 * @author cy
@@ -192,11 +193,11 @@ public class UserController {
 	@RequestMapping(value = "user/addUser")
 	public Result addUser(HttpServletRequest request, String userName, String contactPhone,
 			@RequestParam(required = true) Byte userType, Byte whetherFreeze,
-			@RequestParam(required = true) String account, Date freezeDate, String agentName,
+			@RequestParam(required = true) String account, Date freezeDate, String agentName, String agentCode,
 			@RequestParam(defaultValue = Constants.DEFAULTPWD) String pwd) {
 		if (userType.equals(UserType.AGENT.getValue())) {
-			if (StringUtils.isEmpty(agentName)) {
-				return Result.errorReponse("代理商名称不能为空");
+			if (StringUtils.isEmpty(agentName)||StringUtils.isEmpty(agentCode)) {
+				return Result.errorReponse("代理商编码或名称不能为空");
 			}
 		}
 		userManager.addUser(account, userName, contactPhone, userType, agentName, whetherFreeze, freezeDate, pwd);

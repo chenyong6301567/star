@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.hotyum.stars.biz.manager.AgentManager;
 import com.hotyum.stars.biz.model.AgentVO;
+import com.hotyum.stars.biz.model.UserAgentVO;
 import com.hotyum.stars.utils.Constants;
 import com.hotyum.stars.utils.Page;
 import com.hotyum.stars.web.model.Result;
@@ -87,7 +88,7 @@ public class AgentController {
 		return Result.normalResponse(index);
 	}
 
-	/**用户管理列表
+	/**代理商列表查询
 	 * 
 	 * @param agentCode                     代理商编号|string
 	 * @param agentName                     代理商名称|string
@@ -102,7 +103,7 @@ public class AgentController {
 	 * @Title getUserList
 	 * @respbody {"code":1,"message":"成功","data":{"pageNum":1,"pageSize":50,"startRow":0,"pages":1,"total":3,"list":[{"id":5,"agentCode":"15700191302","agentName":"test2","unifiedSocialCreditCode":"1","legalRepresentative":"1","provinceId":1,"provinceName":"北京市","contactPhone":"111111","businessAddress":"地址","businessStartTime":"2018-01-07 21:57:47","businessEndTime":"2018-01-07 21:57:47","contractStartTime":"2018-01-07 21:57:47","contrctEndTime":"2018-01-07 21:57:47"},{"id":4,"agentCode":"15700191302","agentName":"test1","unifiedSocialCreditCode":"1","legalRepresentative":"1","provinceId":1,"provinceName":"北京市","contactPhone":"111111","businessAddress":"地址","businessStartTime":"2018-01-07 21:57:47","businessEndTime":"2018-01-07 21:57:47","contractStartTime":"2018-01-07 21:57:47","contrctEndTime":"2018-01-07 21:57:47"},{"id":2,"agentCode":"15700191302","agentName":"test","unifiedSocialCreditCode":"1","legalRepresentative":"1","provinceId":1,"provinceName":"北京市","contactPhone":"111111","businessAddress":"地址","businessStartTime":"2018-01-07 21:57:47","businessEndTime":"2018-01-07 21:57:47","contractStartTime":"2018-01-07 21:57:47","contrctEndTime":"2018-01-07 21:57:47"}],"hasPrePage":false,"hasNextPage":false},"error":false,"success":true}
 	 * @author cy
-	 * @Description 用户管理列表
+	 * @Description 代理商列表查询
 	 * @date 2018/1/1 20:29
 	 * @return Result
 	 * @throws  
@@ -114,6 +115,28 @@ public class AgentController {
 			@RequestParam(defaultValue = Constants.PAGESIZE) int pageSize) {
 		Page<AgentVO> page = agentManager.getAgentList(agentCode, agentName, legalRepresentative, provinceId,
 				businessStartTime, businessEndTime, contractStartTime, contrctEndTime, pageNum, pageSize);
+		return Result.normalResponse(page);
+	}
+
+	/**选择代理商列表查询
+	 * 
+	 * @param agentCode                     代理商编号|string
+	 * @param agentName                     代理商名称|string
+	 * @param pageNum                       页数|int|必填
+	 * @param pageSize                      每页多少|int|必填
+	 * @Title searchAgentList
+	 * @respbody {"code":1,"message":"成功","data":{"pageNum":1,"pageSize":50,"startRow":0,"pages":1,"total":4,"list":[{"id":6,"account":"157****1302","realName":null,"contactPhone":null,"sexName":"代理商","gmtCreate":"2018-01-07 19:25:42","email":null,"whetherRealName":"否","wheatherGetMoney":"否","refereeQualification":"否","agentName":null,"directRecommendationAccount":null,"indirectRecommendationAccount":null,"sumMoney":0.0},{"id":5,"account":"157****1301","realName":null,"contactPhone":null,"sexName":"代理商","gmtCreate":"2018-01-07 19:21:47","email":null,"whetherRealName":"否","wheatherGetMoney":"否","refereeQualification":"否","agentName":null,"directRecommendationAccount":null,"indirectRecommendationAccount":null,"sumMoney":0.0},{"id":4,"account":"157****1297","realName":null,"contactPhone":null,"sexName":"代理商","gmtCreate":"2018-01-07 18:01:00","email":null,"whetherRealName":"否","wheatherGetMoney":"否","refereeQualification":"否","agentName":null,"directRecommendationAccount":null,"indirectRecommendationAccount":null,"sumMoney":0.0},{"id":1,"account":"157****1306","realName":"陈勇","contactPhone":"157****1306","sexName":"代理商","gmtCreate":"2018-01-07 15:05:28","email":"629584407@qq.com","whetherRealName":null,"wheatherGetMoney":null,"refereeQualification":null,"agentName":"abc123","directRecommendationAccount":"157*********","indirectRecommendationAccount":"157*********","sumMoney":0.0}],"hasPrePage":false,"hasNextPage":false},"error":false,"success":true}
+	 * @author cy
+	 * @Description 选择代理商列表查询
+	 * @date 2018/1/1 20:29
+	 * @return Result
+	 * @throws  
+	 */
+	@RequestMapping(value = "agent/searchAgentList")
+	public Result searchAgentList(String agentCode, String agentName,
+			@RequestParam(defaultValue = Constants.PAGENUM) int pageNum,
+			@RequestParam(defaultValue = Constants.PAGESIZE) int pageSize) {
+		Page<UserAgentVO> page = agentManager.searchAgentList(agentCode, agentName, pageNum, pageSize);
 		return Result.normalResponse(page);
 	}
 

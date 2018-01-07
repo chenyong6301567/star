@@ -3,6 +3,7 @@ package com.hotyum.stars.biz.manager;
 import java.util.Date;
 
 import com.hotyum.stars.biz.model.AgentVO;
+import com.hotyum.stars.biz.model.UserAgentVO;
 import com.hotyum.stars.dal.model.Agent;
 import com.hotyum.stars.utils.Page;
 
@@ -70,5 +71,18 @@ public interface AgentManager {
 	* @throws:
 	*/
 	int getMaxProvinceIndex(Integer provinceId);
+
+	/**
+	* @Title searchAgentList
+	* @author cy
+	* @Description 
+	* @date 2018年1月7日下午11:16:13
+	* @param 
+	* @param 
+	* @param 
+	* @return Page<UserAgentVO>
+	* @throws:
+	*/
+	Page<UserAgentVO> searchAgentList(String agentCode, String agentName, int pageNum, int pageSize);
 
 }
