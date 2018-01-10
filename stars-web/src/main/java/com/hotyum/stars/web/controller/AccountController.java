@@ -15,6 +15,7 @@ import com.hotyum.stars.biz.manager.SmsManager;
 import com.hotyum.stars.biz.manager.TokenAccessManager;
 import com.hotyum.stars.biz.manager.UserManager;
 import com.hotyum.stars.biz.model.TokenInfoVO;
+import com.hotyum.stars.external.service.SmsService;
 import com.hotyum.stars.utils.Assert;
 import com.hotyum.stars.utils.Constants;
 import com.hotyum.stars.utils.RandomUtil;
@@ -40,6 +41,9 @@ public class AccountController {
 
 	@Autowired
 	private TokenAccessManager tokenAccessManager;
+
+	@Autowired
+	private SmsService smsService;
 
 	private static final int[] LOGINTYPE = { 1, 2 };
 
@@ -182,10 +186,11 @@ public class AccountController {
 		// 随机获取4位数短信验证码
 		String messageCode = RandomUtil.random(Constants.MESSAGECODELENGTH);
 		content = MessageFormat.format(content, messageCode);
-		// 短信发送记录入库
-		smsManager.saveMessageContent(content, type, phone, messageCode);
-		// TODO
-		// Boolean sendResult = smsService.send(phone, content);
+		Boolean sendResult = smsService.sendSingleMsg(phone, content);
+		if (sendResult) {
+			// 短信发送记录入库
+			smsManager.saveMessageContent(content, type, phone, messageCode);
+		}
 		return Result.normalResponse();
 
 	}

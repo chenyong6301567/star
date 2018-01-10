@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<parent>
 		<groupId>com.hotyum</groupId>
 		<artifactId>stars</artifactId>
@@ -9,9 +10,9 @@
 	<modelVersion>4.0.0</modelVersion>
 	<artifactId>stars-external</artifactId>
 	<packaging>jar</packaging>
-	
+
 	<dependencies>
-<!-- 	该pom引用只是方便写dubbo demo方法，项目期间请将该pom引用注释 -->
+		<!-- 该pom引用只是方便写dubbo demo方法，项目期间请将该pom引用注释 -->
 		<dependency>
 			<groupId>com.hotyum</groupId>
 			<artifactId>stars-client</artifactId>
@@ -24,7 +25,13 @@
 			<groupId>com.github.sgroschupf</groupId>
 			<artifactId>zkclient</artifactId>
 		</dependency>
+
+		<dependency>
+			<groupId>com.github.qcloudsms</groupId>
+			<artifactId>sms</artifactId>
+			<version>0.9.2</version>
+		</dependency>
 	</dependencies>
-	
-	
+
+
 </project>

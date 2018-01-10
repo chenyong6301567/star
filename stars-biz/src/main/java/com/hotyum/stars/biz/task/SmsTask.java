@@ -20,6 +20,7 @@ import com.hotyum.stars.biz.manager.UserManager;
 import com.hotyum.stars.dal.model.SysUserRole;
 import com.hotyum.stars.dal.model.SystemNotice;
 import com.hotyum.stars.dal.model.User;
+import com.hotyum.stars.external.service.SmsService;
 import com.hotyum.stars.utils.enums.SmsType;
 import com.hotyum.stars.utils.enums.UserType;
 
@@ -37,6 +38,9 @@ public class SmsTask {
 
 	@Autowired
 	private SmsManager smsManager;
+
+	@Autowired
+	private SmsService smsService;
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(SmsTask.class);
 
@@ -86,7 +90,11 @@ public class SmsTask {
 	*/
 	private void sendMsg(String account, String noticeContent) {
 		// TODO 调用短信接口发送短信
-		smsManager.saveMessageContent(noticeContent, SmsType.NOTICE.getValue(), account, "");
+		Boolean sendResult = smsService.sendSingleMsg(account, noticeContent);
+		if (sendResult) {
+			smsManager.saveMessageContent(noticeContent, SmsType.NOTICE.getValue(), account, "");
+		}
+
 	}
 
 }
