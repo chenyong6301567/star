@@ -4,7 +4,7 @@ public class Constants {
 
 	public final static String WELCOME = "Hello cy!";
 
-	public static final String MESSAGECONENT = "您的登录验证码{0}，请于15分钟内填写。如非本人操作，请忽略本短信。";
+	public static final String MESSAGECONENT = "您的短信验证码是{0}，请于15分钟内填写。如非本人操作，请忽略本短信。";
 
 	public static final int MESSAGECODELENGTH = 4;
 

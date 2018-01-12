@@ -109,7 +109,7 @@ public class SmsServiceImpl implements SmsService {
 	public static void main(String[] args) {
 		try {
 			SmsSingleSender sender = new SmsSingleSender(1400061453, "3c82d6a979b0a3788768ad6af7c02c07");
-			SmsSingleSenderResult result = sender.send(0, "86", "15700191306", "测试发送短信", null, null);
+			SmsSingleSenderResult result = sender.send(0, "86", "15700191306", "您的短信验证码是1234，请于15分钟内填写。如非本人操作，请忽略本短信。", null, null);
 			System.out.println(result.result + "===============" + result.errMsg);
 		} catch (Exception e) {
 			logger.error("发送短信异常", e);
