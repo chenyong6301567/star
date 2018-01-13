@@ -10,7 +10,7 @@
 		<property name="LOG_LEVEL" value="debug" />
 	</springProfile>
 	<springProfile name="prod">
-		<property name="LOG_LEVEL" value="INFO" />
+		<property name="LOG_LEVEL" value="debug" />
 	</springProfile>
 	<contextName>${APP_Name}</contextName>
 	<!-- 控制台输出 -->
