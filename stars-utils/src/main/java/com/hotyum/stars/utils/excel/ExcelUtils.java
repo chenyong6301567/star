@@ -1,4 +1,4 @@
-package com.hotyum.stars.utils.excel;
+/*package com.hotyum.stars.utils.excel;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -20,7 +20,7 @@ import com.hotyum.stars.utils.DateUtil;
 
 public class ExcelUtils {
 
-	/**
+	*//**
 	 * 点击直接下载excel文件
 	 * 
 	 * @param request
@@ -32,7 +32,7 @@ public class ExcelUtils {
 	 * @param sheetName
 	 * @param <T>
 	 * @throws Exception
-	 */
+	 *//*
 	public static <T> void writeExcel2OutputStream(HttpServletRequest request, HttpServletResponse response,
 			List<T> list, String[] fieldNames, String[] fieldRealNames, String downLoadFileName, String sheetName)
 			throws Exception {
@@ -122,12 +122,12 @@ public class ExcelUtils {
 		return wb;
 	}
 
-	/**
+	*//**
 	 * 
 	 * @Title: processFileName
 	 * 
 	 * @Description: ie,chrom,firfox下处理文件名显示乱码
-	 */
+	 *//*
 	public static String processFileName(HttpServletRequest request, String fileNames) {
 		String codedfilename = null;
 		try {
@@ -144,12 +144,12 @@ public class ExcelUtils {
 		return codedfilename;
 	}
 
-	/**
+	*//**
 	 * 对cell进行处理
 	 * 
 	 * @param c
 	 * @return
-	 */
+	 *//*
 	public static String getCellValue(Cell c) {
 		String o = null;
 		if (c == null)
@@ -178,3 +178,4 @@ public class ExcelUtils {
 	}
 
 }
+*/
