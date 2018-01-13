@@ -106,7 +106,7 @@ public class UserController {
 	}
 
 	/**
-	 * 实名验证
+	 * 实名验证(上传图片)
 	 * 
 	 * @param account                       注册账号|string|必填
 	 * @param file                          上传图片
