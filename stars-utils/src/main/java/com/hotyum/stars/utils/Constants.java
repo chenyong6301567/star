@@ -2,7 +2,7 @@ package com.hotyum.stars.utils;
 
 public class Constants {
 
-	public final static String WELCOME = "Hello cy!";
+	public final static String WELCOME = "Hello 123456!";
 
 	public static final String MESSAGECONENT = "您的短信验证码是{0}，请于15分钟内填写。如非本人操作，请忽略本短信。";
 
