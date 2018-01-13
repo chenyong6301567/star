@@ -70,7 +70,7 @@
 				<version>3.0.0</version>
 				<configuration>
 					<warName>archetype</warName>
-					<webappDirectory>../target/archetype.war</webappDirectory>
+					<webappDirectory>../target/star.war</webappDirectory>
 					<webResources>
 						<resource>
 							<directory>src/main/webapp/WEB-INF/</directory>
