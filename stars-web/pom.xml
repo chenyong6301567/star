@@ -11,7 +11,7 @@
 	<artifactId>stars-web</artifactId>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<start-class>com.croky.archetype.SpringBootMain</start-class>
+		<start-class>com.hotyum.stars.SpringBootMain</start-class>
 	</properties>
 	<packaging>war</packaging>
 	<dependencies>
@@ -70,7 +70,7 @@
 				<version>3.0.0</version>
 				<configuration>
 					<warName>archetype</warName>
-					<webappDirectory>../target/star.war</webappDirectory>
+					<webappDirectory>../target/star-web.war</webappDirectory>
 					<webResources>
 						<resource>
 							<directory>src/main/webapp/WEB-INF/</directory>
