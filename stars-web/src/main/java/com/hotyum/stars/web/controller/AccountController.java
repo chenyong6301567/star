@@ -170,7 +170,7 @@ public class AccountController {
 	 * 发送短信验证码
 	 * 
 	 * @param phone 手机号|string|必填
-	 * @param type  短信类型|type|必填
+	 * @param type  短信类型(登录1),(注册2),(重置密码3),(通知4)|type|必填
 	 * @Title sendMsg
 	 * @respbody 
 	 * @author cy
