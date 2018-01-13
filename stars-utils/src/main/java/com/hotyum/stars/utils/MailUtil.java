@@ -1,4 +1,4 @@
-/*package com.hotyum.stars.utils;
+package com.hotyum.stars.utils;
 
 import java.util.Date;
 import java.util.Properties;
@@ -16,11 +16,11 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
-*//**
+/**
  * @author cy
  * @Description 
  * @date 2017年12月31日下午1:56:14 
- *//*
+ */
 public class MailUtil {
 	private MimeMessage mimeMsg; // MIME邮件对象
 	private Session session; // 邮件会话对象
@@ -31,19 +31,19 @@ public class MailUtil {
 	private String password;
 	private Multipart mp; // Multipart对象,邮件内容,标题,附件等内容均添加到其中后再生成MimeMessage对象
 
-	*//**
+	/**
 	* Constructor
 	* @param smtp 邮件发送服务器
-	*//*
+	*/
 	public MailUtil(String smtp) {
 		setSmtpHost(smtp);
 		createMimeMessage();
 	}
 
-	*//**
+	/**
 	* 设置邮件发送服务器
 	* @param hostName String
-	*//*
+	*/
 	public void setSmtpHost(String hostName) {
 		System.out.println("设置系统属性：mail.smtp.host = " + hostName);
 		if (props == null)
@@ -51,10 +51,10 @@ public class MailUtil {
 		props.put("mail.smtp.host", hostName); // 设置SMTP主机
 	}
 
-	*//**
+	/**
 	* 创建MIME邮件对象 
 	* @return
-	*//*
+	*/
 	public boolean createMimeMessage() {
 		try {
 			System.out.println("准备获取邮件会话对象！");
@@ -76,10 +76,10 @@ public class MailUtil {
 		}
 	}
 
-	*//**
+	/**
 	* 设置SMTP是否需要验证
 	* @param need
-	*//*
+	*/
 	public void setNeedAuth(boolean need) {
 		System.out.println("设置smtp身份认证：mail.smtp.auth = " + need);
 		if (props == null)
@@ -91,21 +91,21 @@ public class MailUtil {
 		}
 	}
 
-	*//**
+	/**
 	* 设置用户名和密码
 	* @param name
 	* @param pass
-	*//*
+	*/
 	public void setNamePass(String name, String pass) {
 		username = name;
 		password = pass;
 	}
 
-	*//**
+	/**
 	* 设置邮件主题
 	* @param mailSubject
 	* @return
-	*//*
+	*/
 	public boolean setSubject(String mailSubject) {
 		System.out.println("设置邮件主题！");
 		try {
@@ -117,10 +117,10 @@ public class MailUtil {
 		}
 	}
 
-	*//**
+	/**
 	* 设置邮件正文
 	* @param mailBody String
-	*//*
+	*/
 	public boolean setBody(String mailBody) {
 		try {
 			BodyPart bp = new MimeBodyPart();
@@ -134,10 +134,10 @@ public class MailUtil {
 		}
 	}
 
-	*//**
+	/**
 	* 添加附件
 	* @param filename String
-	*//*
+	*/
 	public boolean addFileAffix(String filename) {
 
 		System.out.println("增加邮件附件：" + filename);
@@ -156,10 +156,10 @@ public class MailUtil {
 		}
 	}
 
-	*//**
+	/**
 	* 设置发信人
 	* @param from String
-	*//*
+	*/
 	public boolean setFrom(String from) {
 		System.out.println("设置发信人！");
 		try {
@@ -170,10 +170,10 @@ public class MailUtil {
 		}
 	}
 
-	*//**
+	/**
 	* 设置收信人
 	* @param to String
-	*//*
+	*/
 	public boolean setTo(String to) {
 		if (to == null)
 			return false;
@@ -185,10 +185,10 @@ public class MailUtil {
 		}
 	}
 
-	*//**
+	/**
 	* 设置抄送人
 	* @param copyto String 
-	*//*
+	*/
 	public boolean setCopyTo(String copyto) {
 		if (copyto == null)
 			return false;
@@ -200,9 +200,9 @@ public class MailUtil {
 		}
 	}
 
-	*//**
+	/**
 	* 发送邮件
-	*//*
+	*/
 	public boolean sendOut() {
 		try {
 			mimeMsg.setContent(mp);
@@ -228,7 +228,7 @@ public class MailUtil {
 		}
 	}
 
-	*//**
+	/**
 	* 调用sendOut方法完成邮件发送
 	* @param smtp
 	* @param from
@@ -238,7 +238,7 @@ public class MailUtil {
 	* @param username
 	* @param password
 	* @return boolean
-	*//*
+	*/
 	public static boolean send(String smtp, String from, String to, String subject, String content, String username,
 			String password) {
 		MailUtil theMail = new MailUtil(smtp);
@@ -259,7 +259,7 @@ public class MailUtil {
 		return true;
 	}
 
-	*//**
+	/**
 	* 调用sendOut方法完成邮件发送,带抄送
 	* @param smtp
 	* @param from
@@ -270,7 +270,7 @@ public class MailUtil {
 	* @param username
 	* @param password
 	* @return boolean
-	*//*
+	*/
 	public static boolean sendAndCc(String smtp, String from, String to, String copyto, String subject, String content,
 			String username, String password) {
 		MailUtil theMail = new MailUtil(smtp);
@@ -293,7 +293,7 @@ public class MailUtil {
 		return true;
 	}
 
-	*//**
+	/**
 	* 调用sendOut方法完成邮件发送,带附件
 	* @param smtp
 	* @param from
@@ -304,7 +304,7 @@ public class MailUtil {
 	* @param password
 	* @param filename 附件路径
 	* @return
-	*//*
+	*/
 	public static boolean send(String smtp, String from, String to, String subject, String content, String username,
 			String password, String filename) {
 		MailUtil theMail = new MailUtil(smtp);
@@ -327,7 +327,7 @@ public class MailUtil {
 		return true;
 	}
 
-	*//**
+	/**
 	* 调用sendOut方法完成邮件发送,带附件和抄送
 	* @param smtp
 	* @param from
@@ -339,7 +339,7 @@ public class MailUtil {
 	* @param password
 	* @param filename
 	* @return
-	*//*
+	*/
 	public static boolean sendAndCc(String smtp, String from, String to, String copyto, String subject, String content,
 			String username, String password, String filename) {
 		MailUtil theMail = new MailUtil(smtp);
@@ -376,4 +376,3 @@ public class MailUtil {
 		MailUtil.sendAndCc(smtp, from, to, copyto, subject, content, username, password, filename);
 	}
 }
-*/
