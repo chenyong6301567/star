@@ -98,7 +98,7 @@ public class ExcelUtils {
 				HSSFCell cell = row.createCell(z);
 				cell.setCellValue(fieldRealName);
 				header.updateHeaderStyle(wb, sheet, cell, z);
-				// sheet.setColumnWidth(z, 512 * 10);
+				//sheet.setColumnWidth(z, 512 * 50);
 				sheet.autoSizeColumn(z);
 			}
 		}
