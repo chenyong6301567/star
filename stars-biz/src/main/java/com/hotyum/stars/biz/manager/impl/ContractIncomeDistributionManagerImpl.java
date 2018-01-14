@@ -142,7 +142,7 @@ public class ContractIncomeDistributionManagerImpl implements ContractIncomeDist
 		if (amountType.equals((byte) 1)) {
 			criteria.andInvestmentAmountGreaterThanOrEqualTo(new BigDecimal(100000));
 		} else {
-			criteria.andAgentIncomeLessThan(new BigDecimal(100000));
+			criteria.andInvestmentAmountLessThan(new BigDecimal(100000));
 		}
 
 		if (null != productId) {
@@ -212,6 +212,21 @@ public class ContractIncomeDistributionManagerImpl implements ContractIncomeDist
 					contractDitrubuteIncomeVO
 							.setTradeEndDate(DateUtil.date2Str(contractIncomeDistribution.getTradeEndDate()));
 				}
+				// 投资
+				if (null != contractIncomeDistribution.getInvestmentAmount()) {
+					contractDitrubuteIncomeVO
+							.setInvestmentAmount(contractIncomeDistribution.getInvestmentAmount().doubleValue());
+					ditrubuteIncomeVO.setInvestmentAmoutSum(DecimalUtil.add(ditrubuteIncomeVO.getInvestmentAmoutSum(),
+							contractDitrubuteIncomeVO.getInvestmentAmount()));
+				}
+				// 合同
+				if (null != contractIncomeDistribution.getContractIncome()) {
+					contractDitrubuteIncomeVO
+							.setContractIncome(contractIncomeDistribution.getContractIncome().doubleValue());
+					ditrubuteIncomeVO.setContractIncomeSum(DecimalUtil.add(ditrubuteIncomeVO.getContractIncomeSum(),
+							contractDitrubuteIncomeVO.getContractIncome()));
+				}
+
 				// 直接
 				if (null != contractIncomeDistribution.getDerectIncome()) {
 					contractDitrubuteIncomeVO

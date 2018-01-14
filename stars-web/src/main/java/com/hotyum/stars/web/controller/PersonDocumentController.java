@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,12 +18,12 @@ import com.hotyum.stars.biz.manager.PersonDocumentManager;
 import com.hotyum.stars.biz.model.ContractDitrubuteIncomeVO;
 import com.hotyum.stars.biz.model.CustomerMoneyVO;
 import com.hotyum.stars.biz.model.SumVO;
-import com.hotyum.stars.dal.model.Product;
 import com.hotyum.stars.utils.Constants;
 import com.hotyum.stars.utils.Page;
+import com.hotyum.stars.utils.enums.UserType;
+import com.hotyum.stars.utils.excel.ExcelUtils;
 import com.hotyum.stars.web.config.argumentResolver.ListParam;
 import com.hotyum.stars.web.model.Result;
-import com.hotyum.stars.web.util.ResponseUtils;
 import com.hotyum.stars.web.util.TokenAccessUtils;
 
 /**
@@ -102,6 +103,8 @@ public class PersonDocumentController {
 	/**
 	 * 档案查询
 	 * 
+	 * @param pageNum               页数|int|必填
+	 * @param pageSize              每页多少|int|必填
 	 * @param documentCode          档案编号|string
 	 * @param tradePlatform         交易平台|string
 	 * @param wheatherGetMoney      是否入金|byte
@@ -134,6 +137,8 @@ public class PersonDocumentController {
 	/**
 	 * 合同收益分配表(客户收益，代理收益)查询
 	 * 
+	 * @param pageNum                 页数|int|必填
+	 * @param pageSize                每页多少|int|必填
 	 * @param documentCode            档案编号|string
 	 * @param customerName            客户名称|string
 	 * @param amountType              大于100000为1,小于100000为2|byte
@@ -162,6 +167,93 @@ public class PersonDocumentController {
 				tradeStatus, productId, tradeEndDateBegin, tradeEndDateEnd, pageNum, pageSize, customerName,
 				productRate, derectPersonName, inderectPersonName);
 		return Result.normalResponse(sumVO);
+
+	}
+
+	/**
+	 *
+	 * 合同收益分配表(客户收益，代理收益)导出excel
+	 * 
+	 * @param documentCode            档案编号|string
+	 * @param customerName            客户名称|string
+	 * @param amountType              大于100000为1,小于100000为2|byte
+	 * @param productId               产品类类型|byte
+	 * @param tradeStatus             交易状态（ 1正常、2结束、3提前终止、4未交易）|byte
+	 * @param productRate             产品收益率|string
+	 * @param tradeEndDateBegin       截止日期从|string
+	 * @param tradeEndDateEnd         截止日期到|string
+	 * @param derectPersonName        直接推荐人|string
+	 * @param inderectPersonName      间接推荐人|string
+	 * @param userType                (合同收益分配表3，客户收益2，代理收益1)|bytte
+	 * @Title getContractDitrubuteIncomeList
+	 * @respbody 
+	 * @author cy
+	 * @Description  合同收益分配表(客户收益，代理收益)查询
+	 * @date 2018/1/6 21:49
+	 * @return Result
+	 * @throws  
+	 */
+	@RequestMapping(value = "personDocument/getContractDitrubuteIncomeExcel")
+	public Result getContractDitrubuteIncomeExcel(@RequestParam(defaultValue = Constants.PAGENUM) int pageNum,
+			@RequestParam(defaultValue = Constants.MAXPAGESIZE) int pageSize, String documentCode, String customerName,
+			@RequestParam(required = true) Byte amountType, Byte tradeStatus, Integer productId, Date tradeEndDateBegin,
+			Date tradeEndDateEnd, String productRate, String derectPersonName, String inderectPersonName,
+			HttpServletRequest request, HttpServletResponse response, @RequestParam(required = true) Byte userType) {
+		SumVO sumVO = contractIncomeDistributionManager.getContractDitrubuteIncomeList(documentCode, amountType,
+				tradeStatus, productId, tradeEndDateBegin, tradeEndDateEnd, pageNum, pageSize, customerName,
+				productRate, derectPersonName, inderectPersonName);
+		List<ContractDitrubuteIncomeVO> userTradeVOList = sumVO.getPage().getlist();
+		if (userType.equals(UserType.ADMIN.getValue())) {
+			String[] fieldNames = { "documentCode", "customerName", "investmentAmount", "contractIncome",
+					"firstTradeDate", "productTypeName", "tradeEndDate", "tradeStatusName", "productRate",
+					"derectRecomandPersonName", "inderectRecomandPersonName", "derectRecomandRate",
+					"inderectRecomandRate", "agentCode", "agentRate", "customerIncome", "derectIncome",
+					"inderectIncome", "agentIncome", "companyIncome" };
+			String[] fieldRealNames = { "档案编号", "客户名称", "投资金额($)", "合同收益($)", "首交易日", "产品类型", "截止日期", "交易状态", "产品收益率",
+					"直推人", "直推收益率", "间推人", "间推收益率", "代理商编号", "代理收益率", "客户收益($)", "直推人收益($)", "间推人收益($)", "代理商收益($)",
+					"公司收益($)" };
+			String sheetName = "会员管理";
+			String downLoadFileName = "收益列表";
+			try {
+				ExcelUtils.writeExcel2OutputStream(request, response, userTradeVOList, fieldNames, fieldRealNames,
+						downLoadFileName, sheetName);
+			} catch (Exception e) {
+				e.printStackTrace();
+				return Result.errorReponse("导出excel错误");
+			}
+		} else if (userType.equals(UserType.CUSTOMER.getValue())) {
+			String[] fieldNames = { "documentCode", "customerName", "investmentAmount", "contractIncome",
+					"firstTradeDate", "productTypeName", "tradeEndDate", "tradeStatusName", "productRate",
+					"derectRecomandPersonName", "inderectRecomandPersonName", "derectRecomandRate",
+					"inderectRecomandRate", "agentCode", "customerIncome", "derectIncome", "inderectIncome" };
+			String[] fieldRealNames = { "档案编号", "客户名称", "投资金额($)", "合同收益($)", "首交易日", "产品类型", "截止日期", "交易状态", "产品收益率",
+					"直推人", "直推收益率", "间推人", "间推收益率", "代理商编号", "客户收益($)", "直推人收益($)", "间推人收益($)" };
+			String sheetName = "客户会员管理";
+			String downLoadFileName = "客户收益列表";
+			try {
+				ExcelUtils.writeExcel2OutputStream(request, response, userTradeVOList, fieldNames, fieldRealNames,
+						downLoadFileName, sheetName);
+			} catch (Exception e) {
+				e.printStackTrace();
+				return Result.errorReponse("导出excel错误");
+			}
+		} else if (userType.equals(UserType.AGENT.getValue())) {
+			String[] fieldNames = { "documentCode", "customerName", "investmentAmount", "contractIncome",
+					"firstTradeDate", "productTypeName", "tradeEndDate", "tradeStatusName", "productRate", "agentCode",
+					"agentRate", "agentIncome" };
+			String[] fieldRealNames = { "档案编号", "客户名称", "投资金额($)", "合同收益($)", "首交易日", "产品类型", "截止日期", "交易状态", "产品收益率",
+					"代理商编号", "代理收益率", "代理商收益($)" };
+			String sheetName = "代理商会员管理";
+			String downLoadFileName = "代理商收益列表";
+			try {
+				ExcelUtils.writeExcel2OutputStream(request, response, userTradeVOList, fieldNames, fieldRealNames,
+						downLoadFileName, sheetName);
+			} catch (Exception e) {
+				e.printStackTrace();
+				return Result.errorReponse("导出excel错误");
+			}
+		}
+		return Result.normalResponse();
 
 	}
 

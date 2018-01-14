@@ -14,6 +14,8 @@ public class Constants {
 
 	public final static String PAGESIZE = "50";
 
+	public final static String MAXPAGESIZE = Integer.MAX_VALUE + "";
+
 	public static final String DEFAULTPWD = "123456";
 
 }

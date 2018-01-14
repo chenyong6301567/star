@@ -9,9 +9,9 @@ import java.util.Map;
  * 
  */
 public enum TradeStatusType {
-	// 1正常、2结束、3提前终止、4未交易
+	// 交易状态（ 1正常、2结束、3提前终止、4未交易）
 
-	AGENT("代理商", (byte) 1), CUSTOMER("客户", (byte) 2), ADMIN("管理员", (byte) 3), ALL("全部", (byte) 4);
+	NORMAL("正常", (byte) 1), END("结束", (byte) 2), STOPBEFORE("提前终止", (byte) 3), NOTTRADE("未交易", (byte) 4);
 
 	private String description;
 	private byte value;
@@ -28,14 +28,6 @@ public enum TradeStatusType {
 			}
 		}
 		return null;
-	}
-
-	public static Map<Byte, String> toMap() {
-		Map<Byte, String> statusMap = new LinkedHashMap<Byte, String>();
-		for (TradeStatusType tmp : TradeStatusType.values()) {
-			statusMap.put(tmp.value, tmp.description);
-		}
-		return statusMap;
 	}
 
 	public String getDescription() {

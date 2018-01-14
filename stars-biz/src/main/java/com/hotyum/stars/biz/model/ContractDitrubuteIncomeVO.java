@@ -1,6 +1,7 @@
 package com.hotyum.stars.biz.model;
 
 import java.io.Serializable;
+import com.hotyum.stars.utils.enums.TradeStatusType;
 
 /**
  * @author cy
@@ -18,7 +19,7 @@ public class ContractDitrubuteIncomeVO implements Serializable {
 
 	private double investmentAmount;
 
-	private Long contractIncome;
+	private double contractIncome;
 
 	private String firstTradeDate;
 
@@ -29,6 +30,8 @@ public class ContractDitrubuteIncomeVO implements Serializable {
 	private String tradeEndDate;
 
 	private Byte tradeStatus;
+
+	private String tradeStatusName;
 
 	private String productRate;
 
@@ -90,11 +93,11 @@ public class ContractDitrubuteIncomeVO implements Serializable {
 		this.investmentAmount = investmentAmount;
 	}
 
-	public Long getContractIncome() {
+	public double getContractIncome() {
 		return contractIncome;
 	}
 
-	public void setContractIncome(Long contractIncome) {
+	public void setContractIncome(double contractIncome) {
 		this.contractIncome = contractIncome;
 	}
 
@@ -135,7 +138,9 @@ public class ContractDitrubuteIncomeVO implements Serializable {
 	}
 
 	public void setTradeStatus(Byte tradeStatus) {
+
 		this.tradeStatus = tradeStatus;
+		this.tradeStatusName = TradeStatusType.getDes(tradeStatus);
 	}
 
 	public String getProductRate() {
@@ -248,6 +253,14 @@ public class ContractDitrubuteIncomeVO implements Serializable {
 
 	public void setCompanyIncome(double companyIncome) {
 		this.companyIncome = companyIncome;
+	}
+
+	public String getTradeStatusName() {
+		return tradeStatusName;
+	}
+
+	public void setTradeStatusName(String tradeStatusName) {
+		this.tradeStatusName = tradeStatusName;
 	}
 
 }
