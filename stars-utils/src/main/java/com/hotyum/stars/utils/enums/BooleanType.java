@@ -6,7 +6,7 @@ package com.hotyum.stars.utils.enums;
  * 
  */
 public enum BooleanType {
-	YES("是", (byte) -1), NO("否", (byte) 0);
+	YES("是", (byte) 1), NO("否", (byte) 0);
 
 	private String description;
 	private Byte value;

@@ -189,7 +189,7 @@ public class PersonDocumentController {
 	 * @respbody 
 	 * @author cy
 	 * @Description  合同收益分配表(客户收益，代理收益)查询
-	 * @date 2018/1/6 21:49
+	 * @date 2018/1/14 12:49
 	 * @return Result
 	 * @throws  
 	 */

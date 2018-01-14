@@ -3,8 +3,10 @@ package com.hotyum.stars.web.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -18,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.croky.util.ObjectUtils;
 import com.hotyum.stars.biz.manager.ReferralInformationManager;
 import com.hotyum.stars.biz.manager.UserManager;
+import com.hotyum.stars.biz.model.ContractDitrubuteIncomeVO;
 import com.hotyum.stars.biz.model.CustomerMoneyVO;
 import com.hotyum.stars.biz.model.CustomerRecommandVO;
 import com.hotyum.stars.biz.model.UserBaseInfoVO;
@@ -26,6 +29,7 @@ import com.hotyum.stars.dal.model.User;
 import com.hotyum.stars.utils.Constants;
 import com.hotyum.stars.utils.Page;
 import com.hotyum.stars.utils.enums.UserType;
+import com.hotyum.stars.utils.excel.ExcelUtils;
 import com.hotyum.stars.web.model.Result;
 import com.hotyum.stars.web.util.TokenAccessUtils;
 
@@ -196,7 +200,7 @@ public class UserController {
 			@RequestParam(required = true) String account, Date freezeDate, String agentName, String agentCode,
 			@RequestParam(defaultValue = Constants.DEFAULTPWD) String pwd) {
 		if (userType.equals(UserType.AGENT.getValue())) {
-			if (StringUtils.isEmpty(agentName)||StringUtils.isEmpty(agentCode)) {
+			if (StringUtils.isEmpty(agentName) || StringUtils.isEmpty(agentCode)) {
 				return Result.errorReponse("代理商编码或名称不能为空");
 			}
 		}
@@ -263,6 +267,53 @@ public class UserController {
 				refereeQualification, indirectRecommendationAccount, directRecommendationAccount, gmtCreateBegin,
 				gmtCreateEnd, pageNum, pageSize);
 		return Result.normalResponse(page);
+	}
+
+	/**客户推荐表导出excel
+	 * 
+	 * @param account                       注册账号|string
+	 * @param realName                      真实姓名|string
+	 * @param whetherGetMoney               是否入金0 未，1是|byte
+	 * @param refereeQualification          推荐人资质0 未，1是|string
+	 * @param directRecommendationAccount   直接推荐人账号|string
+	 * @param indirectRecommendationAccount 间接推荐人账号|string
+	 * @param gmtCreateBegin                注册开始止日期|string
+	 * @param gmtCreateEnd                  注册截止日期|string
+	 * @param pageNum                       页数|int|必填
+	 * @param pageSize                      每页多少|int|必填
+	 * @Title getCustomerRecommandVOList
+	 * @respbody 
+	 * @author cy
+	 * @Description 客户推荐表导出excel
+	 * @date 2018/1/14 20:29
+	 * @return Result
+	 * @throws  
+	 */
+	@RequestMapping(value = "user/getCustomerRecommandVOListExcel")
+	public Result getCustomerRecommandVOListExcel(String account, String realName, Byte whetherGetMoney,
+			Byte refereeQualification, String indirectRecommendationAccount, String directRecommendationAccount,
+			Date gmtCreateBegin, Date gmtCreateEnd, @RequestParam(defaultValue = Constants.PAGENUM) int pageNum,
+			@RequestParam(defaultValue = Constants.MAXPAGESIZE) int pageSize, HttpServletRequest request,
+			HttpServletResponse response) {
+		Page<CustomerRecommandVO> page = userManager.getCustomerRecommandVOList(account, realName, whetherGetMoney,
+				refereeQualification, indirectRecommendationAccount, directRecommendationAccount, gmtCreateBegin,
+				gmtCreateEnd, pageNum, pageSize);
+		List<CustomerRecommandVO> userTradeVOList = page.getlist();
+		String[] fieldNames = { "account", "realName", "contactPhone", "sexName", "gmtCreate", "whetherRealName",
+				"wheatherGetMoney", "sumMoney", "refereeQualification", "email", "agentName",
+				"directRecommendationAccount" };
+		String[] fieldRealNames = { "注册账号", "真实姓名", "联系方式", "性别", "注册日期", "是否实名", "是否入金", "入金金额", "推荐人资质", "邮箱地址",
+				"负责代理商", "直推人账号" };
+		String sheetName = "客户推荐表";
+		String downLoadFileName = "客户推荐表";
+		try {
+			ExcelUtils.writeExcel2OutputStream(request, response, userTradeVOList, fieldNames, fieldRealNames,
+					downLoadFileName, sheetName);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return Result.errorReponse("导出excel错误");
+		}
+		return Result.normalResponse();
 	}
 
 }
