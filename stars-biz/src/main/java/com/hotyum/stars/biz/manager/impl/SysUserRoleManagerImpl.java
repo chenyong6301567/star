@@ -77,4 +77,30 @@ public class SysUserRoleManagerImpl implements SysUserRoleManager {
 		}
 	}
 
+	/**
+	* @Title:insert
+	* @author:cy
+	* @Description 
+	* @date:2018年1月14日上午11:18:30
+	* @param 
+	* @param 
+	* @param 
+	* @return 
+	* @throws:
+	*/
+	@Override
+	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
+	public void insert(Integer roleId, Integer userId) {
+		SysUserRole sysUserRole = new SysUserRole();
+		sysUserRole.setRoleId(roleId);
+		sysUserRole.setUserId(userId);
+		try {
+			sysUserRoleDAO.insert(sysUserRole);
+		} catch (DataAccessException e) {
+			LOGGER.error("insert获取失败====", e);
+			throw new RuntimeException("内部服务器异常");
+		}
+
+	}
+
 }

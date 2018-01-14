@@ -42,9 +42,11 @@ import com.hotyum.stars.utils.enums.LoginType;
 import com.hotyum.stars.utils.enums.NoticeType;
 import com.hotyum.stars.utils.enums.PicType;
 import com.hotyum.stars.utils.enums.RefereeType;
+import com.hotyum.stars.utils.enums.RoleType;
 import com.hotyum.stars.utils.enums.SexType;
 import com.hotyum.stars.utils.enums.SmsType;
 import com.hotyum.stars.utils.enums.Status;
+import com.hotyum.stars.utils.enums.UserType;
 import com.hotyum.stars.utils.exception.ApplicationException;
 
 /**
@@ -229,6 +231,9 @@ public class UserManagerImpl implements UserManager {
 			LOGGER.error("gregister失败====", e);
 			throw new RuntimeException("内部服务器错误");
 		}
+
+		// 用户插入默认客户角色2
+		sysUserRoleManager.insert(RoleType.CUSTOMER.getValue(), newUser.getId());
 
 	}
 

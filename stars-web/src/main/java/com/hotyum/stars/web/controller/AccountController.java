@@ -57,7 +57,7 @@ public class AccountController {
 	 * @Title authLogin
 	 * @respbody {"code":1,"message":"成功","data":{"token":"ce853538a80f4026b62155665b9b78fd","sysUserRoleList":[{"id":1,"userId":1,"roleId":1}]},"error":false,"success":true}
 	 * @author cy
-	 * @Description 登录(包括密码登录和手机验证码登录，根据loginType进行区分)
+	 * @Description 登录(包括密码登录和手机验证码登录，根据loginType进行区分,登录返回的角色roleId列表，1代表代理角色，2代表客户，3代表管理员)
 	 * @date 2017/12/31 19:29
 	 * @return Result
 	 * @throws  
