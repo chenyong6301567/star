@@ -460,6 +460,14 @@ public class UserManagerImpl implements UserManager {
 			LOGGER.error("checkRealName失败====", e);
 			throw new RuntimeException("内部服务器错误");
 		}
+		// 代理商
+		if (userType.equals(UserType.AGENT.getValue())) {
+			sysUserRoleManager.insert(RoleType.AGENT.getValue(), newUser.getId());
+		} else if (userType.equals(UserType.CUSTOMER.getValue())) {
+			sysUserRoleManager.insert(RoleType.CUSTOMER.getValue(), newUser.getId());
+		} else if (userType.equals(UserType.ADMIN.getValue())) {
+			sysUserRoleManager.insert(RoleType.ADMIN.getValue(), newUser.getId());
+		}
 
 	}
 
