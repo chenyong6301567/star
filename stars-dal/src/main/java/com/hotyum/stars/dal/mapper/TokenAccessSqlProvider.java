@@ -188,6 +188,10 @@ public class TokenAccessSqlProvider {
         SQL sql = new SQL();
         sql.UPDATE("token_access");
         
+        if (record.getToken() != null) {
+            sql.SET("token = #{token,jdbcType=VARCHAR}");
+        }
+        
         if (record.getUserId() != null) {
             sql.SET("user_id = #{userId,jdbcType=INTEGER}");
         }
@@ -229,7 +233,6 @@ public class TokenAccessSqlProvider {
         }
         
         sql.WHERE("id = #{id,jdbcType=INTEGER}");
-        sql.WHERE("token = #{token,jdbcType=VARCHAR}");
         
         return sql.toString();
     }
