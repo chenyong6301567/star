@@ -141,7 +141,7 @@ public class PersonDocumentController {
 	 * @param pageSize                每页多少|int|必填
 	 * @param documentCode            档案编号|string
 	 * @param customerName            客户名称|string
-	 * @param amountType              大于100000为1,小于100000为2|byte
+	 * @param amountType              大于100000为1,小于100000为2|byte|必填
 	 * @param productId               产品类类型|byte
 	 * @param tradeStatus             交易状态（ 1正常、2结束、3提前终止、4未交易）|byte
 	 * @param productRate             产品收益率|string
@@ -150,7 +150,7 @@ public class PersonDocumentController {
 	 * @param derectPersonName        直接推荐人|string
 	 * @param inderectPersonName      间接推荐人|string
 	 * @Title getContractDitrubuteIncomeList
-	 * @respbody 
+	 * @respbody {"code":1,"message":"成功","data":{"page":{"pageNum":1,"pageSize":50,"startRow":0,"pages":1,"total":1,"list":[{"id":1,"documentCode":"1","customerName":"1","investmentAmount":100.0,"contractIncome":100.0,"firstTradeDate":"2018-01-14 12:23:25","productTypeId":1,"productTypeName":"1","tradeEndDate":"2018-01-14 12:23:35","tradeStatus":1,"tradeStatusName":"正常","productRate":"1","derectRecomandPersonId":1,"derectRecomandPersonName":"1","inderectRecomandPersonId":1,"inderectRecomandPersonName":"1","derectRecomandRate":"1","inderectRecomandRate":"1","agentCode":"1","agentRate":"1","customerIncome":1.001001E8,"derectIncome":100100.0,"inderectIncome":100100.0,"agentIncome":100100.0,"companyIncome":100100.0}],"hasPrePage":false,"hasNextPage":false},"ditrubuteIncomeVO":{"investmentAmoutSum":100.0,"contractIncomeSum":100.0,"customerIncomeSum":1.001001E8,"derectIncomeSum":100100.0,"inderectIncomeSum":100100.0,"agentIncomeSum":100100.0,"companyIncomeSum":100100.0}},"error":false,"success":true}
 	 * @author cy
 	 * @Description  合同收益分配表(客户收益，代理收益)查询
 	 * @date 2018/1/6 21:49
@@ -160,8 +160,8 @@ public class PersonDocumentController {
 	@RequestMapping(value = "personDocument/getContractDitrubuteIncomeList")
 	public Result getContractDitrubuteIncomeList(@RequestParam(defaultValue = Constants.PAGENUM) int pageNum,
 			@RequestParam(defaultValue = Constants.PAGESIZE) int pageSize, String documentCode, String customerName,
-			Byte amountType, Byte tradeStatus, Integer productId, Date tradeEndDateBegin, Date tradeEndDateEnd,
-			String productRate, String derectPersonName, String inderectPersonName) {
+			@RequestParam(required = true) Byte amountType, Byte tradeStatus, Integer productId, Date tradeEndDateBegin,
+			Date tradeEndDateEnd, String productRate, String derectPersonName, String inderectPersonName) {
 
 		SumVO sumVO = contractIncomeDistributionManager.getContractDitrubuteIncomeList(documentCode, amountType,
 				tradeStatus, productId, tradeEndDateBegin, tradeEndDateEnd, pageNum, pageSize, customerName,
