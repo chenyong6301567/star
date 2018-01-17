@@ -176,7 +176,7 @@ public class PersonDocumentController {
 	 * 
 	 * @param documentCode            档案编号|string
 	 * @param customerName            客户名称|string
-	 * @param amountType              大于100000为1,小于100000为2|byte
+	 * @param amountType              大于100000为1,小于100000为2|byte|必填
 	 * @param productId               产品类类型|byte
 	 * @param tradeStatus             交易状态（ 1正常、2结束、3提前终止、4未交易）|byte
 	 * @param productRate             产品收益率|string
@@ -184,7 +184,7 @@ public class PersonDocumentController {
 	 * @param tradeEndDateEnd         截止日期到|string
 	 * @param derectPersonName        直接推荐人|string
 	 * @param inderectPersonName      间接推荐人|string
-	 * @param userType                (合同收益分配表3，客户收益2，代理收益1)|bytte
+	 * @param userType                (合同收益分配表3，客户收益2，代理收益1)|byte
 	 * @Title getContractDitrubuteIncomeList
 	 * @respbody 
 	 * @author cy
