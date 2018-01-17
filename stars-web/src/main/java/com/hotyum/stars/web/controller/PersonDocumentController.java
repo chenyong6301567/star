@@ -114,7 +114,7 @@ public class PersonDocumentController {
 	 * @param contractDateBegin     签约日期|string
 	 * @param contractDateEnd       签约日期|string
 	 * @Title getPersonDocumentList
-	 * @respbody 
+	 * @respbody {"code":1,"message":"成功","data":{"pageNum":1,"pageSize":50,"startRow":0,"pages":1,"total":2,"list":[{"id":2,"documentCode":"11","tradePlatform":"1","tradeAccount":"1","wheatherGetMoney":22,"wheatherGetMoneyName":null,"certificateType":2,"certificateTypeName":"护照","certificateNumber":"43243","contactPhone":"15700191293","contractDate":"2018-01-17 16:03:05","productType":null,"productRate":"2%","buyNum":3,"investmentAmount":3223.0,"estimatedEarnings":2332.0,"registerEmail":"4646545@qq.com"},{"id":1,"documentCode":"11","tradePlatform":"1","tradeAccount":"1","wheatherGetMoney":22,"wheatherGetMoneyName":null,"certificateType":2,"certificateTypeName":"护照","certificateNumber":"43243","contactPhone":"15700191293","contractDate":"2018-01-17 16:03:03","productType":null,"productRate":"2%","buyNum":3,"investmentAmount":3223.0,"estimatedEarnings":2332.0,"registerEmail":"4646545@qq.com"}],"hasPrePage":false,"hasNextPage":false},"success":true,"error":false}
 	 * @author cy
 	 * @Description 档案查询
 	 * @date 2018/1/1 21:49
