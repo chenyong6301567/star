@@ -24,4 +24,17 @@ public interface ProvinceManager {
 	*/
 	List<ProvinceVO> getprovinceList();
 
+	/**
+	* @Title getProvinceNameById
+	* @author cy
+	* @Description 
+	* @date 2018年1月18日下午7:53:53
+	* @param 
+	* @param 
+	* @param 
+	* @return String
+	* @throws:
+	*/
+	String getProvinceNameById(Integer provinceId);
+
 }

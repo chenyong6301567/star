@@ -64,4 +64,30 @@ public class ProvinceManagerImpl implements ProvinceManager {
 		return voList;
 	}
 
+	/**
+	* @Title:getProvinceNameById
+	* @author:cy
+	* @Description 
+	* @date:2018年1月18日下午7:54:04
+	* @param 
+	* @param 
+	* @param 
+	* @return 
+	* @throws:
+	*/
+	@Override
+	public String getProvinceNameById(Integer provinceId) {
+		try {
+			Province province = provinceDAO.selectByPrimaryKey(provinceId);
+			if (null == province) {
+				throw new RuntimeException(provinceId + "查询不到对应的省份");
+			}
+			return province.getJianpin().toUpperCase();
+		} catch (DataAccessException e) {
+			LOGGER.error("getprovinceList失败====", e);
+			throw new RuntimeException("内部服务器错误");
+		}
+
+	}
+
 }

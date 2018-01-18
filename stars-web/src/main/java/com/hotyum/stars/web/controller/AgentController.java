@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.hotyum.stars.biz.manager.AgentManager;
+import com.hotyum.stars.biz.manager.ProvinceManager;
 import com.hotyum.stars.biz.model.AgentVO;
 import com.hotyum.stars.biz.model.UserAgentVO;
 import com.hotyum.stars.utils.Constants;
@@ -31,6 +32,9 @@ public class AgentController {
 
 	@Autowired
 	private AgentManager agentManager;
+
+	@Autowired
+	private ProvinceManager provinceManager;
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(AgentController.class);
 
@@ -71,10 +75,10 @@ public class AgentController {
 	}
 
 	/**
-	 * 查询代理商的最大步长数
+	 * 查询代理商的的下一个代理编号
 	 * 
 	 * @param provinceId                    省份Id|int
-	 * @Title getMaxProvinceIndex
+	 * @Title getNextAgentCodeByProvinceId
 	 * @respbody {"code":1,"message":"成功","data":0,"error":false,"success":true}
 	 * @author cy
 	 * @Description 增加代理商信息
@@ -82,10 +86,17 @@ public class AgentController {
 	 * @return Result
 	 * @throws  
 	 */
-	@RequestMapping(value = "agent/getMaxProvinceIndex")
-	public Result getMaxProvinceIndex(Integer provinceId) {
+	@RequestMapping(value = "agent/getNextAgentCodeByProvinceId")
+	public Result getNextAgentCodeByProvinceId(@RequestParam(required = true) Integer provinceId) {
 		int index = agentManager.getMaxProvinceIndex(provinceId);
-		return Result.normalResponse(index);
+		String provinceName = provinceManager.getProvinceNameById(provinceId);
+		if (String.valueOf(index).length() == 1) {
+			return Result.normalResponse(provinceName + "00" + index);
+		} else if (String.valueOf(index).length() == 2) {
+			return Result.normalResponse(provinceName + "0" + index);
+		} else {
+			return Result.normalResponse(provinceName + index);
+		}
 	}
 
 	/**代理商列表查询
