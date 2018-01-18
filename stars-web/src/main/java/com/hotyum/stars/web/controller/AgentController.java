@@ -75,11 +75,11 @@ public class AgentController {
 	}
 
 	/**
-	 * 查询代理商的的下一个代理编号
+	 * 查询代理商的的下一个代理编号(需要调用后端省列表接口)
 	 * 
 	 * @param provinceId                    省份Id|int
 	 * @Title getNextAgentCodeByProvinceId
-	 * @respbody {"code":1,"message":"成功","data":0,"error":false,"success":true}
+	 * @respbody {"code":1,"message":"成功","data":"BJS010","success":true,"error":false}
 	 * @author cy
 	 * @Description 增加代理商信息
 	 * @date 2018/1/1 15:49
