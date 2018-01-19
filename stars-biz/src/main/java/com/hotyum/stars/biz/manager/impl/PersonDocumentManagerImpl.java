@@ -69,8 +69,7 @@ public class PersonDocumentManagerImpl implements PersonDocumentManager {
 			Byte wheatherGetMoney, Date getMoneyDate, Byte certificateType, String certificateNumber, Date contractDate,
 			Integer productId, String productTypeName, Byte serviceDate, double investmentAmount,
 			double estimatedEarnings, String contactPhone, String registerEmail, String agentCode,
-			Integer derectRecomandPersonId, Integer inderectRecomandPersonId, String productRate, Integer usId,
-			Integer buyNum) {
+			Integer derectRecomandPersonId, Integer inderectRecomandPersonId, String productRate, Integer usId) {
 
 		PersonDocument personDocument = new PersonDocument();
 		personDocument.setAgentCode(agentCode);
@@ -79,7 +78,6 @@ public class PersonDocumentManagerImpl implements PersonDocumentManager {
 		personDocument.setContactPhone(contactPhone);
 		personDocument.setContractDate(contractDate);
 		personDocument.setCustomerName(customerName);
-		personDocument.setBuyNum(buyNum);
 		if (null != derectRecomandPersonId) {
 			personDocument.setDerectRecomandPersonId(derectRecomandPersonId);
 			User user = userManager.getUserById(derectRecomandPersonId);

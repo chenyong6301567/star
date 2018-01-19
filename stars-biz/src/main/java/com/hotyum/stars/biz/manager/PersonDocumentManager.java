@@ -27,7 +27,7 @@ public interface PersonDocumentManager {
 			Byte wheatherGetMoney, Date getMoneyDate, Byte certificateType, String certificateNumber, Date contractDate,
 			Integer productId, String productType, Byte serviceDate, double investmentAmount, double estimatedEarnings,
 			String contactPhone, String registerEmail, String agentCode, Integer derectRecomandPersonId,
-			Integer inderectRecomandPersonId, String productRate, Integer usId, Integer buyNum);
+			Integer inderectRecomandPersonId, String productRate, Integer usId);
 
 	/**
 	* @Title getPersonDocumentList
