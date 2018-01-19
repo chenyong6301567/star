@@ -33,7 +33,7 @@ import com.hotyum.stars.web.vo.TokenInfo;
 public class AuthcInterceptor implements HandlerInterceptor {
 
 	// 过期时间20分钟
-	private int timeout = 20;
+	private int timeout = 120;
 
 	// 最多操作15000次
 	private int maxActiveCount = 15000;

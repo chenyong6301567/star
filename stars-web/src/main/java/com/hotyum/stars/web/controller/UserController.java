@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.velocity.runtime.Runtime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -104,6 +105,10 @@ public class UserController {
 			String realName, Byte sex, String contactPhone, String email, Byte whetherRealName, Byte wheatherGetMoney,
 			Byte refereeQualification, String agentCode, String directRecommendationAccount,
 			String indirectRecommendationAccount) {
+		Integer userd = TokenAccessUtils.getLoginUserId(request);
+		if (userd < 0) {
+			throw new RuntimeException("请先登录再修改用戶基本信息");
+		}
 		userManager.updateUserBaseInfo(account, realName, sex, contactPhone, email, whetherRealName, wheatherGetMoney,
 				refereeQualification, agentCode, directRecommendationAccount, indirectRecommendationAccount);
 		return Result.normalResponse();

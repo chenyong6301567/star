@@ -85,6 +85,7 @@ public interface UserManager {
 	/**
 	* @Title updateUserBaseInfo
 	* @author cy
+	 * @param userd 
 	* @Description 
 	* @date 2018年1月1日下午3:37:02
 	* @param 

@@ -347,8 +347,10 @@ public class UserManagerImpl implements UserManager {
 		user.setAgentCode(agentCode);
 		user.setDirectRecommendationAccount(indirectRecommendationAccount);
 		user.setIndirectRecommendationAccount(indirectRecommendationAccount);
+		user.setEmail(email);
+		user.setGmtModify(new Date());
 		try {
-			userDAO.updateByPrimaryKey(user);
+			userDAO.updateByPrimaryKeySelective(user);
 		} catch (DataAccessException e) {
 			LOGGER.error("updateUserBaseInfo失败====", e);
 			throw new RuntimeException("内部服务器错误");
