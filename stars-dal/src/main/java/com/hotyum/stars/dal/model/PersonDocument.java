@@ -61,6 +61,10 @@ public class PersonDocument implements Serializable {
 
     private Byte status;
 
+    private Integer userId;
+
+    private Integer documentIndex;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {
@@ -287,6 +291,22 @@ public class PersonDocument implements Serializable {
         this.status = status;
     }
 
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public Integer getDocumentIndex() {
+        return documentIndex;
+    }
+
+    public void setDocumentIndex(Integer documentIndex) {
+        this.documentIndex = documentIndex;
+    }
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -326,7 +346,9 @@ public class PersonDocument implements Serializable {
             && (this.getInderectRecomandPersonName() == null ? other.getInderectRecomandPersonName() == null : this.getInderectRecomandPersonName().equals(other.getInderectRecomandPersonName()))
             && (this.getGmtCreate() == null ? other.getGmtCreate() == null : this.getGmtCreate().equals(other.getGmtCreate()))
             && (this.getGmtModify() == null ? other.getGmtModify() == null : this.getGmtModify().equals(other.getGmtModify()))
-            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()));
+            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
+            && (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()))
+            && (this.getDocumentIndex() == null ? other.getDocumentIndex() == null : this.getDocumentIndex().equals(other.getDocumentIndex()));
     }
 
     @Override
@@ -361,6 +383,8 @@ public class PersonDocument implements Serializable {
         result = prime * result + ((getGmtCreate() == null) ? 0 : getGmtCreate().hashCode());
         result = prime * result + ((getGmtModify() == null) ? 0 : getGmtModify().hashCode());
         result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
+        result = prime * result + ((getUserId() == null) ? 0 : getUserId().hashCode());
+        result = prime * result + ((getDocumentIndex() == null) ? 0 : getDocumentIndex().hashCode());
         return result;
     }
 }

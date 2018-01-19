@@ -44,7 +44,8 @@ public interface PersonDocumentMapper {
         "derect_recomand_person_id, derect_recomand_person_name, ",
         "inderect_recomand_person_id, inderect_recomand_person_name, ",
         "gmt_create, gmt_modify, ",
-        "status)",
+        "status, user_id, ",
+        "document_index)",
         "values (#{documentCode,jdbcType=VARCHAR}, #{customerName,jdbcType=VARCHAR}, ",
         "#{tradePlatform,jdbcType=VARCHAR}, #{tradeAccount,jdbcType=VARCHAR}, ",
         "#{wheatherGetMoney,jdbcType=TINYINT}, #{getMoneyDate,jdbcType=TIMESTAMP}, ",
@@ -58,7 +59,8 @@ public interface PersonDocumentMapper {
         "#{derectRecomandPersonId,jdbcType=INTEGER}, #{derectRecomandPersonName,jdbcType=VARCHAR}, ",
         "#{inderectRecomandPersonId,jdbcType=INTEGER}, #{inderectRecomandPersonName,jdbcType=VARCHAR}, ",
         "#{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModify,jdbcType=TIMESTAMP}, ",
-        "#{status,jdbcType=TINYINT})"
+        "#{status,jdbcType=TINYINT}, #{userId,jdbcType=INTEGER}, ",
+        "#{documentIndex,jdbcType=INTEGER})"
     })
     @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=Integer.class)
     int insert(PersonDocument record);
@@ -96,7 +98,9 @@ public interface PersonDocumentMapper {
         @Result(column="inderect_recomand_person_name", property="inderectRecomandPersonName", jdbcType=JdbcType.VARCHAR),
         @Result(column="gmt_create", property="gmtCreate", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="gmt_modify", property="gmtModify", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="status", property="status", jdbcType=JdbcType.TINYINT)
+        @Result(column="status", property="status", jdbcType=JdbcType.TINYINT),
+        @Result(column="user_id", property="userId", jdbcType=JdbcType.INTEGER),
+        @Result(column="document_index", property="documentIndex", jdbcType=JdbcType.INTEGER)
     })
     List<PersonDocument> selectByExample(PersonDocumentExample example);
 
@@ -107,7 +111,7 @@ public interface PersonDocumentMapper {
         "product_type_name, product_rate, service_date, buy_num, investment_amount, estimated_earnings, ",
         "contract_income, contact_phone, register_email, agent_code, derect_recomand_person_id, ",
         "derect_recomand_person_name, inderect_recomand_person_id, inderect_recomand_person_name, ",
-        "gmt_create, gmt_modify, status",
+        "gmt_create, gmt_modify, status, user_id, document_index",
         "from person_document",
         "where id = #{id,jdbcType=INTEGER}"
     })
@@ -139,7 +143,9 @@ public interface PersonDocumentMapper {
         @Result(column="inderect_recomand_person_name", property="inderectRecomandPersonName", jdbcType=JdbcType.VARCHAR),
         @Result(column="gmt_create", property="gmtCreate", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="gmt_modify", property="gmtModify", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="status", property="status", jdbcType=JdbcType.TINYINT)
+        @Result(column="status", property="status", jdbcType=JdbcType.TINYINT),
+        @Result(column="user_id", property="userId", jdbcType=JdbcType.INTEGER),
+        @Result(column="document_index", property="documentIndex", jdbcType=JdbcType.INTEGER)
     })
     PersonDocument selectByPrimaryKey(Integer id);
 
@@ -180,7 +186,9 @@ public interface PersonDocumentMapper {
           "inderect_recomand_person_name = #{inderectRecomandPersonName,jdbcType=VARCHAR},",
           "gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},",
           "gmt_modify = #{gmtModify,jdbcType=TIMESTAMP},",
-          "status = #{status,jdbcType=TINYINT}",
+          "status = #{status,jdbcType=TINYINT},",
+          "user_id = #{userId,jdbcType=INTEGER},",
+          "document_index = #{documentIndex,jdbcType=INTEGER}",
         "where id = #{id,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(PersonDocument record);

@@ -69,7 +69,8 @@ public class PersonDocumentManagerImpl implements PersonDocumentManager {
 			Byte wheatherGetMoney, Date getMoneyDate, Byte certificateType, String certificateNumber, Date contractDate,
 			Integer productId, String productTypeName, Byte serviceDate, double investmentAmount,
 			double estimatedEarnings, String contactPhone, String registerEmail, String agentCode,
-			Integer derectRecomandPersonId, Integer inderectRecomandPersonId, String productRate, Integer usId) {
+			Integer derectRecomandPersonId, Integer inderectRecomandPersonId, String productRate, Integer userId,
+			Integer documentIndex) {
 
 		PersonDocument personDocument = new PersonDocument();
 		personDocument.setAgentCode(agentCode);
@@ -78,6 +79,8 @@ public class PersonDocumentManagerImpl implements PersonDocumentManager {
 		personDocument.setContactPhone(contactPhone);
 		personDocument.setContractDate(contractDate);
 		personDocument.setCustomerName(customerName);
+		personDocument.setDocumentIndex(documentIndex);
+		personDocument.setUserId(userId);
 		if (null != derectRecomandPersonId) {
 			personDocument.setDerectRecomandPersonId(derectRecomandPersonId);
 			User user = userManager.getUserById(derectRecomandPersonId);
@@ -119,8 +122,8 @@ public class PersonDocumentManagerImpl implements PersonDocumentManager {
 				registerEmail, agentCode, derectRecomandPersonId, inderectRecomandPersonId, productRate);
 
 		// 更新用户入金金额
-		referralInformationManager.updateByUsId(investmentAmount, usId);
-		userManager.updateSumMoneyByUsId(investmentAmount, usId);
+		referralInformationManager.updateByUsId(investmentAmount, userId);
+		userManager.updateSumMoneyByUsId(investmentAmount, userId);
 	}
 
 	/**
@@ -212,6 +215,29 @@ public class PersonDocumentManagerImpl implements PersonDocumentManager {
 			}
 		}
 		return new Page<>(pageSize, pageNum, customerMoneyVOList.size(), customerMoneyVOList);
+	}
+
+	/**
+	* @Title:getMaxIndexByUserId
+	* @author:cy
+	* @Description 
+	* @date:2018年1月20日上午12:18:21
+	* @param 
+	* @param 
+	* @param 
+	* @return 
+	* @throws:
+	*/
+	@Override
+	public Integer getMaxIndexByUserId(Integer userId) {
+		try {
+			Integer index = personDocumentDAO.getMaxIndexByUserId(userId);
+			return index == null ? 0 : index;
+		} catch (DataAccessException e) {
+			LOGGER.error("getMaxProvinceIndex失败====", e);
+			throw new RuntimeException("内部服务器错误");
+		}
+
 	}
 
 }

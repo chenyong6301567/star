@@ -15,6 +15,7 @@ public interface PersonDocumentManager {
 	/**
 	* @Title addpersonDocument
 	* @author cy
+	 * @param maxIndex 
 	* @Description 档案添加
 	* @date 2018年1月3日下午10:07:32
 	* @param 
@@ -27,7 +28,7 @@ public interface PersonDocumentManager {
 			Byte wheatherGetMoney, Date getMoneyDate, Byte certificateType, String certificateNumber, Date contractDate,
 			Integer productId, String productType, Byte serviceDate, double investmentAmount, double estimatedEarnings,
 			String contactPhone, String registerEmail, String agentCode, Integer derectRecomandPersonId,
-			Integer inderectRecomandPersonId, String productRate, Integer usId);
+			Integer inderectRecomandPersonId, String productRate, Integer usId, Integer maxIndex);
 
 	/**
 	* @Title getPersonDocumentList
@@ -43,5 +44,18 @@ public interface PersonDocumentManager {
 	Page<CustomerMoneyVO> getPersonDocumentList(String documentCode, String tradePlatform, Byte wheatherGetMoney,
 			String productType, String registerEmail, Integer buyNum, Date contractDateBegin, Date contractDateEnd,
 			int pageNum, int pageSize);
+
+	/**
+	* @Title getMaxIndexByUserId
+	* @author cy
+	* @Description 
+	* @date 2018年1月20日上午12:18:10
+	* @param 
+	* @param 
+	* @param 
+	* @return Integer
+	* @throws:
+	*/
+	Integer getMaxIndexByUserId(Integer userId);
 
 }

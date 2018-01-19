@@ -68,6 +68,7 @@ public class PersonDocumentController {
 	 * @param agentCode        代理商编号|string|必填
 	 * @param derectRecomandPersonId 直推人Id|int|必填
 	 * @param inderectRecomandPersonId 间推人Id|int|必填 
+	 * @param maxIndex         当前用户的档案步长|int|必填 
 	 * @Title addpersonDocument
 	 * @respbody 
 	 * @author cy
@@ -88,14 +89,15 @@ public class PersonDocumentController {
 			@RequestParam(required = true) double estimatedEarnings, @RequestParam(required = true) String contactPhone,
 			@RequestParam(required = true) String registerEmail, @RequestParam(required = true) String agentCode,
 			@RequestParam(required = true) Integer derectRecomandPersonId,
-			@RequestParam(required = true) Integer inderectRecomandPersonId, HttpServletRequest request) {
+			@RequestParam(required = true) Integer inderectRecomandPersonId,
+			@RequestParam(required = true) Integer maxIndex, HttpServletRequest request) {
 
 		Integer usId = TokenAccessUtils.getLoginUserId(request);
 
 		personDocumentManager.addpersonDocument(documentCode, customerName, tradePlatform, tradeAccount,
 				wheatherGetMoney, getMoneyDate, certificateType, certificateNumber, contractDate, productId,
 				productTypeName, serviceDate, investmentAmount, estimatedEarnings, contactPhone, registerEmail,
-				agentCode, derectRecomandPersonId, inderectRecomandPersonId, productRate, usId);
+				agentCode, derectRecomandPersonId, inderectRecomandPersonId, productRate, usId, maxIndex);
 		return Result.normalResponse();
 
 	}
@@ -277,6 +279,26 @@ public class PersonDocumentController {
 		contractIncomeDistributionManager.updateContractDitrubuteIncome(contractDitrubuteIncomeVOList);
 		return Result.normalResponse();
 
+	}
+
+	/**
+	 * 获取下一个的档案编号步长(用于档案编号的步长，档案编号添加时，要带上这个接口的返回值作为参数maxIndex)
+	 * 
+	 * @param  a    带token就行               token|String
+	 * @Title getNextDocumentIndex
+	 * @respbody {"code":1,"message":"成功","data":3,"error":false,"success":true}
+	 * @author cy
+	 * @Description 获取下一个的档案编号步长
+	 * @date 2018/1/20 15:49
+	 * @return Result
+	 * @throws  
+	 */
+	@RequestMapping(value = "personDocument/getNextDocumentIndex")
+	public Result getNextDocumentCode(HttpServletRequest request) {
+		Integer userId = TokenAccessUtils.getLoginUserId(request);
+		// 查询当前用户的最大步長
+		Integer index = personDocumentManager.getMaxIndexByUserId(userId);
+		return Result.normalResponse(index + 1);
 	}
 
 }

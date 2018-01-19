@@ -26,6 +26,7 @@ import com.hotyum.stars.biz.manager.TokenAccessManager;
 import com.hotyum.stars.biz.manager.UserManager;
 import com.hotyum.stars.biz.model.CustomerRecommandVO;
 import com.hotyum.stars.biz.model.TokenInfoVO;
+import com.hotyum.stars.biz.model.UserBaseInfoVO;
 import com.hotyum.stars.biz.model.UserListVO;
 import com.hotyum.stars.dal.dao.UserDAO;
 import com.hotyum.stars.dal.model.Agent;
@@ -137,7 +138,16 @@ public class UserManagerImpl implements UserManager {
 		// 生成uuId作为token返回
 		String token = tokenAccessManager.insertLoginToken(user);
 		List<SysUserRole> sysUserRolesList = sysUserRoleManager.getRoleByUserId(user.getId());
-		return new TokenInfoVO(token, sysUserRolesList);
+
+		UserBaseInfoVO userBaseInfoVO = null;
+		try {
+			userBaseInfoVO = ObjectUtils.convert(user, UserBaseInfoVO.class);
+			referralInformationManager.getReferInfomation(userBaseInfoVO);
+		} catch (Exception e) {
+			LOGGER.error("getUserBaseInfo对象转换异常", e);
+			throw new RuntimeException("getUserBaseInfo对象转换异常", e);
+		}
+		return new TokenInfoVO(token, sysUserRolesList, userBaseInfoVO);
 	}
 
 	/**

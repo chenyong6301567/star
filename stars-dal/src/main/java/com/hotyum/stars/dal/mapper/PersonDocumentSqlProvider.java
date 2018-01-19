@@ -136,6 +136,14 @@ public class PersonDocumentSqlProvider {
             sql.VALUES("status", "#{status,jdbcType=TINYINT}");
         }
         
+        if (record.getUserId() != null) {
+            sql.VALUES("user_id", "#{userId,jdbcType=INTEGER}");
+        }
+        
+        if (record.getDocumentIndex() != null) {
+            sql.VALUES("document_index", "#{documentIndex,jdbcType=INTEGER}");
+        }
+        
         return sql.toString();
     }
 
@@ -173,6 +181,8 @@ public class PersonDocumentSqlProvider {
         sql.SELECT("gmt_create");
         sql.SELECT("gmt_modify");
         sql.SELECT("status");
+        sql.SELECT("user_id");
+        sql.SELECT("document_index");
         sql.FROM("person_document");
         applyWhere(sql, example, false);
         
@@ -302,6 +312,14 @@ public class PersonDocumentSqlProvider {
             sql.SET("status = #{record.status,jdbcType=TINYINT}");
         }
         
+        if (record.getUserId() != null) {
+            sql.SET("user_id = #{record.userId,jdbcType=INTEGER}");
+        }
+        
+        if (record.getDocumentIndex() != null) {
+            sql.SET("document_index = #{record.documentIndex,jdbcType=INTEGER}");
+        }
+        
         applyWhere(sql, example, true);
         return sql.toString();
     }
@@ -338,6 +356,8 @@ public class PersonDocumentSqlProvider {
         sql.SET("gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP}");
         sql.SET("gmt_modify = #{record.gmtModify,jdbcType=TIMESTAMP}");
         sql.SET("status = #{record.status,jdbcType=TINYINT}");
+        sql.SET("user_id = #{record.userId,jdbcType=INTEGER}");
+        sql.SET("document_index = #{record.documentIndex,jdbcType=INTEGER}");
         
         PersonDocumentExample example = (PersonDocumentExample) parameter.get("example");
         applyWhere(sql, example, true);
@@ -454,6 +474,14 @@ public class PersonDocumentSqlProvider {
         
         if (record.getStatus() != null) {
             sql.SET("status = #{status,jdbcType=TINYINT}");
+        }
+        
+        if (record.getUserId() != null) {
+            sql.SET("user_id = #{userId,jdbcType=INTEGER}");
+        }
+        
+        if (record.getDocumentIndex() != null) {
+            sql.SET("document_index = #{documentIndex,jdbcType=INTEGER}");
         }
         
         sql.WHERE("id = #{id,jdbcType=INTEGER}");

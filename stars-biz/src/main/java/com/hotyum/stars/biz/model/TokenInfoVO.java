@@ -18,10 +18,13 @@ public class TokenInfoVO implements Serializable {
 
 	private List<SysUserRole> sysUserRoleList;// roleId: 1代理商 2客户 3管理员
 
-	public TokenInfoVO(String token, List<SysUserRole> sysUserRoleList) {
+	private UserBaseInfoVO userBaseInfoVO;
+
+	public TokenInfoVO(String token, List<SysUserRole> sysUserRoleList, UserBaseInfoVO userBaseInfoVO) {
 		super();
 		this.token = token;
 		this.sysUserRoleList = sysUserRoleList;
+		this.userBaseInfoVO = userBaseInfoVO;
 	}
 
 	public String getToken() {
@@ -38,6 +41,14 @@ public class TokenInfoVO implements Serializable {
 
 	public void setSysUserRoleList(List<SysUserRole> sysUserRoleList) {
 		this.sysUserRoleList = sysUserRoleList;
+	}
+
+	public UserBaseInfoVO getUserBaseInfoVO() {
+		return userBaseInfoVO;
+	}
+
+	public void setUserBaseInfoVO(UserBaseInfoVO userBaseInfoVO) {
+		this.userBaseInfoVO = userBaseInfoVO;
 	}
 
 }
