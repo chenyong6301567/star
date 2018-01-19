@@ -199,9 +199,10 @@ public class ReferralInformationManagerImpl implements ReferralInformationManage
 			}
 			userBaseInfoVO.setMyReferinfoMationVO(myinfoVo);
 		}
-
+         //获取直接人推荐信息
 		userBaseInfoVO
 				.setDerectCustomerReferInfoMationVOList(getDerectCustomerReferInfoMationVOList(userBaseInfoVO.getId()));
+		//获取间接人推荐信息
 		userBaseInfoVO.setInDerectCustomerReferInfoMationVOList(
 				getInDerectCustomerReferInfoMationVOList(userBaseInfoVO.getId()));
 	}
@@ -247,7 +248,7 @@ public class ReferralInformationManagerImpl implements ReferralInformationManage
 	/**
 	* @Title getDerectCustomerReferInfoMationVOList
 	* @author cy
-	* @Description 
+	* @Description 获取直接人推荐信息
 	* @date 2018年1月4日下午3:11:43
 	* @param 
 	* @param 

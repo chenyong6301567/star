@@ -57,7 +57,7 @@ public class UserController {
 	 * 
 	 * @param a 不用普通参数，带令牌token|string|必填
 	 * @Title getUserBaseInfo
-	 * @respbody {"code":1,"message":"成功","data":{"id":1,"account":"15700191306","realName":"陈勇","sex":1,"contactPhone":"15700191306","email":"629584407@qq.com","whetherRealName":1,"wheatherGetMoney":null,"refereeQualification":1,"agentCode":"abc123","directRecommendationAccount":"15700191293","indirectRecommendationAccount":"15700191294","certificateType":0,"certificateNumber":null,"certificateFront":null,"certificateBack":null,"addressPic":null,"myReferinfoMationVO":null,"derectCustomerReferInfoMationVOList":null,"inDerectCustomerReferInfoMationVOList":null},"error":false,"success":true}
+	 * @respbody {"code":1,"message":"成功","data":{"id":1,"account":"15700191306","realName":"陈勇","sex":1,"contactPhone":"15700191306","email":"629584407@qq.com","whetherRealName":1,"wheatherGetMoney":1,"refereeQualification":1,"agentCode":"abc123","directRecommendationAccount":"15700191293","indirectRecommendationAccount":"15700191294","certificateType":1,"certificateNumber":"1","certificateFront":"1","certificateBack":"1","addressPic":"1","myReferinfoMationVO":{"starDegree":"1","sumMoney":10.0,"directRewardRate":"1%","indirectRewardRate":"0.5%"},"derectCustomerReferInfoMationVOList":[{"id":1,"directRecommendationName":"张平","contractNum":1},{"id":2,"directRecommendationName":"张平","contractNum":1}],"inDerectCustomerReferInfoMationVOList":[{"id":1,"indirectRecommendationName":"admin","contractNum":1},{"id":2,"indirectRecommendationName":"admin","contractNum":1}]},"error":false,"success":true}
 	 * @author cy
 	 * @Description 获取用户基本信息
 	 * @date 2018/1/1 15:49

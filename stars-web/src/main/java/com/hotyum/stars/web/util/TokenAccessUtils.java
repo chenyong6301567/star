@@ -22,6 +22,9 @@ public class TokenAccessUtils {
 
 	public static User getUserInfo(HttpServletRequest req) {
 		TokenInfo tokenInfo = getTokenInfo(req);
+		if (tokenInfo.getUser() == null) {
+			throw new ApplicationException("请先登录");
+		}
 		return tokenInfo.getUser();
 	}
 

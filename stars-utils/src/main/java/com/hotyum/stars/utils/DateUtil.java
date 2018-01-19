@@ -882,4 +882,8 @@ public class DateUtil {
 		return calendar.getTime();
 	}
 
+	public static void main(String[] args) {
+		System.out.println(date2Str(new Date(), "yyyy/MM/dd/HH"));
+	}
+
 }
