@@ -55,7 +55,7 @@ public class PersonDocumentController {
 	 * @param wheatherGetMoney 是否入金|string|必填
 	 * @param getMoneyDate     入金日期|string|必填
 	 * @param certificateType  证件类型|string|必填
-	 * @param certificateNumber证件号码|string|必填 
+	 * @param certificateNumber证件号码(证件类型1.身份证；2 护照；3港澳通行证；4其他)|string|必填 
 	 * @param contractDate     签约日期|string|必填
 	 * @param productId        产品Id|int|必填
 	 * @param productTypeName  产品类类型|string|必填
