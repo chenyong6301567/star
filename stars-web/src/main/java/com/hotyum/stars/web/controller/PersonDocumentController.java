@@ -61,6 +61,7 @@ public class PersonDocumentController {
 	 * @param productTypeName  产品类类型|string|必填
 	 * @param productRate      产品收益率|string|必填
 	 * @param serviceDate      服务期限|string|必填
+	 * @param            购买份数|int|必填
 	 * @param investmentAmount 投资金额|string|必填
 	 * @param estimatedEarnings预估收益|string|必填
 	 * @param contactPhone     联系方式|string|必填 
@@ -84,7 +85,7 @@ public class PersonDocumentController {
 			@RequestParam(required = true) String certificateNumber, @RequestParam(required = true) Date contractDate,
 			@RequestParam(required = true) Integer productId, @RequestParam(required = true) String productTypeName,
 			@RequestParam(required = true) String productRate, @RequestParam(required = true) Byte serviceDate,
-			@RequestParam(required = true) double investmentAmount,
+			@RequestParam(required = true) Integer buyNum, @RequestParam(required = true) double investmentAmount,
 			@RequestParam(required = true) double estimatedEarnings, @RequestParam(required = true) String contactPhone,
 			@RequestParam(required = true) String registerEmail, @RequestParam(required = true) String agentCode,
 			@RequestParam(required = true) Integer derectRecomandPersonId,
@@ -95,7 +96,7 @@ public class PersonDocumentController {
 		personDocumentManager.addpersonDocument(documentCode, customerName, tradePlatform, tradeAccount,
 				wheatherGetMoney, getMoneyDate, certificateType, certificateNumber, contractDate, productId,
 				productTypeName, serviceDate, investmentAmount, estimatedEarnings, contactPhone, registerEmail,
-				agentCode, derectRecomandPersonId, inderectRecomandPersonId, productRate, usId);
+				agentCode, derectRecomandPersonId, inderectRecomandPersonId, productRate, usId, buyNum);
 		return Result.normalResponse();
 
 	}

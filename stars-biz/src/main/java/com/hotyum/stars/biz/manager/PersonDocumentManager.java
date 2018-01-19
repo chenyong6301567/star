@@ -15,7 +15,6 @@ public interface PersonDocumentManager {
 	/**
 	* @Title addpersonDocument
 	* @author cy
-	 * @param usId 
 	* @Description 档案添加
 	* @date 2018年1月3日下午10:07:32
 	* @param 
@@ -28,7 +27,7 @@ public interface PersonDocumentManager {
 			Byte wheatherGetMoney, Date getMoneyDate, Byte certificateType, String certificateNumber, Date contractDate,
 			Integer productId, String productType, Byte serviceDate, double investmentAmount, double estimatedEarnings,
 			String contactPhone, String registerEmail, String agentCode, Integer derectRecomandPersonId,
-			Integer inderectRecomandPersonId, String productRate, Integer usId);
+			Integer inderectRecomandPersonId, String productRate, Integer usId, Integer buyNum);
 
 	/**
 	* @Title getPersonDocumentList
