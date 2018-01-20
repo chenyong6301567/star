@@ -142,7 +142,7 @@ public class PersonDocumentController {
 	 * @param pageSize                每页多少|int|必填
 	 * @param documentCode            档案编号|string
 	 * @param customerName            客户名称|string
-	 * @param amountType              大于100000为1,小于100000为2|byte|必填
+	 * @param amountType              大于100000为1,小于100000为2|byte
 	 * @param productId               产品类类型|byte
 	 * @param tradeStatus             交易状态（ 1正常、2结束、3提前终止、4未交易）|byte
 	 * @param productRate             产品收益率|string
@@ -161,7 +161,7 @@ public class PersonDocumentController {
 	@RequestMapping(value = "personDocument/getContractDitrubuteIncomeList")
 	public Result getContractDitrubuteIncomeList(@RequestParam(defaultValue = Constants.PAGENUM) int pageNum,
 			@RequestParam(defaultValue = Constants.PAGESIZE) int pageSize, String documentCode, String customerName,
-			@RequestParam(required = true) Byte amountType, Byte tradeStatus, Integer productId, Date tradeEndDateBegin,
+			 Byte amountType, Byte tradeStatus, Integer productId, Date tradeEndDateBegin,
 			Date tradeEndDateEnd, String productRate, String derectPersonName, String inderectPersonName) {
 
 		SumVO sumVO = contractIncomeDistributionManager.getContractDitrubuteIncomeList(documentCode, amountType,
@@ -177,7 +177,7 @@ public class PersonDocumentController {
 	 * 
 	 * @param documentCode            档案编号|string
 	 * @param customerName            客户名称|string
-	 * @param amountType              大于100000为1,小于100000为2|byte|必填
+	 * @param amountType              大于100000为1,小于100000为2|byte
 	 * @param productId               产品类类型|byte
 	 * @param tradeStatus             交易状态（ 1正常、2结束、3提前终止、4未交易）|byte
 	 * @param productRate             产品收益率|string
@@ -197,7 +197,7 @@ public class PersonDocumentController {
 	@RequestMapping(value = "personDocument/getContractDitrubuteIncomeExcel")
 	public Result getContractDitrubuteIncomeExcel(@RequestParam(defaultValue = Constants.PAGENUM) int pageNum,
 			@RequestParam(defaultValue = Constants.MAXPAGESIZE) int pageSize, String documentCode, String customerName,
-			@RequestParam(required = true) Byte amountType, Byte tradeStatus, Integer productId, Date tradeEndDateBegin,
+			 Byte amountType, Byte tradeStatus, Integer productId, Date tradeEndDateBegin,
 			Date tradeEndDateEnd, String productRate, String derectPersonName, String inderectPersonName,
 			HttpServletRequest request, HttpServletResponse response, @RequestParam(required = true) Byte userType) {
 		SumVO sumVO = contractIncomeDistributionManager.getContractDitrubuteIncomeList(documentCode, amountType,
