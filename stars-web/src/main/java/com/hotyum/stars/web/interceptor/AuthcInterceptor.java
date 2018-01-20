@@ -35,7 +35,7 @@ public class AuthcInterceptor implements HandlerInterceptor {
 	private int timeout = 60;
 
 	// 最多操作15000次
-	private int maxActiveCount = 15000;
+	private int maxActiveCount = 15000;//以后可以做拦截，防止刷jiekou
 
 	private Set<String> whiteURLSet;
 
@@ -76,9 +76,6 @@ public class AuthcInterceptor implements HandlerInterceptor {
 			}
 			// 令牌使用次数超过了它的最大可使用次数
 			Integer activeCount = tokenAccess.getActiveCount() + 1;
-			if (activeCount > maxActiveCount) {
-				throw new ApplicationException("令牌使用次数达到极限!");
-			}
 			if ((now.getTime() - tokenAccess.getActiveTime().getTime()) > (timeout * 60 * 1000)) {
 				throw new ApplicationException("过长时间没有操作导致令牌过期!");
 			}
