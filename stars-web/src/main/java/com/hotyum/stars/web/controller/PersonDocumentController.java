@@ -66,8 +66,8 @@ public class PersonDocumentController {
 	 * @param contactPhone     联系方式|string|必填 
 	 * @param registerEmail    注册邮箱号|string|必填
 	 * @param agentCode        代理商编号|string|必填
-	 * @param derectRecomandPersonId 直推人Id|int|必填
-	 * @param inderectRecomandPersonId 间推人Id|int|必填 
+	 * @param derectRecomandPersonId 直推人Id|int
+	 * @param inderectRecomandPersonId 间推人Id|int
 	 * @param maxIndex         当前用户的档案步长|int|必填 
 	 * @Title addpersonDocument
 	 * @respbody 
@@ -88,8 +88,7 @@ public class PersonDocumentController {
 			@RequestParam(required = true) double investmentAmount,
 			@RequestParam(required = true) double estimatedEarnings, @RequestParam(required = true) String contactPhone,
 			@RequestParam(required = true) String registerEmail, @RequestParam(required = true) String agentCode,
-			@RequestParam(required = true) Integer derectRecomandPersonId,
-			@RequestParam(required = true) Integer inderectRecomandPersonId,
+			Integer derectRecomandPersonId, Integer inderectRecomandPersonId,
 			@RequestParam(required = true) Integer maxIndex, HttpServletRequest request) {
 
 		Integer usId = TokenAccessUtils.getLoginUserId(request);
