@@ -35,7 +35,7 @@ public class AuthcInterceptor implements HandlerInterceptor {
 	private int timeout = 60;
 
 	// 最多操作15000次
-	private int maxActiveCount = 15000;//以后可以做拦截，防止刷jiekou
+	private int maxActiveCount = 15000;//以后可以做拦截，防止刷接口
 
 	private Set<String> whiteURLSet;
 
