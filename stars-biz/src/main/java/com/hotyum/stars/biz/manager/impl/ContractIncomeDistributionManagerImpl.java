@@ -31,6 +31,7 @@ import com.hotyum.stars.dal.model.User;
 import com.hotyum.stars.utils.DateUtil;
 import com.hotyum.stars.utils.DecimalUtil;
 import com.hotyum.stars.utils.Page;
+import com.hotyum.stars.utils.enums.BooleanType;
 
 /**
  * @author cy
@@ -139,7 +140,7 @@ public class ContractIncomeDistributionManagerImpl implements ContractIncomeDist
 			criteria.andCustomerNameLike("%" + customerName + "%");
 		}
 
-		if (amountType.equals((byte) 1)) {
+		if (BooleanType.YES.getValue().equals(amountType)) {
 			criteria.andInvestmentAmountGreaterThanOrEqualTo(new BigDecimal(100000));
 		} else {
 			criteria.andInvestmentAmountLessThan(new BigDecimal(100000));
