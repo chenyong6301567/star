@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.velocity.runtime.Runtime;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +20,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.croky.util.ObjectUtils;
 import com.hotyum.stars.biz.manager.ReferralInformationManager;
 import com.hotyum.stars.biz.manager.UserManager;
-import com.hotyum.stars.biz.model.ContractDitrubuteIncomeVO;
-import com.hotyum.stars.biz.model.CustomerMoneyVO;
 import com.hotyum.stars.biz.model.CustomerRecommandVO;
 import com.hotyum.stars.biz.model.UserBaseInfoVO;
 import com.hotyum.stars.biz.model.UserListVO;
