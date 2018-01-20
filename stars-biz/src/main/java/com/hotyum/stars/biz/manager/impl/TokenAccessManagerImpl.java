@@ -57,7 +57,7 @@ public class TokenAccessManagerImpl implements TokenAccessManager {
 			tokenAccess.setActiveTime(nowDate);
 			tokenAccess.setStatus(Status.ZERO.getValue());
 			tokenAccess.setUserId(user.getId());
-			tokenAccess.setTokenExpired(DateUtil.addSeconds(nowDate, 60 * 30));// 默认30min有效
+			tokenAccess.setTokenExpired(DateUtil.addSeconds(nowDate, 60 * 60 * 12));// 默认12h有效
 			tokenAccess.setTokenCreate(nowDate);
 			tokenAccess.setActiveCount(0);// 第一次
 			tokenAccess.setToken(UuidUtil.getUuid());
@@ -73,7 +73,7 @@ public class TokenAccessManagerImpl implements TokenAccessManager {
 			// 如果已经有登录记录，则更新令牌
 			token.setActiveTime(nowDate);
 			token.setUserId(user.getId());
-			token.setTokenExpired(DateUtil.addSeconds(nowDate, 60 * 30));// 默认30min有效
+			token.setTokenExpired(DateUtil.addSeconds(nowDate, 60 * 60 * 12));// 默认30min有效
 			token.setTokenCreate(nowDate);
 			token.setActiveCount(token.getActiveCount() + 1);
 			token.setToken(UuidUtil.getUuid());
