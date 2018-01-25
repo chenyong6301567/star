@@ -60,7 +60,7 @@ public class UserController {
 	private static final String SMTP = "smtp.163.com"; // "SMTP服务器";
 	private static final String FROM = "chenyong6301567@163.com";// "发信人";
 	private static final String TO = "629584407@qq.com"; // 收信人
-	private static final String SUBJECT = "這是我的测试邮件"; // "邮件主题";
+	private static final String SUBJECT = "邮箱验证"; // "邮件主题";
 	String USERNAME = "chenyong6301567@163.com";// "用户名";
 	String PASSWORD = "ccs13650833856";// "密码";
 
@@ -345,12 +345,12 @@ public class UserController {
 	 */
 	@RequestMapping(value = "user/sendcheckEmail")
 	public Result sendcheckEmail(@RequestParam(required = true) String email) {
-		if(!DataFormatVaildate.vaildEmail(email)){
+		if (!DataFormatVaildate.vaildEmail(email)) {
 			return Result.errorReponse("邮箱格式不正确");
 		}
-		
+
 		String content = sendEmailManager.sendEmail(email);
-		Boolean result = MailUtil.send(SMTP, FROM, TO, SUBJECT, content, USERNAME, PASSWORD);
+		Boolean result = MailUtil.send(SMTP, FROM, TO, SUBJECT + email, content, USERNAME, PASSWORD);
 		if (result) {
 			return Result.normalResponse();
 		} else {
