@@ -377,15 +377,11 @@ public class MailUtil {
 		String smtp = "smtp.163.com"; // "SMTP服务器";
 		String from = "chenyong6301567@163.com"; // "发信人";
 		String to = "629584407@qq.com"; // 收信人
-		String copyto = "chenyong6301567@163.com"; // "抄送人";
-		String subject = "這是我的测试邮件"; // "邮件主题";
+		String subject = "你好你好你好"; // "邮件主题";
 		String content = "www.hao123.com";// "邮件内容";
 		String username = "chenyong6301567@163.com"; // "用户名";
 		String password = "ccs13650833856";// "密码";
-		String filename = "d:\\test.jpg";// "附件路径，如：d:\\test.jpg;
-		// MailUtil.sendAndCc(smtp, from, to, copyto, subject, content,
-		// username, password, filename);
-		send(smtp, from, copyto, subject, content, username, password);
+		send(smtp, from, to, subject, content, username, password);
 
 	}
 

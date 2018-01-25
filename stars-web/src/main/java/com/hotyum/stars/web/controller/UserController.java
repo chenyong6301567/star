@@ -27,6 +27,7 @@ import com.hotyum.stars.biz.model.UserListVO;
 import com.hotyum.stars.dal.dao.SendEmailDAO;
 import com.hotyum.stars.dal.model.User;
 import com.hotyum.stars.utils.Constants;
+import com.hotyum.stars.utils.DataFormatVaildate;
 import com.hotyum.stars.utils.MailUtil;
 import com.hotyum.stars.utils.Page;
 import com.hotyum.stars.utils.enums.UserType;
@@ -344,6 +345,10 @@ public class UserController {
 	 */
 	@RequestMapping(value = "user/sendcheckEmail")
 	public Result sendcheckEmail(@RequestParam(required = true) String email) {
+		if(!DataFormatVaildate.vaildEmail(email)){
+			return Result.errorReponse("邮箱格式不正确");
+		}
+		
 		String content = sendEmailManager.sendEmail(email);
 		Boolean result = MailUtil.send(SMTP, FROM, TO, SUBJECT, content, USERNAME, PASSWORD);
 		if (result) {

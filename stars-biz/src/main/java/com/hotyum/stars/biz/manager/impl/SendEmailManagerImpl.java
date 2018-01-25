@@ -39,7 +39,7 @@ public class SendEmailManagerImpl implements SendEmailManager {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(SysNoticeManagerImpl.class);
 
-	private static final String content = "请在五分钟之内点击链接验证邮箱http://111.230.221.41:8080/user/checkEmail?code=";
+	private static final String content = "您好，请你点击链接验证邮箱http://111.230.221.41:8080/user/checkEmail?code={0},五分中之内有效";
 
 	/**
 	* @Title:sendEmail
@@ -70,7 +70,7 @@ public class SendEmailManagerImpl implements SendEmailManager {
 			LOGGER.error("sendNotice失败====", e);
 			throw new RuntimeException("内部服务器错误");
 		}
-		return content + emailCode;
+		return content.replace("{0}", emailCode);
 	}
 
 	/**
