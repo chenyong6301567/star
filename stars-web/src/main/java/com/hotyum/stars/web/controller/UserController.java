@@ -19,12 +19,15 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.croky.util.ObjectUtils;
 import com.hotyum.stars.biz.manager.ReferralInformationManager;
+import com.hotyum.stars.biz.manager.SendEmailManager;
 import com.hotyum.stars.biz.manager.UserManager;
 import com.hotyum.stars.biz.model.CustomerRecommandVO;
 import com.hotyum.stars.biz.model.UserBaseInfoVO;
 import com.hotyum.stars.biz.model.UserListVO;
+import com.hotyum.stars.dal.dao.SendEmailDAO;
 import com.hotyum.stars.dal.model.User;
 import com.hotyum.stars.utils.Constants;
+import com.hotyum.stars.utils.MailUtil;
 import com.hotyum.stars.utils.Page;
 import com.hotyum.stars.utils.enums.UserType;
 import com.hotyum.stars.utils.excel.ExcelUtils;
@@ -48,7 +51,17 @@ public class UserController {
 	@Autowired
 	private ReferralInformationManager referralInformationManager;
 
+	@Autowired
+	private SendEmailManager sendEmailManager;
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
+
+	private static final String SMTP = "smtp.163.com"; // "SMTP服务器";
+	private static final String FROM = "chenyong6301567@163.com";// "发信人";
+	private static final String TO = "629584407@qq.com"; // 收信人
+	private static final String SUBJECT = "這是我的测试邮件"; // "邮件主题";
+	String USERNAME = "chenyong6301567@163.com";// "用户名";
+	String PASSWORD = "ccs13650833856";// "密码";
 
 	/**
 	 * 获取用户基本信息
@@ -316,6 +329,51 @@ public class UserController {
 			return Result.errorReponse("导出excel错误");
 		}
 		return Result.normalResponse();
+	}
+
+	/**发送验证邮件
+	 * 
+	 * @param  email   邮箱号|string|必填
+	 * @Title sendcheckEmail
+	 * @respbody 
+	 * @author cy
+	 * @Description 发送验证邮件
+	 * @date 2018/1/25 22:15
+	 * @return Result
+	 * @throws  
+	 */
+	@RequestMapping(value = "user/sendcheckEmail")
+	public Result sendcheckEmail(@RequestParam(required = true) String email) {
+		String content = sendEmailManager.sendEmail(email);
+		Boolean result = MailUtil.send(SMTP, FROM, TO, SUBJECT, content, USERNAME, PASSWORD);
+		if (result) {
+			return Result.normalResponse();
+		} else {
+			return Result.errorReponse("发送邮件失败");
+		}
+
+	}
+
+	/**点击链接验证邮件
+	 * 
+	 * @param  email   邮箱号|string|必填
+	 * @Title  checkEmail
+	 * @respbody 
+	 * @author cy
+	 * @Description 点击链接验证邮件
+	 * @date 2018/1/25 22:15
+	 * @return Result
+	 * @throws  
+	 */
+	@RequestMapping(value = "user/checkEmail")
+	public Result checkEmail(@RequestParam(required = true) String code) {
+		boolean result = sendEmailManager.checkEmail(code);
+		if (result) {
+			return Result.normalResponse("邮箱验证成功");
+		} else {
+			return Result.normalResponse("邮箱验证失败");
+		}
+
 	}
 
 }

@@ -446,6 +446,66 @@ public class UserExample {
             return (Criteria) this;
         }
 
+        public Criteria andCheckEmailIsNull() {
+            addCriterion("check_email is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckEmailIsNotNull() {
+            addCriterion("check_email is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckEmailEqualTo(Byte value) {
+            addCriterion("check_email =", value, "checkEmail");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckEmailNotEqualTo(Byte value) {
+            addCriterion("check_email <>", value, "checkEmail");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckEmailGreaterThan(Byte value) {
+            addCriterion("check_email >", value, "checkEmail");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckEmailGreaterThanOrEqualTo(Byte value) {
+            addCriterion("check_email >=", value, "checkEmail");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckEmailLessThan(Byte value) {
+            addCriterion("check_email <", value, "checkEmail");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckEmailLessThanOrEqualTo(Byte value) {
+            addCriterion("check_email <=", value, "checkEmail");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckEmailIn(List<Byte> values) {
+            addCriterion("check_email in", values, "checkEmail");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckEmailNotIn(List<Byte> values) {
+            addCriterion("check_email not in", values, "checkEmail");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckEmailBetween(Byte value1, Byte value2) {
+            addCriterion("check_email between", value1, value2, "checkEmail");
+            return (Criteria) this;
+        }
+
+        public Criteria andCheckEmailNotBetween(Byte value1, Byte value2) {
+            addCriterion("check_email not between", value1, value2, "checkEmail");
+            return (Criteria) this;
+        }
+
         public Criteria andSexIsNull() {
             addCriterion("sex is null");
             return (Criteria) this;

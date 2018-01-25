@@ -53,4 +53,17 @@ public interface ProductManager {
 	*/
 	List<ProductVO> getProductVOList() throws Exception;
 
+	/**
+	* @Title updateProductInfo
+	* @author cy
+	* @Description 维护产品信息
+	* @date 2018年1月25日下午9:39:20
+	* @param 
+	* @param 
+	* @param 
+	* @return void
+	* @throws:
+	*/	
+	void updateProductInfo(Integer id, String productTypeName, Byte serviceTime, String monthRate, Byte enableFlag);
+
 }

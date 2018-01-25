@@ -222,4 +222,17 @@ public interface UserManager {
 			Byte refereeQualification, String indirectRecommendationAccount, String directRecommendationAccount,
 			Date gmtCreateBegin, Date gmtCreateEnd, int pageNum, int pageSize);
 
+	/**
+	* @Title updateUserCheckEmail
+	* @author cy
+	* @Description 
+	* @date 2018年1月25日下午10:46:01
+	* @param 
+	* @param 
+	* @param 
+	* @return void
+	* @throws:
+	*/
+	boolean updateUserCheckEmail(String email);
+
 }

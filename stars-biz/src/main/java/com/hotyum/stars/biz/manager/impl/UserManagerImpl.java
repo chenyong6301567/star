@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
+import org.springframework.expression.spel.support.BooleanTypedValue;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -772,6 +773,59 @@ public class UserManagerImpl implements UserManager {
 		}
 		return new Page<CustomerRecommandVO>(pageSize, pageNum, customerRecommandVOList.size(),
 				customerRecommandVOList);
+	}
+
+	/**
+	* @Title:updateUserCheckEmail
+	* @author:cy
+	* @Description 
+	* @date:2018年1月25日下午10:46:14
+	* @param 
+	* @param 
+	* @param 
+	* @return 
+	* @throws:
+	*/
+	@Override
+	public boolean updateUserCheckEmail(String email) {
+		User user = getUserByEmail(email);
+		if (null != user) {
+			user.setGmtModify(new Date());
+			user.setCheckEmail(BooleanType.YES.getValue());
+			try {
+				userDAO.updateByPrimaryKey(user);
+				return true;
+			} catch (DataAccessException e) {
+				LOGGER.error("CovertPage失败====", e);
+				throw new RuntimeException("内部服务器错误");
+			}
+		}
+		return false;
+	}
+
+	/**
+	* @Title getUserByEmail
+	* @author cy
+	* @Description 
+	* @date 2018年1月25日下午10:46:38
+	* @param 
+	* @param 
+	* @param 
+	* @return User
+	* @throws:
+	*/
+	private User getUserByEmail(String email) {
+		UserExample userExample = new UserExample();
+		UserExample.Criteria criteria = userExample.createCriteria();
+		criteria.andStatusGreaterThanOrEqualTo(Status.ZERO.getValue());
+		criteria.andEmailEqualTo(email);
+		try {
+			List<User> userList = userDAO.selectByExample(userExample);
+			return CollectionUtils.isEmpty(userList) ? null : userList.get(0);
+		} catch (DataAccessException e) {
+			LOGGER.error("getAllUser失败====", e);
+			throw new RuntimeException("内部服务器错误");
+		}
 	}
 
 }

@@ -224,4 +224,36 @@ public class ProductManagerImpl implements ProductManager {
 		return voList;
 	}
 
+	/**
+	* @Title:updateProductInfo
+	* @author:cy
+	* @Description 
+	* @date:2018年1月25日下午9:39:34
+	* @param 
+	* @param 
+	* @param 
+	* @return 
+	* @throws:
+	*/
+	@Override
+	public void updateProductInfo(Integer id, String productTypeName, Byte serviceTime, String monthRate,
+			Byte enableFlag) {
+		Product product = getProductById(id);
+		if (null == product) {
+			throw new RuntimeException("产品不存在");
+		}
+		product.setEnableFlag(enableFlag);
+		product.setGmtModify(new Date());
+		product.setProductTypeName(productTypeName);
+		product.setMonthRate(monthRate);
+		product.setServiceTime(serviceTime);
+		try {
+			productDAO.updateByPrimaryKey(product);
+		} catch (DataAccessException e) {
+			LOGGER.error("getProductVOList失败====", e);
+			throw new RuntimeException("内部服务器错误");
+		}
+
+	}
+
 }

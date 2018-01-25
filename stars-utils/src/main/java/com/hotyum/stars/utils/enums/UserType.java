@@ -14,9 +14,9 @@ public enum UserType {
 	AGENT("代理商", (byte) 1), CUSTOMER("客户", (byte) 2), ADMIN("管理员", (byte) 3), ALL("全部", (byte) 4);
 
 	private String description;
-	private byte value;
+	private Byte value;
 
-	private UserType(String description, byte value) {
+	private UserType(String description, Byte value) {
 		this.description = description;
 		this.value = value;
 	}
@@ -42,7 +42,7 @@ public enum UserType {
 		return description;
 	}
 
-	public byte getValue() {
+	public Byte getValue() {
 		return value;
 	}
 }

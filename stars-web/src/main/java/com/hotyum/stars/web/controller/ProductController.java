@@ -1,5 +1,6 @@
 package com.hotyum.stars.web.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -88,6 +89,31 @@ public class ProductController {
 	public Result addProduct(HttpServletRequest request,
 			@ListParam(paramName = "productList", type = Product.class) List<Product> productList) {
 		productManager.addProduct(productList);
+		return Result.normalResponse();
+
+	}
+
+	/**
+	 * 维护单个产品信息
+	 * 
+	 * @param id              产品Id|Integer|必填
+	 * @param productTypeName 产品类型|String|必填
+	 * @param serviceTime     服务期限|Byte|必填
+	 * @param monthRate       产品收益率|String|必填
+	 * @param enableFlag      产品收益率(0否,1是)|Byte|必填
+	 * @Title updateProductInfo 维护产品信息
+	 * @respbody 
+	 * @author cy
+	 * @Description 维护单个产品信息
+	 * @date 2018/1/25 24:37
+	 * @return Result
+	 * @throws  
+	 */
+	@RequestMapping(value = "product/startProduct")
+	public Result updateProductInfo(HttpServletRequest request, @RequestParam(required = true) Integer id,
+			@RequestParam(required = true) String productTypeName, @RequestParam(required = true) Byte serviceTime,
+			@RequestParam(required = true) String monthRate, @RequestParam(required = true) Byte enableFlag) {
+		productManager.updateProductInfo(id, productTypeName, serviceTime, monthRate, enableFlag);
 		return Result.normalResponse();
 
 	}

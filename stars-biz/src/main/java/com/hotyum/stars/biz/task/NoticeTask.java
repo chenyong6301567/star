@@ -52,7 +52,7 @@ public class NoticeTask {
 		for (SystemNotice systemNotice : systemNoticeList) {
 			systemNotice.setNoticeStatus(Status.INVALID.getValue());
 			systemNoticeManager.updateSystemNotice(systemNotice);
-			if (systemNotice.getToType().equals(UserType.ALL.getValue())) {
+			if (UserType.ALL.getValue().equals(systemNotice.getToType())) {
 				// 把所有用户插入一条记录到通知表
 				List<User> userList = userManager.getAllUser();
 				for (User user : userList) {

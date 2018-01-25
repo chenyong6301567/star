@@ -16,6 +16,8 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
+import org.apache.commons.lang3.StringUtils;
+
 /**
  * @author cy
  * @Description 
@@ -352,8 +354,12 @@ public class MailUtil {
 		// if(!theMail.addFileAffix(filename)) return false;
 		if (!theMail.setTo(to))
 			return false;
-		if (!theMail.setCopyTo(copyto))
-			return false;
+		
+		if(StringUtils.isNotEmpty(copyto)){
+			if (!theMail.setCopyTo(copyto))
+				return false;
+		}
+		
 		// System.out.println("------");
 		if (!theMail.setFrom(from))
 			return false;
@@ -363,16 +369,31 @@ public class MailUtil {
 		return true;
 	}
 
-	public static void main(String[] args) {
+	/*public static void main(String[] args) {
 		String smtp = "smtp.163.com"; // "SMTP服务器";
 		String from = "chenyong6301567@163.com";// "发信人";
 		String to = "629584407@qq.com"; // 收信人
 		String copyto = "chenyong6301567@163.com";// "抄送人";
-		String subject = "测试"; // "邮件主题";
+		String subject = "這是我的测试邮件"; // "邮件主题";
 		String content = "www.hao123.com";// "邮件内容";
 		String username = "chenyong6301567@163.com";// "用户名";
 		String password = "ccs13650833856";// "密码";
 		String filename = "d:\\test.jpg";// "附件路径，如：d:\\test.jpg;
 		MailUtil.sendAndCc(smtp, from, to, copyto, subject, content, username, password, filename);
+	}*/
+	
+	
+	public static void main(String[] args) {
+		String smtp = "smtp.163.com"; // "SMTP服务器";
+		String from = "hotyum@163.com";// "发信人";
+		String to = "629584407@qq.com"; // 收信人
+		String copyto = "chenyong6301567@163.com";// "抄送人";
+		String subject = "這是我的测试邮件這是我的测试邮件這是我的测试邮件這是我的测试邮件"; // "邮件主题";
+		String content = "這是我的测试邮件這是我的测试邮件這是我的测试邮件";// "邮件内容";
+		String username = "hotyum@163.com";// "用户名";
+		String password = "hyjt2017";// "密码";
+		String filename = "d:\\test.jpg";// "附件路径，如：d:\\test.jpg;
+		MailUtil.sendAndCc(smtp, from, to, copyto, subject, content, username, password, filename);
 	}
+	
 }

@@ -44,6 +44,10 @@ public class UserSqlProvider {
             sql.VALUES("email", "#{email,jdbcType=VARCHAR}");
         }
         
+        if (record.getCheckEmail() != null) {
+            sql.VALUES("check_email", "#{checkEmail,jdbcType=TINYINT}");
+        }
+        
         if (record.getSex() != null) {
             sql.VALUES("sex", "#{sex,jdbcType=TINYINT}");
         }
@@ -146,6 +150,7 @@ public class UserSqlProvider {
         sql.SELECT("pwd");
         sql.SELECT("contact_phone");
         sql.SELECT("email");
+        sql.SELECT("check_email");
         sql.SELECT("sex");
         sql.SELECT("real_name");
         sql.SELECT("whether_real_name");
@@ -203,6 +208,10 @@ public class UserSqlProvider {
         
         if (record.getEmail() != null) {
             sql.SET("email = #{record.email,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getCheckEmail() != null) {
+            sql.SET("check_email = #{record.checkEmail,jdbcType=TINYINT}");
         }
         
         if (record.getSex() != null) {
@@ -306,6 +315,7 @@ public class UserSqlProvider {
         sql.SET("pwd = #{record.pwd,jdbcType=VARCHAR}");
         sql.SET("contact_phone = #{record.contactPhone,jdbcType=VARCHAR}");
         sql.SET("email = #{record.email,jdbcType=VARCHAR}");
+        sql.SET("check_email = #{record.checkEmail,jdbcType=TINYINT}");
         sql.SET("sex = #{record.sex,jdbcType=TINYINT}");
         sql.SET("real_name = #{record.realName,jdbcType=VARCHAR}");
         sql.SET("whether_real_name = #{record.whetherRealName,jdbcType=TINYINT}");
@@ -352,6 +362,10 @@ public class UserSqlProvider {
         
         if (record.getEmail() != null) {
             sql.SET("email = #{email,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getCheckEmail() != null) {
+            sql.SET("check_email = #{checkEmail,jdbcType=TINYINT}");
         }
         
         if (record.getSex() != null) {

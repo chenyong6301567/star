@@ -15,6 +15,8 @@ public class User implements Serializable {
 
     private String email;
 
+    private Byte checkEmail;
+
     private Byte sex;
 
     private String realName;
@@ -99,6 +101,14 @@ public class User implements Serializable {
 
     public void setEmail(String email) {
         this.email = email == null ? null : email.trim();
+    }
+
+    public Byte getCheckEmail() {
+        return checkEmail;
+    }
+
+    public void setCheckEmail(Byte checkEmail) {
+        this.checkEmail = checkEmail;
     }
 
     public Byte getSex() {
@@ -294,6 +304,7 @@ public class User implements Serializable {
             && (this.getPwd() == null ? other.getPwd() == null : this.getPwd().equals(other.getPwd()))
             && (this.getContactPhone() == null ? other.getContactPhone() == null : this.getContactPhone().equals(other.getContactPhone()))
             && (this.getEmail() == null ? other.getEmail() == null : this.getEmail().equals(other.getEmail()))
+            && (this.getCheckEmail() == null ? other.getCheckEmail() == null : this.getCheckEmail().equals(other.getCheckEmail()))
             && (this.getSex() == null ? other.getSex() == null : this.getSex().equals(other.getSex()))
             && (this.getRealName() == null ? other.getRealName() == null : this.getRealName().equals(other.getRealName()))
             && (this.getWhetherRealName() == null ? other.getWhetherRealName() == null : this.getWhetherRealName().equals(other.getWhetherRealName()))
@@ -327,6 +338,7 @@ public class User implements Serializable {
         result = prime * result + ((getPwd() == null) ? 0 : getPwd().hashCode());
         result = prime * result + ((getContactPhone() == null) ? 0 : getContactPhone().hashCode());
         result = prime * result + ((getEmail() == null) ? 0 : getEmail().hashCode());
+        result = prime * result + ((getCheckEmail() == null) ? 0 : getCheckEmail().hashCode());
         result = prime * result + ((getSex() == null) ? 0 : getSex().hashCode());
         result = prime * result + ((getRealName() == null) ? 0 : getRealName().hashCode());
         result = prime * result + ((getWhetherRealName() == null) ? 0 : getWhetherRealName().hashCode());
