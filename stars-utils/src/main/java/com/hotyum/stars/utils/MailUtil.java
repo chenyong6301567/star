@@ -17,6 +17,8 @@ import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * @author cy
@@ -32,6 +34,8 @@ public class MailUtil {
 	private String username;
 	private String password;
 	private Multipart mp; // Multipart对象,邮件内容,标题,附件等内容均添加到其中后再生成MimeMessage对象
+
+	private static final Logger logger = LoggerFactory.getLogger(MailUtil.class);
 
 	/**
 	* Constructor
@@ -59,21 +63,21 @@ public class MailUtil {
 	*/
 	public boolean createMimeMessage() {
 		try {
-			System.out.println("准备获取邮件会话对象！");
+			logger.info("准备获取邮件会话对象！");
 			session = Session.getDefaultInstance(props, null); // 获得邮件会话对象
 		} catch (Exception e) {
-			System.err.println("获取邮件会话对象时发生错误！" + e);
+			logger.error("获取邮件会话对象时发生错误！" + e);
 			return false;
 		}
 
-		System.out.println("准备创建MIME邮件对象！");
+		logger.info("准备创建MIME邮件对象！");
 		try {
 			mimeMsg = new MimeMessage(session); // 创建MIME邮件对象
 			mp = new MimeMultipart();
 
 			return true;
 		} catch (Exception e) {
-			System.err.println("创建MIME邮件对象失败！" + e);
+			logger.error("创建MIME邮件对象失败！" + e);
 			return false;
 		}
 	}
@@ -109,12 +113,12 @@ public class MailUtil {
 	* @return
 	*/
 	public boolean setSubject(String mailSubject) {
-		System.out.println("设置邮件主题！");
+		logger.info("设置邮件主题！");
 		try {
 			mimeMsg.setSubject(mailSubject);
 			return true;
 		} catch (Exception e) {
-			System.err.println("设置邮件主题发生错误！");
+			logger.error("设置邮件主题发生错误！");
 			return false;
 		}
 	}
@@ -131,7 +135,7 @@ public class MailUtil {
 
 			return true;
 		} catch (Exception e) {
-			System.err.println("设置邮件正文时发生错误！" + e);
+			logger.error("设置邮件正文时发生错误！" + e);
 			return false;
 		}
 	}
@@ -153,7 +157,7 @@ public class MailUtil {
 
 			return true;
 		} catch (Exception e) {
-			System.err.println("增加邮件附件：" + filename + "发生错误！" + e);
+			logger.error("增加邮件附件：" + filename + "发生错误！" + e);
 			return false;
 		}
 	}
@@ -209,23 +213,25 @@ public class MailUtil {
 		try {
 			mimeMsg.setContent(mp);
 			mimeMsg.saveChanges();
-			System.out.println("正在发送邮件....");
+			logger.info("正在发送邮件....");
 
 			Session mailSession = Session.getInstance(props, null);
 			Transport transport = mailSession.getTransport("smtp");
 			transport.connect((String) props.get("mail.smtp.host"), username, password);
 			transport.sendMessage(mimeMsg, mimeMsg.getRecipients(Message.RecipientType.TO));
-			transport.sendMessage(mimeMsg, mimeMsg.getRecipients(Message.RecipientType.CC));
+			if (null != mimeMsg.getRecipients(Message.RecipientType.CC)) {
+				transport.sendMessage(mimeMsg, mimeMsg.getRecipients(Message.RecipientType.CC));
+			}
 			// 设置信件头的发送日期
 			mimeMsg.setSentDate(new Date());
 			// transport.send(mimeMsg);
 
-			System.out.println("发送邮件成功！");
+			logger.info("发送邮件成功！");
 			transport.close();
-
 			return true;
 		} catch (Exception e) {
-			System.err.println("邮件发送失败！" + e);
+			e.printStackTrace();
+			logger.error("邮件发送失败！" + e);
 			return false;
 		}
 	}
@@ -245,7 +251,6 @@ public class MailUtil {
 			String password) {
 		MailUtil theMail = new MailUtil(smtp);
 		theMail.setNeedAuth(true); // 需要验证
-
 		if (!theMail.setSubject(subject))
 			return false;
 		if (!theMail.setBody(content))
@@ -255,7 +260,6 @@ public class MailUtil {
 		if (!theMail.setFrom(from))
 			return false;
 		theMail.setNamePass(username, password);
-
 		if (!theMail.sendOut())
 			return false;
 		return true;
@@ -354,12 +358,12 @@ public class MailUtil {
 		// if(!theMail.addFileAffix(filename)) return false;
 		if (!theMail.setTo(to))
 			return false;
-		
-		if(StringUtils.isNotEmpty(copyto)){
+
+		if (StringUtils.isNotEmpty(copyto)) {
 			if (!theMail.setCopyTo(copyto))
 				return false;
 		}
-		
+
 		// System.out.println("------");
 		if (!theMail.setFrom(from))
 			return false;
@@ -369,31 +373,32 @@ public class MailUtil {
 		return true;
 	}
 
-	/*public static void main(String[] args) {
-		String smtp = "smtp.163.com"; // "SMTP服务器";
-		String from = "chenyong6301567@163.com";// "发信人";
-		String to = "629584407@qq.com"; // 收信人
-		String copyto = "chenyong6301567@163.com";// "抄送人";
-		String subject = "這是我的测试邮件"; // "邮件主题";
-		String content = "www.hao123.com";// "邮件内容";
-		String username = "chenyong6301567@163.com";// "用户名";
-		String password = "ccs13650833856";// "密码";
-		String filename = "d:\\test.jpg";// "附件路径，如：d:\\test.jpg;
-		MailUtil.sendAndCc(smtp, from, to, copyto, subject, content, username, password, filename);
-	}*/
-	
-	
 	public static void main(String[] args) {
 		String smtp = "smtp.163.com"; // "SMTP服务器";
-		String from = "hotyum@163.com";// "发信人";
+		String from = "chenyong6301567@163.com"; // "发信人";
 		String to = "629584407@qq.com"; // 收信人
-		String copyto = "chenyong6301567@163.com";// "抄送人";
-		String subject = "這是我的测试邮件這是我的测试邮件這是我的测试邮件這是我的测试邮件"; // "邮件主题";
-		String content = "這是我的测试邮件這是我的测试邮件這是我的测试邮件";// "邮件内容";
-		String username = "hotyum@163.com";// "用户名";
-		String password = "hyjt2017";// "密码";
+		String copyto = "chenyong6301567@163.com"; // "抄送人";
+		String subject = "這是我的测试邮件"; // "邮件主题";
+		String content = "www.hao123.com";// "邮件内容";
+		String username = "chenyong6301567@163.com"; // "用户名";
+		String password = "ccs13650833856";// "密码";
 		String filename = "d:\\test.jpg";// "附件路径，如：d:\\test.jpg;
-		MailUtil.sendAndCc(smtp, from, to, copyto, subject, content, username, password, filename);
+		// MailUtil.sendAndCc(smtp, from, to, copyto, subject, content,
+		// username, password, filename);
+		send(smtp, from, copyto, subject, content, username, password);
+
 	}
-	
+
+	/*
+	 * public static void main(String[] args) { String smtp = "smtp.163.com"; //
+	 * "SMTP服务器"; String from = "hotyum@163.com";// "发信人"; String to =
+	 * "629584407@qq.com"; // 收信人 String copyto = "chenyong6301567@163.com";//
+	 * "抄送人"; String subject = "這是我的测试邮件這是我的测试邮件這是我的测试邮件這是我的测试邮件"; // "邮件主题";
+	 * String content = "這是我的测试邮件這是我的测试邮件這是我的测试邮件";// "邮件内容"; String username =
+	 * "hotyum@163.com";// "用户名"; String password = "hyjt2017";// "密码"; String
+	 * filename = "d:\\test.jpg";// "附件路径，如：d:\\test.jpg;
+	 * MailUtil.sendAndCc(smtp, from, to, copyto, subject, content, username,
+	 * password, filename); }
+	 */
+
 }
