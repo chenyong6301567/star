@@ -81,6 +81,11 @@ public class AgentManagerImpl implements AgentManager {
 		agent.setGmtModify(new Date());
 		agent.setStatus(Status.ZERO.getValue());
 		agent.setProvinceIndex(getMaxProvinceIndex(provinceId) + 1);
+		// 首先查询agentCode是否已经存在
+		Agent oldAgentCode = getOldAgentByagentCode(agentCode);
+		if (null != oldAgentCode) {
+			throw new RuntimeException("代理商编号已经存在");
+		}
 		try {
 			agentDAO.insertSelective(agent);
 		} catch (DataAccessException e) {
@@ -88,6 +93,31 @@ public class AgentManagerImpl implements AgentManager {
 			throw new RuntimeException("内部服务器错误");
 		}
 
+	}
+
+	/**
+	* @Title getOldAgentByagentCode
+	* @author cy
+	* @Description 
+	* @date 2018年1月26日下午11:20:08
+	* @param 
+	* @param 
+	* @param 
+	* @return Agent
+	* @throws:
+	*/
+	private Agent getOldAgentByagentCode(String agentCode) {
+		AgentExample agentExample = new AgentExample();
+		AgentExample.Criteria criteria = agentExample.createCriteria();
+		criteria.andStatusGreaterThanOrEqualTo(Status.ZERO.getValue());
+		criteria.andAgentCodeEqualTo(agentCode);
+		try {
+			List<Agent> list = agentDAO.selectByExample(agentExample);
+			return CollectionUtils.isEmpty(list) ? null : list.get(0);
+		} catch (DataAccessException e) {
+			LOGGER.error("getOldAgentByagentCode失败====", e);
+			throw new RuntimeException("内部服务器错误");
+		}
 	}
 
 	/**
