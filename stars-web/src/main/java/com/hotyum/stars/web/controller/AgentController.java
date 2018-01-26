@@ -108,7 +108,7 @@ public class AgentController {
 	 * @param businessStartTime             签约时间从|string
 	 * @param businessEndTime               签约时间到|string
 	 * @param contractStartTime             到期时间从|string
-	 * @param contrctEndTime                到期时间到|string
+	 * @param contractEndTime               到期时间到|string
 	 * @param pageNum                       页数|int|必填
 	 * @param pageSize                      每页多少|int|必填
 	 * @Title getUserList
@@ -121,11 +121,11 @@ public class AgentController {
 	 */
 	@RequestMapping(value = "agent/getAgentList")
 	public Result getAgentList(String agentCode, String agentName, String legalRepresentative, Integer provinceId,
-			Date businessStartTime, Date businessEndTime, Date contractStartTime, Date contrctEndTime,
+			Date businessStartTime, Date businessEndTime, Date contractStartTime, Date contractEndTime,
 			@RequestParam(defaultValue = Constants.PAGENUM) int pageNum,
 			@RequestParam(defaultValue = Constants.PAGESIZE) int pageSize) {
 		Page<AgentVO> page = agentManager.getAgentList(agentCode, agentName, legalRepresentative, provinceId,
-				businessStartTime, businessEndTime, contractStartTime, contrctEndTime, pageNum, pageSize);
+				businessStartTime, businessEndTime, contractStartTime, contractEndTime, pageNum, pageSize);
 		return Result.normalResponse(page);
 	}
 
