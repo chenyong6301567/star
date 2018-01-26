@@ -2,7 +2,6 @@ package com.hotyum.stars.web.controller;
 
 import java.text.MessageFormat;
 
-import javax.management.RuntimeErrorException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.ArrayUtils;
@@ -11,14 +10,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.croky.util.ObjectUtils;
 import com.croky.util.StringUtils;
-import com.hotyum.stars.biz.manager.ReferralInformationManager;
 import com.hotyum.stars.biz.manager.SmsManager;
 import com.hotyum.stars.biz.manager.TokenAccessManager;
 import com.hotyum.stars.biz.manager.UserManager;
 import com.hotyum.stars.biz.model.TokenInfoVO;
-import com.hotyum.stars.biz.model.UserBaseInfoVO;
 import com.hotyum.stars.dal.model.User;
 import com.hotyum.stars.external.service.SmsService;
 import com.hotyum.stars.utils.Assert;
@@ -71,7 +67,8 @@ public class AccountController {
 	@RequestMapping(value = "account/login")
 	public Result authLogin(@RequestParam(required = true) String phone, String password, String verifyCode,
 			@RequestParam(required = true) Integer loginType) {
-		Assert.checkPhone(phone, "请输入有效的手机号码");
+		//Assert.checkPhone(phone, "请输入有效的手机号码");
+		//要支持非手机账号登录
 		if (!ArrayUtils.contains(LOGINTYPE, loginType)) {
 			return Result.errorReponse("登录类型不正确");
 		}

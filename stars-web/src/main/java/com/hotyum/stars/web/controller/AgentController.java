@@ -52,7 +52,7 @@ public class AgentController {
 	 * @param businessStartTime             营业开始时间(到时分秒)|string
 	 * @param businessEndTime               营业结束时间(到时分秒)|string
 	 * @param contractStartTime             签约时间时间(到时分秒)|string
-	 * @param contrctEndTime             到期时间(到时分秒)|string
+	 * @param contractEndTime             到期时间(到时分秒)|string
 	 * @Title addAgentInfo
 	 * @respbody 
 	 * @author cy
@@ -66,11 +66,11 @@ public class AgentController {
 			@RequestParam(required = true) String agentName, String unifiedSocialCreditCode, String legalRepresentative,
 			@RequestParam(required = true) Integer provinceId, @RequestParam(required = true) String provinceName,
 			String contactPhone, String businessAddress, Date businessStartTime, Date businessEndTime,
-			Date contractStartTime, Date contrctEndTime) {
+			Date contractStartTime, Date contractEndTime) {
 
 		agentManager.addAgentInfo(agentCode, agentName, unifiedSocialCreditCode, legalRepresentative, provinceId,
 				provinceName, contactPhone, businessAddress, businessStartTime, businessEndTime, contractStartTime,
-				contrctEndTime);
+				contractEndTime);
 		return Result.normalResponse();
 	}
 

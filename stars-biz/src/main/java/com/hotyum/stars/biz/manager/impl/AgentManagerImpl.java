@@ -61,6 +61,8 @@ public class AgentManagerImpl implements AgentManager {
 			String legalRepresentative, Integer provinceId, String provinceName, String contactPhone,
 			String businessAddress, Date businessStartTime, Date businessEndTime, Date contractStartTime,
 			Date contrctEndTime) {
+		LOGGER.info("businessStartTime==" + businessStartTime + "businessEndTime=" + businessEndTime + "contrctEndTime="
+				+ contrctEndTime);
 		Agent agent = new Agent();
 		agent.setAgentCode(agentCode);
 		agent.setAgentName(agentName);
