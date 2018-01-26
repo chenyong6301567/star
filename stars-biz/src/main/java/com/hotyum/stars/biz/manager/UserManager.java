@@ -235,4 +235,5 @@ public interface UserManager {
 	*/
 	boolean updateUserCheckEmail(String email);
 
+	User getUserByPhone(String phone);
 }

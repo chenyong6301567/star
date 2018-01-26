@@ -10,7 +10,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import org.springframework.expression.spel.support.BooleanTypedValue;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -162,7 +161,7 @@ public class UserManagerImpl implements UserManager {
 	* @return User
 	* @throws:
 	*/
-	private User getUserByPhone(String phone) {
+	public User getUserByPhone(String phone) {
 		UserExample userExample = new UserExample();
 		UserExample.Criteria criteria = userExample.createCriteria();
 		criteria.andStatusGreaterThanOrEqualTo(Status.ZERO.getValue());

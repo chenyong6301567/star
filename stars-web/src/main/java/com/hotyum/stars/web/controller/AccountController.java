@@ -2,6 +2,7 @@ package com.hotyum.stars.web.controller;
 
 import java.text.MessageFormat;
 
+import javax.management.RuntimeErrorException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.lang3.ArrayUtils;
@@ -18,10 +19,12 @@ import com.hotyum.stars.biz.manager.TokenAccessManager;
 import com.hotyum.stars.biz.manager.UserManager;
 import com.hotyum.stars.biz.model.TokenInfoVO;
 import com.hotyum.stars.biz.model.UserBaseInfoVO;
+import com.hotyum.stars.dal.model.User;
 import com.hotyum.stars.external.service.SmsService;
 import com.hotyum.stars.utils.Assert;
 import com.hotyum.stars.utils.Constants;
 import com.hotyum.stars.utils.RandomUtil;
+import com.hotyum.stars.utils.enums.SmsType;
 import com.hotyum.stars.web.model.Result;
 import com.hotyum.stars.web.util.TokenAccessUtils;
 
@@ -48,8 +51,6 @@ public class AccountController {
 	@Autowired
 	private SmsService smsService;
 
-	@Autowired
-	private ReferralInformationManager referralInformationManager;
 	private static final int[] LOGINTYPE = { 1, 2 };
 
 	/**
@@ -188,6 +189,12 @@ public class AccountController {
 	@RequestMapping(value = "account/sendMsg")
 	public Result sendMsg(@RequestParam(required = true) String phone, @RequestParam(required = true) byte type) {
 		Assert.checkPhone(phone, "请输入有效的手机号码");
+		if (SmsType.RESETPWD.getValue().equals(type)) {
+			User user = userManager.getUserByPhone(phone);
+			if (null == user) {
+				throw new RuntimeException("该手机未注册");
+			}
+		}
 		String content = Constants.MESSAGECONENT;
 		// 随机获取4位数短信验证码
 		String messageCode = RandomUtil.random(Constants.MESSAGECODELENGTH);
