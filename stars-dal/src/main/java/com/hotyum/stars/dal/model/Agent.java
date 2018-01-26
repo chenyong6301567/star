@@ -28,7 +28,7 @@ public class Agent implements Serializable {
 
     private Date contractStartTime;
 
-    private Date contrctEndTime;
+    private Date contractEndTime;
 
     private Date gmtCreate;
 
@@ -136,12 +136,12 @@ public class Agent implements Serializable {
         this.contractStartTime = contractStartTime;
     }
 
-    public Date getContrctEndTime() {
-        return contrctEndTime;
+    public Date getContractEndTime() {
+        return contractEndTime;
     }
 
-    public void setContrctEndTime(Date contrctEndTime) {
-        this.contrctEndTime = contrctEndTime;
+    public void setContractEndTime(Date contractEndTime) {
+        this.contractEndTime = contractEndTime;
     }
 
     public Date getGmtCreate() {
@@ -200,7 +200,7 @@ public class Agent implements Serializable {
             && (this.getBusinessStartTime() == null ? other.getBusinessStartTime() == null : this.getBusinessStartTime().equals(other.getBusinessStartTime()))
             && (this.getBusinessEndTime() == null ? other.getBusinessEndTime() == null : this.getBusinessEndTime().equals(other.getBusinessEndTime()))
             && (this.getContractStartTime() == null ? other.getContractStartTime() == null : this.getContractStartTime().equals(other.getContractStartTime()))
-            && (this.getContrctEndTime() == null ? other.getContrctEndTime() == null : this.getContrctEndTime().equals(other.getContrctEndTime()))
+            && (this.getContractEndTime() == null ? other.getContractEndTime() == null : this.getContractEndTime().equals(other.getContractEndTime()))
             && (this.getGmtCreate() == null ? other.getGmtCreate() == null : this.getGmtCreate().equals(other.getGmtCreate()))
             && (this.getGmtModify() == null ? other.getGmtModify() == null : this.getGmtModify().equals(other.getGmtModify()))
             && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
@@ -223,7 +223,7 @@ public class Agent implements Serializable {
         result = prime * result + ((getBusinessStartTime() == null) ? 0 : getBusinessStartTime().hashCode());
         result = prime * result + ((getBusinessEndTime() == null) ? 0 : getBusinessEndTime().hashCode());
         result = prime * result + ((getContractStartTime() == null) ? 0 : getContractStartTime().hashCode());
-        result = prime * result + ((getContrctEndTime() == null) ? 0 : getContrctEndTime().hashCode());
+        result = prime * result + ((getContractEndTime() == null) ? 0 : getContractEndTime().hashCode());
         result = prime * result + ((getGmtCreate() == null) ? 0 : getGmtCreate().hashCode());
         result = prime * result + ((getGmtModify() == null) ? 0 : getGmtModify().hashCode());
         result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());

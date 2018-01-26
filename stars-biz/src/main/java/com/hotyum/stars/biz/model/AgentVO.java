@@ -35,7 +35,7 @@ public class AgentVO implements Serializable {
 
 	private String contractStartTime;
 
-	private String contrctEndTime;
+	private String contractEndTime;
 
 	public Integer getId() {
 		return id;
@@ -133,12 +133,12 @@ public class AgentVO implements Serializable {
 		this.contractStartTime = contractStartTime;
 	}
 
-	public String getContrctEndTime() {
-		return contrctEndTime;
+	public String getContractEndTime() {
+		return contractEndTime;
 	}
 
-	public void setContrctEndTime(String contrctEndTime) {
-		this.contrctEndTime = contrctEndTime;
+	public void setContractEndTime(String contractEndTime) {
+		this.contractEndTime = contractEndTime;
 	}
 
 }

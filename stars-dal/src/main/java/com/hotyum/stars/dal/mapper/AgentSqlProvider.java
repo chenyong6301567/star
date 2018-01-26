@@ -72,8 +72,8 @@ public class AgentSqlProvider {
             sql.VALUES("contract_start_time", "#{contractStartTime,jdbcType=TIMESTAMP}");
         }
         
-        if (record.getContrctEndTime() != null) {
-            sql.VALUES("contrct_end_time", "#{contrctEndTime,jdbcType=TIMESTAMP}");
+        if (record.getContractEndTime() != null) {
+            sql.VALUES("contract_end_time", "#{contractEndTime,jdbcType=TIMESTAMP}");
         }
         
         if (record.getGmtCreate() != null) {
@@ -113,7 +113,7 @@ public class AgentSqlProvider {
         sql.SELECT("business_start_time");
         sql.SELECT("business_end_time");
         sql.SELECT("contract_start_time");
-        sql.SELECT("contrct_end_time");
+        sql.SELECT("contract_end_time");
         sql.SELECT("gmt_create");
         sql.SELECT("gmt_modify");
         sql.SELECT("status");
@@ -183,8 +183,8 @@ public class AgentSqlProvider {
             sql.SET("contract_start_time = #{record.contractStartTime,jdbcType=TIMESTAMP}");
         }
         
-        if (record.getContrctEndTime() != null) {
-            sql.SET("contrct_end_time = #{record.contrctEndTime,jdbcType=TIMESTAMP}");
+        if (record.getContractEndTime() != null) {
+            sql.SET("contract_end_time = #{record.contractEndTime,jdbcType=TIMESTAMP}");
         }
         
         if (record.getGmtCreate() != null) {
@@ -223,7 +223,7 @@ public class AgentSqlProvider {
         sql.SET("business_start_time = #{record.businessStartTime,jdbcType=TIMESTAMP}");
         sql.SET("business_end_time = #{record.businessEndTime,jdbcType=TIMESTAMP}");
         sql.SET("contract_start_time = #{record.contractStartTime,jdbcType=TIMESTAMP}");
-        sql.SET("contrct_end_time = #{record.contrctEndTime,jdbcType=TIMESTAMP}");
+        sql.SET("contract_end_time = #{record.contractEndTime,jdbcType=TIMESTAMP}");
         sql.SET("gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP}");
         sql.SET("gmt_modify = #{record.gmtModify,jdbcType=TIMESTAMP}");
         sql.SET("status = #{record.status,jdbcType=TINYINT}");
@@ -282,8 +282,8 @@ public class AgentSqlProvider {
             sql.SET("contract_start_time = #{contractStartTime,jdbcType=TIMESTAMP}");
         }
         
-        if (record.getContrctEndTime() != null) {
-            sql.SET("contrct_end_time = #{contrctEndTime,jdbcType=TIMESTAMP}");
+        if (record.getContractEndTime() != null) {
+            sql.SET("contract_end_time = #{contractEndTime,jdbcType=TIMESTAMP}");
         }
         
         if (record.getGmtCreate() != null) {

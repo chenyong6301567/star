@@ -895,63 +895,63 @@ public class AgentExample {
             return (Criteria) this;
         }
 
-        public Criteria andContrctEndTimeIsNull() {
-            addCriterion("contrct_end_time is null");
+        public Criteria andContractEndTimeIsNull() {
+            addCriterion("contract_end_time is null");
             return (Criteria) this;
         }
 
-        public Criteria andContrctEndTimeIsNotNull() {
-            addCriterion("contrct_end_time is not null");
+        public Criteria andContractEndTimeIsNotNull() {
+            addCriterion("contract_end_time is not null");
             return (Criteria) this;
         }
 
-        public Criteria andContrctEndTimeEqualTo(Date value) {
-            addCriterion("contrct_end_time =", value, "contrctEndTime");
+        public Criteria andContractEndTimeEqualTo(Date value) {
+            addCriterion("contract_end_time =", value, "contractEndTime");
             return (Criteria) this;
         }
 
-        public Criteria andContrctEndTimeNotEqualTo(Date value) {
-            addCriterion("contrct_end_time <>", value, "contrctEndTime");
+        public Criteria andContractEndTimeNotEqualTo(Date value) {
+            addCriterion("contract_end_time <>", value, "contractEndTime");
             return (Criteria) this;
         }
 
-        public Criteria andContrctEndTimeGreaterThan(Date value) {
-            addCriterion("contrct_end_time >", value, "contrctEndTime");
+        public Criteria andContractEndTimeGreaterThan(Date value) {
+            addCriterion("contract_end_time >", value, "contractEndTime");
             return (Criteria) this;
         }
 
-        public Criteria andContrctEndTimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("contrct_end_time >=", value, "contrctEndTime");
+        public Criteria andContractEndTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("contract_end_time >=", value, "contractEndTime");
             return (Criteria) this;
         }
 
-        public Criteria andContrctEndTimeLessThan(Date value) {
-            addCriterion("contrct_end_time <", value, "contrctEndTime");
+        public Criteria andContractEndTimeLessThan(Date value) {
+            addCriterion("contract_end_time <", value, "contractEndTime");
             return (Criteria) this;
         }
 
-        public Criteria andContrctEndTimeLessThanOrEqualTo(Date value) {
-            addCriterion("contrct_end_time <=", value, "contrctEndTime");
+        public Criteria andContractEndTimeLessThanOrEqualTo(Date value) {
+            addCriterion("contract_end_time <=", value, "contractEndTime");
             return (Criteria) this;
         }
 
-        public Criteria andContrctEndTimeIn(List<Date> values) {
-            addCriterion("contrct_end_time in", values, "contrctEndTime");
+        public Criteria andContractEndTimeIn(List<Date> values) {
+            addCriterion("contract_end_time in", values, "contractEndTime");
             return (Criteria) this;
         }
 
-        public Criteria andContrctEndTimeNotIn(List<Date> values) {
-            addCriterion("contrct_end_time not in", values, "contrctEndTime");
+        public Criteria andContractEndTimeNotIn(List<Date> values) {
+            addCriterion("contract_end_time not in", values, "contractEndTime");
             return (Criteria) this;
         }
 
-        public Criteria andContrctEndTimeBetween(Date value1, Date value2) {
-            addCriterion("contrct_end_time between", value1, value2, "contrctEndTime");
+        public Criteria andContractEndTimeBetween(Date value1, Date value2) {
+            addCriterion("contract_end_time between", value1, value2, "contractEndTime");
             return (Criteria) this;
         }
 
-        public Criteria andContrctEndTimeNotBetween(Date value1, Date value2) {
-            addCriterion("contrct_end_time not between", value1, value2, "contrctEndTime");
+        public Criteria andContractEndTimeNotBetween(Date value1, Date value2) {
+            addCriterion("contract_end_time not between", value1, value2, "contractEndTime");
             return (Criteria) this;
         }
 

@@ -71,7 +71,7 @@ public class AgentManagerImpl implements AgentManager {
 		agent.setBusinessStartTime(businessStartTime);
 		agent.setContactPhone(contactPhone);
 		agent.setContractStartTime(contractStartTime);
-		agent.setContrctEndTime(contrctEndTime);
+		agent.setContractEndTime(contrctEndTime);
 		agent.setLegalRepresentative(legalRepresentative);
 		agent.setProvinceId(provinceId);
 		agent.setProvinceName(provinceName);
@@ -204,8 +204,8 @@ public class AgentManagerImpl implements AgentManager {
 				if (null != agent.getContractStartTime()) {
 					agentVO.setContractStartTime(DateUtil.date2Str(agent.getContractStartTime()));
 				}
-				if (null != agent.getContrctEndTime()) {
-					agentVO.setContrctEndTime(DateUtil.date2Str(agent.getContrctEndTime()));
+				if (null != agent.getContractEndTime()) {
+					agentVO.setContractEndTime(DateUtil.date2Str(agent.getContractEndTime()));
 				}
 				agentVOList.add(agentVO);
 			} catch (Exception e) {
