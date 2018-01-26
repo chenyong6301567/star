@@ -42,9 +42,6 @@ public class AgentManagerImpl implements AgentManager {
 	@Autowired
 	private AgentDAO agentDAO;
 
-	@Autowired
-	private UserManager userManager;
-
 	private static final Logger LOGGER = LoggerFactory.getLogger(AgentManagerImpl.class);
 
 	/**
@@ -258,7 +255,7 @@ public class AgentManagerImpl implements AgentManager {
 	public int getMaxProvinceIndex(Integer provinceId) {
 		try {
 			Integer index = agentDAO.selectMaxIndexByProvinceId(provinceId);
-			return index == null ? 0 : index;
+			return index == null ? 1 : index;
 		} catch (DataAccessException e) {
 			LOGGER.error("getMaxProvinceIndex失败====", e);
 			throw new RuntimeException("内部服务器错误");
