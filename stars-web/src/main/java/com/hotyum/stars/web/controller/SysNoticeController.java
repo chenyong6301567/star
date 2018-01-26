@@ -49,13 +49,10 @@ public class SysNoticeController {
 	/**
 	 * 已经发布的系统公告列表
 	 * 
-	 * @param toType          发送给谁: 1代理商 2客户 3管理员;4全部|byte|必填
-	 * @param sysType         通知类型: 1:系统内通知；2短信通知|byte[]|必填
-	 * @param noticeContent   通知内容|String|必填
 	 * @Title 
 	 * @respbody {"code":1,"message":"成功","data":[{"id":1,"toType":4,"sysType":3,"noticeContent":"测试通知11111111111111111","gmtCreate":"2018-01-07 22:07:11"}],"error":false,"success":true}
 	 * @author cy
-	 * @Description  系统公告发布
+	 * @Description  已经发布的系统公告列表
 	 * @date 2018/1/4 15:55
 	 * @return Result
 	 * @throws  
