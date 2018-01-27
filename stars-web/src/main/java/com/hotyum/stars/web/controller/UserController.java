@@ -104,7 +104,7 @@ public class UserController {
 	 * @return Result
 	 * @throws  
 	 */
-	@RequestMapping(value = "user/getUserBaseInfo")
+	@RequestMapping(value = "user/getUserBaseInfoById")
 	public Result getUserBaseInfoById(HttpServletRequest request, @RequestParam(required = true) Integer id) {
 		User user = userManager.getUserById(id);
 		UserBaseInfoVO userBaseInfoVO = null;
