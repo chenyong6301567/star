@@ -24,7 +24,6 @@ import com.hotyum.stars.biz.manager.UserManager;
 import com.hotyum.stars.biz.model.CustomerRecommandVO;
 import com.hotyum.stars.biz.model.UserBaseInfoVO;
 import com.hotyum.stars.biz.model.UserListVO;
-import com.hotyum.stars.dal.dao.SendEmailDAO;
 import com.hotyum.stars.dal.model.User;
 import com.hotyum.stars.utils.Constants;
 import com.hotyum.stars.utils.DataFormatVaildate;

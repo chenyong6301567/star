@@ -746,7 +746,7 @@ public class UserManagerImpl implements UserManager {
 				if (StringUtils.isNoneEmpty(user.getContactPhone())) {
 					customerRecommandVO.setContactPhone(user.getContactPhone().replaceAll(PHONEREX, HIDESTR));
 				}
-				customerRecommandVO.setGmtCreate(DateUtil.date2Str(user.getGmtCreate()));
+				customerRecommandVO.setGmtCreate(DateUtil.date2Str(user.getGmtCreate(),DateUtil.FORMAT_DATE));
 				if (user.getSex().equals(SexType.MALE.getValue())) {
 					customerRecommandVO.setSexName(SexType.MALE.getDescription());
 				} else {

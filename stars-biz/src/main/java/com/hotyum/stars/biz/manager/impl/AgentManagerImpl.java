@@ -196,16 +196,16 @@ public class AgentManagerImpl implements AgentManager {
 			try {
 				AgentVO agentVO = ObjectUtils.convert(agent, AgentVO.class);
 				if (null != agent.getBusinessStartTime()) {
-					agentVO.setBusinessStartTime(DateUtil.date2Str(agent.getBusinessStartTime()));
+					agentVO.setBusinessStartTime(DateUtil.date2Str(agent.getBusinessStartTime(), DateUtil.FORMAT_DATE));
 				}
 				if (null != agent.getBusinessEndTime()) {
-					agentVO.setBusinessEndTime(DateUtil.date2Str(agent.getBusinessEndTime()));
+					agentVO.setBusinessEndTime(DateUtil.date2Str(agent.getBusinessEndTime(), DateUtil.FORMAT_DATE));
 				}
 				if (null != agent.getContractStartTime()) {
-					agentVO.setContractStartTime(DateUtil.date2Str(agent.getContractStartTime()));
+					agentVO.setContractStartTime(DateUtil.date2Str(agent.getContractStartTime(), DateUtil.FORMAT_DATE));
 				}
 				if (null != agent.getContractEndTime()) {
-					agentVO.setContractEndTime(DateUtil.date2Str(agent.getContractEndTime()));
+					agentVO.setContractEndTime(DateUtil.date2Str(agent.getContractEndTime(), DateUtil.FORMAT_DATE));
 				}
 				agentVOList.add(agentVO);
 			} catch (Exception e) {
