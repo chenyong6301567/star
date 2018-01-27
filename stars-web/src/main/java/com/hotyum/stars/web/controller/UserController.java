@@ -59,6 +59,10 @@ public class UserController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
+	private static final String SERVERPATH = "http://111.230.221.41:8080";
+
+	private static final String REALPATH = "/usr/local/java/upload";
+
 	private static final String SMTP = "smtp.163.com"; // "SMTP服务器";
 	private static final String FROM = "chenyong6301567@163.com";// "发信人";
 	private static final String TO = "629584407@qq.com"; // 收信人
@@ -173,7 +177,6 @@ public class UserController {
 			throws IllegalStateException, IOException {
 		// String realPath =
 		// request.getServletContext().getRealPath("/upload/certificate/");
-		String realPath = "/usr/local/java/upload";
 		if (file != null) {// 判断上传的文件是否为空
 			String fileName = file.getOriginalFilename();// 文件原名称
 			String type = fileName.indexOf(".") != -1
@@ -182,7 +185,7 @@ public class UserController {
 				return Result.errorReponse("不支持[" + type + "]文件上传");
 			}
 			String trueFileName = account + "." + type;
-			String path = realPath + trueFileName;
+			String path = SERVERPATH + REALPATH + trueFileName;
 			LOGGER.info("存放图片文件的路径:" + path);
 
 			File file_ = new File(path);
