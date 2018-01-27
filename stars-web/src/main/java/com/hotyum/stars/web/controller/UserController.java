@@ -61,7 +61,7 @@ public class UserController {
 
 	private static final String SERVERPATH = "http://111.230.221.41:8080/user/getpic?path=";
 
-	private static final String REALPATH = "/usr/local/java/upload";
+	private static final String REALPATH = "/usr/local/java/upload/certificate";
 
 	private static final String SMTP = "smtp.163.com"; // "SMTP服务器";
 	private static final String FROM = "chenyong6301567@163.com";// "发信人";
