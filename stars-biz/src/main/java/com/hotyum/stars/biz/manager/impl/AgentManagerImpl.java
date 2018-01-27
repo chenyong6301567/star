@@ -293,6 +293,7 @@ public class AgentManagerImpl implements AgentManager {
 		try {
 			agentDAO.selectByExample(agentExample);
 		} catch (DataAccessException e) {
+			e.printStackTrace();
 			LOGGER.error("getAgentList失败====", e);
 			throw new RuntimeException("内部服务器错误");
 		}
