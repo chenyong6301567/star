@@ -59,7 +59,7 @@ public class UserController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
-	private static final String SERVERPATH = "http://111.230.221.41:8080";
+	private static final String SERVERPATH = "http://111.230.221.41:8080/user/getpic?path=";
 
 	private static final String REALPATH = "/usr/local/java/upload";
 
@@ -185,16 +185,16 @@ public class UserController {
 				return Result.errorReponse("不支持[" + type + "]文件上传");
 			}
 			String trueFileName = account + "." + type;
-			String path = SERVERPATH + REALPATH + trueFileName;
-			LOGGER.info("存放图片文件的路径:" + path);
-
+			String path = REALPATH + trueFileName;
+			LOGGER.info("存放图片文件的路径===========================:" + path);
 			File file_ = new File(path);
 			if (!file_.exists()) {
 				file_.getParentFile().mkdirs();
 				file_.createNewFile();
 			}
 			file.transferTo(file_);
-			userManager.updateUsePic(path, picType, account);
+			LOGGER.info("图片访问路径============================="+SERVERPATH + path);
+			userManager.updateUsePic(SERVERPATH + path, picType, account);
 			return Result.normalResponse(path);
 		}
 		return Result.errorReponse("上传文件不能为空");
