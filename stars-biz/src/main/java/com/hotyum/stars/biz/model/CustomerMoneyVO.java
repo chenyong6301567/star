@@ -38,6 +38,8 @@ public class CustomerMoneyVO implements Serializable {
 
 	private String productType;
 
+	private String productTypeName;
+
 	private String productRate;
 
 	private Integer buyNum;
@@ -197,6 +199,14 @@ public class CustomerMoneyVO implements Serializable {
 
 	public void setRegisterEmail(String registerEmail) {
 		this.registerEmail = registerEmail;
+	}
+
+	public String getProductTypeName() {
+		return productTypeName;
+	}
+
+	public void setProductTypeName(String productTypeName) {
+		this.productTypeName = productTypeName;
 	}
 
 }
