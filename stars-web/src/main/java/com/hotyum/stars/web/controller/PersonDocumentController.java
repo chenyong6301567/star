@@ -138,12 +138,13 @@ public class PersonDocumentController {
 	/**
 	 * 合同收益分配表(客户收益，代理收益)查询
 	 * 
-	 * @param pageNum                 页数|int|必填
-	 * @param pageSize                每页多少|int|必填
-	 * @param documentCode            档案编号|string
-	 * @param customerName            客户名称|string
-	 * @param amountType              大于100000为1,小于100000为2|byte
+	 * @param id                      收益id|int|必填
+	 * @param documentCode            档案编号|String|必填
+	 * @param customerName            客戶名称|String|必填
+	 * @param investmentAmount        投资金额|string
+	 * @param contractIncome          合同收益|string
 	 * @param productId               产品类类型|byte
+	 * @param productTypeName         产品类类型名称|String
 	 * @param tradeStatus             交易状态（ 1正常、2结束、3提前终止、4未交易）|byte
 	 * @param productRate             产品收益率|string
 	 * @param tradeEndDateBegin       截止日期从|string
@@ -161,8 +162,8 @@ public class PersonDocumentController {
 	@RequestMapping(value = "personDocument/getContractDitrubuteIncomeList")
 	public Result getContractDitrubuteIncomeList(@RequestParam(defaultValue = Constants.PAGENUM) int pageNum,
 			@RequestParam(defaultValue = Constants.PAGESIZE) int pageSize, String documentCode, String customerName,
-			 Byte amountType, Byte tradeStatus, Integer productId, Date tradeEndDateBegin,
-			Date tradeEndDateEnd, String productRate, String derectPersonName, String inderectPersonName) {
+			Byte amountType, Byte tradeStatus, Integer productId, Date tradeEndDateBegin, Date tradeEndDateEnd,
+			String productRate, String derectPersonName, String inderectPersonName) {
 
 		SumVO sumVO = contractIncomeDistributionManager.getContractDitrubuteIncomeList(documentCode, amountType,
 				tradeStatus, productId, tradeEndDateBegin, tradeEndDateEnd, pageNum, pageSize, customerName,
@@ -170,6 +171,7 @@ public class PersonDocumentController {
 		return Result.normalResponse(sumVO);
 
 	}
+
 
 	/**
 	 *
@@ -197,9 +199,9 @@ public class PersonDocumentController {
 	@RequestMapping(value = "personDocument/getContractDitrubuteIncomeExcel")
 	public Result getContractDitrubuteIncomeExcel(@RequestParam(defaultValue = Constants.PAGENUM) int pageNum,
 			@RequestParam(defaultValue = Constants.MAXPAGESIZE) int pageSize, String documentCode, String customerName,
-			 Byte amountType, Byte tradeStatus, Integer productId, Date tradeEndDateBegin,
-			Date tradeEndDateEnd, String productRate, String derectPersonName, String inderectPersonName,
-			HttpServletRequest request, HttpServletResponse response, @RequestParam(required = true) Byte userType) {
+			Byte amountType, Byte tradeStatus, Integer productId, Date tradeEndDateBegin, Date tradeEndDateEnd,
+			String productRate, String derectPersonName, String inderectPersonName, HttpServletRequest request,
+			HttpServletResponse response, @RequestParam(required = true) Byte userType) {
 		SumVO sumVO = contractIncomeDistributionManager.getContractDitrubuteIncomeList(documentCode, amountType,
 				tradeStatus, productId, tradeEndDateBegin, tradeEndDateEnd, pageNum, pageSize, customerName,
 				productRate, derectPersonName, inderectPersonName);

@@ -1,7 +1,10 @@
 package com.hotyum.stars.web.controller;
 
+import java.io.BufferedInputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.util.Date;
 import java.util.List;
 
@@ -64,7 +67,7 @@ public class UserController {
 	String PASSWORD = "ccs13650833856";// "密码";
 
 	/**
-	 * 获取用户基本信息
+	 * 获取当前登录用户基本信息
 	 * 
 	 * @param a 不用普通参数，带令牌token|string|必填
 	 * @Title getUserBaseInfo
@@ -78,6 +81,32 @@ public class UserController {
 	@RequestMapping(value = "user/getUserBaseInfo")
 	public Result getUserBaseInfo(HttpServletRequest request) {
 		User user = TokenAccessUtils.getUserInfo(request);
+		UserBaseInfoVO userBaseInfoVO = null;
+		try {
+			userBaseInfoVO = ObjectUtils.convert(user, UserBaseInfoVO.class);
+			referralInformationManager.getReferInfomation(userBaseInfoVO);
+		} catch (Exception e) {
+			LOGGER.error("getUserBaseInfo对象转换异常", e);
+			return Result.errorReponse("花落去用户基本信息错误");
+		}
+		return Result.normalResponse(userBaseInfoVO);
+	}
+
+	/**
+	 * 根据id获取用户基本信息
+	 * 
+	 * @param id 用户id|int|必填
+	 * @Title getUserBaseInfo
+	 * @respbody {"code":1,"message":"成功","data":{"id":1,"account":"15700191306","realName":"陈勇","sex":1,"contactPhone":"15700191306","email":"629584407@qq.com","whetherRealName":1,"wheatherGetMoney":1,"refereeQualification":1,"agentCode":"abc123","directRecommendationAccount":"15700191293","indirectRecommendationAccount":"15700191294","certificateType":1,"certificateNumber":"1","certificateFront":"1","certificateBack":"1","addressPic":"1","myReferinfoMationVO":{"starDegree":"1","sumMoney":10.0,"directRewardRate":"1%","indirectRewardRate":"0.5%"},"derectCustomerReferInfoMationVOList":[{"id":1,"directRecommendationName":"张平","contractNum":1},{"id":2,"directRecommendationName":"张平","contractNum":1}],"inDerectCustomerReferInfoMationVOList":[{"id":1,"indirectRecommendationName":"admin","contractNum":1},{"id":2,"indirectRecommendationName":"admin","contractNum":1}]},"error":false,"success":true}
+	 * @author cy
+	 * @Description 获取用户基本信息
+	 * @date 2018/1/1 15:49
+	 * @return Result
+	 * @throws  
+	 */
+	@RequestMapping(value = "user/getUserBaseInfo")
+	public Result getUserBaseInfoById(HttpServletRequest request, @RequestParam(required = true) Integer id) {
+		User user = userManager.getUserById(id);
 		UserBaseInfoVO userBaseInfoVO = null;
 		try {
 			userBaseInfoVO = ObjectUtils.convert(user, UserBaseInfoVO.class);
@@ -142,7 +171,9 @@ public class UserController {
 	public Result uploadPic(HttpServletRequest request, @RequestParam(required = true) String account,
 			@RequestParam(value = "file", required = false) MultipartFile file, Byte picType)
 			throws IllegalStateException, IOException {
-		String realPath = request.getServletContext().getRealPath("/upload/certificate/");
+		// String realPath =
+		// request.getServletContext().getRealPath("/upload/certificate/");
+		String realPath = "/usr/local/java/upload";
 		if (file != null) {// 判断上传的文件是否为空
 			String fileName = file.getOriginalFilename();// 文件原名称
 			String type = fileName.indexOf(".") != -1
@@ -376,6 +407,48 @@ public class UserController {
 			return Result.normalResponse("邮箱验证成功");
 		} else {
 			return Result.normalResponse("邮箱验证失败");
+		}
+
+	}
+
+	/**获取图片展示
+	 * 
+	 * @param  path   图片路径|string|必填
+	 * @Title  getpic
+	 * @respbody 
+	 * @author cy
+	 * @Description 获取图片展示
+	 * @date 2018/1/27 22:15
+	 * @return Result
+	 * @throws  
+	 */
+	@RequestMapping(value = "user/getpic")
+	public void getpic(@RequestParam(required = true) String path, HttpServletRequest request,
+			HttpServletResponse response) {
+		try {
+			response.setHeader("Pragma", "No-cache");
+			response.setHeader("Cache-Control", "no-cache");
+			response.setDateHeader("Expires", 0);
+			BufferedInputStream bis = null;
+			OutputStream os = null;
+			FileInputStream fileInputStream = new FileInputStream(new File(path));
+			bis = new BufferedInputStream(fileInputStream);
+			byte[] buffer = new byte[512];
+			response.reset();
+			response.setCharacterEncoding("UTF-8");
+			// 不同类型的文件对应不同的MIME类型
+			response.setContentType("image/png");
+			response.setContentLength(bis.available());
+			os = response.getOutputStream();
+			int n;
+			while ((n = bis.read(buffer)) != -1) {
+				os.write(buffer, 0, n);
+			}
+			bis.close();
+			os.flush();
+			os.close();
+		} catch (Exception e) {
+			LOGGER.error("获取图片出错", e);
 		}
 
 	}
