@@ -19,6 +19,8 @@ public class ProductVO implements Serializable {
 
 	private String monthRate;
 
+	private Byte enableFlag;
+
 	public Integer getId() {
 		return id;
 	}
@@ -49,6 +51,14 @@ public class ProductVO implements Serializable {
 
 	public void setMonthRate(String monthRate) {
 		this.monthRate = monthRate;
+	}
+
+	public Byte getEnableFlag() {
+		return enableFlag;
+	}
+
+	public void setEnableFlag(Byte enableFlag) {
+		this.enableFlag = enableFlag;
 	}
 
 }

@@ -86,6 +86,7 @@ public class ProductManagerImpl implements ProductManager {
 			vo.setMonthRate(product.getMonthRate());
 			vo.setProductTypeName(product.getProductTypeName());
 			vo.setServiceTime(product.getServiceTime());
+			vo.setEnableFlag(product.getEnableFlag());
 			productVOList.add(vo);
 		}
 		return new Page<ProductVO>(pageSize, pageNum, productVOList.size(), productVOList);
