@@ -15,6 +15,10 @@ public class ContractIncomeDistribution implements Serializable {
 
     private BigDecimal contractIncome;
 
+    private String tradePlatform;
+
+    private String tradeAccount;
+
     private Date firstTradeDate;
 
     private Integer productTypeId;
@@ -99,6 +103,22 @@ public class ContractIncomeDistribution implements Serializable {
 
     public void setContractIncome(BigDecimal contractIncome) {
         this.contractIncome = contractIncome;
+    }
+
+    public String getTradePlatform() {
+        return tradePlatform;
+    }
+
+    public void setTradePlatform(String tradePlatform) {
+        this.tradePlatform = tradePlatform == null ? null : tradePlatform.trim();
+    }
+
+    public String getTradeAccount() {
+        return tradeAccount;
+    }
+
+    public void setTradeAccount(String tradeAccount) {
+        this.tradeAccount = tradeAccount == null ? null : tradeAccount.trim();
     }
 
     public Date getFirstTradeDate() {
@@ -294,6 +314,8 @@ public class ContractIncomeDistribution implements Serializable {
             && (this.getCustomerName() == null ? other.getCustomerName() == null : this.getCustomerName().equals(other.getCustomerName()))
             && (this.getInvestmentAmount() == null ? other.getInvestmentAmount() == null : this.getInvestmentAmount().equals(other.getInvestmentAmount()))
             && (this.getContractIncome() == null ? other.getContractIncome() == null : this.getContractIncome().equals(other.getContractIncome()))
+            && (this.getTradePlatform() == null ? other.getTradePlatform() == null : this.getTradePlatform().equals(other.getTradePlatform()))
+            && (this.getTradeAccount() == null ? other.getTradeAccount() == null : this.getTradeAccount().equals(other.getTradeAccount()))
             && (this.getFirstTradeDate() == null ? other.getFirstTradeDate() == null : this.getFirstTradeDate().equals(other.getFirstTradeDate()))
             && (this.getProductTypeId() == null ? other.getProductTypeId() == null : this.getProductTypeId().equals(other.getProductTypeId()))
             && (this.getProductTypeName() == null ? other.getProductTypeName() == null : this.getProductTypeName().equals(other.getProductTypeName()))
@@ -327,6 +349,8 @@ public class ContractIncomeDistribution implements Serializable {
         result = prime * result + ((getCustomerName() == null) ? 0 : getCustomerName().hashCode());
         result = prime * result + ((getInvestmentAmount() == null) ? 0 : getInvestmentAmount().hashCode());
         result = prime * result + ((getContractIncome() == null) ? 0 : getContractIncome().hashCode());
+        result = prime * result + ((getTradePlatform() == null) ? 0 : getTradePlatform().hashCode());
+        result = prime * result + ((getTradeAccount() == null) ? 0 : getTradeAccount().hashCode());
         result = prime * result + ((getFirstTradeDate() == null) ? 0 : getFirstTradeDate().hashCode());
         result = prime * result + ((getProductTypeId() == null) ? 0 : getProductTypeId().hashCode());
         result = prime * result + ((getProductTypeName() == null) ? 0 : getProductTypeName().hashCode());

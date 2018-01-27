@@ -426,6 +426,146 @@ public class ContractIncomeDistributionExample {
             return (Criteria) this;
         }
 
+        public Criteria andTradePlatformIsNull() {
+            addCriterion("trade_platform is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradePlatformIsNotNull() {
+            addCriterion("trade_platform is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradePlatformEqualTo(String value) {
+            addCriterion("trade_platform =", value, "tradePlatform");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradePlatformNotEqualTo(String value) {
+            addCriterion("trade_platform <>", value, "tradePlatform");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradePlatformGreaterThan(String value) {
+            addCriterion("trade_platform >", value, "tradePlatform");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradePlatformGreaterThanOrEqualTo(String value) {
+            addCriterion("trade_platform >=", value, "tradePlatform");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradePlatformLessThan(String value) {
+            addCriterion("trade_platform <", value, "tradePlatform");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradePlatformLessThanOrEqualTo(String value) {
+            addCriterion("trade_platform <=", value, "tradePlatform");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradePlatformLike(String value) {
+            addCriterion("trade_platform like", value, "tradePlatform");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradePlatformNotLike(String value) {
+            addCriterion("trade_platform not like", value, "tradePlatform");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradePlatformIn(List<String> values) {
+            addCriterion("trade_platform in", values, "tradePlatform");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradePlatformNotIn(List<String> values) {
+            addCriterion("trade_platform not in", values, "tradePlatform");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradePlatformBetween(String value1, String value2) {
+            addCriterion("trade_platform between", value1, value2, "tradePlatform");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradePlatformNotBetween(String value1, String value2) {
+            addCriterion("trade_platform not between", value1, value2, "tradePlatform");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeAccountIsNull() {
+            addCriterion("trade_account is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeAccountIsNotNull() {
+            addCriterion("trade_account is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeAccountEqualTo(String value) {
+            addCriterion("trade_account =", value, "tradeAccount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeAccountNotEqualTo(String value) {
+            addCriterion("trade_account <>", value, "tradeAccount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeAccountGreaterThan(String value) {
+            addCriterion("trade_account >", value, "tradeAccount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeAccountGreaterThanOrEqualTo(String value) {
+            addCriterion("trade_account >=", value, "tradeAccount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeAccountLessThan(String value) {
+            addCriterion("trade_account <", value, "tradeAccount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeAccountLessThanOrEqualTo(String value) {
+            addCriterion("trade_account <=", value, "tradeAccount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeAccountLike(String value) {
+            addCriterion("trade_account like", value, "tradeAccount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeAccountNotLike(String value) {
+            addCriterion("trade_account not like", value, "tradeAccount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeAccountIn(List<String> values) {
+            addCriterion("trade_account in", values, "tradeAccount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeAccountNotIn(List<String> values) {
+            addCriterion("trade_account not in", values, "tradeAccount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeAccountBetween(String value1, String value2) {
+            addCriterion("trade_account between", value1, value2, "tradeAccount");
+            return (Criteria) this;
+        }
+
+        public Criteria andTradeAccountNotBetween(String value1, String value2) {
+            addCriterion("trade_account not between", value1, value2, "tradeAccount");
+            return (Criteria) this;
+        }
+
         public Criteria andFirstTradeDateIsNull() {
             addCriterion("first_trade_date is null");
             return (Criteria) this;

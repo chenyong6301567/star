@@ -44,6 +44,14 @@ public class ContractIncomeDistributionSqlProvider {
             sql.VALUES("contract_income", "#{contractIncome,jdbcType=DECIMAL}");
         }
         
+        if (record.getTradePlatform() != null) {
+            sql.VALUES("trade_platform", "#{tradePlatform,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getTradeAccount() != null) {
+            sql.VALUES("trade_account", "#{tradeAccount,jdbcType=VARCHAR}");
+        }
+        
         if (record.getFirstTradeDate() != null) {
             sql.VALUES("first_trade_date", "#{firstTradeDate,jdbcType=TIMESTAMP}");
         }
@@ -146,6 +154,8 @@ public class ContractIncomeDistributionSqlProvider {
         sql.SELECT("customer_name");
         sql.SELECT("investment_amount");
         sql.SELECT("contract_income");
+        sql.SELECT("trade_platform");
+        sql.SELECT("trade_account");
         sql.SELECT("first_trade_date");
         sql.SELECT("product_type_id");
         sql.SELECT("product_type_name");
@@ -203,6 +213,14 @@ public class ContractIncomeDistributionSqlProvider {
         
         if (record.getContractIncome() != null) {
             sql.SET("contract_income = #{record.contractIncome,jdbcType=DECIMAL}");
+        }
+        
+        if (record.getTradePlatform() != null) {
+            sql.SET("trade_platform = #{record.tradePlatform,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getTradeAccount() != null) {
+            sql.SET("trade_account = #{record.tradeAccount,jdbcType=VARCHAR}");
         }
         
         if (record.getFirstTradeDate() != null) {
@@ -306,6 +324,8 @@ public class ContractIncomeDistributionSqlProvider {
         sql.SET("customer_name = #{record.customerName,jdbcType=VARCHAR}");
         sql.SET("investment_amount = #{record.investmentAmount,jdbcType=DECIMAL}");
         sql.SET("contract_income = #{record.contractIncome,jdbcType=DECIMAL}");
+        sql.SET("trade_platform = #{record.tradePlatform,jdbcType=VARCHAR}");
+        sql.SET("trade_account = #{record.tradeAccount,jdbcType=VARCHAR}");
         sql.SET("first_trade_date = #{record.firstTradeDate,jdbcType=TIMESTAMP}");
         sql.SET("product_type_id = #{record.productTypeId,jdbcType=INTEGER}");
         sql.SET("product_type_name = #{record.productTypeName,jdbcType=VARCHAR}");
@@ -352,6 +372,14 @@ public class ContractIncomeDistributionSqlProvider {
         
         if (record.getContractIncome() != null) {
             sql.SET("contract_income = #{contractIncome,jdbcType=DECIMAL}");
+        }
+        
+        if (record.getTradePlatform() != null) {
+            sql.SET("trade_platform = #{tradePlatform,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getTradeAccount() != null) {
+            sql.SET("trade_account = #{tradeAccount,jdbcType=VARCHAR}");
         }
         
         if (record.getFirstTradeDate() != null) {

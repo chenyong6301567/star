@@ -61,6 +61,10 @@ public class ContractDitrubuteIncomeVO implements Serializable {
 
 	private double companyIncome;
 
+	private String tradePlatform;
+
+	private String tradeAccount;
+
 	public Integer getId() {
 		return id;
 	}
@@ -261,6 +265,22 @@ public class ContractDitrubuteIncomeVO implements Serializable {
 
 	public void setTradeStatusName(String tradeStatusName) {
 		this.tradeStatusName = tradeStatusName;
+	}
+
+	public String getTradePlatform() {
+		return tradePlatform;
+	}
+
+	public void setTradePlatform(String tradePlatform) {
+		this.tradePlatform = tradePlatform;
+	}
+
+	public String getTradeAccount() {
+		return tradeAccount;
+	}
+
+	public void setTradeAccount(String tradeAccount) {
+		this.tradeAccount = tradeAccount;
 	}
 
 }

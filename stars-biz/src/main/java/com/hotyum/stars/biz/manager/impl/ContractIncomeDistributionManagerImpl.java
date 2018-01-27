@@ -96,6 +96,8 @@ public class ContractIncomeDistributionManagerImpl implements ContractIncomeDist
 				cd.setInderectRecomandRate(myinfo.getIndirectRewardRate());
 			}
 		}
+		cd.setTradeAccount(tradeAccount);
+		cd.setTradePlatform(tradePlatform);
 		cd.setDocumentCode(documentCode);
 		cd.setInvestmentAmount(new BigDecimal(investmentAmount));
 		cd.setProductRate(productRate);
