@@ -208,6 +208,10 @@ public class PersonDocumentManagerImpl implements PersonDocumentManager {
 				if (null != personDocument.getEstimatedEarnings()) {
 					customerMoneyVO.setEstimatedEarnings(personDocument.getEstimatedEarnings().doubleValue());
 				}
+				if (null != personDocument.getGetMoneyDate()) {
+					customerMoneyVO.setGetMoneyDate(DateUtil.date2Str(personDocument.getGetMoneyDate()));
+				}
+
 				customerMoneyVOList.add(customerMoneyVO);
 			} catch (Exception e) {
 				LOGGER.error("CovertPage失败====", e);

@@ -48,6 +48,16 @@ public class CustomerMoneyVO implements Serializable {
 
 	private String registerEmail;
 
+	private String getMoneyDate;
+
+	public String getGetMoneyDate() {
+		return getMoneyDate;
+	}
+
+	public void setGetMoneyDate(String getMoneyDate) {
+		this.getMoneyDate = getMoneyDate;
+	}
+
 	public Integer getId() {
 		return id;
 	}
