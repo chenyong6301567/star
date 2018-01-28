@@ -61,7 +61,7 @@ public class UserController {
 
 	private static final String SERVERPATH = "http://111.230.221.41:8080/user/getpic?path=";
 
-	private static final String REALPATH = "/usr/local/java/upload/certificate";
+	private static final String REALPATH = "/usr/local/java/upload/certificate/";
 
 	private static final String SMTP = "smtp.163.com"; // "SMTP服务器";
 	private static final String FROM = "chenyong6301567@163.com";// "发信人";
@@ -100,11 +100,11 @@ public class UserController {
 	 * 根据id获取用户基本信息
 	 * 
 	 * @param id 用户id|int|必填
-	 * @Title getUserBaseInfo
+	 * @Title getUserBaseInfoById
 	 * @respbody {"code":1,"message":"成功","data":{"id":1,"account":"15700191306","realName":"陈勇","sex":1,"contactPhone":"15700191306","email":"629584407@qq.com","whetherRealName":1,"wheatherGetMoney":1,"refereeQualification":1,"agentCode":"abc123","directRecommendationAccount":"15700191293","indirectRecommendationAccount":"15700191294","certificateType":1,"certificateNumber":"1","certificateFront":"1","certificateBack":"1","addressPic":"1","myReferinfoMationVO":{"starDegree":"1","sumMoney":10.0,"directRewardRate":"1%","indirectRewardRate":"0.5%"},"derectCustomerReferInfoMationVOList":[{"id":1,"directRecommendationName":"张平","contractNum":1},{"id":2,"directRecommendationName":"张平","contractNum":1}],"inDerectCustomerReferInfoMationVOList":[{"id":1,"indirectRecommendationName":"admin","contractNum":1},{"id":2,"indirectRecommendationName":"admin","contractNum":1}]},"error":false,"success":true}
 	 * @author cy
 	 * @Description 获取用户基本信息
-	 * @date 2018/1/1 15:49
+	 * @date 2018/1/28 12:49
 	 * @return Result
 	 * @throws  
 	 */
