@@ -214,12 +214,12 @@ public class ContractIncomeDistributionManagerImpl implements ContractIncomeDist
 				ContractDitrubuteIncomeVO contractDitrubuteIncomeVO = ObjectUtils.convert(contractIncomeDistribution,
 						ContractDitrubuteIncomeVO.class);
 				if (null != contractIncomeDistribution.getFirstTradeDate()) {
-					contractDitrubuteIncomeVO
-							.setFirstTradeDate(DateUtil.date2Str(contractIncomeDistribution.getFirstTradeDate()));
+					contractDitrubuteIncomeVO.setFirstTradeDate(
+							DateUtil.date2Str(contractIncomeDistribution.getFirstTradeDate(), DateUtil.FORMAT_DATE));
 				}
 				if (null != contractIncomeDistribution.getTradeEndDate()) {
-					contractDitrubuteIncomeVO
-							.setTradeEndDate(DateUtil.date2Str(contractIncomeDistribution.getTradeEndDate()));
+					contractDitrubuteIncomeVO.setTradeEndDate(
+							DateUtil.date2Str(contractIncomeDistribution.getTradeEndDate(), DateUtil.FORMAT_DATE));
 				}
 				// 投资
 				if (null != contractIncomeDistribution.getInvestmentAmount()) {
@@ -315,40 +315,5 @@ public class ContractIncomeDistributionManagerImpl implements ContractIncomeDist
 		}
 
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 }

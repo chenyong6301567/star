@@ -581,9 +581,9 @@ public class UserManagerImpl implements UserManager {
 		for (User user : userList) {
 			try {
 				UserListVO userListVO = ObjectUtils.convert(user, UserListVO.class);
-				userListVO.setGmtCreate(DateUtil.date2Str(user.getGmtCreate()));
+				userListVO.setGmtCreate(DateUtil.date2Str(user.getGmtCreate(), DateUtil.FORMAT_DATE));
 				if (null != user.getFreezeDate()) {
-					userListVO.setFreezeDate(DateUtil.date2Str(user.getFreezeDate()));
+					userListVO.setFreezeDate(DateUtil.date2Str(user.getFreezeDate(), DateUtil.FORMAT_DATE));
 				}
 				userVOList.add(userListVO);
 			} catch (Exception e) {

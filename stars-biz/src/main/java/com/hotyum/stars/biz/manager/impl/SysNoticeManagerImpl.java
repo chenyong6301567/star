@@ -98,7 +98,7 @@ public class SysNoticeManagerImpl implements SysNoticeManager {
 		for (SystemNotice systemNotice : systemNoticeList) {
 			SysNoticeVO vo = new SysNoticeVO();
 			vo.setId(systemNotice.getId());
-			vo.setGmtCreate(DateUtil.date2Str(systemNotice.getGmtCreate()));
+			vo.setGmtCreate(DateUtil.date2Str(systemNotice.getGmtCreate(),DateUtil.DEFAULT_FORMAT));
 			vo.setNoticeContent(systemNotice.getNoticeContent());
 			vo.setSysType(systemNotice.getSysType());
 			vo.setToType(systemNotice.getToType());

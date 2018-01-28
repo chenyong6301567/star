@@ -410,13 +410,6 @@ public class DateUtil {
 		return parseDate(str);
 	}
 
-	public static String date2Str(Date date) {
-		if (date == null) {
-			return "";
-		}
-		return formateDate(date, DEFAULT_FORMAT);
-	}
-
 	public static String date2Str(Date date, String format) {
 		SimpleDateFormat tempFormat = new SimpleDateFormat(format);
 		if (date == null) {

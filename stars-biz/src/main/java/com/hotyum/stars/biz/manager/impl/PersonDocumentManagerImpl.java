@@ -200,7 +200,7 @@ public class PersonDocumentManagerImpl implements PersonDocumentManager {
 			try {
 				CustomerMoneyVO customerMoneyVO = ObjectUtils.convert(personDocument, CustomerMoneyVO.class);
 				if (null != personDocument.getContractDate()) {
-					customerMoneyVO.setContractDate(DateUtil.date2Str(personDocument.getContractDate()));
+					customerMoneyVO.setContractDate(DateUtil.date2Str(personDocument.getContractDate(),DateUtil.FORMAT_DATE));
 				}
 				if (null != personDocument.getInvestmentAmount()) {
 					customerMoneyVO.setInvestmentAmount(personDocument.getInvestmentAmount().doubleValue());
@@ -209,7 +209,7 @@ public class PersonDocumentManagerImpl implements PersonDocumentManager {
 					customerMoneyVO.setEstimatedEarnings(personDocument.getEstimatedEarnings().doubleValue());
 				}
 				if (null != personDocument.getGetMoneyDate()) {
-					customerMoneyVO.setGetMoneyDate(DateUtil.date2Str(personDocument.getGetMoneyDate()));
+					customerMoneyVO.setGetMoneyDate(DateUtil.date2Str(personDocument.getGetMoneyDate(),DateUtil.FORMAT_DATE));
 				}
 
 				customerMoneyVOList.add(customerMoneyVO);
