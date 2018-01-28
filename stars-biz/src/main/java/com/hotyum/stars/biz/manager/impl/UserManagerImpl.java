@@ -234,6 +234,8 @@ public class UserManagerImpl implements UserManager {
 		newUser.setGmtCreate(new Date());
 		newUser.setGmtModify(new Date());
 		newUser.setStatus(Status.ZERO.getValue());
+		newUser.setUserName(userName);
+		newUser.setRealName(userName);
 		try {
 			userDAO.insertSelective(newUser);
 		} catch (DataAccessException e) {
