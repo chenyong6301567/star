@@ -35,6 +35,10 @@ public class UserBaseInfoVO implements Serializable {
 
 	private String indirectRecommendationAccount;
 
+	private Integer derectRecomandPersonId;
+
+	private Integer inderectRecomandPersonId;
+
 	private byte certificateType;
 
 	private String certificateNumber;
@@ -50,6 +54,22 @@ public class UserBaseInfoVO implements Serializable {
 	private List<DerectCustomerReferInfoMationVO> derectCustomerReferInfoMationVOList;
 
 	private List<InDerectCustomerReferInfoMationVO> inDerectCustomerReferInfoMationVOList;
+
+	public Integer getDerectRecomandPersonId() {
+		return derectRecomandPersonId;
+	}
+
+	public void setDerectRecomandPersonId(Integer derectRecomandPersonId) {
+		this.derectRecomandPersonId = derectRecomandPersonId;
+	}
+
+	public Integer getInderectRecomandPersonId() {
+		return inderectRecomandPersonId;
+	}
+
+	public void setInderectRecomandPersonId(Integer inderectRecomandPersonId) {
+		this.inderectRecomandPersonId = inderectRecomandPersonId;
+	}
 
 	public Integer getId() {
 		return id;

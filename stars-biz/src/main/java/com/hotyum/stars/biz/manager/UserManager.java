@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.hotyum.stars.biz.model.CustomerRecommandVO;
 import com.hotyum.stars.biz.model.TokenInfoVO;
+import com.hotyum.stars.biz.model.UserBaseInfoVO;
 import com.hotyum.stars.biz.model.UserListVO;
 import com.hotyum.stars.dal.model.User;
 import com.hotyum.stars.utils.Page;
@@ -236,4 +237,17 @@ public interface UserManager {
 	boolean updateUserCheckEmail(String email);
 
 	User getUserByPhone(String phone);
+
+	/**
+	* @Title resetPwd
+	* @author cy
+	* @Description 
+	* @date 2018年1月28日下午7:35:21
+	* @param 
+	* @param 
+	* @param 
+	* @return void
+	* @throws:
+	*/
+	void setUserBaseInfoVO(UserBaseInfoVO userBaseInfoVO);
 }

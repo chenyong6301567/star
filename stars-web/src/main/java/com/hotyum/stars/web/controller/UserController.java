@@ -88,6 +88,7 @@ public class UserController {
 		UserBaseInfoVO userBaseInfoVO = null;
 		try {
 			userBaseInfoVO = ObjectUtils.convert(user, UserBaseInfoVO.class);
+			userManager.setUserBaseInfoVO(userBaseInfoVO);
 			referralInformationManager.getReferInfomation(userBaseInfoVO);
 		} catch (Exception e) {
 			LOGGER.error("getUserBaseInfo对象转换异常", e);
@@ -114,6 +115,7 @@ public class UserController {
 		UserBaseInfoVO userBaseInfoVO = null;
 		try {
 			userBaseInfoVO = ObjectUtils.convert(user, UserBaseInfoVO.class);
+			userManager.setUserBaseInfoVO(userBaseInfoVO);
 			referralInformationManager.getReferInfomation(userBaseInfoVO);
 		} catch (Exception e) {
 			LOGGER.error("getUserBaseInfo对象转换异常", e);

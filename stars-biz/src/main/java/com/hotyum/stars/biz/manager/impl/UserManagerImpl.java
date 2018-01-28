@@ -141,12 +141,50 @@ public class UserManagerImpl implements UserManager {
 		UserBaseInfoVO userBaseInfoVO = null;
 		try {
 			userBaseInfoVO = ObjectUtils.convert(user, UserBaseInfoVO.class);
+			setDerectId(userBaseInfoVO);
+			setInderectId(userBaseInfoVO);
 			referralInformationManager.getReferInfomation(userBaseInfoVO);
 		} catch (Exception e) {
 			LOGGER.error("getUserBaseInfo对象转换异常", e);
 			throw new RuntimeException("getUserBaseInfo对象转换异常", e);
 		}
 		return new TokenInfoVO(token, sysUserRolesList, userBaseInfoVO);
+	}
+
+	/**
+	* @Title setInderectId
+	* @author cy
+	* @Description 
+	* @date 2018年1月28日下午7:33:22
+	* @param 
+	* @param 
+	* @param 
+	* @return void
+	* @throws:
+	*/
+	private void setInderectId(UserBaseInfoVO userBaseInfoVO) {
+		if (StringUtils.isNoneEmpty(userBaseInfoVO.getIndirectRecommendationAccount())) {
+			User user = getByAccount(userBaseInfoVO.getIndirectRecommendationAccount());
+			userBaseInfoVO.setInderectRecomandPersonId(user.getId());
+		}
+	}
+
+	/**
+	* @Title setDerectId
+	* @author cy
+	* @Description 
+	* @date 2018年1月28日下午7:30:32
+	* @param 
+	* @param 
+	* @param 
+	* @return void
+	* @throws:
+	*/
+	private void setDerectId(UserBaseInfoVO userBaseInfoVO) {
+		if (StringUtils.isNoneEmpty(userBaseInfoVO.getDirectRecommendationAccount())) {
+			User user = getByAccount(userBaseInfoVO.getDirectRecommendationAccount());
+			userBaseInfoVO.setDerectRecomandPersonId(user.getId());
+		}
 	}
 
 	/**
@@ -827,6 +865,23 @@ public class UserManagerImpl implements UserManager {
 			LOGGER.error("getAllUser失败====", e);
 			throw new RuntimeException("内部服务器错误");
 		}
+	}
+
+	/**
+	* @Title:resetPwd
+	* @author:cy
+	* @Description 
+	* @date:2018年1月28日下午7:35:29
+	* @param 
+	* @param 
+	* @param 
+	* @return 
+	* @throws:
+	*/
+	@Override
+	public void setUserBaseInfoVO(UserBaseInfoVO userBaseInfoVO) {
+		setDerectId(userBaseInfoVO);
+		setInderectId(userBaseInfoVO);
 	}
 
 }
