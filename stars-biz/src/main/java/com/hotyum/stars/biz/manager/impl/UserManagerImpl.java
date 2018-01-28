@@ -4,6 +4,10 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -95,6 +99,8 @@ public class UserManagerImpl implements UserManager {
 	private static final String IDCARD = "(\\d{4})\\d{10}(\\w{4})";
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserManagerImpl.class);
+
+	private ReentrantLock lock = new ReentrantLock();
 
 	/**
 	* @Title:login
@@ -669,11 +675,14 @@ public class UserManagerImpl implements UserManager {
 	* @throws:
 	*/
 	@Override
-	public User getByAccount(String derectRecomandPerson) {
+	public User getByAccount(String account) {
+		if (StringUtils.isEmpty(account)) {
+			return null;
+		}
 		UserExample userExample = new UserExample();
 		UserExample.Criteria criteria = userExample.createCriteria();
 		criteria.andStatusGreaterThanOrEqualTo(Status.ZERO.getValue());
-		criteria.andAccountEqualTo(derectRecomandPerson);
+		criteria.andAccountEqualTo(account);
 		try {
 			List<User> userList = userDAO.selectByExample(userExample);
 			return CollectionUtils.isEmpty(userList) ? null : userList.get(0);
@@ -882,6 +891,149 @@ public class UserManagerImpl implements UserManager {
 	public void setUserBaseInfoVO(UserBaseInfoVO userBaseInfoVO) {
 		setDerectId(userBaseInfoVO);
 		setInderectId(userBaseInfoVO);
+	}
+
+	/**
+	* @Title:getCustomerRecommandVOListByAccount
+	* @author:cy
+	* @Description 
+	* @date:2018年1月28日下午8:05:50
+	* @param 
+	* @param 
+	* @param 
+	* @return 
+	* @throws:
+	*/
+	@Override
+	public CustomerRecommandVO getCustomerRecommandVOListByAccount(String account) {
+		CustomerRecommandVO vo = null;
+		try {
+			User user = getByAccount(account);
+			vo = converPOToVO(user);
+			// 直接
+			/*List<CustomerRecommandVO> deList = new ArrayList<>();
+			CustomerRecommandVO deVo = getCustomerRecommandVO(user, vo);
+			deList.add(deVo);
+			vo.setDerectchildren(deList);*/
+			// 间接
+			List<CustomerRecommandVO> indeList = new ArrayList<>();
+			CustomerRecommandVO indeVo = getCustomerRecommandVO(user, vo);
+			indeList.add(indeVo);
+			vo.setInDerectchildren(indeList);
+		} catch (Exception e) {
+			LOGGER.error("获取推荐人,错误：" + e.getMessage());
+			throw new RuntimeException("获取推荐人失败");
+		}
+		return vo;
+	}
+
+	private CustomerRecommandVO getCustomerRecommandVO(User user, CustomerRecommandVO vo) {
+		if (null == user) {
+			return null;
+		}
+		if (vo.getDerectchildren() == null) {
+			vo.setDerectchildren(new ArrayList<CustomerRecommandVO>());
+		}
+		if (vo.getInDerectchildren() == null) {
+			vo.setInDerectchildren(new ArrayList<CustomerRecommandVO>());
+		}
+		/*User deUser = getByAccount(user.getDirectRecommendationAccount());
+		CustomerRecommandVO derectVo = converPOToVO(deUser);
+		if (deUser != null) {
+			// vo.setDerectchildren(getCustomerRecommandVO(deUser, derectVo));
+			// 直接
+			CustomerRecommandVO deVo = getCustomerRecommandVO(deUser, derectVo);
+			vo.getDerectchildren().add(deVo);
+
+		}*/
+		User inUser = getByAccount(user.getIndirectRecommendationAccount());
+		CustomerRecommandVO InDerectVo = converPOToVO(inUser);
+		if (inUser != null) {
+			// vo.setInDerectchildren(getCustomerRecommandVO(inUser,
+			// InDerectVo));
+			// 间接
+			//CustomerRecommandVO indeVo = getCustomerRecommandVO(inUser, InDerectVo);
+			vo.getInDerectchildren().add(getCustomerRecommandVO(inUser, InDerectVo));
+		}
+
+		return vo;
+
+	}
+
+	/**
+	* @Title getCustomerRecccommandByAccount
+	* @author cy
+	* @Description 
+	* @date 2018年1月28日下午8:08:25
+	* @param 
+	* @param 
+	* @param 
+	* @return CustomerRecommandVO
+	* @throws:
+	*/
+	private CustomerRecommandVO getCustomerRecccommandByAccount(String account) {
+		UserExample userExample = new UserExample();
+		UserExample.Criteria criteria = userExample.createCriteria();
+		criteria.andStatusGreaterThanOrEqualTo(Status.ZERO.getValue());
+		criteria.andAccountEqualTo(account);
+		try {
+			List<User> userList = userDAO.selectByExample(userExample);
+			if (!CollectionUtils.isEmpty(userList)) {
+				CustomerRecommandVO vo = converPOToVO(userList.get(0));
+				return vo;
+			}
+
+		} catch (DataAccessException e) {
+			LOGGER.error("getRegisterNoticeByUserId失败====", e);
+			throw new RuntimeException("内部服务器错误");
+		}
+		return null;
+	}
+
+	/**
+	* @Title converPOToVO
+	* @author cy
+	* @Description 
+	* @date 2018年1月28日下午8:12:05
+	* @param 
+	* @param 
+	* @param 
+	* @return CustomerRecommandVO
+	* @throws:
+	*/
+	private CustomerRecommandVO converPOToVO(User user) {
+		if (null == user) {
+			return null;
+		}
+		try {
+			CustomerRecommandVO customerRecommandVO = ObjectUtils.convert(user, CustomerRecommandVO.class);
+			customerRecommandVO.setAccount(user.getAccount().replaceAll(PHONEREX, HIDESTR));
+			if (StringUtils.isNoneEmpty(user.getContactPhone())) {
+				customerRecommandVO.setContactPhone(user.getContactPhone().replaceAll(PHONEREX, HIDESTR));
+			}
+			customerRecommandVO.setGmtCreate(DateUtil.date2Str(user.getGmtCreate(), DateUtil.FORMAT_DATE));
+			if (user.getSex().equals(SexType.MALE.getValue())) {
+				customerRecommandVO.setSexName(SexType.MALE.getDescription());
+			} else {
+				customerRecommandVO.setSexName(SexType.FEMALE.getDescription());
+			}
+			customerRecommandVO.setWhetherRealName(BooleanType.getDes(user.getWhetherRealName()));
+			customerRecommandVO.setWheatherGetMoney(BooleanType.getDes(user.getWheatherGetMoney()));
+			customerRecommandVO.setRefereeQualification(BooleanType.getDes(user.getRefereeQualification()));
+			customerRecommandVO.setSumMoney(user.getSumMoney().doubleValue());
+			if (StringUtils.isNotEmpty(user.getDirectRecommendationAccount())) {
+				customerRecommandVO.setDirectRecommendationAccount(
+						user.getDirectRecommendationAccount().replaceAll(ACCOUNTREX, ACCOUNTHIDESTR));
+			}
+			if (StringUtils.isNotEmpty(user.getIndirectRecommendationAccount())) {
+				customerRecommandVO.setIndirectRecommendationAccount(
+						user.getIndirectRecommendationAccount().replaceAll(ACCOUNTREX, ACCOUNTHIDESTR));
+			}
+			return customerRecommandVO;
+		} catch (Exception e) {
+			LOGGER.error("CovertPage失败====", e);
+			throw new RuntimeException("内部服务器错误");
+		}
 	}
 
 }

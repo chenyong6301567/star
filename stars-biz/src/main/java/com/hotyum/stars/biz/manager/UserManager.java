@@ -3,6 +3,7 @@ package com.hotyum.stars.biz.manager;
 import java.util.Date;
 import java.util.List;
 
+import com.hotyum.stars.biz.model.CusVO;
 import com.hotyum.stars.biz.model.CustomerRecommandVO;
 import com.hotyum.stars.biz.model.TokenInfoVO;
 import com.hotyum.stars.biz.model.UserBaseInfoVO;
@@ -250,4 +251,17 @@ public interface UserManager {
 	* @throws:
 	*/
 	void setUserBaseInfoVO(UserBaseInfoVO userBaseInfoVO);
+
+	/**
+	* @Title getCustomerRecommandVOListByAccount
+	* @author cy
+	* @Description 
+	* @date 2018年1月28日下午8:06:52
+	* @param 
+	* @param 
+	* @param 
+	* @return List<CustomerRecommandVO>
+	* @throws:
+	*/
+	CustomerRecommandVO getCustomerRecommandVOListByAccount(String account);
 }

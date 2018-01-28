@@ -300,14 +300,16 @@ public class ContractIncomeDistributionManagerImpl implements ContractIncomeDist
 			cib = ObjectUtils.convert(vo, ContractIncomeDistribution.class);
 			cib.setInvestmentAmount(new BigDecimal(vo.getInvestmentAmount()));
 			cib.setContractIncome(new BigDecimal(vo.getContractIncome()));
-			cib.setFirstTradeDate(DateUtil.parseDate(vo.getFirstTradeDate()));
+			if (null != vo.getFirstTradeDate()) {
+				cib.setFirstTradeDate(DateUtil.parseDate(vo.getFirstTradeDate()));
+			}
 			cib.setDerectIncome(new BigDecimal(vo.getDerectIncome()));
 			cib.setInderectIncome(new BigDecimal(vo.getInderectIncome()));
 			cib.setAgentIncome(new BigDecimal(vo.getAgentIncome()));
 			cib.setCustomerIncome(new BigDecimal(vo.getCustomerIncome()));
 			cib.setCompanyIncome(new BigDecimal(vo.getCompanyIncome()));
 			try {
-				contractIncomeDistributionDAO.updateByPrimaryKey(cib);
+				contractIncomeDistributionDAO.updateByPrimaryKeySelective(cib);
 			} catch (DataAccessException e) {
 				LOGGER.error("updateContractDitrubuteIncome失败====", e);
 				throw new RuntimeException("内部服务器错误");

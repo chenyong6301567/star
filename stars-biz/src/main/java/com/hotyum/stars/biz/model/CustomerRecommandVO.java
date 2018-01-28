@@ -1,7 +1,7 @@
 package com.hotyum.stars.biz.model;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.util.List;
 
 /**
  * @author cy
@@ -38,6 +38,11 @@ public class CustomerRecommandVO implements Serializable {
 	private String indirectRecommendationAccount;
 
 	private double sumMoney;
+
+	// 直接推荐
+	private List<CustomerRecommandVO> Derectchildren;
+	// 间接推荐
+	private List<CustomerRecommandVO> InDerectchildren;
 
 	public Integer getId() {
 		return id;
@@ -149,6 +154,22 @@ public class CustomerRecommandVO implements Serializable {
 
 	public void setSumMoney(double sumMoney) {
 		this.sumMoney = sumMoney;
+	}
+
+	public List<CustomerRecommandVO> getDerectchildren() {
+		return Derectchildren;
+	}
+
+	public void setDerectchildren(List<CustomerRecommandVO> derectchildren) {
+		Derectchildren = derectchildren;
+	}
+
+	public List<CustomerRecommandVO> getInDerectchildren() {
+		return InDerectchildren;
+	}
+
+	public void setInDerectchildren(List<CustomerRecommandVO> inDerectchildren) {
+		InDerectchildren = inDerectchildren;
 	}
 
 }
