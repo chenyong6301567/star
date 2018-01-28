@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
@@ -911,12 +912,13 @@ public class UserManagerImpl implements UserManager {
 			User user = getByAccount(account);
 			vo = converPOToVO(user);
 			// 直接
-			/*List<CustomerRecommandVO> deList = new ArrayList<>();
-			CustomerRecommandVO deVo = getCustomerRecommandVO(user, vo);
-			deList.add(deVo);
-			vo.setDerectchildren(deList);*/
+			/*
+			 * List<CustomerRecommandVO> deList = new ArrayList<>();
+			 * CustomerRecommandVO deVo = getCustomerRecommandVO(user, vo);
+			 * deList.add(deVo); vo.setDerectchildren(deList);
+			 */
 			// 间接
-			List<CustomerRecommandVO> indeList = new ArrayList<>();
+			CopyOnWriteArrayList<CustomerRecommandVO> indeList = new CopyOnWriteArrayList<>();
 			CustomerRecommandVO indeVo = getCustomerRecommandVO(user, vo);
 			indeList.add(indeVo);
 			vo.setInDerectchildren(indeList);
@@ -928,36 +930,39 @@ public class UserManagerImpl implements UserManager {
 	}
 
 	private CustomerRecommandVO getCustomerRecommandVO(User user, CustomerRecommandVO vo) {
+
 		if (null == user) {
 			return null;
 		}
-		if (vo.getDerectchildren() == null) {
-			vo.setDerectchildren(new ArrayList<CustomerRecommandVO>());
-		}
-		if (vo.getInDerectchildren() == null) {
-			vo.setInDerectchildren(new ArrayList<CustomerRecommandVO>());
-		}
-		/*User deUser = getByAccount(user.getDirectRecommendationAccount());
-		CustomerRecommandVO derectVo = converPOToVO(deUser);
-		if (deUser != null) {
-			// vo.setDerectchildren(getCustomerRecommandVO(deUser, derectVo));
-			// 直接
-			CustomerRecommandVO deVo = getCustomerRecommandVO(deUser, derectVo);
-			vo.getDerectchildren().add(deVo);
-
+		/*if (vo.getDerectchildren() == null) {
+			vo.setDerectchildren(new CopyOnWriteArrayList<CustomerRecommandVO>());
 		}*/
-		User inUser = getByAccount(user.getIndirectRecommendationAccount());
-		CustomerRecommandVO InDerectVo = converPOToVO(inUser);
-		if (inUser != null) {
-			// vo.setInDerectchildren(getCustomerRecommandVO(inUser,
-			// InDerectVo));
-			// 间接
-			//CustomerRecommandVO indeVo = getCustomerRecommandVO(inUser, InDerectVo);
-			vo.getInDerectchildren().add(getCustomerRecommandVO(inUser, InDerectVo));
+		if (vo.getInDerectchildren() == null) {
+			vo.setInDerectchildren(new CopyOnWriteArrayList<CustomerRecommandVO>());
 		}
-
+		/*
+		 * User deUser = getByAccount(user.getDirectRecommendationAccount());
+		 * CustomerRecommandVO derectVo = converPOToVO(deUser); if (deUser !=
+		 * null) { // vo.setDerectchildren(getCustomerRecommandVO(deUser,
+		 * derectVo)); // 直接 CustomerRecommandVO deVo =
+		 * getCustomerRecommandVO(deUser, derectVo);
+		 * vo.getDerectchildren().add(deVo);
+		 * 
+		 * }
+		 */
+		synchronized (this) {
+			User inUser = getByAccount(user.getIndirectRecommendationAccount());
+			CustomerRecommandVO InDerectVo = converPOToVO(inUser);
+			if (inUser != null) {
+				// vo.setInDerectchildren(getCustomerRecommandVO(inUser,
+				// InDerectVo));
+				// 间接
+				// CustomerRecommandVO indeVo = getCustomerRecommandVO(inUser,
+				// InDerectVo);
+				vo.getInDerectchildren().add(getCustomerRecommandVO(inUser, InDerectVo));
+			}
+		}
 		return vo;
-
 	}
 
 	/**

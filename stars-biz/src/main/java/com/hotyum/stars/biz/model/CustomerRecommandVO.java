@@ -2,6 +2,7 @@ package com.hotyum.stars.biz.model;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * @author cy
@@ -40,9 +41,9 @@ public class CustomerRecommandVO implements Serializable {
 	private double sumMoney;
 
 	// 直接推荐
-	private List<CustomerRecommandVO> Derectchildren;
+	private CopyOnWriteArrayList<CustomerRecommandVO> Derectchildren;
 	// 间接推荐
-	private List<CustomerRecommandVO> InDerectchildren;
+	private CopyOnWriteArrayList<CustomerRecommandVO> InDerectchildren;
 
 	public Integer getId() {
 		return id;
@@ -160,16 +161,16 @@ public class CustomerRecommandVO implements Serializable {
 		return Derectchildren;
 	}
 
-	public void setDerectchildren(List<CustomerRecommandVO> derectchildren) {
-		Derectchildren = derectchildren;
-	}
-
-	public List<CustomerRecommandVO> getInDerectchildren() {
+	public CopyOnWriteArrayList<CustomerRecommandVO> getInDerectchildren() {
 		return InDerectchildren;
 	}
 
-	public void setInDerectchildren(List<CustomerRecommandVO> inDerectchildren) {
+	public void setInDerectchildren(CopyOnWriteArrayList<CustomerRecommandVO> inDerectchildren) {
 		InDerectchildren = inDerectchildren;
+	}
+
+	public void setDerectchildren(CopyOnWriteArrayList<CustomerRecommandVO> derectchildren) {
+		Derectchildren = derectchildren;
 	}
 
 }

@@ -308,21 +308,18 @@ public class UserController {
 	 * @date 2018/1/1 20:29
 	 * @return Result
 	 * @throws  
-	 *//*
-		 * @RequestMapping(value = "user/getCustomerRecommandVOList") public
-		 * Result getCustomerRecommandVOList(String account, String realName,
-		 * Byte whetherGetMoney, Byte refereeQualification, String
-		 * indirectRecommendationAccount, String directRecommendationAccount,
-		 * Date gmtCreateBegin, Date gmtCreateEnd, @RequestParam(defaultValue =
-		 * Constants.PAGENUM) int pageNum,
-		 * 
-		 * @RequestParam(defaultValue = Constants.PAGESIZE) int pageSize) {
-		 * Page<CustomerRecommandVO> page =
-		 * userManager.getCustomerRecommandVOList(account, realName,
-		 * whetherGetMoney, refereeQualification, indirectRecommendationAccount,
-		 * directRecommendationAccount, gmtCreateBegin, gmtCreateEnd, pageNum,
-		 * pageSize); return Result.normalResponse(page); }
-		 */
+	 */
+	@RequestMapping(value = "user/getCustomerRecommandVOList")
+	public Result getCustomerRecommandVOList(String account, String realName, Byte whetherGetMoney,
+			Byte refereeQualification, String indirectRecommendationAccount, String directRecommendationAccount,
+			Date gmtCreateBegin, Date gmtCreateEnd, @RequestParam(defaultValue = Constants.PAGENUM) int pageNum,
+
+			@RequestParam(defaultValue = Constants.PAGESIZE) int pageSize) {
+		Page<CustomerRecommandVO> page = userManager.getCustomerRecommandVOList(account, realName, whetherGetMoney,
+				refereeQualification, indirectRecommendationAccount, directRecommendationAccount, gmtCreateBegin,
+				gmtCreateEnd, pageNum, pageSize);
+		return Result.normalResponse(page);
+	}
 
 	/**客户推荐表级联查询
 	 * 
@@ -334,13 +331,13 @@ public class UserController {
 	 * @date 2018/1/1 20:29
 	 * @return Result
 	 * @throws  
-	 */
-	@RequestMapping(value = "user/getCustomerRecommandVOList")
-	public Result getCustomerRecommandVOList(@RequestParam(required = true) String account) {
-		CustomerRecommandVO vo = userManager.getCustomerRecommandVOListByAccount(account);
-		return Result.normalResponse(vo);
-	}
-
+	 *//*
+		 * @RequestMapping(value = "user/getCustomerRecommandVOList") public
+		 * Result getCustomerRecommandVOList(@RequestParam(required = true)
+		 * String account) { CustomerRecommandVO vo =
+		 * userManager.getCustomerRecommandVOListByAccount(account); return
+		 * Result.normalResponse(vo); }
+		 */
 	/**客户推荐表导出excel
 	 * 
 	 * @param account                       注册账号|string
