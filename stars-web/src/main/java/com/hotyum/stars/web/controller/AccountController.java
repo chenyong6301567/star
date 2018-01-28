@@ -20,6 +20,7 @@ import com.hotyum.stars.external.service.SmsService;
 import com.hotyum.stars.utils.Assert;
 import com.hotyum.stars.utils.Constants;
 import com.hotyum.stars.utils.RandomUtil;
+import com.hotyum.stars.utils.enums.LoginType;
 import com.hotyum.stars.utils.enums.SmsType;
 import com.hotyum.stars.web.model.Result;
 import com.hotyum.stars.web.util.TokenAccessUtils;
@@ -67,8 +68,8 @@ public class AccountController {
 	@RequestMapping(value = "account/login")
 	public Result authLogin(@RequestParam(required = true) String phone, String password, String verifyCode,
 			@RequestParam(required = true) Integer loginType) {
-		//Assert.checkPhone(phone, "请输入有效的手机号码");
-		//要支持非手机账号登录
+		// Assert.checkPhone(phone, "请输入有效的手机号码");
+		// 要支持非手机账号登录
 		if (!ArrayUtils.contains(LOGINTYPE, loginType)) {
 			return Result.errorReponse("登录类型不正确");
 		}
@@ -124,7 +125,8 @@ public class AccountController {
 			Assert.checkPhone(refereePhone, "请输入有效的推荐人手机号码");
 		}
 		userManager.register(phone, userName, verifyCode, agentCode, loginPwd, refereePhone);
-		return Result.normalResponse();
+		TokenInfoVO tokenInfoVO = userManager.login(phone, null, verifyCode, LoginType.REGISTERANDLOGIN.getValue());
+		return Result.normalResponse(tokenInfoVO);
 
 	}
 

@@ -134,7 +134,6 @@ public class UserManagerImpl implements UserManager {
 				throw new ApplicationException("您好，请重新輸入正确的登录密码");
 			}
 		}
-
 		// 生成uuId作为token返回
 		String token = tokenAccessManager.insertLoginToken(user);
 		List<SysUserRole> sysUserRolesList = sysUserRoleManager.getRoleByUserId(user.getId());
@@ -746,7 +745,7 @@ public class UserManagerImpl implements UserManager {
 				if (StringUtils.isNoneEmpty(user.getContactPhone())) {
 					customerRecommandVO.setContactPhone(user.getContactPhone().replaceAll(PHONEREX, HIDESTR));
 				}
-				customerRecommandVO.setGmtCreate(DateUtil.date2Str(user.getGmtCreate(),DateUtil.FORMAT_DATE));
+				customerRecommandVO.setGmtCreate(DateUtil.date2Str(user.getGmtCreate(), DateUtil.FORMAT_DATE));
 				if (user.getSex().equals(SexType.MALE.getValue())) {
 					customerRecommandVO.setSexName(SexType.MALE.getDescription());
 				} else {

@@ -10,7 +10,8 @@ import java.util.Map;
 
 public enum LoginType {
 	VERIFYCODELOGIN("手机验证码登录", 1), 
-	PASSWORDLOGIN("密码登录",  2);
+	PASSWORDLOGIN("密码登录",  2),
+	REGISTERANDLOGIN("注册成功直接登录",3);
 
 	private String description;
 	private Integer value;
