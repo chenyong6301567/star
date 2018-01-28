@@ -16,41 +16,41 @@ public class CustomerMoneyVO implements Serializable {
 
 	private Integer id;
 
-	private String documentCode;
+	private String documentCode="";
 
-	private String tradePlatform;
+	private String tradePlatform="";
 
-	private String tradeAccount;
+	private String tradeAccount="";
 
-	private Byte wheatherGetMoney;
+	private Byte wheatherGetMoney=0;
 
-	private String wheatherGetMoneyName;
+	private String wheatherGetMoneyName="";
 
-	private Byte certificateType;
+	private Byte certificateType=0;
 
-	private String certificateTypeName;
+	private String certificateTypeName="";
 
-	private String certificateNumber;
+	private String certificateNumber="";
 
-	private String contactPhone;
+	private String contactPhone="";
 
-	private String contractDate;
+	private String contractDate="";
 
-	private String productType;
+	private String productType="";
 
-	private String productTypeName;
+	private String productTypeName="";
 
-	private String productRate;
+	private String productRate="";
 
-	private Integer buyNum;
+	private Integer buyNum=0;
 
-	private double investmentAmount;
+	private double investmentAmount=0.0;
 
 	private double estimatedEarnings;
 
-	private String registerEmail;
+	private String registerEmail="";
 
-	private String getMoneyDate;
+	private String getMoneyDate="";
 
 	public String getGetMoneyDate() {
 		return getMoneyDate;

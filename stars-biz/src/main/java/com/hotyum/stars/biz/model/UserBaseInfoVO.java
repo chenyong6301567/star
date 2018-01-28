@@ -13,15 +13,15 @@ public class UserBaseInfoVO implements Serializable {
 
 	private Integer id;
 
-	private String account;
+	private String account="";
 
-	private String realName;
+	private String realName="";
 
 	private Byte sex;
 
-	private String contactPhone;
+	private String contactPhone="";
 
-	private String email;
+	private String email="";
 
 	private Byte whetherRealName;
 
@@ -29,11 +29,11 @@ public class UserBaseInfoVO implements Serializable {
 
 	private Byte refereeQualification;
 
-	private String agentCode;
+	private String agentCode="";
 
-	private String directRecommendationAccount;
+	private String directRecommendationAccount="";
 
-	private String indirectRecommendationAccount;
+	private String indirectRecommendationAccount="";
 
 	private Integer derectRecomandPersonId;
 
@@ -41,13 +41,13 @@ public class UserBaseInfoVO implements Serializable {
 
 	private byte certificateType;
 
-	private String certificateNumber;
+	private String certificateNumber="";
 
-	private String certificateFront;
+	private String certificateFront="";
 
-	private String certificateBack;
+	private String certificateBack="";
 
-	private String addressPic;
+	private String addressPic="";
 
 	private MyReferinfoMationVO myReferinfoMationVO;
 

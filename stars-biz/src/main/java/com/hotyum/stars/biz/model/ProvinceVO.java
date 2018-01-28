@@ -11,9 +11,9 @@ public class ProvinceVO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private String label;
+	private String label="";
 
-	private Integer value;
+	private Integer value=0;
 
 	public String getLabel() {
 		return label;

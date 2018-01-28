@@ -13,29 +13,29 @@ public class AgentVO implements Serializable {
 
 	private Integer id;
 
-	private String agentCode;
+	private String agentCode="";
 
-	private String agentName;
+	private String agentName="";
 
-	private String unifiedSocialCreditCode;
+	private String unifiedSocialCreditCode="";
 
-	private String legalRepresentative;
+	private String legalRepresentative="";
 
 	private Integer provinceId;
 
-	private String provinceName;
+	private String provinceName="";
 
-	private String contactPhone;
+	private String contactPhone="";
 
-	private String businessAddress;
+	private String businessAddress="";
 
-	private String businessStartTime;
+	private String businessStartTime="";
 
-	private String businessEndTime;
+	private String businessEndTime="";
 
-	private String contractStartTime;
+	private String contractStartTime="";
 
-	private String contractEndTime;
+	private String contractEndTime="";
 
 	public Integer getId() {
 		return id;

@@ -13,17 +13,17 @@ public class CheckRealNameInfoVO implements Serializable {
 
 	private Integer id;
 
-	private String account;
+	private String account="";
 
 	private byte certificateType;
 
-	private String certificateNumber;
+	private String certificateNumber="";
 
-	private String certificateFront;
+	private String certificateFront="";
 
-	private String certificateBack;
+	private String certificateBack="";
 
-	private String addressPic;
+	private String addressPic="";
 
 	public Integer getId() {
 		return id;

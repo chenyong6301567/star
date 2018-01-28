@@ -14,31 +14,31 @@ public class CustomerRecommandVO implements Serializable {
 
 	private Integer id;
 
-	private String account;
+	private String account="";
 
-	private String realName;
+	private String realName="";
 
-	private String contactPhone;
+	private String contactPhone="";
 
-	private String sexName;
+	private String sexName="";
 
-	private String gmtCreate;
+	private String gmtCreate="";
 
-	private String email;
+	private String email="";
 
-	private String whetherRealName;
+	private String whetherRealName="";
 
-	private String wheatherGetMoney;
+	private String wheatherGetMoney="";
 
-	private String refereeQualification;
+	private String refereeQualification="";
 
-	private String agentName;
+	private String agentName="";
 
-	private String directRecommendationAccount;
+	private String directRecommendationAccount="";
 
-	private String indirectRecommendationAccount;
+	private String indirectRecommendationAccount="";
 
-	private double sumMoney;
+	private double sumMoney=0.0;
 
 	// 直接推荐
 	private CopyOnWriteArrayList<CustomerRecommandVO> Derectchildren;

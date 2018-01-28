@@ -12,9 +12,9 @@ public class UserAgentVO implements Serializable {
 
 	private Integer id;
 
-	private String agentCode;
+	private String agentCode="";
 
-	private String agentName;
+	private String agentName="";
 
 	public Integer getId() {
 		return id;

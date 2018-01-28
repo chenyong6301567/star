@@ -11,13 +11,13 @@ public class MyReferinfoMationVO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private String starDegree;
+	private String starDegree="";
 
-	private double sumMoney;
+	private double sumMoney=0;
 
-	private String directRewardRate;
+	private String directRewardRate="";
 
-	private String indirectRewardRate;
+	private String indirectRewardRate="";
 
 	public String getStarDegree() {
 		return starDegree;

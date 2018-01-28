@@ -17,9 +17,9 @@ public class SysNoticeVO implements Serializable {
 
 	private Byte sysType;
 
-	private String noticeContent;
+	private String noticeContent="";
 
-	private String gmtCreate;
+	private String gmtCreate="";
 
 	public Integer getId() {
 		return id;

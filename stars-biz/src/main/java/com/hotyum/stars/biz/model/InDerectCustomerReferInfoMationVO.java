@@ -13,9 +13,9 @@ public class InDerectCustomerReferInfoMationVO implements Serializable {
 
 	private Integer id;
 
-	private String indirectRecommendationName;
+	private String indirectRecommendationName="";
 
-	private Integer contractNum;
+	private Integer contractNum=0;
 
 	public Integer getId() {
 		return id;

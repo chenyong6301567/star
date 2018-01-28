@@ -12,9 +12,9 @@ public class NoticeVO implements Serializable {
 
 	private Integer id;
 
-	private String noticeContent;
+	private String noticeContent="";
 
-	private String gmtCreate;
+	private String gmtCreate="";
 
 	public Integer getId() {
 		return id;

@@ -13,15 +13,15 @@ public class ProductVO implements Serializable {
 
 	private Integer id;
 
-	private String productTypeName;
+	private String productTypeName="";
 
-	private Integer sequenceNumber;
+	private Integer sequenceNumber=0;
 
-	private Byte serviceTime;
+	private Byte serviceTime=0;
 
-	private String monthRate;
+	private String monthRate="";
 
-	private Byte enableFlag;
+	private Byte enableFlag=0;
 
 	public Integer getId() {
 		return id;
