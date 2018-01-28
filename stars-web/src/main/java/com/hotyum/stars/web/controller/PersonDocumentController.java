@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.alibaba.fastjson.JSON;
 import com.hotyum.stars.biz.manager.ContractIncomeDistributionManager;
 import com.hotyum.stars.biz.manager.PersonDocumentManager;
 import com.hotyum.stars.biz.model.ContractDitrubuteIncomeVO;
@@ -172,7 +173,6 @@ public class PersonDocumentController {
 
 	}
 
-
 	/**
 	 *
 	 * 合同收益分配表(客户收益，代理收益)导出excel
@@ -261,7 +261,7 @@ public class PersonDocumentController {
 	}
 
 	/**
-	 * @throws Exception 
+	 * 
 	 * 管理员更新合同收益分配表
 	 * 
 	 * @param contractDitrubuteIncomeVOList    分配表信息list集合包含表格里所有字段信息|string|
@@ -277,6 +277,7 @@ public class PersonDocumentController {
 	public Result updateContractDitrubuteIncome(
 			@ListParam(paramName = "contractDitrubuteIncomeVOList", type = ContractDitrubuteIncomeVO.class) List<ContractDitrubuteIncomeVO> contractDitrubuteIncomeVOList)
 			throws Exception {
+		LOGGGER.info("管理员更新合同收益分配表=========" + JSON.toJSONString(contractDitrubuteIncomeVOList));
 		contractIncomeDistributionManager.updateContractDitrubuteIncome(contractDitrubuteIncomeVOList);
 		return Result.normalResponse();
 

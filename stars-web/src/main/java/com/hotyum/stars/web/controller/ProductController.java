@@ -5,11 +5,14 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.alibaba.fastjson.JSON;
 import com.hotyum.stars.biz.manager.ProductManager;
 import com.hotyum.stars.biz.model.ProductVO;
 import com.hotyum.stars.dal.model.Product;
@@ -31,6 +34,8 @@ public class ProductController {
 
 	@Autowired
 	private ProductManager productManager;
+
+	private static final Logger LOGGGER = LoggerFactory.getLogger(ProductController.class);
 
 	/**
 	 * 产品收益查询
@@ -88,6 +93,8 @@ public class ProductController {
 	@RequestMapping(value = "product/addProduct")
 	public Result addProduct(HttpServletRequest request,
 			@ListParam(paramName = "productList", type = Product.class) List<Product> productList) {
+		LOGGGER.info("产品收益添加======" + productList.size());
+		LOGGGER.info("产品收益添加======" + JSON.toJSONString(productList));
 		productManager.addProduct(productList);
 		return Result.normalResponse();
 
