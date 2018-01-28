@@ -108,6 +108,10 @@ public class ContractIncomeDistributionManagerImpl implements ContractIncomeDist
 		cd.setStatus(Status.ZERO.getValue());
 		cd.setProductRate(productRate);
 
+		// 计算合同收益
+		double customerIncome = investmentAmount * serviceDate * Double.parseDouble(productRate.replace("%", ""))
+				* 0.01;
+		cd.setCustomerIncome(new BigDecimal(customerIncome));
 		try {
 			contractIncomeDistributionDAO.insert(cd);
 		} catch (DataAccessException e) {
