@@ -283,7 +283,7 @@ public class ContractIncomeDistributionManagerImpl implements ContractIncomeDist
 	/**
 	* @Title:updateContractDitrubuteIncome
 	* @author:cy
-	* @Description 
+	* @Description 修改合同收益分配
 	* @date:2018年1月6日下午6:16:06
 	* @param 
 	* @param 
@@ -315,4 +315,40 @@ public class ContractIncomeDistributionManagerImpl implements ContractIncomeDist
 		}
 
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
