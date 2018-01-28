@@ -193,7 +193,7 @@ public class UserController {
 				file_.createNewFile();
 			}
 			file.transferTo(file_);
-			LOGGER.info("图片访问路径============================="+SERVERPATH + path);
+			LOGGER.info("图片访问路径=============================" + SERVERPATH + path);
 			userManager.updateUsePic(SERVERPATH + path, picType, account);
 			return Result.normalResponse(path);
 		}
@@ -428,32 +428,38 @@ public class UserController {
 	@RequestMapping(value = "user/getpic")
 	public void getpic(@RequestParam(required = true) String path, HttpServletRequest request,
 			HttpServletResponse response) {
+		BufferedInputStream bufferedInputStream = null;
+		OutputStream outputStream = null;
 		try {
 			response.setHeader("Pragma", "No-cache");
 			response.setHeader("Cache-Control", "no-cache");
 			response.setDateHeader("Expires", 0);
-			BufferedInputStream bis = null;
-			OutputStream os = null;
 			FileInputStream fileInputStream = new FileInputStream(new File(path));
-			bis = new BufferedInputStream(fileInputStream);
-			byte[] buffer = new byte[512];
+			bufferedInputStream = new BufferedInputStream(fileInputStream);
+			byte[] buffer = new byte[1024];
 			response.reset();
 			response.setCharacterEncoding("UTF-8");
 			// 不同类型的文件对应不同的MIME类型
 			response.setContentType("image/png");
-			response.setContentLength(bis.available());
-			os = response.getOutputStream();
+			response.setContentLength(bufferedInputStream.available());
+			outputStream = response.getOutputStream();
 			int n;
-			while ((n = bis.read(buffer)) != -1) {
-				os.write(buffer, 0, n);
+			while ((n = bufferedInputStream.read(buffer)) != -1) {
+				outputStream.write(buffer, 0, n);
 			}
-			bis.close();
-			os.flush();
-			os.close();
+			outputStream.flush();
 		} catch (Exception e) {
 			LOGGER.error("获取图片出错", e);
+			throw new RuntimeException("获取图片出错");
+		} finally {
+			try {
+				bufferedInputStream.close();
+				outputStream.close();
+			} catch (IOException e) {
+				LOGGER.error("获取图片出错", e);
+				throw new RuntimeException("获取图片出错");
+			}
 		}
-
 	}
 
 }
