@@ -6,6 +6,8 @@ import java.util.Date;
 public class Product implements Serializable {
     private Integer id;
 
+    private Integer sequenceNumber;
+
     private String productTypeName;
 
     private Byte serviceTime;
@@ -28,6 +30,14 @@ public class Product implements Serializable {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getSequenceNumber() {
+        return sequenceNumber;
+    }
+
+    public void setSequenceNumber(Integer sequenceNumber) {
+        this.sequenceNumber = sequenceNumber;
     }
 
     public String getProductTypeName() {
@@ -99,6 +109,7 @@ public class Product implements Serializable {
         }
         Product other = (Product) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
+            && (this.getSequenceNumber() == null ? other.getSequenceNumber() == null : this.getSequenceNumber().equals(other.getSequenceNumber()))
             && (this.getProductTypeName() == null ? other.getProductTypeName() == null : this.getProductTypeName().equals(other.getProductTypeName()))
             && (this.getServiceTime() == null ? other.getServiceTime() == null : this.getServiceTime().equals(other.getServiceTime()))
             && (this.getMonthRate() == null ? other.getMonthRate() == null : this.getMonthRate().equals(other.getMonthRate()))
@@ -113,6 +124,7 @@ public class Product implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
+        result = prime * result + ((getSequenceNumber() == null) ? 0 : getSequenceNumber().hashCode());
         result = prime * result + ((getProductTypeName() == null) ? 0 : getProductTypeName().hashCode());
         result = prime * result + ((getServiceTime() == null) ? 0 : getServiceTime().hashCode());
         result = prime * result + ((getMonthRate() == null) ? 0 : getMonthRate().hashCode());

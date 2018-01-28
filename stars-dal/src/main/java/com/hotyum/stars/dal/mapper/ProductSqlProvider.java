@@ -28,6 +28,10 @@ public class ProductSqlProvider {
         SQL sql = new SQL();
         sql.INSERT_INTO("product");
         
+        if (record.getSequenceNumber() != null) {
+            sql.VALUES("sequence_number", "#{sequenceNumber,jdbcType=INTEGER}");
+        }
+        
         if (record.getProductTypeName() != null) {
             sql.VALUES("product_type_name", "#{productTypeName,jdbcType=VARCHAR}");
         }
@@ -66,6 +70,7 @@ public class ProductSqlProvider {
         } else {
             sql.SELECT("id");
         }
+        sql.SELECT("sequence_number");
         sql.SELECT("product_type_name");
         sql.SELECT("service_time");
         sql.SELECT("month_rate");
@@ -92,6 +97,10 @@ public class ProductSqlProvider {
         
         if (record.getId() != null) {
             sql.SET("id = #{record.id,jdbcType=INTEGER}");
+        }
+        
+        if (record.getSequenceNumber() != null) {
+            sql.SET("sequence_number = #{record.sequenceNumber,jdbcType=INTEGER}");
         }
         
         if (record.getProductTypeName() != null) {
@@ -131,6 +140,7 @@ public class ProductSqlProvider {
         sql.UPDATE("product");
         
         sql.SET("id = #{record.id,jdbcType=INTEGER}");
+        sql.SET("sequence_number = #{record.sequenceNumber,jdbcType=INTEGER}");
         sql.SET("product_type_name = #{record.productTypeName,jdbcType=VARCHAR}");
         sql.SET("service_time = #{record.serviceTime,jdbcType=TINYINT}");
         sql.SET("month_rate = #{record.monthRate,jdbcType=VARCHAR}");
@@ -147,6 +157,10 @@ public class ProductSqlProvider {
     public String updateByPrimaryKeySelective(Product record) {
         SQL sql = new SQL();
         sql.UPDATE("product");
+        
+        if (record.getSequenceNumber() != null) {
+            sql.SET("sequence_number = #{sequenceNumber,jdbcType=INTEGER}");
+        }
         
         if (record.getProductTypeName() != null) {
             sql.SET("product_type_name = #{productTypeName,jdbcType=VARCHAR}");

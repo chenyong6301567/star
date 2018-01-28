@@ -165,6 +165,66 @@ public class ProductExample {
             return (Criteria) this;
         }
 
+        public Criteria andSequenceNumberIsNull() {
+            addCriterion("sequence_number is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSequenceNumberIsNotNull() {
+            addCriterion("sequence_number is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSequenceNumberEqualTo(Integer value) {
+            addCriterion("sequence_number =", value, "sequenceNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andSequenceNumberNotEqualTo(Integer value) {
+            addCriterion("sequence_number <>", value, "sequenceNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andSequenceNumberGreaterThan(Integer value) {
+            addCriterion("sequence_number >", value, "sequenceNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andSequenceNumberGreaterThanOrEqualTo(Integer value) {
+            addCriterion("sequence_number >=", value, "sequenceNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andSequenceNumberLessThan(Integer value) {
+            addCriterion("sequence_number <", value, "sequenceNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andSequenceNumberLessThanOrEqualTo(Integer value) {
+            addCriterion("sequence_number <=", value, "sequenceNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andSequenceNumberIn(List<Integer> values) {
+            addCriterion("sequence_number in", values, "sequenceNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andSequenceNumberNotIn(List<Integer> values) {
+            addCriterion("sequence_number not in", values, "sequenceNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andSequenceNumberBetween(Integer value1, Integer value2) {
+            addCriterion("sequence_number between", value1, value2, "sequenceNumber");
+            return (Criteria) this;
+        }
+
+        public Criteria andSequenceNumberNotBetween(Integer value1, Integer value2) {
+            addCriterion("sequence_number not between", value1, value2, "sequenceNumber");
+            return (Criteria) this;
+        }
+
         public Criteria andProductTypeNameIsNull() {
             addCriterion("product_type_name is null");
             return (Criteria) this;
