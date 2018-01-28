@@ -3,7 +3,6 @@ package com.hotyum.stars.biz.manager;
 import java.util.Date;
 import java.util.List;
 
-import com.hotyum.stars.biz.model.CusVO;
 import com.hotyum.stars.biz.model.CustomerRecommandVO;
 import com.hotyum.stars.biz.model.TokenInfoVO;
 import com.hotyum.stars.biz.model.UserBaseInfoVO;
