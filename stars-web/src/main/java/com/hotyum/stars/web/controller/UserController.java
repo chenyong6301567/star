@@ -453,8 +453,12 @@ public class UserController {
 			throw new RuntimeException("获取图片出错");
 		} finally {
 			try {
-				bufferedInputStream.close();
-				outputStream.close();
+				if (null != bufferedInputStream) {
+					bufferedInputStream.close();
+				}
+				if (null != outputStream) {
+					outputStream.close();
+				}
 			} catch (IOException e) {
 				LOGGER.error("获取图片出错", e);
 				throw new RuntimeException("获取图片出错");
