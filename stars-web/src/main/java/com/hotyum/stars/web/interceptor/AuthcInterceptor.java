@@ -57,9 +57,9 @@ public class AuthcInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
-		if (isInWhiteURL(getPath(request)))
+		if (isInWhiteURL(getPath(request))) {
 			return true;
-
+		}
 		String token = TokenAccessUtils.getToken(request, "token");
 		Date now = new Date();
 
@@ -68,7 +68,7 @@ public class AuthcInterceptor implements HandlerInterceptor {
 		if (!StringUtils.isEmpty(token) && !token.startsWith("uuid")) {
 			TokenAccess tokenAccess = tokenAccessManager.getToken(token);
 			if (tokenAccess == null) {
-				throw new ApplicationException("非法令牌，请先登录再操作!");
+				throw new ApplicationException("你的账号在别处登录，请马上修改密码，再登录操作!");
 			}
 			// 令牌超过了其最长使用到的日期
 			if ((null != tokenAccess.getTokenExpired()) && (tokenAccess.getTokenExpired().getTime() < now.getTime())) {
