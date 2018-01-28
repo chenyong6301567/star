@@ -30,7 +30,7 @@ public class UnifyExceptionHandler {
 	@ExceptionHandler(value = MissingServletRequestParameterException.class)
 	public Result MissingServletRequestParameterException(MissingServletRequestParameterException e,
 			WebRequest request) {
-		log.error("缺少必要参数：" + e.getParameterName(), e);
+		log.error("缺少必要参数=========：" + e.getParameterName());
 		return Result.errorReponse("缺少必要参数：" + e.getParameterName());
 	}
 
