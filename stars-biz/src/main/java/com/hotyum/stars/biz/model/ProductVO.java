@@ -15,6 +15,8 @@ public class ProductVO implements Serializable {
 
 	private String productTypeName;
 
+	private Integer sequenceNumber;
+
 	private Byte serviceTime;
 
 	private String monthRate;
@@ -59,6 +61,14 @@ public class ProductVO implements Serializable {
 
 	public void setEnableFlag(Byte enableFlag) {
 		this.enableFlag = enableFlag;
+	}
+
+	public Integer getSequenceNumber() {
+		return sequenceNumber;
+	}
+
+	public void setSequenceNumber(Integer sequenceNumber) {
+		this.sequenceNumber = sequenceNumber;
 	}
 
 }

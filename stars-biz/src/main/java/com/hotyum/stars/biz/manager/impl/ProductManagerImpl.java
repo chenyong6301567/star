@@ -54,7 +54,7 @@ public class ProductManagerImpl implements ProductManager {
 		ProductExample.Criteria criteria = productExample.createCriteria();
 		criteria.andStautsGreaterThanOrEqualTo(Status.ZERO.getValue());
 		com.github.pagehelper.Page<Product> page = PageHelper.startPage(pageNum, pageSize);
-		page.setOrderBy(" gmt_create desc");
+		page.setOrderBy(" sequence_number asc");
 		try {
 			productDAO.selectByExample(productExample);
 		} catch (DataAccessException e) {
@@ -87,6 +87,7 @@ public class ProductManagerImpl implements ProductManager {
 			vo.setProductTypeName(product.getProductTypeName());
 			vo.setServiceTime(product.getServiceTime());
 			vo.setEnableFlag(product.getEnableFlag());
+			vo.setSequenceNumber(product.getSequenceNumber());
 			productVOList.add(vo);
 		}
 		return new Page<ProductVO>(pageSize, pageNum, productVOList.size(), productVOList);

@@ -81,7 +81,7 @@ public class ProductController {
 	/**
 	 * 产品收益添加
 	 * 
-	 * @param productList 产品信息list集合包含(id:产品Id(如果有传，如果新增的，就传空),productType 产品类型，serviceTime 服务期限，monthRate 月益率，enableFlag 是否启用0否，1是)
+	 * @param productList 产品信息list集合包含(id:产品Id(如果有传，如果新增的，就传空),sequenceNumber 序号,productTypeName 产品类型，serviceTime 服务期限，monthRate 月益率，enableFlag 是否启用0否，1是)
 	 * @Title addProduct
 	 * @respbody 
 	 * @author cy
