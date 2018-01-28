@@ -458,6 +458,7 @@ public class UserManagerImpl implements UserManager {
 		User newUser = new User();
 		newUser.setAccount(account);
 		newUser.setUserName(userName);
+		newUser.setRealName(userName);
 		newUser.setAgentName(agentName);
 		newUser.setContactPhone(contactPhone);
 		newUser.setUserType(userType);
