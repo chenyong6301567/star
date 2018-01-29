@@ -115,7 +115,7 @@ public class ProductManagerImpl implements ProductManager {
 				} else {
 					oldProduct.setEnableFlag(product.getEnableFlag());
 					oldProduct.setMonthRate(product.getMonthRate());
-					oldProduct.setProductTypeName(product.getMonthRate());
+					oldProduct.setProductTypeName(product.getProductTypeName());
 					oldProduct.setSequenceNumber(product.getSequenceNumber());
 					oldProduct.setServiceTime(product.getServiceTime());
 					updateProduct(oldProduct);
