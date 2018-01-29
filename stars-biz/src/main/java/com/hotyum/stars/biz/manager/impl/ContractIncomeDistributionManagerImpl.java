@@ -142,7 +142,8 @@ public class ContractIncomeDistributionManagerImpl implements ContractIncomeDist
 			Integer userId) {
 
 		User user = userManager.getUserById(userId);
-		if (user.getUserType().equals(UserType.ADMIN.getValue())) {
+		if (user.getUserType().equals(UserType.ADMIN.getValue())
+				|| user.getUserType().equals(UserType.AGENT.getValue())) {
 			userId = null;
 		}
 
