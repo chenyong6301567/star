@@ -127,11 +127,12 @@ public class PersonDocumentController {
 	public Result getPersonDocumentList(@RequestParam(defaultValue = Constants.PAGENUM) int pageNum,
 			@RequestParam(defaultValue = Constants.PAGESIZE) int pageSize, String documentCode, String tradePlatform,
 			Byte wheatherGetMoney, String productType, String registerEmail, Integer buyNum, Date contractDateBegin,
-			Date contractDateEnd) {
+			Date contractDateEnd, HttpServletRequest request) {
+		Integer userId = TokenAccessUtils.getLoginUserId(request);
 
 		Page<CustomerMoneyVO> page = personDocumentManager.getPersonDocumentList(documentCode, tradePlatform,
 				wheatherGetMoney, productType, registerEmail, buyNum, contractDateBegin, contractDateEnd, pageNum,
-				pageSize);
+				pageSize, userId);
 		return Result.normalResponse(page);
 
 	}
@@ -164,11 +165,11 @@ public class PersonDocumentController {
 	public Result getContractDitrubuteIncomeList(@RequestParam(defaultValue = Constants.PAGENUM) int pageNum,
 			@RequestParam(defaultValue = Constants.PAGESIZE) int pageSize, String documentCode, String customerName,
 			Byte amountType, Byte tradeStatus, Integer productId, Date tradeEndDateBegin, Date tradeEndDateEnd,
-			String productRate, String derectPersonName, String inderectPersonName) {
-
+			String productRate, String derectPersonName, String inderectPersonName, HttpServletRequest request) {
+		Integer userId = TokenAccessUtils.getLoginUserId(request);
 		SumVO sumVO = contractIncomeDistributionManager.getContractDitrubuteIncomeList(documentCode, amountType,
 				tradeStatus, productId, tradeEndDateBegin, tradeEndDateEnd, pageNum, pageSize, customerName,
-				productRate, derectPersonName, inderectPersonName);
+				productRate, derectPersonName, inderectPersonName, userId);
 		return Result.normalResponse(sumVO);
 
 	}
@@ -202,9 +203,10 @@ public class PersonDocumentController {
 			Byte amountType, Byte tradeStatus, Integer productId, Date tradeEndDateBegin, Date tradeEndDateEnd,
 			String productRate, String derectPersonName, String inderectPersonName, HttpServletRequest request,
 			HttpServletResponse response, @RequestParam(required = true) Byte userType) {
+		Integer userId = TokenAccessUtils.getLoginUserId(request);
 		SumVO sumVO = contractIncomeDistributionManager.getContractDitrubuteIncomeList(documentCode, amountType,
 				tradeStatus, productId, tradeEndDateBegin, tradeEndDateEnd, pageNum, pageSize, customerName,
-				productRate, derectPersonName, inderectPersonName);
+				productRate, derectPersonName, inderectPersonName, userId);
 		List<ContractDitrubuteIncomeVO> userTradeVOList = sumVO.getPage().getlist();
 		if (userType.equals(UserType.ADMIN.getValue())) {
 			String[] fieldNames = { "documentCode", "customerName", "investmentAmount", "contractIncome",

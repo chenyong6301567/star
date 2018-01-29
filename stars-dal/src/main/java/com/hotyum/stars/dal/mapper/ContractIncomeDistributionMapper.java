@@ -44,7 +44,8 @@ public interface ContractIncomeDistributionMapper {
         "customer_income, derect_income, ",
         "inderect_income, agent_income, ",
         "company_income, gmt_create, ",
-        "gmt_modify, status)",
+        "gmt_modify, status, ",
+        "user_id)",
         "values (#{documentCode,jdbcType=VARCHAR}, #{customerName,jdbcType=VARCHAR}, ",
         "#{investmentAmount,jdbcType=DECIMAL}, #{contractIncome,jdbcType=DECIMAL}, ",
         "#{tradePlatform,jdbcType=VARCHAR}, #{tradeAccount,jdbcType=VARCHAR}, ",
@@ -58,7 +59,8 @@ public interface ContractIncomeDistributionMapper {
         "#{customerIncome,jdbcType=DECIMAL}, #{derectIncome,jdbcType=DECIMAL}, ",
         "#{inderectIncome,jdbcType=DECIMAL}, #{agentIncome,jdbcType=DECIMAL}, ",
         "#{companyIncome,jdbcType=DECIMAL}, #{gmtCreate,jdbcType=TIMESTAMP}, ",
-        "#{gmtModify,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT})"
+        "#{gmtModify,jdbcType=TIMESTAMP}, #{status,jdbcType=TINYINT}, ",
+        "#{userId,jdbcType=INTEGER})"
     })
     @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=Integer.class)
     int insert(ContractIncomeDistribution record);
@@ -97,7 +99,8 @@ public interface ContractIncomeDistributionMapper {
         @Result(column="company_income", property="companyIncome", jdbcType=JdbcType.DECIMAL),
         @Result(column="gmt_create", property="gmtCreate", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="gmt_modify", property="gmtModify", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="status", property="status", jdbcType=JdbcType.TINYINT)
+        @Result(column="status", property="status", jdbcType=JdbcType.TINYINT),
+        @Result(column="user_id", property="userId", jdbcType=JdbcType.INTEGER)
     })
     List<ContractIncomeDistribution> selectByExample(ContractIncomeDistributionExample example);
 
@@ -108,7 +111,8 @@ public interface ContractIncomeDistributionMapper {
         "trade_status, product_rate, derect_recomand_person_id, derect_recomand_person_name, ",
         "inderect_recomand_person_id, inderect_recomand_person_name, derect_recomand_rate, ",
         "inderect_recomand_rate, agent_code, agent_rate, customer_income, derect_income, ",
-        "inderect_income, agent_income, company_income, gmt_create, gmt_modify, status",
+        "inderect_income, agent_income, company_income, gmt_create, gmt_modify, status, ",
+        "user_id",
         "from contract_income_distribution",
         "where id = #{id,jdbcType=INTEGER}"
     })
@@ -141,7 +145,8 @@ public interface ContractIncomeDistributionMapper {
         @Result(column="company_income", property="companyIncome", jdbcType=JdbcType.DECIMAL),
         @Result(column="gmt_create", property="gmtCreate", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="gmt_modify", property="gmtModify", jdbcType=JdbcType.TIMESTAMP),
-        @Result(column="status", property="status", jdbcType=JdbcType.TINYINT)
+        @Result(column="status", property="status", jdbcType=JdbcType.TINYINT),
+        @Result(column="user_id", property="userId", jdbcType=JdbcType.INTEGER)
     })
     ContractIncomeDistribution selectByPrimaryKey(Integer id);
 
@@ -183,7 +188,8 @@ public interface ContractIncomeDistributionMapper {
           "company_income = #{companyIncome,jdbcType=DECIMAL},",
           "gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},",
           "gmt_modify = #{gmtModify,jdbcType=TIMESTAMP},",
-          "status = #{status,jdbcType=TINYINT}",
+          "status = #{status,jdbcType=TINYINT},",
+          "user_id = #{userId,jdbcType=INTEGER}",
         "where id = #{id,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(ContractIncomeDistribution record);

@@ -32,6 +32,7 @@ import com.hotyum.stars.utils.DateUtil;
 import com.hotyum.stars.utils.DecimalUtil;
 import com.hotyum.stars.utils.Page;
 import com.hotyum.stars.utils.enums.BooleanType;
+import com.hotyum.stars.utils.enums.UserType;
 
 /**
  * @author cy
@@ -69,7 +70,8 @@ public class ContractIncomeDistributionManagerImpl implements ContractIncomeDist
 			String tradeAccount, Byte wheatherGetMoney, Date getMoneyDate, Byte certificateType,
 			String certificateNumber, Date contractDate, Integer productId, String productTypeName, Byte serviceDate,
 			double investmentAmount, double estimatedEarnings, String contactPhone, String registerEmail,
-			String agentCode, Integer derectRecomandPersonId, Integer inderectRecomandPersonId, String productRate) {
+			String agentCode, Integer derectRecomandPersonId, Integer inderectRecomandPersonId, String productRate,
+			Integer userId) {
 
 		ContractIncomeDistribution cd = new ContractIncomeDistribution();
 		cd.setAgentCode(agentCode);
@@ -107,6 +109,7 @@ public class ContractIncomeDistributionManagerImpl implements ContractIncomeDist
 		cd.setCompanyIncome(new BigDecimal(0));
 		cd.setStatus(Status.ZERO.getValue());
 		cd.setProductRate(productRate);
+		cd.setUserId(userId);
 
 		// 计算合同收益
 		double customerIncome = investmentAmount * serviceDate * Double.parseDouble(productRate.replace("%", ""))
@@ -135,7 +138,14 @@ public class ContractIncomeDistributionManagerImpl implements ContractIncomeDist
 	@Override
 	public SumVO getContractDitrubuteIncomeList(String documentCode, Byte amountType, Byte tradeStatus,
 			Integer productId, Date tradeEndDateBegin, Date tradeEndDateEnd, int pageNum, int pageSize,
-			String customerName, String productRate, String derectPersonName, String inderectPersonName) {
+			String customerName, String productRate, String derectPersonName, String inderectPersonName,
+			Integer userId) {
+
+		User user = userManager.getUserById(userId);
+		if (user.getUserType().equals(UserType.ADMIN.getValue())) {
+			userId = null;
+		}
+
 		ContractIncomeDistributionExample example = new ContractIncomeDistributionExample();
 		ContractIncomeDistributionExample.Criteria criteria = example.createCriteria();
 		criteria.andStatusGreaterThanOrEqualTo(Status.ZERO.getValue());
@@ -179,6 +189,10 @@ public class ContractIncomeDistributionManagerImpl implements ContractIncomeDist
 
 		if (StringUtils.isNotEmpty(inderectPersonName)) {
 			criteria.andInderectRecomandPersonNameLike("%" + inderectPersonName + "%");
+		}
+
+		if (null != userId) {
+			criteria.andUserIdEqualTo(userId);
 		}
 
 		com.github.pagehelper.Page<ContractIncomeDistribution> page = PageHelper.startPage(pageNum, pageSize);

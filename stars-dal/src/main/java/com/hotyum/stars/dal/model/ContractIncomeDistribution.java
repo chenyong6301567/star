@@ -63,6 +63,8 @@ public class ContractIncomeDistribution implements Serializable {
 
     private Byte status;
 
+    private Integer userId;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {
@@ -297,6 +299,14 @@ public class ContractIncomeDistribution implements Serializable {
         this.status = status;
     }
 
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -337,7 +347,8 @@ public class ContractIncomeDistribution implements Serializable {
             && (this.getCompanyIncome() == null ? other.getCompanyIncome() == null : this.getCompanyIncome().equals(other.getCompanyIncome()))
             && (this.getGmtCreate() == null ? other.getGmtCreate() == null : this.getGmtCreate().equals(other.getGmtCreate()))
             && (this.getGmtModify() == null ? other.getGmtModify() == null : this.getGmtModify().equals(other.getGmtModify()))
-            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()));
+            && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
+            && (this.getUserId() == null ? other.getUserId() == null : this.getUserId().equals(other.getUserId()));
     }
 
     @Override
@@ -373,6 +384,7 @@ public class ContractIncomeDistribution implements Serializable {
         result = prime * result + ((getGmtCreate() == null) ? 0 : getGmtCreate().hashCode());
         result = prime * result + ((getGmtModify() == null) ? 0 : getGmtModify().hashCode());
         result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
+        result = prime * result + ((getUserId() == null) ? 0 : getUserId().hashCode());
         return result;
     }
 }

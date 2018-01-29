@@ -140,6 +140,10 @@ public class ContractIncomeDistributionSqlProvider {
             sql.VALUES("status", "#{status,jdbcType=TINYINT}");
         }
         
+        if (record.getUserId() != null) {
+            sql.VALUES("user_id", "#{userId,jdbcType=INTEGER}");
+        }
+        
         return sql.toString();
     }
 
@@ -178,6 +182,7 @@ public class ContractIncomeDistributionSqlProvider {
         sql.SELECT("gmt_create");
         sql.SELECT("gmt_modify");
         sql.SELECT("status");
+        sql.SELECT("user_id");
         sql.FROM("contract_income_distribution");
         applyWhere(sql, example, false);
         
@@ -311,6 +316,10 @@ public class ContractIncomeDistributionSqlProvider {
             sql.SET("status = #{record.status,jdbcType=TINYINT}");
         }
         
+        if (record.getUserId() != null) {
+            sql.SET("user_id = #{record.userId,jdbcType=INTEGER}");
+        }
+        
         applyWhere(sql, example, true);
         return sql.toString();
     }
@@ -348,6 +357,7 @@ public class ContractIncomeDistributionSqlProvider {
         sql.SET("gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP}");
         sql.SET("gmt_modify = #{record.gmtModify,jdbcType=TIMESTAMP}");
         sql.SET("status = #{record.status,jdbcType=TINYINT}");
+        sql.SET("user_id = #{record.userId,jdbcType=INTEGER}");
         
         ContractIncomeDistributionExample example = (ContractIncomeDistributionExample) parameter.get("example");
         applyWhere(sql, example, true);
@@ -468,6 +478,10 @@ public class ContractIncomeDistributionSqlProvider {
         
         if (record.getStatus() != null) {
             sql.SET("status = #{status,jdbcType=TINYINT}");
+        }
+        
+        if (record.getUserId() != null) {
+            sql.SET("user_id = #{userId,jdbcType=INTEGER}");
         }
         
         sql.WHERE("id = #{id,jdbcType=INTEGER}");

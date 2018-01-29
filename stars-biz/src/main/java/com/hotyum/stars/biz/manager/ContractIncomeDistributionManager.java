@@ -16,6 +16,7 @@ public interface ContractIncomeDistributionManager {
 	/**
 	* @Title addContractIncomeDistribution
 	* @author cy
+	 * @param userId 
 	* @Description 
 	* @date 2018年1月6日下午3:29:15
 	* @param 
@@ -28,11 +29,13 @@ public interface ContractIncomeDistributionManager {
 			String tradeAccount, Byte wheatherGetMoney, Date getMoneyDate, Byte certificateType,
 			String certificateNumber, Date contractDate, Integer productId, String productTypeName, Byte serviceDate,
 			double investmentAmount, double estimatedEarnings, String contactPhone, String registerEmail,
-			String agentCode, Integer derectRecomandPersonId, Integer inderectRecomandPersonId, String productRate);
+			String agentCode, Integer derectRecomandPersonId, Integer inderectRecomandPersonId, String productRate,
+			Integer userId);
 
 	/**
 	* @Title getContractDitrubuteIncomeList
 	* @author cy
+	 * @param userId 
 	* @Description 
 	* @date 2018年1月6日下午5:13:14
 	* @param 
@@ -43,7 +46,7 @@ public interface ContractIncomeDistributionManager {
 	*/
 	SumVO getContractDitrubuteIncomeList(String documentCode, Byte amountType, Byte tradeStatus, Integer productId,
 			Date tradeEndDateBegin, Date tradeEndDateEnd, int pageNum, int pageSize, String customerName,
-			String productRate, String derectPersonName, String inderectPersonName);
+			String productRate, String derectPersonName, String inderectPersonName, Integer userId);
 
 	/**
 	* @Title updateContractDitrubuteIncome

@@ -28,6 +28,7 @@ import com.hotyum.stars.dal.model.PersonDocumentExample;
 import com.hotyum.stars.dal.model.User;
 import com.hotyum.stars.utils.DateUtil;
 import com.hotyum.stars.utils.Page;
+import com.hotyum.stars.utils.enums.UserType;
 
 /**
  * @author cy
@@ -119,7 +120,7 @@ public class PersonDocumentManagerImpl implements PersonDocumentManager {
 		contractIncomeDistributionManager.addContractIncomeDistribution(documentCode, customerName, tradePlatform,
 				tradeAccount, wheatherGetMoney, getMoneyDate, certificateType, certificateNumber, contractDate,
 				productId, productTypeName, serviceDate, investmentAmount, estimatedEarnings, contactPhone,
-				registerEmail, agentCode, derectRecomandPersonId, inderectRecomandPersonId, productRate);
+				registerEmail, agentCode, derectRecomandPersonId, inderectRecomandPersonId, productRate, userId);
 
 		// 更新用户入金金额
 		referralInformationManager.updateByUsId(investmentAmount, userId);
@@ -140,7 +141,12 @@ public class PersonDocumentManagerImpl implements PersonDocumentManager {
 	@Override
 	public Page<CustomerMoneyVO> getPersonDocumentList(String documentCode, String tradePlatform, Byte wheatherGetMoney,
 			String productTypeName, String registerEmail, Integer buyNum, Date contractDateBegin, Date contractDateEnd,
-			int pageNum, int pageSize) {
+			int pageNum, int pageSize, Integer userId) {
+		User user = userManager.getUserById(userId);
+		if (user.getUserType().equals(UserType.ADMIN.getValue())) {
+			userId = null;
+		}
+
 		PersonDocumentExample personDocumentExample = new PersonDocumentExample();
 		PersonDocumentExample.Criteria criteria = personDocumentExample.createCriteria();
 		criteria.andStatusGreaterThanOrEqualTo(Status.ZERO.getValue());
@@ -168,6 +174,9 @@ public class PersonDocumentManagerImpl implements PersonDocumentManager {
 		}
 		if (null != contractDateEnd) {
 			criteria.andContractDateLessThanOrEqualTo(contractDateEnd);
+		}
+		if (null != userId) {
+			criteria.andUserIdEqualTo(userId);
 		}
 
 		com.github.pagehelper.Page<PersonDocument> page = PageHelper.startPage(pageNum, pageSize);
@@ -200,7 +209,8 @@ public class PersonDocumentManagerImpl implements PersonDocumentManager {
 			try {
 				CustomerMoneyVO customerMoneyVO = ObjectUtils.convert(personDocument, CustomerMoneyVO.class);
 				if (null != personDocument.getContractDate()) {
-					customerMoneyVO.setContractDate(DateUtil.date2Str(personDocument.getContractDate(),DateUtil.FORMAT_DATE));
+					customerMoneyVO
+							.setContractDate(DateUtil.date2Str(personDocument.getContractDate(), DateUtil.FORMAT_DATE));
 				}
 				if (null != personDocument.getInvestmentAmount()) {
 					customerMoneyVO.setInvestmentAmount(personDocument.getInvestmentAmount().doubleValue());
@@ -209,7 +219,8 @@ public class PersonDocumentManagerImpl implements PersonDocumentManager {
 					customerMoneyVO.setEstimatedEarnings(personDocument.getEstimatedEarnings().doubleValue());
 				}
 				if (null != personDocument.getGetMoneyDate()) {
-					customerMoneyVO.setGetMoneyDate(DateUtil.date2Str(personDocument.getGetMoneyDate(),DateUtil.FORMAT_DATE));
+					customerMoneyVO
+							.setGetMoneyDate(DateUtil.date2Str(personDocument.getGetMoneyDate(), DateUtil.FORMAT_DATE));
 				}
 
 				customerMoneyVOList.add(customerMoneyVO);

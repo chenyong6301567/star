@@ -33,6 +33,7 @@ public interface PersonDocumentManager {
 	/**
 	* @Title getPersonDocumentList
 	* @author cy
+	 * @param userId 
 	* @Description 
 	* @date 2018年1月3日下午11:10:04
 	* @param 
@@ -43,7 +44,7 @@ public interface PersonDocumentManager {
 	*/
 	Page<CustomerMoneyVO> getPersonDocumentList(String documentCode, String tradePlatform, Byte wheatherGetMoney,
 			String productType, String registerEmail, Integer buyNum, Date contractDateBegin, Date contractDateEnd,
-			int pageNum, int pageSize);
+			int pageNum, int pageSize, Integer userId);
 
 	/**
 	* @Title getMaxIndexByUserId
