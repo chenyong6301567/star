@@ -113,6 +113,11 @@ public class ProductManagerImpl implements ProductManager {
 				if (oldProduct == null) {
 					insertProduct(product);
 				} else {
+					oldProduct.setEnableFlag(product.getEnableFlag());
+					oldProduct.setMonthRate(product.getMonthRate());
+					oldProduct.setProductTypeName(product.getMonthRate());
+					oldProduct.setSequenceNumber(product.getSequenceNumber());
+					oldProduct.setServiceTime(product.getServiceTime());
 					updateProduct(oldProduct);
 				}
 			} else {
