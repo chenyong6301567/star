@@ -75,6 +75,42 @@ public class AgentController {
 	}
 
 	/**
+	* 代理商修改
+	* @param id                            主键id|int|必填
+	* @param agentCode                     代理商编号|string|必填
+	* @param agentName                     代理商名称|string
+	* @param unifiedSocialCreditCode       统一社会信用编码|string
+	* @param legalRepresentative           法定代表人|string
+	* @param provinceId                    省份Id|string
+	* @param provinceName                  省份名称|string
+	* @param contactPhone                  联系方式|string
+	* @param businessAddress               营业地址|string
+	* @param businessStartTime             营业开始时间(到时分秒)|string
+	* @param businessEndTime               营业结束时间(到时分秒)|string
+	* @param contractStartTime             签约时间时间(到时分秒)|string
+	* @param contractEndTime               到期时间(到时分秒)|string
+	* @Title updateAgentInfo
+	* @respbody 
+	* @author cy
+	* @Description 代理商修改
+	* @date 2018/1/1 15:49
+	* @return Result
+	* @throws  
+	*/
+	@RequestMapping(value = "agent/updateAgentInfo")
+	public Result updateAgentInfo(HttpServletRequest request, @RequestParam(required = true) String agentCode,
+			@RequestParam(required = true) String agentName, String unifiedSocialCreditCode, String legalRepresentative,
+			@RequestParam(required = true) Integer provinceId, @RequestParam(required = true) String provinceName,
+			String contactPhone, String businessAddress, Date businessStartTime, Date businessEndTime,
+			Date contractStartTime, Date contractEndTime, @RequestParam(required = true) Integer id) {
+
+		agentManager.updateAgentInfo(agentCode, agentName, unifiedSocialCreditCode, legalRepresentative, provinceId,
+				provinceName, contactPhone, businessAddress, businessStartTime, businessEndTime, contractStartTime,
+				contractEndTime, id);
+		return Result.normalResponse();
+	}
+
+	/**
 	 * 查询代理商的的下一个代理编号(需要调用后端省列表接口)
 	 * 
 	 * @param provinceId                    省份Id|int

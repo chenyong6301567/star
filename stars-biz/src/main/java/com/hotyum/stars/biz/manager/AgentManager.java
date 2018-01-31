@@ -85,4 +85,19 @@ public interface AgentManager {
 	*/
 	Page<UserAgentVO> searchAgentList(String agentCode, String agentName, int pageNum, int pageSize);
 
+	/**
+	* @Title updateAgentInfo
+	* @author cy
+	* @Description 修改代理商信息
+	* @date 2018年1月31日下午10:40:22
+	* @param 
+	* @param 
+	* @param 
+	* @return void
+	* @throws:
+	*/	
+	void updateAgentInfo(String agentCode, String agentName, String unifiedSocialCreditCode, String legalRepresentative,
+			Integer provinceId, String provinceName, String contactPhone, String businessAddress,
+			Date businessStartTime, Date businessEndTime, Date contractStartTime, Date contractEndTime, Integer id);
+
 }

@@ -329,4 +329,78 @@ public class AgentManagerImpl implements AgentManager {
 		return new Page<UserAgentVO>(pageSize, pageNum, userAgentVOList.size(), userAgentVOList);
 	}
 
+	/**
+	* @Title:updateAgentInfo
+	* @author:cy
+	* @Description 
+	* @date:2018年1月31日下午10:40:53
+	* @param 
+	* @param 
+	* @param 
+	* @return 
+	* @throws:
+	*/
+	@Override
+	public void updateAgentInfo(String agentCode, String agentName, String unifiedSocialCreditCode,
+			String legalRepresentative, Integer provinceId, String provinceName, String contactPhone,
+			String businessAddress, Date businessStartTime, Date businessEndTime, Date contractStartTime,
+			Date contractEndTime, Integer id) {
+
+		//
+
+		LOGGER.info("businessStartTime==" + businessStartTime + "businessEndTime=" + businessEndTime + "contrctEndTime="
+				+ contractEndTime);
+		Agent agent = getOldAgentById(id);
+		if (null == agent) {
+			throw new RuntimeException("要修改的代理商不存在");
+		}
+		agent.setAgentCode(agentCode);
+		agent.setAgentName(agentName);
+		agent.setBusinessAddress(businessAddress);
+		agent.setBusinessEndTime(businessEndTime);
+		agent.setBusinessStartTime(businessStartTime);
+		agent.setContactPhone(contactPhone);
+		agent.setContractStartTime(contractStartTime);
+		agent.setContractEndTime(contractEndTime);
+		agent.setLegalRepresentative(legalRepresentative);
+		agent.setProvinceId(provinceId);
+		agent.setProvinceName(provinceName);
+		agent.setUnifiedSocialCreditCode(unifiedSocialCreditCode);
+		agent.setGmtCreate(new Date());
+		agent.setGmtModify(new Date());
+		agent.setStatus(Status.ZERO.getValue());
+		try {
+			agentDAO.updateByPrimaryKeySelective(agent);
+		} catch (DataAccessException e) {
+			LOGGER.error("updateAgentInfo失败====", e);
+			throw new RuntimeException("内部服务器错误");
+		}
+
+	}
+
+	/**
+	* @Title getOldAgentById
+	* @author cy
+	* @Description 
+	* @date 2018年1月31日下午10:42:51
+	* @param 
+	* @param 
+	* @param 
+	* @return Agent
+	* @throws:
+	*/
+	private Agent getOldAgentById(Integer id) {
+		AgentExample agentExample = new AgentExample();
+		AgentExample.Criteria criteria = agentExample.createCriteria();
+		criteria.andStatusGreaterThanOrEqualTo(Status.ZERO.getValue());
+		criteria.andIdEqualTo(id);
+		try {
+			List<Agent> agentList = agentDAO.selectByExample(agentExample);
+			return CollectionUtils.isEmpty(agentList) ? null : agentList.get(0);
+		} catch (DataAccessException e) {
+			LOGGER.error("getAgentByAgentName失败====", e);
+			throw new RuntimeException("内部服务器错误");
+		}
+	}
+
 }
