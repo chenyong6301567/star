@@ -488,7 +488,7 @@ public class UserManagerImpl implements UserManager {
 	*/
 	@Override
 	public void addUser(String account, String userName, String contactPhone, Byte userType, String agentName,
-			Byte whetherFreeze, Date freezeDate, String pwd) {
+			Byte whetherFreeze, Date freezeDate, String pwd, String customerAgent) {
 		User user = getUserByPhone(account);
 		if (null != user) {
 			throw new ApplicationException("账号对应的用户已存在");
@@ -513,6 +513,7 @@ public class UserManagerImpl implements UserManager {
 		newUser.setGmtCreate(new Date());
 		newUser.setGmtModify(new Date());
 		newUser.setStatus(Status.ZERO.getValue());
+		newUser.setCustomerAgent(customerAgent);
 		try {
 			userDAO.insertSelective(newUser);
 		} catch (DataAccessException e) {
@@ -934,9 +935,10 @@ public class UserManagerImpl implements UserManager {
 		if (null == user) {
 			return null;
 		}
-		/*if (vo.getDerectchildren() == null) {
-			vo.setDerectchildren(new CopyOnWriteArrayList<CustomerRecommandVO>());
-		}*/
+		/*
+		 * if (vo.getDerectchildren() == null) { vo.setDerectchildren(new
+		 * CopyOnWriteArrayList<CustomerRecommandVO>()); }
+		 */
 		if (vo.getInDerectchildren() == null) {
 			vo.setInDerectchildren(new CopyOnWriteArrayList<CustomerRecommandVO>());
 		}

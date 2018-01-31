@@ -44,7 +44,7 @@ public interface UserMapper {
         "certificate_front, certificate_back, ",
         "address_pic, user_name, ",
         "user_type, whether_freeze, ",
-        "freeze_date)",
+        "freeze_date, customer_agent)",
         "values (#{account,jdbcType=VARCHAR}, #{pwd,jdbcType=VARCHAR}, ",
         "#{contactPhone,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, ",
         "#{checkEmail,jdbcType=TINYINT}, #{sex,jdbcType=TINYINT}, ",
@@ -58,7 +58,7 @@ public interface UserMapper {
         "#{certificateFront,jdbcType=VARCHAR}, #{certificateBack,jdbcType=VARCHAR}, ",
         "#{addressPic,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, ",
         "#{userType,jdbcType=TINYINT}, #{whetherFreeze,jdbcType=TINYINT}, ",
-        "#{freezeDate,jdbcType=TIMESTAMP})"
+        "#{freezeDate,jdbcType=TIMESTAMP}, #{customerAgent,jdbcType=VARCHAR})"
     })
     @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=Integer.class)
     int insert(User record);
@@ -96,7 +96,8 @@ public interface UserMapper {
         @Result(column="user_name", property="userName", jdbcType=JdbcType.VARCHAR),
         @Result(column="user_type", property="userType", jdbcType=JdbcType.TINYINT),
         @Result(column="whether_freeze", property="whetherFreeze", jdbcType=JdbcType.TINYINT),
-        @Result(column="freeze_date", property="freezeDate", jdbcType=JdbcType.TIMESTAMP)
+        @Result(column="freeze_date", property="freezeDate", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="customer_agent", property="customerAgent", jdbcType=JdbcType.VARCHAR)
     })
     List<User> selectByExample(UserExample example);
 
@@ -106,7 +107,7 @@ public interface UserMapper {
         "wheather_get_money, sum_money, gmt_create, gmt_modify, status, referee_qualification, ",
         "agent_code, agent_name, direct_recommendation_account, indirect_recommendation_account, ",
         "certificate_type, certificate_number, certificate_front, certificate_back, address_pic, ",
-        "user_name, user_type, whether_freeze, freeze_date",
+        "user_name, user_type, whether_freeze, freeze_date, customer_agent",
         "from user",
         "where id = #{id,jdbcType=INTEGER}"
     })
@@ -138,7 +139,8 @@ public interface UserMapper {
         @Result(column="user_name", property="userName", jdbcType=JdbcType.VARCHAR),
         @Result(column="user_type", property="userType", jdbcType=JdbcType.TINYINT),
         @Result(column="whether_freeze", property="whetherFreeze", jdbcType=JdbcType.TINYINT),
-        @Result(column="freeze_date", property="freezeDate", jdbcType=JdbcType.TIMESTAMP)
+        @Result(column="freeze_date", property="freezeDate", jdbcType=JdbcType.TIMESTAMP),
+        @Result(column="customer_agent", property="customerAgent", jdbcType=JdbcType.VARCHAR)
     })
     User selectByPrimaryKey(Integer id);
 
@@ -179,7 +181,8 @@ public interface UserMapper {
           "user_name = #{userName,jdbcType=VARCHAR},",
           "user_type = #{userType,jdbcType=TINYINT},",
           "whether_freeze = #{whetherFreeze,jdbcType=TINYINT},",
-          "freeze_date = #{freezeDate,jdbcType=TIMESTAMP}",
+          "freeze_date = #{freezeDate,jdbcType=TIMESTAMP},",
+          "customer_agent = #{customerAgent,jdbcType=VARCHAR}",
         "where id = #{id,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(User record);

@@ -16,31 +16,33 @@ public class UserListVO implements Serializable {
 
 	private Integer id;
 
-	private String account="";
+	private String account = "";
 
-	private String userName="";
+	private String userName = "";
 
-	private String agentName="";
+	private String agentName = "";
 
-	private String contactPhone="";
+	private String contactPhone = "";
 
-	private String realName="";
+	private String realName = "";
 
-	private String gmtCreate="";
+	private String gmtCreate = "";
 
 	private Byte whetherFreeze;
 
-	private String whetherFreezeName="";// 0否，1是
+	private String whetherFreezeName = "";// 0否，1是
 
-	private String freezeDate="";
+	private String freezeDate = "";
 
-	private String agentCode="";
+	private String agentCode = "";
 
-	private String directRecommendationAccount="";
+	private String directRecommendationAccount = "";
 
 	private Byte userType;// 用户性质
 
-	private String UserTypeName="";// 用户性质
+	private String UserTypeName = "";// 用户性质
+
+	private String customerAgent = "";// 客户代理商
 
 	public Integer getId() {
 		return id;
@@ -154,6 +156,14 @@ public class UserListVO implements Serializable {
 
 	public void setUserTypeName(String userTypeName) {
 		UserTypeName = userTypeName;
+	}
+
+	public String getCustomerAgent() {
+		return customerAgent;
+	}
+
+	public void setCustomerAgent(String customerAgent) {
+		this.customerAgent = customerAgent;
 	}
 
 }

@@ -237,6 +237,7 @@ public class UserController {
 	 * @param agentName                     代理商名称(代理商必填)|string|必填 
 	 * @param agentCode                     代理商编码(代理商必填)|String|必填
 	 * @param pwd                           密码(默认123456)|string|必填
+	 * @param customerAgent                 客户代理商(添加客户必填)|String|        
 	 * @Title addUser
 	 * @respbody 
 	 * @author cy
@@ -249,13 +250,21 @@ public class UserController {
 	public Result addUser(HttpServletRequest request, String userName, String contactPhone,
 			@RequestParam(required = true) Byte userType, Byte whetherFreeze,
 			@RequestParam(required = true) String account, Date freezeDate, String agentName, String agentCode,
-			@RequestParam(defaultValue = Constants.DEFAULTPWD) String pwd) {
+			@RequestParam(defaultValue = Constants.DEFAULTPWD) String pwd, String customerAgent) {
 		if (userType.equals(UserType.AGENT.getValue())) {
 			if (StringUtils.isEmpty(agentName) || StringUtils.isEmpty(agentCode)) {
 				return Result.errorReponse("代理商编码或名称不能为空");
 			}
 		}
-		userManager.addUser(account, userName, contactPhone, userType, agentName, whetherFreeze, freezeDate, pwd);
+
+		if (userType.equals(UserType.CUSTOMER.getValue())) {
+			if (StringUtils.isEmpty(customerAgent)) {
+				return Result.errorReponse("客户代理商不能为空");
+			}
+		}
+
+		userManager.addUser(account, userName, contactPhone, userType, agentName, whetherFreeze, freezeDate, pwd,
+				customerAgent);
 		return Result.normalResponse();
 	}
 

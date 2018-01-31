@@ -61,6 +61,8 @@ public class User implements Serializable {
 
     private Date freezeDate;
 
+    private String customerAgent;
+
     private static final long serialVersionUID = 1L;
 
     public Integer getId() {
@@ -287,6 +289,14 @@ public class User implements Serializable {
         this.freezeDate = freezeDate;
     }
 
+    public String getCustomerAgent() {
+        return customerAgent;
+    }
+
+    public void setCustomerAgent(String customerAgent) {
+        this.customerAgent = customerAgent == null ? null : customerAgent.trim();
+    }
+
     @Override
     public boolean equals(Object that) {
         if (this == that) {
@@ -326,7 +336,8 @@ public class User implements Serializable {
             && (this.getUserName() == null ? other.getUserName() == null : this.getUserName().equals(other.getUserName()))
             && (this.getUserType() == null ? other.getUserType() == null : this.getUserType().equals(other.getUserType()))
             && (this.getWhetherFreeze() == null ? other.getWhetherFreeze() == null : this.getWhetherFreeze().equals(other.getWhetherFreeze()))
-            && (this.getFreezeDate() == null ? other.getFreezeDate() == null : this.getFreezeDate().equals(other.getFreezeDate()));
+            && (this.getFreezeDate() == null ? other.getFreezeDate() == null : this.getFreezeDate().equals(other.getFreezeDate()))
+            && (this.getCustomerAgent() == null ? other.getCustomerAgent() == null : this.getCustomerAgent().equals(other.getCustomerAgent()));
     }
 
     @Override
@@ -361,6 +372,7 @@ public class User implements Serializable {
         result = prime * result + ((getUserType() == null) ? 0 : getUserType().hashCode());
         result = prime * result + ((getWhetherFreeze() == null) ? 0 : getWhetherFreeze().hashCode());
         result = prime * result + ((getFreezeDate() == null) ? 0 : getFreezeDate().hashCode());
+        result = prime * result + ((getCustomerAgent() == null) ? 0 : getCustomerAgent().hashCode());
         return result;
     }
 }

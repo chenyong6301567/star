@@ -136,6 +136,10 @@ public class UserSqlProvider {
             sql.VALUES("freeze_date", "#{freezeDate,jdbcType=TIMESTAMP}");
         }
         
+        if (record.getCustomerAgent() != null) {
+            sql.VALUES("customer_agent", "#{customerAgent,jdbcType=VARCHAR}");
+        }
+        
         return sql.toString();
     }
 
@@ -173,6 +177,7 @@ public class UserSqlProvider {
         sql.SELECT("user_type");
         sql.SELECT("whether_freeze");
         sql.SELECT("freeze_date");
+        sql.SELECT("customer_agent");
         sql.FROM("user");
         applyWhere(sql, example, false);
         
@@ -302,6 +307,10 @@ public class UserSqlProvider {
             sql.SET("freeze_date = #{record.freezeDate,jdbcType=TIMESTAMP}");
         }
         
+        if (record.getCustomerAgent() != null) {
+            sql.SET("customer_agent = #{record.customerAgent,jdbcType=VARCHAR}");
+        }
+        
         applyWhere(sql, example, true);
         return sql.toString();
     }
@@ -338,6 +347,7 @@ public class UserSqlProvider {
         sql.SET("user_type = #{record.userType,jdbcType=TINYINT}");
         sql.SET("whether_freeze = #{record.whetherFreeze,jdbcType=TINYINT}");
         sql.SET("freeze_date = #{record.freezeDate,jdbcType=TIMESTAMP}");
+        sql.SET("customer_agent = #{record.customerAgent,jdbcType=VARCHAR}");
         
         UserExample example = (UserExample) parameter.get("example");
         applyWhere(sql, example, true);
@@ -454,6 +464,10 @@ public class UserSqlProvider {
         
         if (record.getFreezeDate() != null) {
             sql.SET("freeze_date = #{freezeDate,jdbcType=TIMESTAMP}");
+        }
+        
+        if (record.getCustomerAgent() != null) {
+            sql.SET("customer_agent = #{customerAgent,jdbcType=VARCHAR}");
         }
         
         sql.WHERE("id = #{id,jdbcType=INTEGER}");
