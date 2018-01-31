@@ -91,6 +91,9 @@ public class PersonDocumentController {
 			@RequestParam(required = true) String registerEmail, @RequestParam(required = true) String agentCode,
 			Integer derectRecomandPersonId, Integer inderectRecomandPersonId,
 			@RequestParam(required = true) Integer maxIndex, HttpServletRequest request) {
+		
+		
+		LOGGGER.info("入金日期"+getMoneyDate+"==============签约日期=="+contractDate);
 
 		Integer usId = TokenAccessUtils.getLoginUserId(request);
 

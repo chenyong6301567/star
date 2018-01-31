@@ -13,6 +13,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import com.croky.lang.Status;
 import com.croky.util.ObjectUtils;
@@ -73,6 +74,11 @@ public class PersonDocumentManagerImpl implements PersonDocumentManager {
 			Integer derectRecomandPersonId, Integer inderectRecomandPersonId, String productRate, Integer userId,
 			Integer documentIndex) {
 
+		// 根据档案编号查询是否存在
+		PersonDocument oldpersonDocument = getPersonDocumentByDocumentCode(documentCode);
+		if (null != oldpersonDocument) {
+         throw new RuntimeException("档案编号已存在");
+		}
 		PersonDocument personDocument = new PersonDocument();
 		personDocument.setAgentCode(agentCode);
 		personDocument.setCertificateNumber(certificateNumber);
@@ -125,6 +131,30 @@ public class PersonDocumentManagerImpl implements PersonDocumentManager {
 		// 更新用户入金金额
 		referralInformationManager.updateByUsId(investmentAmount, userId);
 		userManager.updateSumMoneyByUsId(investmentAmount, userId);
+	}
+
+	/**
+	* @Title getPersonDocumentByDocumentCode
+	* @author cy
+	* @Description 
+	* @date 2018年1月31日下午10:48:10
+	* @param 
+	* @param 
+	* @param 
+	* @return PersonDocument
+	* @throws:
+	*/
+	private PersonDocument getPersonDocumentByDocumentCode(String documentCode) {
+		PersonDocumentExample personDocumentExample = new PersonDocumentExample();
+		PersonDocumentExample.Criteria criteria = personDocumentExample.createCriteria();
+		criteria.andDocumentCodeEqualTo(documentCode);
+		try {
+			List<PersonDocument> personList = personDocumentDAO.selectByExample(personDocumentExample);
+			return CollectionUtils.isEmpty(personList) ? null : personList.get(0);
+		} catch (DataAccessException e) {
+			LOGGER.error("getPersonDocumentByDocumentCode失败====", e);
+			throw new RuntimeException("内部服务器错误");
+		}
 	}
 
 	/**

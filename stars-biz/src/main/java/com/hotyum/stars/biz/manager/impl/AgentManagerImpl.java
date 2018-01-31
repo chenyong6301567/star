@@ -346,8 +346,6 @@ public class AgentManagerImpl implements AgentManager {
 			String businessAddress, Date businessStartTime, Date businessEndTime, Date contractStartTime,
 			Date contractEndTime, Integer id) {
 
-		//
-
 		LOGGER.info("businessStartTime==" + businessStartTime + "businessEndTime=" + businessEndTime + "contrctEndTime="
 				+ contractEndTime);
 		Agent agent = getOldAgentById(id);
