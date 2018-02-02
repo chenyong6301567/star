@@ -488,16 +488,17 @@ public class UserManagerImpl implements UserManager {
 	*/
 	@Override
 	public void addUser(String account, String userName, String contactPhone, Byte userType, String agentName,
-			Byte whetherFreeze, Date freezeDate, String pwd, String customerAgent) {
+			Byte whetherFreeze, Date freezeDate, String pwd, String customerAgent, String agentCode) {
 		User user = getUserByPhone(account);
 		if (null != user) {
 			throw new ApplicationException("账号对应的用户已存在");
 		}
 		// 首先要查询代理商是否添加、
-
-		Agent agent = agentManager.getAgentByAgentName(agentName);
-		if (null == agent) {
-			throw new ApplicationException("请先添加对应的代理商在再来添加用户");
+		if (userType.equals(UserType.AGENT.getValue())) {
+			Agent agent = agentManager.getAgentByAgentName(agentName);
+			if (null == agent) {
+				throw new ApplicationException("请先添加对应的代理商在再来添加用户");
+			}
 		}
 
 		User newUser = new User();
@@ -514,6 +515,7 @@ public class UserManagerImpl implements UserManager {
 		newUser.setGmtModify(new Date());
 		newUser.setStatus(Status.ZERO.getValue());
 		newUser.setCustomerAgent(customerAgent);
+		newUser.setAgentCode(agentCode);
 		try {
 			userDAO.insertSelective(newUser);
 		} catch (DataAccessException e) {

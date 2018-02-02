@@ -264,7 +264,7 @@ public class UserController {
 		}
 
 		userManager.addUser(account, userName, contactPhone, userType, agentName, whetherFreeze, freezeDate, pwd,
-				customerAgent);
+				customerAgent,agentCode);
 		return Result.normalResponse();
 	}
 
