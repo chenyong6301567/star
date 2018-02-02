@@ -489,6 +489,7 @@ public class UserManagerImpl implements UserManager {
 	@Override
 	public void addUser(String account, String userName, String contactPhone, Byte userType, String agentName,
 			Byte whetherFreeze, Date freezeDate, String pwd, String customerAgent, String agentCode) {
+		LOGGER.info("代理商编码agentCode=================" + agentCode);
 		User user = getUserByPhone(account);
 		if (null != user) {
 			throw new ApplicationException("账号对应的用户已存在");
