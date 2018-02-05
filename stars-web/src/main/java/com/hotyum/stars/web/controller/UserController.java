@@ -185,7 +185,7 @@ public class UserController {
 			String fileName = file.getOriginalFilename();// 文件原名称
 			String type = fileName.indexOf(".") != -1
 					? fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length()) : null;
-			if (!("GIF".equalsIgnoreCase(type) || "PNG".equalsIgnoreCase(type) || "JPG".equalsIgnoreCase(type))) {
+			if (!("GIF".equalsIgnoreCase(type) || "PNG".equalsIgnoreCase(type) || "JPG".equalsIgnoreCase(type)|| "JPEG".equalsIgnoreCase(type))) {
 				return Result.errorReponse("不支持[" + type + "]文件上传");
 			}
 			String trueFileName = account + "." + type;
