@@ -15,6 +15,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -59,7 +60,8 @@ public class UserController {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(UserController.class);
 
-	private static final String SERVERPATH = "http://111.230.221.41:8080/user/getpic?path=";
+	@Value("${serverpath}")
+	private String SERVERPATH;
 
 	private static final String REALPATH = "/usr/local/java/upload/certificate/";
 
