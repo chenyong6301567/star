@@ -1,8 +1,5 @@
 package com.hotyum.stars.utils.enums;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
-
 /**
  * 
  * @author cy
@@ -29,7 +26,7 @@ public enum TradeStatusType {
 				}
 			}
 		}
-		return null;
+		return "";
 	}
 
 	public String getDescription() {
