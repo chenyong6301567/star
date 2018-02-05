@@ -187,7 +187,7 @@ public class UserController {
 				return Result.errorReponse("不支持[" + type + "]文件上传");
 			}
 			String trueFileName = account + "." + type;
-			String path = REALPATH + trueFileName;
+			String path = REALPATH +System.currentTimeMillis()+"/"+ trueFileName;
 			LOGGER.info("存放图片文件的路径===========================:" + path);
 			File file_ = new File(path);
 			if (!file_.exists()) {
