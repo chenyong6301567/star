@@ -13,6 +13,7 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import com.croky.lang.Status;
 import com.croky.util.ObjectUtils;
@@ -140,11 +141,20 @@ public class ContractIncomeDistributionManagerImpl implements ContractIncomeDist
 			Integer productId, Date tradeEndDateBegin, Date tradeEndDateEnd, int pageNum, int pageSize,
 			String customerName, String productRate, String derectPersonName, String inderectPersonName,
 			Integer userId) {
-
+		List<Integer> userIdList = new ArrayList<>();
+		userIdList.add(userId);
 		User user = userManager.getUserById(userId);
-		if (user.getUserType().equals(UserType.ADMIN.getValue())
-				|| user.getUserType().equals(UserType.AGENT.getValue())) {
-			userId = null;
+		if (user.getUserType().equals(UserType.ADMIN.getValue())) {
+			// 如果是管理员，全部查看
+			userIdList = null;
+		} else if (user.getUserType().equals(UserType.AGENT.getValue())) {
+			// 如果是代理商，可以查看他代理的人员
+			if (StringUtils.isNotEmpty(user.getAgentCode())) {
+				List<Integer> userList = userManager.getUserListByAgentCode(user.getAgentCode());
+				if (!CollectionUtils.isEmpty(userList)) {
+					userIdList.addAll(userList);
+				}
+			}
 		}
 
 		ContractIncomeDistributionExample example = new ContractIncomeDistributionExample();
@@ -193,7 +203,7 @@ public class ContractIncomeDistributionManagerImpl implements ContractIncomeDist
 		}
 
 		if (null != userId) {
-			criteria.andUserIdEqualTo(userId);
+			criteria.andUserIdIn(userIdList);
 		}
 
 		com.github.pagehelper.Page<ContractIncomeDistribution> page = PageHelper.startPage(pageNum, pageSize);

@@ -34,6 +34,7 @@ import com.hotyum.stars.biz.model.TokenInfoVO;
 import com.hotyum.stars.biz.model.UserBaseInfoVO;
 import com.hotyum.stars.biz.model.UserListVO;
 import com.hotyum.stars.dal.dao.UserDAO;
+import com.hotyum.stars.dal.mapper.UserSqlProvider;
 import com.hotyum.stars.dal.model.Agent;
 import com.hotyum.stars.dal.model.SysUserRole;
 import com.hotyum.stars.dal.model.User;
@@ -1044,6 +1045,39 @@ public class UserManagerImpl implements UserManager {
 			LOGGER.error("CovertPage失败====", e);
 			throw new RuntimeException("内部服务器错误");
 		}
+	}
+
+	/**
+	* @Title:getUserListByAgentCode
+	* @author:cy
+	* @Description 
+	* @date:2018年2月5日下午11:17:01
+	* @param 
+	* @param 
+	* @param 
+	* @return 
+	* @throws:
+	*/
+	@Override
+	public List<Integer> getUserListByAgentCode(String agentCode) {
+		UserExample userExample = new UserExample();
+		UserExample.Criteria criteria = userExample.createCriteria();
+		criteria.andStatusGreaterThanOrEqualTo(Status.ZERO.getValue());
+		criteria.andAgentCodeEqualTo(agentCode);
+		try {
+			List<User> userList = userDAO.selectByExample(userExample);
+			if (!CollectionUtils.isEmpty(userList)) {
+				List<Integer> users = new ArrayList<>();
+				for (User user : userList) {
+					users.add(user.getId());
+				}
+				return users;
+			}
+		} catch (DataAccessException e) {
+			LOGGER.error("getUserListByAgentCode失败====", e);
+			throw new RuntimeException("内部服务器错误");
+		}
+		return null;
 	}
 
 }

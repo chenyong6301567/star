@@ -265,4 +265,17 @@ public interface UserManager {
 	* @throws:
 	*/
 	CustomerRecommandVO getCustomerRecommandVOListByAccount(String account);
+
+	/**
+	* @Title getUserListByAgentCode
+	* @author cy
+	* @Description 
+	* @date 2018年2月5日下午11:16:50
+	* @param 
+	* @param 
+	* @param 
+	* @return List<Integer>
+	* @throws:
+	*/
+	List<Integer> getUserListByAgentCode(String agentCode);
 }
