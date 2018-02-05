@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
+import com.alibaba.fastjson.JSON;
 import com.croky.lang.Status;
 import com.croky.util.ObjectUtils;
 import com.github.pagehelper.PageHelper;
@@ -202,7 +203,8 @@ public class ContractIncomeDistributionManagerImpl implements ContractIncomeDist
 			criteria.andInderectRecomandPersonNameLike("%" + inderectPersonName + "%");
 		}
 
-		if (null != userId) {
+		if (!CollectionUtils.isEmpty(userIdList)) {
+			LOGGER.info("用户id列表====" + JSON.toJSONString(userIdList));
 			criteria.andUserIdIn(userIdList);
 		}
 
