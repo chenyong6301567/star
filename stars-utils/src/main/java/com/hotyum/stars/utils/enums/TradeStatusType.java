@@ -23,8 +23,10 @@ public enum TradeStatusType {
 
 	public static String getDes(Byte value) {
 		for (TradeStatusType tmp : TradeStatusType.values()) {
-			if (value.equals(tmp.getValue())) {
-				return tmp.description;
+			if (null != value) {
+				if (value.equals(tmp.getValue())) {
+					return tmp.description;
+				}
 			}
 		}
 		return null;

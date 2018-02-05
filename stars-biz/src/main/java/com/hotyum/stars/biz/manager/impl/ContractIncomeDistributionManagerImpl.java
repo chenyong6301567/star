@@ -323,11 +323,12 @@ public class ContractIncomeDistributionManagerImpl implements ContractIncomeDist
 	public void updateContractDitrubuteIncome(List<ContractDitrubuteIncomeVO> contractDitrubuteIncomeVOList)
 			throws Exception {
 		for (ContractDitrubuteIncomeVO vo : contractDitrubuteIncomeVOList) {
+			LOGGER.info("修改合同收益分配===" + JSON.toJSONString(vo));
 			ContractIncomeDistribution cib = new ContractIncomeDistribution();
 			cib = ObjectUtils.convert(vo, ContractIncomeDistribution.class);
 			cib.setInvestmentAmount(new BigDecimal(vo.getInvestmentAmount()));
 			cib.setContractIncome(new BigDecimal(vo.getContractIncome()));
-			if (null != vo.getFirstTradeDate()) {
+			if (StringUtils.isNotEmpty(vo.getFirstTradeDate())) {
 				cib.setFirstTradeDate(DateUtil.parseDate(vo.getFirstTradeDate()));
 			}
 			cib.setDerectIncome(new BigDecimal(vo.getDerectIncome()));
@@ -335,6 +336,7 @@ public class ContractIncomeDistributionManagerImpl implements ContractIncomeDist
 			cib.setAgentIncome(new BigDecimal(vo.getAgentIncome()));
 			cib.setCustomerIncome(new BigDecimal(vo.getCustomerIncome()));
 			cib.setCompanyIncome(new BigDecimal(vo.getCompanyIncome()));
+			cib.setGmtModify(new Date());
 			try {
 				contractIncomeDistributionDAO.updateByPrimaryKeySelective(cib);
 			} catch (DataAccessException e) {
