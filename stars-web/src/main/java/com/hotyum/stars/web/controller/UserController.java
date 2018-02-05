@@ -182,10 +182,14 @@ public class UserController {
 		// String realPath =
 		// request.getServletContext().getRealPath("/upload/certificate/");
 		if (file != null) {// 判断上传的文件是否为空
+			if (file.getSize() > 5 * 1048576) {
+				return Result.errorReponse("上传图片不能超过5M");
+			}
 			String fileName = file.getOriginalFilename();// 文件原名称
 			String type = fileName.indexOf(".") != -1
 					? fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length()) : null;
-			if (!("GIF".equalsIgnoreCase(type) || "PNG".equalsIgnoreCase(type) || "JPG".equalsIgnoreCase(type)|| "JPEG".equalsIgnoreCase(type))) {
+			if (!("GIF".equalsIgnoreCase(type) || "PNG".equalsIgnoreCase(type) || "JPG".equalsIgnoreCase(type)
+					|| "JPEG".equalsIgnoreCase(type))) {
 				return Result.errorReponse("不支持[" + type + "]文件上传");
 			}
 			String trueFileName = account + "." + type;
