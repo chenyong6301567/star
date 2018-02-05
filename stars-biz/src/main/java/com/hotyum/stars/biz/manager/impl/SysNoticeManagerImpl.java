@@ -83,6 +83,7 @@ public class SysNoticeManagerImpl implements SysNoticeManager {
 		SystemNoticeExample example = new SystemNoticeExample();
 		SystemNoticeExample.Criteria criteria = example.createCriteria();
 		criteria.andStatusGreaterThanOrEqualTo(Status.ZERO.getValue());
+		example.setOrderByClause(" gmt_create desc ");
 		List<SystemNotice> systemNoticeList = null;
 		try {
 			systemNoticeList = systemNoticeDAO.selectByExample(example);
@@ -98,7 +99,7 @@ public class SysNoticeManagerImpl implements SysNoticeManager {
 		for (SystemNotice systemNotice : systemNoticeList) {
 			SysNoticeVO vo = new SysNoticeVO();
 			vo.setId(systemNotice.getId());
-			vo.setGmtCreate(DateUtil.date2Str(systemNotice.getGmtCreate(),DateUtil.DEFAULT_FORMAT));
+			vo.setGmtCreate(DateUtil.date2Str(systemNotice.getGmtCreate(), DateUtil.DEFAULT_FORMAT));
 			vo.setNoticeContent(systemNotice.getNoticeContent());
 			vo.setSysType(systemNotice.getSysType());
 			vo.setToType(systemNotice.getToType());

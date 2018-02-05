@@ -3,6 +3,7 @@ package cyTest;
 import java.io.File;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.List;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,7 +17,9 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.google.common.io.Files;
 import com.hotyum.stars.SpringBootMain;
+import com.hotyum.stars.biz.manager.NoticeManager;
 import com.hotyum.stars.biz.manager.UserManager;
+import com.hotyum.stars.biz.model.NoticeVO;
 import com.hotyum.stars.biz.model.TokenInfoVO;
 import com.hotyum.stars.utils.DateUtil;
 
@@ -31,6 +34,9 @@ public class CyTest {
 
 	@Autowired
 	private UserManager userManager;
+
+	@Autowired
+	private NoticeManager registerNoticeManager;
 
 	@Test
 	public void testLogin() {
@@ -172,6 +178,12 @@ public class CyTest {
 			this.status = status;
 		}
 
+	}
+
+	@Test
+	public void test() {
+		List<NoticeVO> noticeVOList = registerNoticeManager.getNoticeByUserId(3);
+		System.out.println(JSON.toJSONString(noticeVOList));
 	}
 
 }
