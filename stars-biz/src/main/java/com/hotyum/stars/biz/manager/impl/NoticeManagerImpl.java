@@ -84,6 +84,7 @@ public class NoticeManagerImpl implements NoticeManager {
 		criteria.andUserIdEqualTo(userId);
 		criteria.andStatusGreaterThanOrEqualTo(Status.ZERO.getValue());
 		criteria.andReadStatusGreaterThanOrEqualTo(Status.ZERO.getValue());
+		noticeExample.setOrderByClause(" gmt_create desc ");
 		List<Notice> noticeList = null;
 		try {
 			noticeList = noticeDAO.selectByExample(noticeExample);
