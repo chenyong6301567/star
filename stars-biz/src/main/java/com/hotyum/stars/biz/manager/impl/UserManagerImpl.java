@@ -402,8 +402,24 @@ public class UserManagerImpl implements UserManager {
 		user.setWhetherRealName(whetherRealName);
 		user.setRefereeQualification(refereeQualification);
 		user.setAgentCode(agentCode);
-		user.setDirectRecommendationAccount(directRecommendationAccount);
-		user.setIndirectRecommendationAccount(indirectRecommendationAccount);
+
+		if (StringUtils.isNotEmpty(directRecommendationAccount)) {
+			User directUser = getUserByPhone(directRecommendationAccount);
+			if (null == directUser) {
+				throw new ApplicationException("直推人账号不存在");
+			} else {
+				user.setDirectRecommendationAccount(directRecommendationAccount);
+			}
+		}
+		if (StringUtils.isNotEmpty(indirectRecommendationAccount)) {
+			User inderect = getUserByPhone(indirectRecommendationAccount);
+			if (null == inderect) {
+				throw new ApplicationException("间推人账号不存在");
+			} else {
+				user.setIndirectRecommendationAccount(indirectRecommendationAccount);
+			}
+		}
+
 		user.setEmail(email);
 		user.setGmtModify(new Date());
 		try {

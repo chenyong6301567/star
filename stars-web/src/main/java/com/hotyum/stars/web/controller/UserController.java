@@ -156,6 +156,7 @@ public class UserController {
 		if (userd < 0) {
 			throw new RuntimeException("请先登录再修改用戶基本信息");
 		}
+		LOGGER.info(directRecommendationAccount + "================================" + indirectRecommendationAccount);
 		userManager.updateUserBaseInfo(account, realName, sex, contactPhone, email, whetherRealName, wheatherGetMoney,
 				refereeQualification, agentCode, directRecommendationAccount, indirectRecommendationAccount);
 		return Result.normalResponse();

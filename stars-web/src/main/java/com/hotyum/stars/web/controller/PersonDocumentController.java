@@ -93,7 +93,7 @@ public class PersonDocumentController {
 			@RequestParam(required = true) Integer maxIndex, HttpServletRequest request) {
 		
 		
-		LOGGGER.info("入金日期"+getMoneyDate+"==============签约日期=="+contractDate);
+		LOGGGER.info("入金日期"+derectRecomandPersonId+"==============签约日期=="+inderectRecomandPersonId);
 
 		Integer usId = TokenAccessUtils.getLoginUserId(request);
 
