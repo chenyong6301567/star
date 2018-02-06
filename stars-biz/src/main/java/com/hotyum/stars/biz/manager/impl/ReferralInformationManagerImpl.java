@@ -108,6 +108,7 @@ public class ReferralInformationManagerImpl implements ReferralInformationManage
 			myReferralInformation.setStatus(Status.ZERO.getValue());
 			myReferralInformation.setUsId(usId);
 			myReferralInformation.setUserName(userName);
+			myReferralInformation.setSumMoney(new BigDecimal(0.0));
 			if (type.equals(RefereeType.DERECT.getValue())) {
 				// 直接客户
 				myReferralInformation.setDirectReferralNumber(1);
