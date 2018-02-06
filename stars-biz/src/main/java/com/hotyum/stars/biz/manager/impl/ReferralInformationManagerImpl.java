@@ -113,8 +113,10 @@ public class ReferralInformationManagerImpl implements ReferralInformationManage
 				myReferralInformation.setDirectReferralNumber(1);
 				myReferralInformation.setDirectRewardRate(RATES[0]);
 				myReferralInformation.setStarDegree(STARDEGREE[0]);
+				myReferralInformation.setIndirectReferralNumber(0);
 			} else {
 				myReferralInformation.setIndirectReferralNumber(1);
+				myReferralInformation.setDirectReferralNumber(0);
 			}
 			try {
 				myReferralInformationDAO.insert(myReferralInformation);
@@ -199,10 +201,10 @@ public class ReferralInformationManagerImpl implements ReferralInformationManage
 			}
 			userBaseInfoVO.setMyReferinfoMationVO(myinfoVo);
 		}
-         //获取直接人推荐信息
+		// 获取直接人推荐信息
 		userBaseInfoVO
 				.setDerectCustomerReferInfoMationVOList(getDerectCustomerReferInfoMationVOList(userBaseInfoVO.getId()));
-		//获取间接人推荐信息
+		// 获取间接人推荐信息
 		userBaseInfoVO.setInDerectCustomerReferInfoMationVOList(
 				getInDerectCustomerReferInfoMationVOList(userBaseInfoVO.getId()));
 	}
