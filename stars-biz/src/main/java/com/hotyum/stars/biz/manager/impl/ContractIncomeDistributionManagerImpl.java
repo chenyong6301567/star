@@ -335,13 +335,14 @@ public class ContractIncomeDistributionManagerImpl implements ContractIncomeDist
 			cib.setContractIncome(new BigDecimal(vo.getContractIncome()));
 			cib.setProductTypeId(vo.getProductTypeId());
 			cib.setProductTypeName(vo.getProductTypeName());
-			LOGGER.info(vo.getFirstTradeDate()+"==========交易日期============"+vo.getTradeEndDate());
+			LOGGER.info(vo.getFirstTradeDate() + "==========交易日期============" + vo.getTradeEndDate());
 			if (StringUtils.isNotEmpty(vo.getFirstTradeDate())) {
 				cib.setFirstTradeDate(DateUtil.parseDate(vo.getFirstTradeDate()));
 			}
 			if (StringUtils.isNotEmpty(vo.getTradeEndDate())) {
 				cib.setTradeEndDate(DateUtil.parseDate(vo.getTradeEndDate()));
 			}
+			LOGGER.info(cib.getFirstTradeDate() + "==========转换后的交易日期============" + cib.getTradeEndDate());
 			cib.setTradeStatus(vo.getTradeStatus());
 			cib.setProductRate(vo.getProductRate());
 			cib.setDerectIncome(new BigDecimal(vo.getDerectIncome()));
