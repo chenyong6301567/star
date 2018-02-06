@@ -35,6 +35,7 @@ import com.hotyum.stars.utils.DecimalUtil;
 import com.hotyum.stars.utils.Page;
 import com.hotyum.stars.utils.enums.BooleanType;
 import com.hotyum.stars.utils.enums.UserType;
+import com.hotyum.stars.utils.exception.ApplicationException;
 
 /**
  * @author cy
@@ -323,19 +324,32 @@ public class ContractIncomeDistributionManagerImpl implements ContractIncomeDist
 			throws Exception {
 		for (ContractDitrubuteIncomeVO vo : contractDitrubuteIncomeVOList) {
 			LOGGER.info("修改合同收益分配===" + JSON.toJSONString(vo));
-			ContractIncomeDistribution cib = new ContractIncomeDistribution();
-			cib = ObjectUtils.convert(vo, ContractIncomeDistribution.class);
+			ContractIncomeDistribution cib = getContractDitrubuteIncomeById(vo.getId());
+			if (null == cib) {
+				throw new ApplicationException("档案明细不存在");
+			}
+			cib.setDocumentCode(vo.getDocumentCode());
+			cib.setCustomerName(vo.getCustomerName());
 			cib.setInvestmentAmount(new BigDecimal(vo.getInvestmentAmount()));
 			cib.setContractIncome(new BigDecimal(vo.getContractIncome()));
+			cib.setProductTypeId(vo.getProductTypeId());
+			cib.setProductTypeName(vo.getProductTypeName());
 			if (StringUtils.isNotEmpty(vo.getFirstTradeDate())) {
 				cib.setFirstTradeDate(DateUtil.parseDate(vo.getFirstTradeDate()));
 			}
+			if (StringUtils.isNotEmpty(vo.getTradeEndDate())) {
+				cib.setTradeEndDate(DateUtil.parseDate(vo.getTradeEndDate()));
+			}
+			cib.setTradeStatus(vo.getTradeStatus());
+			cib.setProductRate(vo.getProductRate());
 			cib.setDerectIncome(new BigDecimal(vo.getDerectIncome()));
 			cib.setInderectIncome(new BigDecimal(vo.getInderectIncome()));
 			cib.setAgentIncome(new BigDecimal(vo.getAgentIncome()));
 			cib.setCustomerIncome(new BigDecimal(vo.getCustomerIncome()));
 			cib.setCompanyIncome(new BigDecimal(vo.getCompanyIncome()));
 			cib.setGmtModify(new Date());
+			cib.setTradeAccount(vo.getTradeAccount());
+			cib.setTradePlatform(vo.getTradePlatform());
 			try {
 				contractIncomeDistributionDAO.updateByPrimaryKeySelective(cib);
 			} catch (DataAccessException e) {
@@ -344,6 +358,31 @@ public class ContractIncomeDistributionManagerImpl implements ContractIncomeDist
 			}
 		}
 
+	}
+
+	/**
+	* @Title updateContractDitrubuteIncomeById
+	* @author cy
+	* @Description 
+	* @date 2018年2月6日下午11:15:32
+	* @param 
+	* @param 
+	* @param 
+	* @return ContractIncomeDistribution
+	* @throws:
+	*/
+	private ContractIncomeDistribution getContractDitrubuteIncomeById(Integer id) {
+		ContractIncomeDistributionExample example = new ContractIncomeDistributionExample();
+		ContractIncomeDistributionExample.Criteria criteria = example.createCriteria();
+		criteria.andStatusGreaterThanOrEqualTo(Status.ZERO.getValue());
+		criteria.andIdEqualTo(id);
+		try {
+			List<ContractIncomeDistribution> poList = contractIncomeDistributionDAO.selectByExample(example);
+			return CollectionUtils.isEmpty(poList) ? null : poList.get(0);
+		} catch (DataAccessException e) {
+			LOGGER.error("updateContractDitrubuteIncome失败====", e);
+			throw new RuntimeException("内部服务器错误");
+		}
 	}
 
 }
