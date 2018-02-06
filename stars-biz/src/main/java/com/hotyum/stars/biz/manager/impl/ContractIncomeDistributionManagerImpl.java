@@ -335,6 +335,7 @@ public class ContractIncomeDistributionManagerImpl implements ContractIncomeDist
 			cib.setContractIncome(new BigDecimal(vo.getContractIncome()));
 			cib.setProductTypeId(vo.getProductTypeId());
 			cib.setProductTypeName(vo.getProductTypeName());
+			LOGGER.info(vo.getFirstTradeDate()+"==========交易日期============"+vo.getTradeEndDate());
 			if (StringUtils.isNotEmpty(vo.getFirstTradeDate())) {
 				cib.setFirstTradeDate(DateUtil.parseDate(vo.getFirstTradeDate()));
 			}
@@ -352,6 +353,7 @@ public class ContractIncomeDistributionManagerImpl implements ContractIncomeDist
 			cib.setTradeAccount(vo.getTradeAccount());
 			cib.setTradePlatform(vo.getTradePlatform());
 			cib.setAgentRate(vo.getAgentRate());
+			cib.setInderectRecomandRate(vo.getInderectRecomandRate());
 			try {
 				contractIncomeDistributionDAO.updateByPrimaryKeySelective(cib);
 			} catch (DataAccessException e) {
