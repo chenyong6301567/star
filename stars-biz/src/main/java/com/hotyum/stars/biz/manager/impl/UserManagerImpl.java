@@ -402,7 +402,7 @@ public class UserManagerImpl implements UserManager {
 		user.setWhetherRealName(whetherRealName);
 		user.setRefereeQualification(refereeQualification);
 		user.setAgentCode(agentCode);
-		user.setDirectRecommendationAccount(indirectRecommendationAccount);
+		user.setDirectRecommendationAccount(directRecommendationAccount);
 		user.setIndirectRecommendationAccount(indirectRecommendationAccount);
 		user.setEmail(email);
 		user.setGmtModify(new Date());
@@ -468,6 +468,7 @@ public class UserManagerImpl implements UserManager {
 		user.setRealName(realName);
 		user.setCertificateType(certificateType);
 		user.setCertificateNumber(certificateNumber);
+		user.setGmtModify(new Date());
 		try {
 			userDAO.updateByPrimaryKey(user);
 		} catch (DataAccessException e) {
