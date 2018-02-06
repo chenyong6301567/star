@@ -42,7 +42,7 @@ public class NoticeTask {
 
 	private Lock lock = new ReentrantLock();
 
-	@Scheduled(cron = "0 0/1 * * * ? ")
+	@Scheduled(cron = "0 0/2 * * * ? ")
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void NoticeTask() {
 		//LOGGER.info("执行通知轮询操作开始");
