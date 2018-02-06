@@ -46,7 +46,7 @@ public class ReferralInformationManagerImpl implements ReferralInformationManage
 	@Autowired
 	private MyReferralInformationDAO myReferralInformationDAO;
 
-	private static final String[] RATES = { "1%", "1.2%", "1.5%" };
+	private static final String[] RATES = { "0.01", "0.012", "0.015" };
 
 	private static final String[] STARDEGREE = { "1星", "2星", "3星" };
 

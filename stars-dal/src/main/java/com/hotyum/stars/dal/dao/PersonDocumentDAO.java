@@ -23,7 +23,9 @@ public interface PersonDocumentDAO extends PersonDocumentMapper {
 	* @return Integer
 	* @throws:
 	*/
-	@Select({ "<script>", "SELECT MAX(document_index) from person_document a WHERE user_id= #{userId}", "</script>" })
-	Integer getMaxIndexByUserId(@Param("userId") Integer userId);
+	@Select({ "<script>",
+			"SELECT MAX(document_index) from person_document a WHERE gmt_create BETWEEN #{begin} AND #{end}",
+			"</script>" })
+	Integer getMaxIndexByUserId(@Param("begin") String begin, @Param("end") String end);
 
 }

@@ -77,7 +77,7 @@ public class PersonDocumentManagerImpl implements PersonDocumentManager {
 		// 根据档案编号查询是否存在
 		PersonDocument oldpersonDocument = getPersonDocumentByDocumentCode(documentCode);
 		if (null != oldpersonDocument) {
-         throw new RuntimeException("档案编号已存在");
+			throw new RuntimeException("档案编号已存在");
 		}
 		PersonDocument personDocument = new PersonDocument();
 		personDocument.setAgentCode(agentCode);
@@ -276,7 +276,11 @@ public class PersonDocumentManagerImpl implements PersonDocumentManager {
 	@Override
 	public Integer getMaxIndexByUserId(Integer userId) {
 		try {
-			Integer index = personDocumentDAO.getMaxIndexByUserId(userId);
+			Date todayBegin = DateUtil.getBeijingTodayBegin();
+			String begin = DateUtil.date2Str(todayBegin, DateUtil.DEFAULT_FORMAT);
+			Date todayend = DateUtil.getBeijingTodayEnd();
+			String end = DateUtil.date2Str(todayend, DateUtil.DEFAULT_FORMAT);
+			Integer index = personDocumentDAO.getMaxIndexByUserId(begin, end);
 			return index == null ? 0 : index;
 		} catch (DataAccessException e) {
 			LOGGER.error("getMaxProvinceIndex失败====", e);

@@ -18,6 +18,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.google.common.io.Files;
 import com.hotyum.stars.SpringBootMain;
 import com.hotyum.stars.biz.manager.NoticeManager;
+import com.hotyum.stars.biz.manager.PersonDocumentManager;
 import com.hotyum.stars.biz.manager.UserManager;
 import com.hotyum.stars.biz.model.NoticeVO;
 import com.hotyum.stars.biz.model.TokenInfoVO;
@@ -37,6 +38,9 @@ public class CyTest {
 
 	@Autowired
 	private NoticeManager registerNoticeManager;
+
+	@Autowired
+	private PersonDocumentManager personDocumentManager;
 
 	@Test
 	public void testLogin() {
@@ -184,6 +188,12 @@ public class CyTest {
 	public void test() {
 		List<NoticeVO> noticeVOList = registerNoticeManager.getNoticeByUserId(3);
 		System.out.println(JSON.toJSONString(noticeVOList));
+	}
+
+	@Test
+	public void getMaxIndexByUserId() {
+		Integer index = personDocumentManager.getMaxIndexByUserId(5);
+		System.out.println(index);
 	}
 
 }
