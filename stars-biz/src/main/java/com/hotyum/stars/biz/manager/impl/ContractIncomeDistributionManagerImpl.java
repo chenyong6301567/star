@@ -115,7 +115,7 @@ public class ContractIncomeDistributionManagerImpl implements ContractIncomeDist
 		cd.setUserId(userId);
 		cd.setProductTypeName(productTypeName);
 		cd.setProductTypeId(productId);
-		LOGGER.info(productId+"==================添加收益产品"+productTypeName);
+		LOGGER.info(productId + "==================添加收益产品" + productTypeName);
 		// 计算合同收益
 		double customerIncome = investmentAmount * Double.parseDouble(productRate.replace("%", "")) * 0.01;
 		cd.setCustomerIncome(new BigDecimal(customerIncome));
@@ -338,10 +338,10 @@ public class ContractIncomeDistributionManagerImpl implements ContractIncomeDist
 			cib.setProductTypeName(vo.getProductTypeName());
 			LOGGER.info(vo.getFirstTradeDate() + "==========交易日期============" + vo.getTradeEndDate());
 			if (StringUtils.isNotEmpty(vo.getFirstTradeDate())) {
-				cib.setFirstTradeDate(DateUtil.parseDate(vo.getFirstTradeDate()));
+				cib.setFirstTradeDate(DateUtil.parseDate(vo.getFirstTradeDate(), DateUtil.FORMAT_DATE));
 			}
 			if (StringUtils.isNotEmpty(vo.getTradeEndDate())) {
-				cib.setTradeEndDate(DateUtil.parseDate(vo.getTradeEndDate()));
+				cib.setTradeEndDate(DateUtil.parseDate(vo.getTradeEndDate(), DateUtil.FORMAT_DATE));
 			}
 			LOGGER.info(cib.getFirstTradeDate() + "==========转换后的交易日期============" + cib.getTradeEndDate());
 			cib.setTradeStatus(vo.getTradeStatus());
