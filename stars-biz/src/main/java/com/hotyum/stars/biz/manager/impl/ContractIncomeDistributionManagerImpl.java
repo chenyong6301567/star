@@ -113,6 +113,7 @@ public class ContractIncomeDistributionManagerImpl implements ContractIncomeDist
 		cd.setStatus(Status.ZERO.getValue());
 		cd.setProductRate(productRate);
 		cd.setUserId(userId);
+		cd.setProductTypeId(productId);
 
 		// 计算合同收益
 		double customerIncome = investmentAmount * Double.parseDouble(productRate.replace("%", "")) * 0.01;
