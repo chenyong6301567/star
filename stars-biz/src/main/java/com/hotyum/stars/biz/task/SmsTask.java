@@ -1,4 +1,4 @@
-package com.hotyum.stars.biz.task;
+/*package com.hotyum.stars.biz.task;
 
 import java.util.List;
 import java.util.concurrent.locks.Lock;
@@ -49,7 +49,7 @@ public class SmsTask {
 	//@Scheduled(cron = "0 0/1 * * * ? ")
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void NoticeTask() {
-		LOGGER.info("短信系统通知执行通知轮询操作开始");
+		//LOGGER.info("短信系统通知执行通知轮询操作开始");
 		lock.lock();
 		// 先查询系统通知
 		List<SystemNotice> systemNoticeList = systemNoticeManager.getSmsSystemNotice();
@@ -74,10 +74,10 @@ public class SmsTask {
 			}
 		}
 		lock.unlock();
-		LOGGER.info("执行通知轮询操作完成");
+		//LOGGER.info("执行通知轮询操作完成");
 	}
 
-	/**
+	*//**
 	* @Title sendMsg
 	* @author cy
 	* @Description 
@@ -87,7 +87,7 @@ public class SmsTask {
 	* @param 
 	* @return void
 	* @throws:
-	*/
+	*//*
 	private void sendMsg(String account, String noticeContent) {
 		// TODO 调用短信接口发送短信
 		Boolean sendResult = smsService.sendSingleMsg(account, noticeContent);
@@ -98,3 +98,4 @@ public class SmsTask {
 	}
 
 }
+*/
