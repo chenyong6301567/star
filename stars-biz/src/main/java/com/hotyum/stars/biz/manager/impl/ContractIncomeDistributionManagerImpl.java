@@ -351,6 +351,7 @@ public class ContractIncomeDistributionManagerImpl implements ContractIncomeDist
 			cib.setGmtModify(new Date());
 			cib.setTradeAccount(vo.getTradeAccount());
 			cib.setTradePlatform(vo.getTradePlatform());
+			cib.setAgentRate(vo.getAgentRate());
 			try {
 				contractIncomeDistributionDAO.updateByPrimaryKeySelective(cib);
 			} catch (DataAccessException e) {
