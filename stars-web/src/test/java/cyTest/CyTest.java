@@ -22,6 +22,7 @@ import com.hotyum.stars.biz.manager.PersonDocumentManager;
 import com.hotyum.stars.biz.manager.UserManager;
 import com.hotyum.stars.biz.model.NoticeVO;
 import com.hotyum.stars.biz.model.TokenInfoVO;
+import com.hotyum.stars.dal.model.User;
 import com.hotyum.stars.utils.DateUtil;
 
 /**
@@ -194,6 +195,12 @@ public class CyTest {
 	public void getMaxIndexByUserId() {
 		Integer index = personDocumentManager.getMaxIndexByUserId(5);
 		System.out.println(index);
+	}
+
+	@Test
+	public void getuser() {
+		User user = userManager.getUserByPhone("18668440650");
+		System.out.println(user.toString());
 	}
 
 }

@@ -513,9 +513,11 @@ public class UserManagerImpl implements UserManager {
 		if (null != user) {
 			throw new ApplicationException("账号对应的用户已存在");
 		}
-		User refereePhoneUser = getUserByPhone(account);
-		if (null == refereePhoneUser) {
-			throw new ApplicationException("推荐人账号不存在");
+		if (StringUtils.isNotEmpty(refereePhone)) {
+			User refereePhoneUser = getUserByPhone(refereePhone);
+			if (null == refereePhoneUser) {
+				throw new ApplicationException("推荐人账号不存在");
+			}
 		}
 		// 首先要查询代理商是否添加、
 		if (userType.equals(UserType.AGENT.getValue())) {
