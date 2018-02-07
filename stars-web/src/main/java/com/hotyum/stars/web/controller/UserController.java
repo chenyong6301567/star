@@ -263,7 +263,7 @@ public class UserController {
 			@RequestParam(required = true) String account, Date freezeDate, String agentName, String agentCode,
 			@RequestParam(defaultValue = Constants.DEFAULTPWD) String pwd, String customerAgent, String refereePhone) {
 		LOGGER.info("代理商编码agentCode=================" + agentCode);
-		if (userType.equals(UserType.AGENT.getValue())) {
+	/*	if (userType.equals(UserType.AGENT.getValue())) {
 			if (StringUtils.isEmpty(agentName) || StringUtils.isEmpty(agentCode)) {
 				return Result.errorReponse("代理商编码或名称不能为空");
 			}
@@ -273,7 +273,7 @@ public class UserController {
 			if (StringUtils.isEmpty(customerAgent)) {
 				return Result.errorReponse("客户代理商不能为空");
 			}
-		}
+		}*/
 
 		userManager.addUser(account, userName, contactPhone, userType, agentName, whetherFreeze, freezeDate, pwd,
 				customerAgent, agentCode, refereePhone);
