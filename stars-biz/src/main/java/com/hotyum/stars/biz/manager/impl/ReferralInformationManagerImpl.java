@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.reflection.ReflectorFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -203,11 +204,15 @@ public class ReferralInformationManagerImpl implements ReferralInformationManage
 			userBaseInfoVO.setMyReferinfoMationVO(myinfoVo);
 		}
 		// 获取直接人推荐信息
-		userBaseInfoVO
-				.setDerectCustomerReferInfoMationVOList(getDerectCustomerReferInfoMationVOList(userBaseInfoVO.getId()));
-		// 获取间接人推荐信息
-		userBaseInfoVO.setInDerectCustomerReferInfoMationVOList(
-				getInDerectCustomerReferInfoMationVOList(userBaseInfoVO.getId()));
+		if (null != userBaseInfoVO.getDerectRecomandPersonId()) {
+			userBaseInfoVO.setDerectCustomerReferInfoMationVOList(
+					getDerectCustomerReferInfoMationVOList(userBaseInfoVO.getDerectRecomandPersonId()));
+		}
+		if (null != userBaseInfoVO.getInderectRecomandPersonId()) {
+			// 获取间接人推荐信息
+			userBaseInfoVO.setInDerectCustomerReferInfoMationVOList(
+					getInDerectCustomerReferInfoMationVOList(userBaseInfoVO.getInderectRecomandPersonId()));
+		}
 	}
 
 	/**

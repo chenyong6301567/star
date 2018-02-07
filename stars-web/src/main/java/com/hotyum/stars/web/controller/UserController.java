@@ -121,7 +121,7 @@ public class UserController {
 			referralInformationManager.getReferInfomation(userBaseInfoVO);
 		} catch (Exception e) {
 			LOGGER.error("getUserBaseInfo对象转换异常", e);
-			return Result.errorReponse("花落去用户基本信息错误");
+			return Result.errorReponse("获取用户基本信息错误");
 		}
 		return Result.normalResponse(userBaseInfoVO);
 	}
