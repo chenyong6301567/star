@@ -224,7 +224,7 @@ public class ReferralInformationManagerImpl implements ReferralInformationManage
 	private List<InDerectCustomerReferInfoMationVO> getInDerectCustomerReferInfoMationVOList(Integer usId) {
 		CustomerReferralInformationExample example = new CustomerReferralInformationExample();
 		CustomerReferralInformationExample.Criteria criteria = example.createCriteria();
-		criteria.andRecommendationUsIdEqualTo(usId);
+		criteria.andUsIdEqualTo(usId);
 		criteria.andTypeEqualTo(RefereeType.INDERECT.getValue());
 		criteria.andStatusGreaterThanOrEqualTo(Status.ZERO.getValue());
 		List<CustomerReferralInformation> infoList = null;
@@ -263,7 +263,7 @@ public class ReferralInformationManagerImpl implements ReferralInformationManage
 	private List<DerectCustomerReferInfoMationVO> getDerectCustomerReferInfoMationVOList(Integer usId) {
 		CustomerReferralInformationExample example = new CustomerReferralInformationExample();
 		CustomerReferralInformationExample.Criteria criteria = example.createCriteria();
-		criteria.andRecommendationUsIdEqualTo(usId);
+		criteria.andUsIdEqualTo(usId);
 		criteria.andTypeEqualTo(RefereeType.DERECT.getValue());
 		criteria.andStatusGreaterThanOrEqualTo(Status.ZERO.getValue());
 		List<CustomerReferralInformation> infoList = null;
