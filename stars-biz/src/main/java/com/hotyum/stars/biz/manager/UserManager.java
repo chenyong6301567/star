@@ -130,6 +130,7 @@ public interface UserManager {
 	* @author cy
 	 * @param customerAgent 
 	 * @param agentCode 
+	 * @param refereePhone 
 	* @Description 
 	* @date 2018年1月1日下午4:52:01
 	* @param 
@@ -139,7 +140,7 @@ public interface UserManager {
 	* @throws:
 	*/
 	void addUser(String account, String userName, String contactPhone, Byte userType, String agentName,
-			Byte whetherFreeze, Date freezeDate, String pwd, String customerAgent, String agentCode);
+			Byte whetherFreeze, Date freezeDate, String pwd, String customerAgent, String agentCode, String refereePhone);
 
 	/**
 	* @Title getuserByAgentCode

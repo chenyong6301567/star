@@ -245,6 +245,7 @@ public class UserController {
 	 * @param agentCode                     代理商编码(代理商必填)|String|必填
 	 * @param pwd                           密码(默认123456)|string|必填
 	 * @param customerAgent                 客户代理商(添加客户必填)|String|        
+	 * @param refereePhone                  推荐人手机号|String|  
 	 * @Title addUser
 	 * @respbody 
 	 * @author cy
@@ -257,7 +258,7 @@ public class UserController {
 	public Result addUser(HttpServletRequest request, String userName, String contactPhone,
 			@RequestParam(required = true) Byte userType, Byte whetherFreeze,
 			@RequestParam(required = true) String account, Date freezeDate, String agentName, String agentCode,
-			@RequestParam(defaultValue = Constants.DEFAULTPWD) String pwd, String customerAgent) {
+			@RequestParam(defaultValue = Constants.DEFAULTPWD) String pwd, String customerAgent, String refereePhone) {
 		LOGGER.info("代理商编码agentCode=================" + agentCode);
 		if (userType.equals(UserType.AGENT.getValue())) {
 			if (StringUtils.isEmpty(agentName) || StringUtils.isEmpty(agentCode)) {
@@ -272,7 +273,7 @@ public class UserController {
 		}
 
 		userManager.addUser(account, userName, contactPhone, userType, agentName, whetherFreeze, freezeDate, pwd,
-				customerAgent, agentCode);
+				customerAgent, agentCode, refereePhone);
 		return Result.normalResponse();
 	}
 

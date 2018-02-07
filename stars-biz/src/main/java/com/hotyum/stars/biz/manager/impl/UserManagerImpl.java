@@ -506,11 +506,16 @@ public class UserManagerImpl implements UserManager {
 	*/
 	@Override
 	public void addUser(String account, String userName, String contactPhone, Byte userType, String agentName,
-			Byte whetherFreeze, Date freezeDate, String pwd, String customerAgent, String agentCode) {
+			Byte whetherFreeze, Date freezeDate, String pwd, String customerAgent, String agentCode,
+			String refereePhone) {
 		LOGGER.info("代理商编码agentCode=================" + agentCode);
 		User user = getUserByPhone(account);
 		if (null != user) {
 			throw new ApplicationException("账号对应的用户已存在");
+		}
+		User refereePhoneUser = getUserByPhone(account);
+		if (null == refereePhoneUser) {
+			throw new ApplicationException("推荐人账号不存在");
 		}
 		// 首先要查询代理商是否添加、
 		if (userType.equals(UserType.AGENT.getValue())) {
@@ -535,6 +540,8 @@ public class UserManagerImpl implements UserManager {
 		newUser.setStatus(Status.ZERO.getValue());
 		newUser.setCustomerAgent(customerAgent);
 		newUser.setAgentCode(agentCode);
+		newUser.setDirectRecommendationAccount(refereePhone);
+
 		try {
 			userDAO.insertSelective(newUser);
 		} catch (DataAccessException e) {
