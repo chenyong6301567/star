@@ -246,6 +246,7 @@ public class UserManagerImpl implements UserManager {
 			throw new ApplicationException("您好，用户已存在，请直接登录");
 		}
 		User refereUser = null;
+		User indirectUser = null;
 		User newUser = new User();
 		if (StringUtils.isNotEmpty(refereePhone)) {
 			// 查询推荐用户是否存在
@@ -258,6 +259,9 @@ public class UserManagerImpl implements UserManager {
 
 			// 直接推荐人
 			newUser.setDirectRecommendationAccount(refereePhone);
+			indirectUser = getUserByPhone(refereUser.getDirectRecommendationAccount());
+			// 间接推荐人
+			newUser.setIndirectRecommendationAccount(refereUser.getDirectRecommendationAccount());
 		}
 		newUser.setAccount(phone);
 		newUser.setPwd(MD5Util.generatePassword(loginPwd));
@@ -280,10 +284,8 @@ public class UserManagerImpl implements UserManager {
 					RefereeType.DERECT.getValue(), newUser.getId(), newUser.getUserName());
 			// 直接推荐人的推荐人就是间接推荐人,要查询间接推荐人是否存在
 			if (StringUtils.isNotEmpty(refereUser.getDirectRecommendationAccount())) {
-				User indirectUser = getUserByPhone(refereUser.getDirectRecommendationAccount());
+
 				if (null != indirectUser) {
-					// 间接推荐人
-					newUser.setIndirectRecommendationAccount(refereUser.getDirectRecommendationAccount());
 					noticeManager.insert(refereUser.getId(), NoticeType.REGISTERNOTICE.getValue(),
 							String.format(INDERECTMESSAGE, refereUser.getRealName()));
 					referralInformationManager.saveReferalInfomation(indirectUser.getId(), indirectUser.getUserName(),
@@ -517,6 +519,7 @@ public class UserManagerImpl implements UserManager {
 			throw new ApplicationException("账号对应的用户已存在");
 		}
 		User newUser = new User();
+		User indirectUser = null;
 		User refereUser = null;
 		if (StringUtils.isNotEmpty(refereePhone)) {
 			// 查询推荐用户是否存在
@@ -528,6 +531,9 @@ public class UserManagerImpl implements UserManager {
 					String.format(DERECTMESSAGE, refereUser.getRealName()));
 			// 直接推荐人
 			newUser.setDirectRecommendationAccount(refereePhone);
+			indirectUser = getUserByPhone(refereUser.getDirectRecommendationAccount());
+			// 间接推荐人
+			newUser.setIndirectRecommendationAccount(refereUser.getDirectRecommendationAccount());
 		}
 		// 首先要查询代理商是否添加、
 		if (userType.equals(UserType.AGENT.getValue())) {
@@ -563,10 +569,7 @@ public class UserManagerImpl implements UserManager {
 					RefereeType.DERECT.getValue(), newUser.getId(), newUser.getUserName());
 			// 直接推荐人的推荐人就是间接推荐人,要查询间接推荐人是否存在
 			if (StringUtils.isNotEmpty(refereUser.getDirectRecommendationAccount())) {
-				User indirectUser = getUserByPhone(refereUser.getDirectRecommendationAccount());
 				if (null != indirectUser) {
-					// 间接推荐人
-					newUser.setIndirectRecommendationAccount(refereUser.getDirectRecommendationAccount());
 					noticeManager.insert(refereUser.getId(), NoticeType.REGISTERNOTICE.getValue(),
 							String.format(INDERECTMESSAGE, refereUser.getRealName()));
 					referralInformationManager.saveReferalInfomation(indirectUser.getId(), indirectUser.getUserName(),
