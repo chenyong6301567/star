@@ -345,266 +345,6 @@ public class CustomerReferralInformationExample {
             return (Criteria) this;
         }
 
-        public Criteria andDirectRecommendationIdIsNull() {
-            addCriterion("direct_recommendation_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andDirectRecommendationIdIsNotNull() {
-            addCriterion("direct_recommendation_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andDirectRecommendationIdEqualTo(Integer value) {
-            addCriterion("direct_recommendation_id =", value, "directRecommendationId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDirectRecommendationIdNotEqualTo(Integer value) {
-            addCriterion("direct_recommendation_id <>", value, "directRecommendationId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDirectRecommendationIdGreaterThan(Integer value) {
-            addCriterion("direct_recommendation_id >", value, "directRecommendationId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDirectRecommendationIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("direct_recommendation_id >=", value, "directRecommendationId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDirectRecommendationIdLessThan(Integer value) {
-            addCriterion("direct_recommendation_id <", value, "directRecommendationId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDirectRecommendationIdLessThanOrEqualTo(Integer value) {
-            addCriterion("direct_recommendation_id <=", value, "directRecommendationId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDirectRecommendationIdIn(List<Integer> values) {
-            addCriterion("direct_recommendation_id in", values, "directRecommendationId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDirectRecommendationIdNotIn(List<Integer> values) {
-            addCriterion("direct_recommendation_id not in", values, "directRecommendationId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDirectRecommendationIdBetween(Integer value1, Integer value2) {
-            addCriterion("direct_recommendation_id between", value1, value2, "directRecommendationId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDirectRecommendationIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("direct_recommendation_id not between", value1, value2, "directRecommendationId");
-            return (Criteria) this;
-        }
-
-        public Criteria andDirectRecommendationNameIsNull() {
-            addCriterion("direct_recommendation_name is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andDirectRecommendationNameIsNotNull() {
-            addCriterion("direct_recommendation_name is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andDirectRecommendationNameEqualTo(String value) {
-            addCriterion("direct_recommendation_name =", value, "directRecommendationName");
-            return (Criteria) this;
-        }
-
-        public Criteria andDirectRecommendationNameNotEqualTo(String value) {
-            addCriterion("direct_recommendation_name <>", value, "directRecommendationName");
-            return (Criteria) this;
-        }
-
-        public Criteria andDirectRecommendationNameGreaterThan(String value) {
-            addCriterion("direct_recommendation_name >", value, "directRecommendationName");
-            return (Criteria) this;
-        }
-
-        public Criteria andDirectRecommendationNameGreaterThanOrEqualTo(String value) {
-            addCriterion("direct_recommendation_name >=", value, "directRecommendationName");
-            return (Criteria) this;
-        }
-
-        public Criteria andDirectRecommendationNameLessThan(String value) {
-            addCriterion("direct_recommendation_name <", value, "directRecommendationName");
-            return (Criteria) this;
-        }
-
-        public Criteria andDirectRecommendationNameLessThanOrEqualTo(String value) {
-            addCriterion("direct_recommendation_name <=", value, "directRecommendationName");
-            return (Criteria) this;
-        }
-
-        public Criteria andDirectRecommendationNameLike(String value) {
-            addCriterion("direct_recommendation_name like", value, "directRecommendationName");
-            return (Criteria) this;
-        }
-
-        public Criteria andDirectRecommendationNameNotLike(String value) {
-            addCriterion("direct_recommendation_name not like", value, "directRecommendationName");
-            return (Criteria) this;
-        }
-
-        public Criteria andDirectRecommendationNameIn(List<String> values) {
-            addCriterion("direct_recommendation_name in", values, "directRecommendationName");
-            return (Criteria) this;
-        }
-
-        public Criteria andDirectRecommendationNameNotIn(List<String> values) {
-            addCriterion("direct_recommendation_name not in", values, "directRecommendationName");
-            return (Criteria) this;
-        }
-
-        public Criteria andDirectRecommendationNameBetween(String value1, String value2) {
-            addCriterion("direct_recommendation_name between", value1, value2, "directRecommendationName");
-            return (Criteria) this;
-        }
-
-        public Criteria andDirectRecommendationNameNotBetween(String value1, String value2) {
-            addCriterion("direct_recommendation_name not between", value1, value2, "directRecommendationName");
-            return (Criteria) this;
-        }
-
-        public Criteria andIndirectRecommendationIdIsNull() {
-            addCriterion("indirect_recommendation_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andIndirectRecommendationIdIsNotNull() {
-            addCriterion("indirect_recommendation_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andIndirectRecommendationIdEqualTo(Integer value) {
-            addCriterion("indirect_recommendation_id =", value, "indirectRecommendationId");
-            return (Criteria) this;
-        }
-
-        public Criteria andIndirectRecommendationIdNotEqualTo(Integer value) {
-            addCriterion("indirect_recommendation_id <>", value, "indirectRecommendationId");
-            return (Criteria) this;
-        }
-
-        public Criteria andIndirectRecommendationIdGreaterThan(Integer value) {
-            addCriterion("indirect_recommendation_id >", value, "indirectRecommendationId");
-            return (Criteria) this;
-        }
-
-        public Criteria andIndirectRecommendationIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("indirect_recommendation_id >=", value, "indirectRecommendationId");
-            return (Criteria) this;
-        }
-
-        public Criteria andIndirectRecommendationIdLessThan(Integer value) {
-            addCriterion("indirect_recommendation_id <", value, "indirectRecommendationId");
-            return (Criteria) this;
-        }
-
-        public Criteria andIndirectRecommendationIdLessThanOrEqualTo(Integer value) {
-            addCriterion("indirect_recommendation_id <=", value, "indirectRecommendationId");
-            return (Criteria) this;
-        }
-
-        public Criteria andIndirectRecommendationIdIn(List<Integer> values) {
-            addCriterion("indirect_recommendation_id in", values, "indirectRecommendationId");
-            return (Criteria) this;
-        }
-
-        public Criteria andIndirectRecommendationIdNotIn(List<Integer> values) {
-            addCriterion("indirect_recommendation_id not in", values, "indirectRecommendationId");
-            return (Criteria) this;
-        }
-
-        public Criteria andIndirectRecommendationIdBetween(Integer value1, Integer value2) {
-            addCriterion("indirect_recommendation_id between", value1, value2, "indirectRecommendationId");
-            return (Criteria) this;
-        }
-
-        public Criteria andIndirectRecommendationIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("indirect_recommendation_id not between", value1, value2, "indirectRecommendationId");
-            return (Criteria) this;
-        }
-
-        public Criteria andIndirectRecommendationNameIsNull() {
-            addCriterion("indirect_recommendation_name is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andIndirectRecommendationNameIsNotNull() {
-            addCriterion("indirect_recommendation_name is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andIndirectRecommendationNameEqualTo(String value) {
-            addCriterion("indirect_recommendation_name =", value, "indirectRecommendationName");
-            return (Criteria) this;
-        }
-
-        public Criteria andIndirectRecommendationNameNotEqualTo(String value) {
-            addCriterion("indirect_recommendation_name <>", value, "indirectRecommendationName");
-            return (Criteria) this;
-        }
-
-        public Criteria andIndirectRecommendationNameGreaterThan(String value) {
-            addCriterion("indirect_recommendation_name >", value, "indirectRecommendationName");
-            return (Criteria) this;
-        }
-
-        public Criteria andIndirectRecommendationNameGreaterThanOrEqualTo(String value) {
-            addCriterion("indirect_recommendation_name >=", value, "indirectRecommendationName");
-            return (Criteria) this;
-        }
-
-        public Criteria andIndirectRecommendationNameLessThan(String value) {
-            addCriterion("indirect_recommendation_name <", value, "indirectRecommendationName");
-            return (Criteria) this;
-        }
-
-        public Criteria andIndirectRecommendationNameLessThanOrEqualTo(String value) {
-            addCriterion("indirect_recommendation_name <=", value, "indirectRecommendationName");
-            return (Criteria) this;
-        }
-
-        public Criteria andIndirectRecommendationNameLike(String value) {
-            addCriterion("indirect_recommendation_name like", value, "indirectRecommendationName");
-            return (Criteria) this;
-        }
-
-        public Criteria andIndirectRecommendationNameNotLike(String value) {
-            addCriterion("indirect_recommendation_name not like", value, "indirectRecommendationName");
-            return (Criteria) this;
-        }
-
-        public Criteria andIndirectRecommendationNameIn(List<String> values) {
-            addCriterion("indirect_recommendation_name in", values, "indirectRecommendationName");
-            return (Criteria) this;
-        }
-
-        public Criteria andIndirectRecommendationNameNotIn(List<String> values) {
-            addCriterion("indirect_recommendation_name not in", values, "indirectRecommendationName");
-            return (Criteria) this;
-        }
-
-        public Criteria andIndirectRecommendationNameBetween(String value1, String value2) {
-            addCriterion("indirect_recommendation_name between", value1, value2, "indirectRecommendationName");
-            return (Criteria) this;
-        }
-
-        public Criteria andIndirectRecommendationNameNotBetween(String value1, String value2) {
-            addCriterion("indirect_recommendation_name not between", value1, value2, "indirectRecommendationName");
-            return (Criteria) this;
-        }
-
         public Criteria andContractNumIsNull() {
             addCriterion("contract_num is null");
             return (Criteria) this;
@@ -662,6 +402,256 @@ public class CustomerReferralInformationExample {
 
         public Criteria andContractNumNotBetween(Integer value1, Integer value2) {
             addCriterion("contract_num not between", value1, value2, "contractNum");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIsNull() {
+            addCriterion("type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIsNotNull() {
+            addCriterion("type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeEqualTo(Byte value) {
+            addCriterion("type =", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeNotEqualTo(Byte value) {
+            addCriterion("type <>", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeGreaterThan(Byte value) {
+            addCriterion("type >", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeGreaterThanOrEqualTo(Byte value) {
+            addCriterion("type >=", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeLessThan(Byte value) {
+            addCriterion("type <", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeLessThanOrEqualTo(Byte value) {
+            addCriterion("type <=", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIn(List<Byte> values) {
+            addCriterion("type in", values, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeNotIn(List<Byte> values) {
+            addCriterion("type not in", values, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeBetween(Byte value1, Byte value2) {
+            addCriterion("type between", value1, value2, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeNotBetween(Byte value1, Byte value2) {
+            addCriterion("type not between", value1, value2, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendationUsIdIsNull() {
+            addCriterion("recommendation_us_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendationUsIdIsNotNull() {
+            addCriterion("recommendation_us_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendationUsIdEqualTo(Integer value) {
+            addCriterion("recommendation_us_id =", value, "recommendationUsId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendationUsIdNotEqualTo(Integer value) {
+            addCriterion("recommendation_us_id <>", value, "recommendationUsId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendationUsIdGreaterThan(Integer value) {
+            addCriterion("recommendation_us_id >", value, "recommendationUsId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendationUsIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("recommendation_us_id >=", value, "recommendationUsId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendationUsIdLessThan(Integer value) {
+            addCriterion("recommendation_us_id <", value, "recommendationUsId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendationUsIdLessThanOrEqualTo(Integer value) {
+            addCriterion("recommendation_us_id <=", value, "recommendationUsId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendationUsIdIn(List<Integer> values) {
+            addCriterion("recommendation_us_id in", values, "recommendationUsId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendationUsIdNotIn(List<Integer> values) {
+            addCriterion("recommendation_us_id not in", values, "recommendationUsId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendationUsIdBetween(Integer value1, Integer value2) {
+            addCriterion("recommendation_us_id between", value1, value2, "recommendationUsId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendationUsIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("recommendation_us_id not between", value1, value2, "recommendationUsId");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendationUserNameIsNull() {
+            addCriterion("recommendation_user_name is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendationUserNameIsNotNull() {
+            addCriterion("recommendation_user_name is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendationUserNameEqualTo(String value) {
+            addCriterion("recommendation_user_name =", value, "recommendationUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendationUserNameNotEqualTo(String value) {
+            addCriterion("recommendation_user_name <>", value, "recommendationUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendationUserNameGreaterThan(String value) {
+            addCriterion("recommendation_user_name >", value, "recommendationUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendationUserNameGreaterThanOrEqualTo(String value) {
+            addCriterion("recommendation_user_name >=", value, "recommendationUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendationUserNameLessThan(String value) {
+            addCriterion("recommendation_user_name <", value, "recommendationUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendationUserNameLessThanOrEqualTo(String value) {
+            addCriterion("recommendation_user_name <=", value, "recommendationUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendationUserNameLike(String value) {
+            addCriterion("recommendation_user_name like", value, "recommendationUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendationUserNameNotLike(String value) {
+            addCriterion("recommendation_user_name not like", value, "recommendationUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendationUserNameIn(List<String> values) {
+            addCriterion("recommendation_user_name in", values, "recommendationUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendationUserNameNotIn(List<String> values) {
+            addCriterion("recommendation_user_name not in", values, "recommendationUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendationUserNameBetween(String value1, String value2) {
+            addCriterion("recommendation_user_name between", value1, value2, "recommendationUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andRecommendationUserNameNotBetween(String value1, String value2) {
+            addCriterion("recommendation_user_name not between", value1, value2, "recommendationUserName");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsIdIsNull() {
+            addCriterion("us_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsIdIsNotNull() {
+            addCriterion("us_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsIdEqualTo(Integer value) {
+            addCriterion("us_id =", value, "usId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsIdNotEqualTo(Integer value) {
+            addCriterion("us_id <>", value, "usId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsIdGreaterThan(Integer value) {
+            addCriterion("us_id >", value, "usId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("us_id >=", value, "usId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsIdLessThan(Integer value) {
+            addCriterion("us_id <", value, "usId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsIdLessThanOrEqualTo(Integer value) {
+            addCriterion("us_id <=", value, "usId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsIdIn(List<Integer> values) {
+            addCriterion("us_id in", values, "usId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsIdNotIn(List<Integer> values) {
+            addCriterion("us_id not in", values, "usId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsIdBetween(Integer value1, Integer value2) {
+            addCriterion("us_id between", value1, value2, "usId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("us_id not between", value1, value2, "usId");
             return (Criteria) this;
         }
     }

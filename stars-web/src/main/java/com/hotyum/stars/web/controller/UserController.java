@@ -116,6 +116,9 @@ public class UserController {
 		User user = userManager.getUserById(id);
 		UserBaseInfoVO userBaseInfoVO = null;
 		try {
+			if (null == user) {
+				return Result.normalResponse();
+			}
 			userBaseInfoVO = ObjectUtils.convert(user, UserBaseInfoVO.class);
 			userManager.setUserBaseInfoVO(userBaseInfoVO);
 			referralInformationManager.getReferInfomation(userBaseInfoVO);

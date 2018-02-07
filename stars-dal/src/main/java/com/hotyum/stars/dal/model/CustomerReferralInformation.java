@@ -12,15 +12,15 @@ public class CustomerReferralInformation implements Serializable {
 
     private Byte status;
 
-    private Integer directRecommendationId;
-
-    private String directRecommendationName;
-
-    private Integer indirectRecommendationId;
-
-    private String indirectRecommendationName;
-
     private Integer contractNum;
+
+    private Byte type;
+
+    private Integer recommendationUsId;
+
+    private String recommendationUserName;
+
+    private Integer usId;
 
     private static final long serialVersionUID = 1L;
 
@@ -56,44 +56,44 @@ public class CustomerReferralInformation implements Serializable {
         this.status = status;
     }
 
-    public Integer getDirectRecommendationId() {
-        return directRecommendationId;
-    }
-
-    public void setDirectRecommendationId(Integer directRecommendationId) {
-        this.directRecommendationId = directRecommendationId;
-    }
-
-    public String getDirectRecommendationName() {
-        return directRecommendationName;
-    }
-
-    public void setDirectRecommendationName(String directRecommendationName) {
-        this.directRecommendationName = directRecommendationName == null ? null : directRecommendationName.trim();
-    }
-
-    public Integer getIndirectRecommendationId() {
-        return indirectRecommendationId;
-    }
-
-    public void setIndirectRecommendationId(Integer indirectRecommendationId) {
-        this.indirectRecommendationId = indirectRecommendationId;
-    }
-
-    public String getIndirectRecommendationName() {
-        return indirectRecommendationName;
-    }
-
-    public void setIndirectRecommendationName(String indirectRecommendationName) {
-        this.indirectRecommendationName = indirectRecommendationName == null ? null : indirectRecommendationName.trim();
-    }
-
     public Integer getContractNum() {
         return contractNum;
     }
 
     public void setContractNum(Integer contractNum) {
         this.contractNum = contractNum;
+    }
+
+    public Byte getType() {
+        return type;
+    }
+
+    public void setType(Byte type) {
+        this.type = type;
+    }
+
+    public Integer getRecommendationUsId() {
+        return recommendationUsId;
+    }
+
+    public void setRecommendationUsId(Integer recommendationUsId) {
+        this.recommendationUsId = recommendationUsId;
+    }
+
+    public String getRecommendationUserName() {
+        return recommendationUserName;
+    }
+
+    public void setRecommendationUserName(String recommendationUserName) {
+        this.recommendationUserName = recommendationUserName == null ? null : recommendationUserName.trim();
+    }
+
+    public Integer getUsId() {
+        return usId;
+    }
+
+    public void setUsId(Integer usId) {
+        this.usId = usId;
     }
 
     @Override
@@ -112,11 +112,11 @@ public class CustomerReferralInformation implements Serializable {
             && (this.getGmtCreate() == null ? other.getGmtCreate() == null : this.getGmtCreate().equals(other.getGmtCreate()))
             && (this.getGmtModify() == null ? other.getGmtModify() == null : this.getGmtModify().equals(other.getGmtModify()))
             && (this.getStatus() == null ? other.getStatus() == null : this.getStatus().equals(other.getStatus()))
-            && (this.getDirectRecommendationId() == null ? other.getDirectRecommendationId() == null : this.getDirectRecommendationId().equals(other.getDirectRecommendationId()))
-            && (this.getDirectRecommendationName() == null ? other.getDirectRecommendationName() == null : this.getDirectRecommendationName().equals(other.getDirectRecommendationName()))
-            && (this.getIndirectRecommendationId() == null ? other.getIndirectRecommendationId() == null : this.getIndirectRecommendationId().equals(other.getIndirectRecommendationId()))
-            && (this.getIndirectRecommendationName() == null ? other.getIndirectRecommendationName() == null : this.getIndirectRecommendationName().equals(other.getIndirectRecommendationName()))
-            && (this.getContractNum() == null ? other.getContractNum() == null : this.getContractNum().equals(other.getContractNum()));
+            && (this.getContractNum() == null ? other.getContractNum() == null : this.getContractNum().equals(other.getContractNum()))
+            && (this.getType() == null ? other.getType() == null : this.getType().equals(other.getType()))
+            && (this.getRecommendationUsId() == null ? other.getRecommendationUsId() == null : this.getRecommendationUsId().equals(other.getRecommendationUsId()))
+            && (this.getRecommendationUserName() == null ? other.getRecommendationUserName() == null : this.getRecommendationUserName().equals(other.getRecommendationUserName()))
+            && (this.getUsId() == null ? other.getUsId() == null : this.getUsId().equals(other.getUsId()));
     }
 
     @Override
@@ -127,11 +127,11 @@ public class CustomerReferralInformation implements Serializable {
         result = prime * result + ((getGmtCreate() == null) ? 0 : getGmtCreate().hashCode());
         result = prime * result + ((getGmtModify() == null) ? 0 : getGmtModify().hashCode());
         result = prime * result + ((getStatus() == null) ? 0 : getStatus().hashCode());
-        result = prime * result + ((getDirectRecommendationId() == null) ? 0 : getDirectRecommendationId().hashCode());
-        result = prime * result + ((getDirectRecommendationName() == null) ? 0 : getDirectRecommendationName().hashCode());
-        result = prime * result + ((getIndirectRecommendationId() == null) ? 0 : getIndirectRecommendationId().hashCode());
-        result = prime * result + ((getIndirectRecommendationName() == null) ? 0 : getIndirectRecommendationName().hashCode());
         result = prime * result + ((getContractNum() == null) ? 0 : getContractNum().hashCode());
+        result = prime * result + ((getType() == null) ? 0 : getType().hashCode());
+        result = prime * result + ((getRecommendationUsId() == null) ? 0 : getRecommendationUsId().hashCode());
+        result = prime * result + ((getRecommendationUserName() == null) ? 0 : getRecommendationUserName().hashCode());
+        result = prime * result + ((getUsId() == null) ? 0 : getUsId().hashCode());
         return result;
     }
 }

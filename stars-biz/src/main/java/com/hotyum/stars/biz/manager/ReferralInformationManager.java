@@ -14,6 +14,8 @@ public interface ReferralInformationManager {
 	/**
 	* @Title saveReferalInfomation
 	* @author cy
+	 * @param string 
+	 * @param usId 
 	* @Description 
 	* @date 2018年1月4日下午1:10:58
 	* @param 
@@ -22,7 +24,7 @@ public interface ReferralInformationManager {
 	* @return void
 	* @throws:
 	*/
-	void saveReferalInfomation(User refereUser, Byte type);
+	void saveReferalInfomation(Integer userId, String userName, Byte type, Integer newUsId, String newUserName);
 
 	/**
 	* @Title getReferInfomation

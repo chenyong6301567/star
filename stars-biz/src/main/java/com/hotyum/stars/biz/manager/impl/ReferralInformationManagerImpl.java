@@ -66,18 +66,17 @@ public class ReferralInformationManagerImpl implements ReferralInformationManage
 	*/
 	@Override
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
-	public void saveReferalInfomation(User refereUser, Byte type) {
+	public void saveReferalInfomation(Integer userId, String userName, Byte type, Integer newUsId, String newUserName) {
+		LOGGER.info("userId=" + userId + "==userName===" + userName + "==newUsId=" + newUsId + "===newUserName"
+				+ newUserName);
 		CustomerReferralInformation customerReferralInformation = new CustomerReferralInformation();
 		customerReferralInformation.setStatus(Status.ZERO.getValue());
+		customerReferralInformation.setGmtCreate(new Date());
 		customerReferralInformation.setGmtModify(new Date());
-		customerReferralInformation.setGmtModify(new Date());
-		if (type.equals(RefereeType.DERECT.getValue())) {
-			customerReferralInformation.setDirectRecommendationId(refereUser.getId());
-			customerReferralInformation.setDirectRecommendationName(refereUser.getUserName());
-		} else {
-			customerReferralInformation.setIndirectRecommendationId(refereUser.getId());
-			customerReferralInformation.setIndirectRecommendationName(refereUser.getUserName());
-		}
+		customerReferralInformation.setUsId(userId);
+		customerReferralInformation.setRecommendationUsId(newUsId);
+		customerReferralInformation.setRecommendationUserName(newUserName);
+		customerReferralInformation.setType(type);
 		customerReferralInformation.setContractNum(0);
 		try {
 			customerReferralInformationDAO.insert(customerReferralInformation);
@@ -86,7 +85,7 @@ public class ReferralInformationManagerImpl implements ReferralInformationManage
 			throw new RuntimeException("内部服务器错误");
 		}
 		// 直接推荐人还要入库计算到我的推荐汇总表里
-		insertMyReferralInfomation(refereUser.getId(), refereUser.getUserName(), type);
+		insertMyReferralInfomation(userId, userName, type);
 	}
 
 	/**
@@ -204,15 +203,11 @@ public class ReferralInformationManagerImpl implements ReferralInformationManage
 			userBaseInfoVO.setMyReferinfoMationVO(myinfoVo);
 		}
 		// 获取直接人推荐信息
-		if (null != userBaseInfoVO.getDerectRecomandPersonId()) {
-			userBaseInfoVO.setDerectCustomerReferInfoMationVOList(
-					getDerectCustomerReferInfoMationVOList(userBaseInfoVO.getDerectRecomandPersonId()));
-		}
-		if (null != userBaseInfoVO.getInderectRecomandPersonId()) {
-			// 获取间接人推荐信息
-			userBaseInfoVO.setInDerectCustomerReferInfoMationVOList(
-					getInDerectCustomerReferInfoMationVOList(userBaseInfoVO.getInderectRecomandPersonId()));
-		}
+		userBaseInfoVO
+				.setDerectCustomerReferInfoMationVOList(getDerectCustomerReferInfoMationVOList(userBaseInfoVO.getId()));
+		// 获取间接人推荐信息
+		userBaseInfoVO.setInDerectCustomerReferInfoMationVOList(
+				getInDerectCustomerReferInfoMationVOList(userBaseInfoVO.getId()));
 	}
 
 	/**
@@ -229,7 +224,8 @@ public class ReferralInformationManagerImpl implements ReferralInformationManage
 	private List<InDerectCustomerReferInfoMationVO> getInDerectCustomerReferInfoMationVOList(Integer usId) {
 		CustomerReferralInformationExample example = new CustomerReferralInformationExample();
 		CustomerReferralInformationExample.Criteria criteria = example.createCriteria();
-		criteria.andIndirectRecommendationIdEqualTo(usId);
+		criteria.andRecommendationUsIdEqualTo(usId);
+		criteria.andTypeEqualTo(RefereeType.INDERECT.getValue());
 		criteria.andStatusGreaterThanOrEqualTo(Status.ZERO.getValue());
 		List<CustomerReferralInformation> infoList = null;
 		try {
@@ -247,7 +243,7 @@ public class ReferralInformationManagerImpl implements ReferralInformationManage
 			InDerectCustomerReferInfoMationVO vo = new InDerectCustomerReferInfoMationVO();
 			vo.setId(cus.getId());
 			vo.setContractNum(cus.getContractNum());
-			vo.setIndirectRecommendationName(cus.getIndirectRecommendationName());
+			vo.setIndirectRecommendationName(cus.getRecommendationUserName());
 			voList.add(vo);
 		}
 		return voList;
@@ -267,7 +263,8 @@ public class ReferralInformationManagerImpl implements ReferralInformationManage
 	private List<DerectCustomerReferInfoMationVO> getDerectCustomerReferInfoMationVOList(Integer usId) {
 		CustomerReferralInformationExample example = new CustomerReferralInformationExample();
 		CustomerReferralInformationExample.Criteria criteria = example.createCriteria();
-		criteria.andDirectRecommendationIdEqualTo(usId);
+		criteria.andRecommendationUsIdEqualTo(usId);
+		criteria.andTypeEqualTo(RefereeType.DERECT.getValue());
 		criteria.andStatusGreaterThanOrEqualTo(Status.ZERO.getValue());
 		List<CustomerReferralInformation> infoList = null;
 		try {
@@ -284,7 +281,7 @@ public class ReferralInformationManagerImpl implements ReferralInformationManage
 			DerectCustomerReferInfoMationVO vo = new DerectCustomerReferInfoMationVO();
 			vo.setId(cus.getId());
 			vo.setContractNum(cus.getContractNum());
-			vo.setDirectRecommendationName(cus.getDirectRecommendationName());
+			vo.setDirectRecommendationName(cus.getRecommendationUserName());
 			voList.add(vo);
 		}
 		return voList;

@@ -40,24 +40,24 @@ public class CustomerReferralInformationSqlProvider {
             sql.VALUES("status", "#{status,jdbcType=TINYINT}");
         }
         
-        if (record.getDirectRecommendationId() != null) {
-            sql.VALUES("direct_recommendation_id", "#{directRecommendationId,jdbcType=INTEGER}");
-        }
-        
-        if (record.getDirectRecommendationName() != null) {
-            sql.VALUES("direct_recommendation_name", "#{directRecommendationName,jdbcType=VARCHAR}");
-        }
-        
-        if (record.getIndirectRecommendationId() != null) {
-            sql.VALUES("indirect_recommendation_id", "#{indirectRecommendationId,jdbcType=INTEGER}");
-        }
-        
-        if (record.getIndirectRecommendationName() != null) {
-            sql.VALUES("indirect_recommendation_name", "#{indirectRecommendationName,jdbcType=VARCHAR}");
-        }
-        
         if (record.getContractNum() != null) {
             sql.VALUES("contract_num", "#{contractNum,jdbcType=INTEGER}");
+        }
+        
+        if (record.getType() != null) {
+            sql.VALUES("type", "#{type,jdbcType=TINYINT}");
+        }
+        
+        if (record.getRecommendationUsId() != null) {
+            sql.VALUES("recommendation_us_id", "#{recommendationUsId,jdbcType=INTEGER}");
+        }
+        
+        if (record.getRecommendationUserName() != null) {
+            sql.VALUES("recommendation_user_name", "#{recommendationUserName,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getUsId() != null) {
+            sql.VALUES("us_id", "#{usId,jdbcType=INTEGER}");
         }
         
         return sql.toString();
@@ -73,11 +73,11 @@ public class CustomerReferralInformationSqlProvider {
         sql.SELECT("gmt_create");
         sql.SELECT("gmt_modify");
         sql.SELECT("status");
-        sql.SELECT("direct_recommendation_id");
-        sql.SELECT("direct_recommendation_name");
-        sql.SELECT("indirect_recommendation_id");
-        sql.SELECT("indirect_recommendation_name");
         sql.SELECT("contract_num");
+        sql.SELECT("type");
+        sql.SELECT("recommendation_us_id");
+        sql.SELECT("recommendation_user_name");
+        sql.SELECT("us_id");
         sql.FROM("customer_referral_information");
         applyWhere(sql, example, false);
         
@@ -111,24 +111,24 @@ public class CustomerReferralInformationSqlProvider {
             sql.SET("status = #{record.status,jdbcType=TINYINT}");
         }
         
-        if (record.getDirectRecommendationId() != null) {
-            sql.SET("direct_recommendation_id = #{record.directRecommendationId,jdbcType=INTEGER}");
-        }
-        
-        if (record.getDirectRecommendationName() != null) {
-            sql.SET("direct_recommendation_name = #{record.directRecommendationName,jdbcType=VARCHAR}");
-        }
-        
-        if (record.getIndirectRecommendationId() != null) {
-            sql.SET("indirect_recommendation_id = #{record.indirectRecommendationId,jdbcType=INTEGER}");
-        }
-        
-        if (record.getIndirectRecommendationName() != null) {
-            sql.SET("indirect_recommendation_name = #{record.indirectRecommendationName,jdbcType=VARCHAR}");
-        }
-        
         if (record.getContractNum() != null) {
             sql.SET("contract_num = #{record.contractNum,jdbcType=INTEGER}");
+        }
+        
+        if (record.getType() != null) {
+            sql.SET("type = #{record.type,jdbcType=TINYINT}");
+        }
+        
+        if (record.getRecommendationUsId() != null) {
+            sql.SET("recommendation_us_id = #{record.recommendationUsId,jdbcType=INTEGER}");
+        }
+        
+        if (record.getRecommendationUserName() != null) {
+            sql.SET("recommendation_user_name = #{record.recommendationUserName,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getUsId() != null) {
+            sql.SET("us_id = #{record.usId,jdbcType=INTEGER}");
         }
         
         applyWhere(sql, example, true);
@@ -143,11 +143,11 @@ public class CustomerReferralInformationSqlProvider {
         sql.SET("gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP}");
         sql.SET("gmt_modify = #{record.gmtModify,jdbcType=TIMESTAMP}");
         sql.SET("status = #{record.status,jdbcType=TINYINT}");
-        sql.SET("direct_recommendation_id = #{record.directRecommendationId,jdbcType=INTEGER}");
-        sql.SET("direct_recommendation_name = #{record.directRecommendationName,jdbcType=VARCHAR}");
-        sql.SET("indirect_recommendation_id = #{record.indirectRecommendationId,jdbcType=INTEGER}");
-        sql.SET("indirect_recommendation_name = #{record.indirectRecommendationName,jdbcType=VARCHAR}");
         sql.SET("contract_num = #{record.contractNum,jdbcType=INTEGER}");
+        sql.SET("type = #{record.type,jdbcType=TINYINT}");
+        sql.SET("recommendation_us_id = #{record.recommendationUsId,jdbcType=INTEGER}");
+        sql.SET("recommendation_user_name = #{record.recommendationUserName,jdbcType=VARCHAR}");
+        sql.SET("us_id = #{record.usId,jdbcType=INTEGER}");
         
         CustomerReferralInformationExample example = (CustomerReferralInformationExample) parameter.get("example");
         applyWhere(sql, example, true);
@@ -170,24 +170,24 @@ public class CustomerReferralInformationSqlProvider {
             sql.SET("status = #{status,jdbcType=TINYINT}");
         }
         
-        if (record.getDirectRecommendationId() != null) {
-            sql.SET("direct_recommendation_id = #{directRecommendationId,jdbcType=INTEGER}");
-        }
-        
-        if (record.getDirectRecommendationName() != null) {
-            sql.SET("direct_recommendation_name = #{directRecommendationName,jdbcType=VARCHAR}");
-        }
-        
-        if (record.getIndirectRecommendationId() != null) {
-            sql.SET("indirect_recommendation_id = #{indirectRecommendationId,jdbcType=INTEGER}");
-        }
-        
-        if (record.getIndirectRecommendationName() != null) {
-            sql.SET("indirect_recommendation_name = #{indirectRecommendationName,jdbcType=VARCHAR}");
-        }
-        
         if (record.getContractNum() != null) {
             sql.SET("contract_num = #{contractNum,jdbcType=INTEGER}");
+        }
+        
+        if (record.getType() != null) {
+            sql.SET("type = #{type,jdbcType=TINYINT}");
+        }
+        
+        if (record.getRecommendationUsId() != null) {
+            sql.SET("recommendation_us_id = #{recommendationUsId,jdbcType=INTEGER}");
+        }
+        
+        if (record.getRecommendationUserName() != null) {
+            sql.SET("recommendation_user_name = #{recommendationUserName,jdbcType=VARCHAR}");
+        }
+        
+        if (record.getUsId() != null) {
+            sql.SET("us_id = #{usId,jdbcType=INTEGER}");
         }
         
         sql.WHERE("id = #{id,jdbcType=INTEGER}");

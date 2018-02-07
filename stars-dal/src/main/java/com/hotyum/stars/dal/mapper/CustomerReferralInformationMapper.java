@@ -32,13 +32,13 @@ public interface CustomerReferralInformationMapper {
 
     @Insert({
         "insert into customer_referral_information (gmt_create, gmt_modify, ",
-        "status, direct_recommendation_id, ",
-        "direct_recommendation_name, indirect_recommendation_id, ",
-        "indirect_recommendation_name, contract_num)",
+        "status, contract_num, ",
+        "type, recommendation_us_id, ",
+        "recommendation_user_name, us_id)",
         "values (#{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModify,jdbcType=TIMESTAMP}, ",
-        "#{status,jdbcType=TINYINT}, #{directRecommendationId,jdbcType=INTEGER}, ",
-        "#{directRecommendationName,jdbcType=VARCHAR}, #{indirectRecommendationId,jdbcType=INTEGER}, ",
-        "#{indirectRecommendationName,jdbcType=VARCHAR}, #{contractNum,jdbcType=INTEGER})"
+        "#{status,jdbcType=TINYINT}, #{contractNum,jdbcType=INTEGER}, ",
+        "#{type,jdbcType=TINYINT}, #{recommendationUsId,jdbcType=INTEGER}, ",
+        "#{recommendationUserName,jdbcType=VARCHAR}, #{usId,jdbcType=INTEGER})"
     })
     @SelectKey(statement="SELECT LAST_INSERT_ID()", keyProperty="id", before=false, resultType=Integer.class)
     int insert(CustomerReferralInformation record);
@@ -53,18 +53,18 @@ public interface CustomerReferralInformationMapper {
         @Result(column="gmt_create", property="gmtCreate", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="gmt_modify", property="gmtModify", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="status", property="status", jdbcType=JdbcType.TINYINT),
-        @Result(column="direct_recommendation_id", property="directRecommendationId", jdbcType=JdbcType.INTEGER),
-        @Result(column="direct_recommendation_name", property="directRecommendationName", jdbcType=JdbcType.VARCHAR),
-        @Result(column="indirect_recommendation_id", property="indirectRecommendationId", jdbcType=JdbcType.INTEGER),
-        @Result(column="indirect_recommendation_name", property="indirectRecommendationName", jdbcType=JdbcType.VARCHAR),
-        @Result(column="contract_num", property="contractNum", jdbcType=JdbcType.INTEGER)
+        @Result(column="contract_num", property="contractNum", jdbcType=JdbcType.INTEGER),
+        @Result(column="type", property="type", jdbcType=JdbcType.TINYINT),
+        @Result(column="recommendation_us_id", property="recommendationUsId", jdbcType=JdbcType.INTEGER),
+        @Result(column="recommendation_user_name", property="recommendationUserName", jdbcType=JdbcType.VARCHAR),
+        @Result(column="us_id", property="usId", jdbcType=JdbcType.INTEGER)
     })
     List<CustomerReferralInformation> selectByExample(CustomerReferralInformationExample example);
 
     @Select({
         "select",
-        "id, gmt_create, gmt_modify, status, direct_recommendation_id, direct_recommendation_name, ",
-        "indirect_recommendation_id, indirect_recommendation_name, contract_num",
+        "id, gmt_create, gmt_modify, status, contract_num, type, recommendation_us_id, ",
+        "recommendation_user_name, us_id",
         "from customer_referral_information",
         "where id = #{id,jdbcType=INTEGER}"
     })
@@ -73,11 +73,11 @@ public interface CustomerReferralInformationMapper {
         @Result(column="gmt_create", property="gmtCreate", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="gmt_modify", property="gmtModify", jdbcType=JdbcType.TIMESTAMP),
         @Result(column="status", property="status", jdbcType=JdbcType.TINYINT),
-        @Result(column="direct_recommendation_id", property="directRecommendationId", jdbcType=JdbcType.INTEGER),
-        @Result(column="direct_recommendation_name", property="directRecommendationName", jdbcType=JdbcType.VARCHAR),
-        @Result(column="indirect_recommendation_id", property="indirectRecommendationId", jdbcType=JdbcType.INTEGER),
-        @Result(column="indirect_recommendation_name", property="indirectRecommendationName", jdbcType=JdbcType.VARCHAR),
-        @Result(column="contract_num", property="contractNum", jdbcType=JdbcType.INTEGER)
+        @Result(column="contract_num", property="contractNum", jdbcType=JdbcType.INTEGER),
+        @Result(column="type", property="type", jdbcType=JdbcType.TINYINT),
+        @Result(column="recommendation_us_id", property="recommendationUsId", jdbcType=JdbcType.INTEGER),
+        @Result(column="recommendation_user_name", property="recommendationUserName", jdbcType=JdbcType.VARCHAR),
+        @Result(column="us_id", property="usId", jdbcType=JdbcType.INTEGER)
     })
     CustomerReferralInformation selectByPrimaryKey(Integer id);
 
@@ -95,11 +95,11 @@ public interface CustomerReferralInformationMapper {
         "set gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},",
           "gmt_modify = #{gmtModify,jdbcType=TIMESTAMP},",
           "status = #{status,jdbcType=TINYINT},",
-          "direct_recommendation_id = #{directRecommendationId,jdbcType=INTEGER},",
-          "direct_recommendation_name = #{directRecommendationName,jdbcType=VARCHAR},",
-          "indirect_recommendation_id = #{indirectRecommendationId,jdbcType=INTEGER},",
-          "indirect_recommendation_name = #{indirectRecommendationName,jdbcType=VARCHAR},",
-          "contract_num = #{contractNum,jdbcType=INTEGER}",
+          "contract_num = #{contractNum,jdbcType=INTEGER},",
+          "type = #{type,jdbcType=TINYINT},",
+          "recommendation_us_id = #{recommendationUsId,jdbcType=INTEGER},",
+          "recommendation_user_name = #{recommendationUserName,jdbcType=VARCHAR},",
+          "us_id = #{usId,jdbcType=INTEGER}",
         "where id = #{id,jdbcType=INTEGER}"
     })
     int updateByPrimaryKey(CustomerReferralInformation record);
