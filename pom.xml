@@ -33,7 +33,7 @@
 		<commons-lang3.version>3.5</commons-lang3.version>
 		<javamail.version>1.4.1</javamail.version>
 		<fastjson.version>1.2.37</fastjson.version>
-		<xdoc.version>1.0-SNAPSHOT</xdoc.version>
+		<xdoc.version>1.0-RELEASE</xdoc.version>
 		<project.build.finalName>archetype</project.build.finalName>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
