@@ -8,13 +8,13 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.AntPathMatcher;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.PathMatcher;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.croky.util.CollectionUtils;
-import com.croky.util.StringUtils;
 import com.hotyum.stars.biz.manager.TokenAccessManager;
 import com.hotyum.stars.biz.manager.UserManager;
 import com.hotyum.stars.dal.model.TokenAccess;
@@ -149,7 +149,7 @@ public class AuthcInterceptor implements HandlerInterceptor {
 
 	public boolean isInWhiteURL(String path) {
 		boolean isPass = false;
-		if (CollectionUtils.isNotEmpty(whiteURLSet)) {
+		if (!CollectionUtils.isEmpty(whiteURLSet)) {
 			Iterator<String> it = whiteURLSet.iterator();
 			while (it.hasNext()) {
 				String antPath = it.next();

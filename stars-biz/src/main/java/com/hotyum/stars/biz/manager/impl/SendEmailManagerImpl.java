@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
-import com.croky.lang.Status;
+import com.cy.lang.Status;
 import com.hotyum.stars.biz.manager.SendEmailManager;
 import com.hotyum.stars.biz.manager.UserManager;
 import com.hotyum.stars.dal.dao.SendEmailDAO;

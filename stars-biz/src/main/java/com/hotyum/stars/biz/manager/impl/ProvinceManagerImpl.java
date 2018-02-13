@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.croky.lang.Status;
+import com.cy.lang.Status;
 import com.hotyum.stars.biz.manager.ProvinceManager;
 import com.hotyum.stars.biz.model.ProvinceVO;
 import com.hotyum.stars.dal.dao.ProvinceDAO;

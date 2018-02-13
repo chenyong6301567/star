@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.croky.lang.Status;
+import com.cy.lang.Status;
 import com.hotyum.stars.biz.manager.NoticeManager;
 import com.hotyum.stars.biz.manager.SysUserRoleManager;
 import com.hotyum.stars.biz.manager.SystemNoticeManager;
@@ -38,14 +38,12 @@ public class NoticeTask {
 	@Autowired
 	private UserManager userManager;
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(NoticeTask.class);
-
 	private Lock lock = new ReentrantLock();
 
 	@Scheduled(cron = "0 0/2 * * * ? ")
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void NoticeTask() {
-		//LOGGER.info("执行通知轮询操作开始");
+		// LOGGER.info("执行通知轮询操作开始");
 		lock.lock();
 		// 先查询系统通知
 		List<SystemNotice> systemNoticeList = systemNoticeManager.getSystemNotice();
@@ -67,7 +65,7 @@ public class NoticeTask {
 			}
 		}
 		lock.unlock();
-		//LOGGER.info("执行通知轮询操作完成");
+		// LOGGER.info("执行通知轮询操作完成");
 	}
 
 	/**

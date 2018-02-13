@@ -5,9 +5,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.locks.Condition;
-import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 import org.apache.commons.lang3.StringUtils;
@@ -20,7 +17,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
-import com.croky.util.ObjectUtils;
+import com.cy.util.ObjectUtils;
 import com.github.pagehelper.PageHelper;
 import com.hotyum.stars.biz.manager.AgentManager;
 import com.hotyum.stars.biz.manager.NoticeManager;
@@ -34,7 +31,6 @@ import com.hotyum.stars.biz.model.TokenInfoVO;
 import com.hotyum.stars.biz.model.UserBaseInfoVO;
 import com.hotyum.stars.biz.model.UserListVO;
 import com.hotyum.stars.dal.dao.UserDAO;
-import com.hotyum.stars.dal.mapper.UserSqlProvider;
 import com.hotyum.stars.dal.model.Agent;
 import com.hotyum.stars.dal.model.SysUserRole;
 import com.hotyum.stars.dal.model.User;

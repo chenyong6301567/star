@@ -9,7 +9,7 @@
 	<packaging>pom</packaging>
 
 	<parent>
-		<groupId>com.croky</groupId>
+		<groupId>com.cy</groupId>
 		<artifactId>parent</artifactId>
 		<version>1.0.1</version>
 	</parent>
@@ -33,7 +33,7 @@
 		<commons-lang3.version>3.5</commons-lang3.version>
 		<javamail.version>1.4.1</javamail.version>
 		<fastjson.version>1.2.37</fastjson.version>
-		<xdoc.version>0.0.3-SNAPSHOT</xdoc.version>
+		<xdoc.version>1.0-SNAPSHOT</xdoc.version>
 		<project.build.finalName>archetype</project.build.finalName>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
@@ -55,8 +55,8 @@
 			<scope>test</scope>
 		</dependency>
 		<dependency>
-			<groupId>com.croky</groupId>
-			<artifactId>croky-utils</artifactId>
+			<groupId>com.cy</groupId>
+			<artifactId>cy-utils</artifactId>
 			<version>1.0.2-SNAPSHOT</version>
 		</dependency>
 		<dependency>
@@ -188,7 +188,7 @@
 			<dependency>
 				<groupId>com.github.treeleafj</groupId>
 				<artifactId>spring-boot-starter-xDoc</artifactId>
-				<version>0.0.3-SNAPSHOT</version>
+				<version>${xdoc.version}</version>
 				<exclusions>
 					<exclusion>
 						<groupId>ch.qos.logback</groupId>

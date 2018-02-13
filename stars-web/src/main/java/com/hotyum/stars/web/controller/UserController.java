@@ -11,7 +11,6 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.croky.util.ObjectUtils;
+import com.cy.util.ObjectUtils;
 import com.hotyum.stars.biz.manager.ReferralInformationManager;
 import com.hotyum.stars.biz.manager.SendEmailManager;
 import com.hotyum.stars.biz.manager.UserManager;
@@ -33,7 +32,6 @@ import com.hotyum.stars.utils.Constants;
 import com.hotyum.stars.utils.DataFormatVaildate;
 import com.hotyum.stars.utils.MailUtil;
 import com.hotyum.stars.utils.Page;
-import com.hotyum.stars.utils.enums.UserType;
 import com.hotyum.stars.utils.excel.ExcelUtils;
 import com.hotyum.stars.web.model.Result;
 import com.hotyum.stars.web.util.TokenAccessUtils;
@@ -263,17 +261,15 @@ public class UserController {
 			@RequestParam(required = true) String account, Date freezeDate, String agentName, String agentCode,
 			@RequestParam(defaultValue = Constants.DEFAULTPWD) String pwd, String customerAgent, String refereePhone) {
 		LOGGER.info("代理商编码agentCode=================" + agentCode);
-	/*	if (userType.equals(UserType.AGENT.getValue())) {
-			if (StringUtils.isEmpty(agentName) || StringUtils.isEmpty(agentCode)) {
-				return Result.errorReponse("代理商编码或名称不能为空");
-			}
-		}
-
-		if (userType.equals(UserType.CUSTOMER.getValue())) {
-			if (StringUtils.isEmpty(customerAgent)) {
-				return Result.errorReponse("客户代理商不能为空");
-			}
-		}*/
+		/*
+		 * if (userType.equals(UserType.AGENT.getValue())) { if
+		 * (StringUtils.isEmpty(agentName) || StringUtils.isEmpty(agentCode)) {
+		 * return Result.errorReponse("代理商编码或名称不能为空"); } }
+		 * 
+		 * if (userType.equals(UserType.CUSTOMER.getValue())) { if
+		 * (StringUtils.isEmpty(customerAgent)) { return
+		 * Result.errorReponse("客户代理商不能为空"); } }
+		 */
 
 		userManager.addUser(account, userName, contactPhone, userType, agentName, whetherFreeze, freezeDate, pwd,
 				customerAgent, agentCode, refereePhone);

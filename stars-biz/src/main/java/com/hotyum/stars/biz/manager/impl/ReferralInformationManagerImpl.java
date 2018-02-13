@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
-import org.apache.ibatis.reflection.ReflectorFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +14,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.alibaba.dubbo.common.utils.CollectionUtils;
-import com.croky.lang.Status;
+import com.cy.lang.Status;
 import com.hotyum.stars.biz.manager.ReferralInformationManager;
 import com.hotyum.stars.biz.model.DerectCustomerReferInfoMationVO;
 import com.hotyum.stars.biz.model.InDerectCustomerReferInfoMationVO;
@@ -28,7 +26,6 @@ import com.hotyum.stars.dal.model.CustomerReferralInformation;
 import com.hotyum.stars.dal.model.CustomerReferralInformationExample;
 import com.hotyum.stars.dal.model.MyReferralInformation;
 import com.hotyum.stars.dal.model.MyReferralInformationExample;
-import com.hotyum.stars.dal.model.User;
 import com.hotyum.stars.utils.DecimalUtil;
 import com.hotyum.stars.utils.enums.RefereeType;
 

@@ -14,21 +14,17 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
-import com.croky.util.ObjectUtils;
+import com.cy.util.ObjectUtils;
 import com.github.pagehelper.PageHelper;
 import com.hotyum.stars.biz.manager.AgentManager;
-import com.hotyum.stars.biz.manager.UserManager;
 import com.hotyum.stars.biz.model.AgentVO;
 import com.hotyum.stars.biz.model.UserAgentVO;
-import com.hotyum.stars.biz.model.UserListVO;
 import com.hotyum.stars.dal.dao.AgentDAO;
 import com.hotyum.stars.dal.model.Agent;
 import com.hotyum.stars.dal.model.AgentExample;
-import com.hotyum.stars.dal.model.User;
 import com.hotyum.stars.utils.DateUtil;
 import com.hotyum.stars.utils.Page;
 import com.hotyum.stars.utils.enums.Status;
-import com.hotyum.stars.utils.exception.ApplicationException;
 
 /**
  * @author cy

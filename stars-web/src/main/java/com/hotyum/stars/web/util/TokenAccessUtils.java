@@ -6,7 +6,8 @@ import java.util.Map;
 import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 
-import com.croky.util.StringUtils;
+import org.apache.commons.lang3.StringUtils;
+
 import com.hotyum.stars.dal.model.TokenAccess;
 import com.hotyum.stars.dal.model.User;
 import com.hotyum.stars.utils.exception.ApplicationException;
