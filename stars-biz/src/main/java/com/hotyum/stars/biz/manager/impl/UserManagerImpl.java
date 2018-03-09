@@ -851,10 +851,12 @@ public class UserManagerImpl implements UserManager {
 		for (User user : userList) {
 			try {
 				CustomerRecommandVO customerRecommandVO = ObjectUtils.convert(user, CustomerRecommandVO.class);
-				customerRecommandVO.setAccount(user.getAccount().replaceAll(PHONEREX, HIDESTR));
+				/*customerRecommandVO.setAccount(user.getAccount().replaceAll(PHONEREX, HIDESTR));
 				if (StringUtils.isNoneEmpty(user.getContactPhone())) {
 					customerRecommandVO.setContactPhone(user.getContactPhone().replaceAll(PHONEREX, HIDESTR));
-				}
+				}*/
+				customerRecommandVO.setAccount(user.getAccount());
+				customerRecommandVO.setContactPhone(user.getContactPhone());
 				customerRecommandVO.setGmtCreate(DateUtil.date2Str(user.getGmtCreate(), DateUtil.FORMAT_DATE));
 				if (user.getSex().equals(SexType.MALE.getValue())) {
 					customerRecommandVO.setSexName(SexType.MALE.getDescription());
