@@ -874,14 +874,19 @@ public class UserManagerImpl implements UserManager {
 				customerRecommandVO.setWheatherGetMoney(BooleanType.getDes(user.getWheatherGetMoney()));
 				customerRecommandVO.setRefereeQualification(BooleanType.getDes(user.getRefereeQualification()));
 				customerRecommandVO.setSumMoney(user.getSumMoney().doubleValue());
-				if (StringUtils.isNotEmpty(user.getDirectRecommendationAccount())) {
-					customerRecommandVO.setDirectRecommendationAccount(
-							user.getDirectRecommendationAccount().replaceAll(ACCOUNTREX, ACCOUNTHIDESTR));
-				}
-				if (StringUtils.isNotEmpty(user.getIndirectRecommendationAccount())) {
-					customerRecommandVO.setIndirectRecommendationAccount(
-							user.getIndirectRecommendationAccount().replaceAll(ACCOUNTREX, ACCOUNTHIDESTR));
-				}
+				customerRecommandVO.setDirectRecommendationAccount(user.getDirectRecommendationAccount());
+				customerRecommandVO.setIndirectRecommendationAccount(user.getIndirectRecommendationAccount());
+				/*
+				 * if
+				 * (StringUtils.isNotEmpty(user.getDirectRecommendationAccount()
+				 * )) { customerRecommandVO.setDirectRecommendationAccount(
+				 * user.getDirectRecommendationAccount().replaceAll(ACCOUNTREX,
+				 * ACCOUNTHIDESTR)); } if
+				 * (StringUtils.isNotEmpty(user.getIndirectRecommendationAccount
+				 * ())) { customerRecommandVO.setIndirectRecommendationAccount(
+				 * user.getIndirectRecommendationAccount().replaceAll(
+				 * ACCOUNTREX, ACCOUNTHIDESTR)); }
+				 */
 				customerRecommandVOList.add(customerRecommandVO);
 			} catch (Exception e) {
 				LOGGER.error("CovertPage失败====", e);
