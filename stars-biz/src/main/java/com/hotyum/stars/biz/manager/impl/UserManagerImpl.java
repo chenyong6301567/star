@@ -415,6 +415,8 @@ public class UserManagerImpl implements UserManager {
 			} else {
 				user.setDirectRecommendationAccount(directRecommendationAccount);
 			}
+		} else {
+			user.setDirectRecommendationAccount(directRecommendationAccount);
 		}
 		if (StringUtils.isNotEmpty(indirectRecommendationAccount)) {
 			User inderect = getUserByPhone(indirectRecommendationAccount);
@@ -423,12 +425,14 @@ public class UserManagerImpl implements UserManager {
 			} else {
 				user.setIndirectRecommendationAccount(indirectRecommendationAccount);
 			}
+		} else {
+			user.setIndirectRecommendationAccount(indirectRecommendationAccount);
 		}
 
 		user.setEmail(email);
 		user.setGmtModify(new Date());
 		try {
-			userDAO.updateByPrimaryKeySelective(user);
+			userDAO.updateByPrimaryKey(user);
 		} catch (DataAccessException e) {
 			LOGGER.error("updateUserBaseInfo失败====", e);
 			throw new RuntimeException("内部服务器错误");
@@ -851,10 +855,13 @@ public class UserManagerImpl implements UserManager {
 		for (User user : userList) {
 			try {
 				CustomerRecommandVO customerRecommandVO = ObjectUtils.convert(user, CustomerRecommandVO.class);
-				/*customerRecommandVO.setAccount(user.getAccount().replaceAll(PHONEREX, HIDESTR));
-				if (StringUtils.isNoneEmpty(user.getContactPhone())) {
-					customerRecommandVO.setContactPhone(user.getContactPhone().replaceAll(PHONEREX, HIDESTR));
-				}*/
+				/*
+				 * customerRecommandVO.setAccount(user.getAccount().replaceAll(
+				 * PHONEREX, HIDESTR)); if
+				 * (StringUtils.isNoneEmpty(user.getContactPhone())) {
+				 * customerRecommandVO.setContactPhone(user.getContactPhone().
+				 * replaceAll(PHONEREX, HIDESTR)); }
+				 */
 				customerRecommandVO.setAccount(user.getAccount());
 				customerRecommandVO.setContactPhone(user.getContactPhone());
 				customerRecommandVO.setGmtCreate(DateUtil.date2Str(user.getGmtCreate(), DateUtil.FORMAT_DATE));
