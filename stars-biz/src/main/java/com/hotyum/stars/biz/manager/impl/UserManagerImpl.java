@@ -1150,4 +1150,62 @@ public class UserManagerImpl implements UserManager {
 		return null;
 	}
 
+	/**
+	* @Title:
+	* @author：cy
+	* @Description:
+	* @date:2018年3月10日
+	* @param
+	* @param
+	* @param
+	* @return:
+	* @throws:
+	*/
+	@Override
+	public void adminUpdateUserBaseInfo(Integer id, String account, String realName, String contactPhone, Byte userType,
+			String agentCode, String agentName, Byte whetherFreeze, Date freezeDate, String customerAgent,
+			String directRecommendationAccount) {
+		User user = getUserById(id);
+		if (null == user) {
+			throw new ApplicationException("账号对应的用户不存在");
+		}
+		user.setAccount(account);
+		user.setRealName(realName);
+		user.setContactPhone(contactPhone);
+		user.setUserType(userType);
+		user.setAgentCode(agentCode);
+		user.setAgentName(agentName);
+		user.setWhetherFreeze(whetherFreeze);
+		user.setFreezeDate(freezeDate);
+		user.setCustomerAgent(customerAgent);
+		if (StringUtils.isNotEmpty(directRecommendationAccount)) {
+			User directUser = getUserByPhone(directRecommendationAccount);
+			if (null == directUser) {
+				throw new ApplicationException("直推人账号不存在");
+			} else {
+				user.setDirectRecommendationAccount(directRecommendationAccount);
+			}
+		} else {
+			user.setDirectRecommendationAccount(directRecommendationAccount);
+		}
+		/*
+		 * if (StringUtils.isNotEmpty(indirectRecommendationAccount)) { User
+		 * inderect = getUserByPhone(indirectRecommendationAccount); if (null ==
+		 * inderect) { throw new ApplicationException("间推人账号不存在"); } else {
+		 * user.setIndirectRecommendationAccount(indirectRecommendationAccount);
+		 * } } else {
+		 * user.setIndirectRecommendationAccount(indirectRecommendationAccount);
+		 * }
+		 * 
+		 * user.setEmail(email);
+		 */
+		user.setGmtModify(new Date());
+		try {
+			userDAO.updateByPrimaryKey(user);
+		} catch (DataAccessException e) {
+			LOGGER.error("adminUpdateUserBaseInfo失败====", e);
+			throw new RuntimeException("内部服务器错误");
+		}
+	}
+
 }

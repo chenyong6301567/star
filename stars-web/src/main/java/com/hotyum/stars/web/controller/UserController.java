@@ -145,7 +145,7 @@ public class UserController {
 	 * @Title updateUserBaseInfo
 	 * @respbody 
 	 * @author cy
-	 * @Description 获取用户基本信息
+	 * @Description 修改用户基本信息
 	 * @date 2018/1/1 15:29
 	 * @return Result
 	 * @throws  
@@ -162,6 +162,37 @@ public class UserController {
 		LOGGER.info(directRecommendationAccount + "================================" + indirectRecommendationAccount);
 		userManager.updateUserBaseInfo(account, realName, sex, contactPhone, email, whetherRealName, wheatherGetMoney,
 				refereeQualification, agentCode, directRecommendationAccount, indirectRecommendationAccount);
+		return Result.normalResponse();
+	}
+
+	/**管理员修改用户基本信息
+	 * 
+	 * @param id                            用户id|int|必填
+	 * @param account                       注册账号|string|必填
+	 * @param realName                      真实姓名|string
+	 * @param contactPhone                  联系方式 |string
+	 * @param userType                      用户类型(1代理商 2客户 3管理员)|byte
+	 * @param agentCode                     代理商编码|string
+	 * @param agentName                     代理商名称|string
+	 * @param whetherFreeze                 是否冻结(0 未冻结，1冻结)|string
+	 * @param freezeDate                    冻结日期|string 
+	 * @param customerAgent                 客户代理商|string
+	 * @param directRecommendationAccount   推荐人账号|string
+	 * @Title adminUpdateUserBaseInfo
+	 * @respbody 
+	 * @author cy
+	 * @Description 管理员修改用户基本信息
+	 * @date 2018/1/1 15:29
+	 * @return Result
+	 * @throws  
+	 */
+	@RequestMapping(value = "user/adminUpdateUserBaseInfo")
+	public Result adminUpdateUserBaseInfo(Integer id, @RequestParam(required = true) String account, String realName,
+			String contactPhone, Byte userType, String agentCode, String agentName, Byte whetherFreeze, Date freezeDate,
+			String customerAgent, String directRecommendationAccount) {
+		LOGGER.info(id + "================================" + directRecommendationAccount);
+		userManager.adminUpdateUserBaseInfo(id, account, realName, contactPhone, userType, agentCode, agentName,
+				whetherFreeze, freezeDate, customerAgent, directRecommendationAccount);
 		return Result.normalResponse();
 	}
 
@@ -263,17 +294,15 @@ public class UserController {
 			@RequestParam(required = true) String account, Date freezeDate, String agentName, String agentCode,
 			@RequestParam(defaultValue = Constants.DEFAULTPWD) String pwd, String customerAgent, String refereePhone) {
 		LOGGER.info("代理商编码agentCode=================" + agentCode);
-	/*	if (userType.equals(UserType.AGENT.getValue())) {
-			if (StringUtils.isEmpty(agentName) || StringUtils.isEmpty(agentCode)) {
-				return Result.errorReponse("代理商编码或名称不能为空");
-			}
-		}
-
-		if (userType.equals(UserType.CUSTOMER.getValue())) {
-			if (StringUtils.isEmpty(customerAgent)) {
-				return Result.errorReponse("客户代理商不能为空");
-			}
-		}*/
+		/*
+		 * if (userType.equals(UserType.AGENT.getValue())) { if
+		 * (StringUtils.isEmpty(agentName) || StringUtils.isEmpty(agentCode)) {
+		 * return Result.errorReponse("代理商编码或名称不能为空"); } }
+		 * 
+		 * if (userType.equals(UserType.CUSTOMER.getValue())) { if
+		 * (StringUtils.isEmpty(customerAgent)) { return
+		 * Result.errorReponse("客户代理商不能为空"); } }
+		 */
 
 		userManager.addUser(account, userName, contactPhone, userType, agentName, whetherFreeze, freezeDate, pwd,
 				customerAgent, agentCode, refereePhone);

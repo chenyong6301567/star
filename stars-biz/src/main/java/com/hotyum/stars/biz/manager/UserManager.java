@@ -140,7 +140,8 @@ public interface UserManager {
 	* @throws:
 	*/
 	void addUser(String account, String userName, String contactPhone, Byte userType, String agentName,
-			Byte whetherFreeze, Date freezeDate, String pwd, String customerAgent, String agentCode, String refereePhone);
+			Byte whetherFreeze, Date freezeDate, String pwd, String customerAgent, String agentCode,
+			String refereePhone);
 
 	/**
 	* @Title getuserByAgentCode
@@ -279,4 +280,16 @@ public interface UserManager {
 	* @throws:
 	*/
 	List<Integer> getUserListByAgentCode(String agentCode);
+
+	/**
+	* @Title:adminUpdateUserBaseInfo
+	* @author：cy
+	* @Description:管理员修改用户信息
+	* @date:2018年3月10日
+	* @return:void
+	* @throws:
+	*/
+	void adminUpdateUserBaseInfo(Integer id, String account, String realName, String contactPhone, Byte userType,
+			String agentCode, String agentName, Byte whetherFreeze, Date freezeDate, String customerAgent,
+			String directRecommendationAccount);
 }
