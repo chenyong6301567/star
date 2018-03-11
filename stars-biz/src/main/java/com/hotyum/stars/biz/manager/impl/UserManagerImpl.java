@@ -537,7 +537,9 @@ public class UserManagerImpl implements UserManager {
 					String.format(DERECTMESSAGE, refereUser.getRealName()));
 			// 直接推荐人
 			newUser.setDirectRecommendationAccount(refereePhone);
-			indirectUser = getUserByPhone(refereUser.getDirectRecommendationAccount());
+			if (StringUtils.isNotEmpty(refereUser.getDirectRecommendationAccount())) {
+				indirectUser = getUserByPhone(refereUser.getDirectRecommendationAccount());
+			}
 			// 间接推荐人
 			newUser.setIndirectRecommendationAccount(refereUser.getDirectRecommendationAccount());
 		}
