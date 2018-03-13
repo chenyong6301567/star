@@ -1210,4 +1210,46 @@ public class UserManagerImpl implements UserManager {
 		}
 	}
 
+	/**
+	* @Title:
+	* @author：cy
+	* @Description:
+	* @date:2018年3月13日
+	* @return:
+	* @throws:
+	*/
+	@Override
+	public List<User> getUserListAndInderectIsNullAndDerectIsNotNull() {
+		UserExample userExample = new UserExample();
+		UserExample.Criteria criteria = userExample.createCriteria();
+		criteria.andStatusGreaterThanOrEqualTo(Status.ZERO.getValue());
+		criteria.andDirectRecommendationAccountIsNotNull();
+		criteria.andIndirectRecommendationAccountIsNull();
+		try {
+			return userDAO.selectByExample(userExample);
+		} catch (DataAccessException e) {
+			LOGGER.error("getUserListAndInderectIsNullAndDerectIsNotNull失败====", e);
+			throw new RuntimeException("内部服务器错误");
+		}
+	}
+
+	/**
+	* @Title:updateUserInfo
+	* @author：cy
+	* @Description:更新用户
+	* @date:2018年3月13日
+	* @return:
+	* @throws:
+	*/
+	@Override
+	public void updateUserInfo(User user) {
+		try {
+			userDAO.updateByPrimaryKey(user);
+		} catch (DataAccessException e) {
+			LOGGER.error("updateUserInfo失败====", e);
+			throw new RuntimeException("内部服务器错误");
+		}
+
+	}
+
 }

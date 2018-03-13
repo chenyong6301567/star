@@ -292,4 +292,30 @@ public interface UserManager {
 	void adminUpdateUserBaseInfo(Integer id, String account, String realName, String contactPhone, Byte userType,
 			String agentCode, String agentName, Byte whetherFreeze, Date freezeDate, String customerAgent,
 			String directRecommendationAccount);
+
+	/**
+	* @Title:getUserListAndInderectIsNullAndDerectIsNotNull
+	* @author：cy
+	* @Description:
+	* @date:2018年3月13日
+	* @param
+	* @param
+	* @param
+	* @return:List<User>
+	* @throws:
+	*/
+	List<User> getUserListAndInderectIsNullAndDerectIsNotNull();
+
+	/**
+	* @Title:updateUserInfo
+	* @author：cy
+	* @Description:
+	* @date:2018年3月13日
+	* @param
+	* @param
+	* @param
+	* @return:void
+	* @throws:
+	*/
+	void updateUserInfo(User user);
 }
