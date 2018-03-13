@@ -64,8 +64,8 @@ public class PersonDocumentController {
 	 * @param serviceDate      服务期限|string|必填
 	 * @param investmentAmount 投资金额|string|必填
 	 * @param estimatedEarnings预估收益|string|必填
-	 * @param contactPhone     联系方式|string|必填 
-	 * @param registerEmail    注册邮箱号|string|必填
+	 * @param contactPhone     联系方式|string
+	 * @param registerEmail    注册邮箱号|string
 	 * @param agentCode        代理商编号|string|必填
 	 * @param derectRecomandPersonId 直推人Id|int
 	 * @param inderectRecomandPersonId 间推人Id|int
@@ -87,13 +87,12 @@ public class PersonDocumentController {
 			@RequestParam(required = true) Integer productId, @RequestParam(required = true) String productTypeName,
 			@RequestParam(required = true) String productRate, @RequestParam(required = true) Byte serviceDate,
 			@RequestParam(required = true) double investmentAmount,
-			@RequestParam(required = true) double estimatedEarnings, @RequestParam(required = true) String contactPhone,
-			@RequestParam(required = true) String registerEmail, @RequestParam(required = true) String agentCode,
-			Integer derectRecomandPersonId, Integer inderectRecomandPersonId,
-			@RequestParam(required = true) Integer maxIndex, HttpServletRequest request) {
-		
-		
-		LOGGGER.info("直推人"+derectRecomandPersonId+"==============间推人=="+inderectRecomandPersonId);
+			@RequestParam(required = true) double estimatedEarnings, String contactPhone, String registerEmail,
+			@RequestParam(required = true) String agentCode, Integer derectRecomandPersonId,
+			Integer inderectRecomandPersonId, @RequestParam(required = true) Integer maxIndex,
+			HttpServletRequest request) {
+
+		LOGGGER.info("直推人" + derectRecomandPersonId + "==============间推人==" + inderectRecomandPersonId);
 
 		Integer usId = TokenAccessUtils.getLoginUserId(request);
 
