@@ -356,6 +356,7 @@ public class ContractIncomeDistributionManagerImpl implements ContractIncomeDist
 			cib.setTradePlatform(vo.getTradePlatform());
 			cib.setAgentRate(vo.getAgentRate());
 			cib.setInderectRecomandRate(vo.getInderectRecomandRate());
+			cib.setDerectRecomandRate(vo.getDerectRecomandRate());
 			try {
 				contractIncomeDistributionDAO.updateByPrimaryKeySelective(cib);
 			} catch (DataAccessException e) {
