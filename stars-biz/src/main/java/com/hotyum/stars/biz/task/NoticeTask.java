@@ -45,7 +45,6 @@ public class NoticeTask {
 	@Scheduled(cron = "0 0/2 * * * ? ")
 	@Transactional(readOnly = false, propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
 	public void NoticeTask() {
-		//LOGGER.info("执行通知轮询操作开始");
 		lock.lock();
 		// 先查询系统通知
 		List<SystemNotice> systemNoticeList = systemNoticeManager.getSystemNotice();
@@ -67,7 +66,6 @@ public class NoticeTask {
 			}
 		}
 		lock.unlock();
-		//LOGGER.info("执行通知轮询操作完成");
 	}
 
 	/**

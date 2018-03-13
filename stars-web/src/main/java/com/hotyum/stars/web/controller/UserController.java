@@ -155,6 +155,18 @@ public class UserController {
 			String realName, Byte sex, String contactPhone, String email, Byte whetherRealName, Byte wheatherGetMoney,
 			Byte refereeQualification, String agentCode, String directRecommendationAccount,
 			String indirectRecommendationAccount) {
+		if (StringUtils.isNotEmpty(directRecommendationAccount)
+				&& StringUtils.isNotEmpty(indirectRecommendationAccount)) {
+			if (directRecommendationAccount.equals(indirectRecommendationAccount)) {
+				return Result.errorReponse("直接推荐人账号跟间接推荐人账号不能相同");
+			}
+			if (account.equals(indirectRecommendationAccount)) {
+				return Result.errorReponse("账号跟间接推荐人账号不能相同");
+			}
+			if (directRecommendationAccount.equals(account)) {
+				return Result.errorReponse("直接推荐人账号跟间账号不能相同");
+			}
+		}
 		Integer userd = TokenAccessUtils.getLoginUserId(request);
 		if (userd < 0) {
 			throw new RuntimeException("请先登录再修改用戶基本信息");
