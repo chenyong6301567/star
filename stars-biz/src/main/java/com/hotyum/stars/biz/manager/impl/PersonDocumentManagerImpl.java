@@ -95,9 +95,9 @@ public class PersonDocumentManagerImpl implements PersonDocumentManager {
 				personDocument.setDerectRecomandPersonName(user.getRealName());
 			}
 		}
-		if (null != derectRecomandPersonId) {
+		if (null != inderectRecomandPersonId) {
 			personDocument.setInderectRecomandPersonId(inderectRecomandPersonId);
-			User user = userManager.getUserById(derectRecomandPersonId);
+			User user = userManager.getUserById(inderectRecomandPersonId);
 			if (null != user) {
 				personDocument.setInderectRecomandPersonName(user.getRealName());
 			}
