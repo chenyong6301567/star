@@ -30,7 +30,6 @@ public class NoticeController {
 	/**
 	 * 获取我通知的数目
 	 * 
-	 * @param a 不用普通参数，带令牌token|string|必填
 	 * @Title getMyNoticeCount
 	 * @respbody {"code":1,"message":"成功","data":1,"error":false,"success":true}
 	 * @author cy
@@ -48,9 +47,8 @@ public class NoticeController {
 	}
 
 	/**
-	 * 获取我推荐的人注册通知
+	 * 获取通知列表(包括注册和系统通知)
 	 * 
-	 * @param a 不用普通参数，带令牌token|string|必填
 	 * @Title getRegisterNotice
 	 * @respbody {"code":1,"message":"成功","data":[{"id":1,"noticeContent":"测试通知11111111111111111","gmtCreate":"2018-01-07 22:39:05"}],"error":false,"success":true}
 	 * @author cy
