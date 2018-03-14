@@ -13,57 +13,57 @@ public class ContractDitrubuteIncomeVO implements Serializable {
 
 	private Integer id;
 
-	private String documentCode="";
+	private String documentCode = "";
 
-	private String customerName="";
+	private String customerName = "";
 
-	private double investmentAmount=0.0;
+	private double investmentAmount = 0.0;
 
-	private double contractIncome=0.0;
+	private double contractIncome = 0.0;
 
-	private String firstTradeDate="";
+	private String firstTradeDate = "";
 
-	private Integer productTypeId=0;
+	private Integer productTypeId = 0;
 
-	private String productTypeName="";
+	private String productTypeName = "";
 
-	private String tradeEndDate="";
+	private String tradeEndDate = "";
 
-	private Byte tradeStatus=0;
+	private Byte tradeStatus = 0;
 
-	private String tradeStatusName="";
+	private String tradeStatusName = "";
 
-	private String productRate="";
+	private String productRate = "";
 
-	private Integer derectRecomandPersonId=0;
+	private Integer derectRecomandPersonId = 0;
 
-	private String derectRecomandPersonName="";
+	private String derectRecomandPersonName = "";
 
-	private Integer inderectRecomandPersonId=0;
+	private Integer inderectRecomandPersonId = 0;
 
-	private String inderectRecomandPersonName="";
+	private String inderectRecomandPersonName = "";
 
-	private String derectRecomandRate="";
+	private String derectRecomandRate = "";
 
-	private String inderectRecomandRate="";
+	private String inderectRecomandRate = "0.005";
 
-	private String agentCode="";
+	private String agentCode = "";
 
-	private String agentRate="";
+	private String agentRate = "0.02";
 
-	private double customerIncome=0.0;
+	private double customerIncome = 0.0;
 
-	private double derectIncome=0.0;
+	private double derectIncome = 0.0;
 
-	private double inderectIncome=0.0;
+	private double inderectIncome = 0.0;
 
-	private double agentIncome=0.0;
+	private double agentIncome = 0.0;
 
-	private double companyIncome=0.0;
+	private double companyIncome = 0.0;
 
-	private String tradePlatform="";
+	private String tradePlatform = "";
 
-	private String tradeAccount="";
+	private String tradeAccount = "";
 
 	public Integer getId() {
 		return id;
