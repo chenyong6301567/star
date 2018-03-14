@@ -90,9 +90,9 @@ public class ContractIncomeDistributionManagerImpl implements ContractIncomeDist
 				cd.setDerectRecomandRate(myinfo.getDirectRewardRate());
 			}
 		}
-		if (null != derectRecomandPersonId) {
+		if (null != inderectRecomandPersonId) {
 			cd.setInderectRecomandPersonId(inderectRecomandPersonId);
-			User user = userManager.getUserById(derectRecomandPersonId);
+			User user = userManager.getUserById(inderectRecomandPersonId);
 			if (null != user) {
 				cd.setInderectRecomandPersonName(user.getRealName());
 			}
